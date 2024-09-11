@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Java-Array</title>
+    <link href="/2024/09/11/Java-Array/"/>
+    <url>/2024/09/11/Java-Array/</url>
+    
+    <content type="html"><![CDATA[<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="创建方式"><a href="#创建方式" class="headerlink" title="创建方式"></a>创建方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">NewClass[] a;<br>NewClass[] b = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>[<span class="hljs-number">10</span>];<br>NewClass[] c = &#123;<span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>()&#125;;<br>NewClass[] p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>&#123;<span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>()&#125;;<br></code></pre></td></tr></table></figure><h2 id="返回数组"><a href="#返回数组" class="headerlink" title="返回数组"></a>返回数组</h2><ul><li>Java可以直接返回数组</li></ul><h2 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span>[][] b = &#123;<br>                &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;,<br>                &#123;<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;,<br>&#125;;<br></code></pre></td></tr></table></figure><h3 id="Arrays-deepToString"><a href="#Arrays-deepToString" class="headerlink" title="Arrays.deepToString()"></a>Arrays.deepToString()</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(Arrays.deepToString(a));<br></code></pre></td></tr></table></figure><p>将多维数组转换为字符串.对基本数组和对象数组都起作用.</p><h2 id="Arrays实用功能"><a href="#Arrays实用功能" class="headerlink" title="Arrays实用功能"></a>Arrays实用功能</h2><table><thead><tr><th>System.arraycopy()</th><th>复制数组</th></tr></thead><tbody><tr><td>Arrays.fill()</td><td>以单个值填充数组</td></tr><tr><td>Arrays.equals()</td><td>判断相等</td></tr><tr><td>Arrays.sort()</td><td>排序</td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></tbody></table>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java String</title>
     <link href="/2024/09/11/Java-String/"/>
     <url>/2024/09/11/Java-String/</url>
