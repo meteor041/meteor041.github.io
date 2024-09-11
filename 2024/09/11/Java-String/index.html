@@ -1,0 +1,975 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="meteor041">
+  <meta name="keywords" content="Computer Organization">
+  
+    <meta name="description" content="字符串String对象不可变 (修改字符串的方法实质上是生成了一个新的String对象) StringBuilder12345678910public String toString()&#123;    StringBuilder result &#x3D; new StringBuilder(&quot;[&quot;);    for (int i &#x3D; 0; i &lt; 10; i++)&#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java String">
+<meta property="og:url" content="https://meteor041.git.io/2024/09/11/Java-String/index.html">
+<meta property="og:site_name" content="meteor041">
+<meta property="og:description" content="字符串String对象不可变 (修改字符串的方法实质上是生成了一个新的String对象) StringBuilder12345678910public String toString()&#123;    StringBuilder result &#x3D; new StringBuilder(&quot;[&quot;);    for (int i &#x3D; 0; i &lt; 10; i++)&#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-11T04:19:13.000Z">
+<meta property="article:modified_time" content="2024-09-11T04:22:30.274Z">
+<meta property="article:author" content="meteor041">
+<meta property="article:tag" content="Java, String">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Java String - meteor041</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"meteor041.git.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java String"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-11 12:19" pubdate>
+          2024年9月11日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          795 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Java String</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p><strong>String对象不可变</strong></p>
+<p>(修改字符串的方法实质上是生成了一个新的String对象)</p>
+<h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(<span class="hljs-string">&quot;[&quot;</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++)&#123;<br>        result.append(rand.nextInt(<span class="hljs-number">100</span>));<br>        result.append(<span class="hljs-string">&quot;, &quot;</span>);<br>    &#125;<br>    result.delete(result.length()-<span class="hljs-number">2</span>, result.length());<br>    result.append(<span class="hljs-string">&quot;]&quot;</span>);<br>    <span class="hljs-keyword">return</span> result.toString();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="无意识递归"><a href="#无意识递归" class="headerlink" title="无意识递归"></a>无意识递归</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">InfiniteRecursion</span>&#123;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot; InfiniteRecursion address: &quot;</span> + <span class="hljs-built_in">this</span> + <span class="hljs-string">&quot;\n&quot;</span>;<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        List&lt;InfiniteRecursion&gt; v = <br>            <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;InfiniteRecursion&gt;();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++)&#123;<br>            v.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InfiniteRecursion</span>());<br>        &#125;<br>        System.out.println(v);<br>    &#125;<br>&#125;<br><span class="hljs-comment">// println(v)中调用了InfiniteRecursion类的toString方法,toString方法让this发生了自动类型转换,继续实现toString方法,就这样实现了无限递归.</span><br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>参数,重载版本</th>
+<th>应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length()</td>
+<td></td>
+<td>字符个数</td>
+</tr>
+<tr>
+<td>charAt()</td>
+<td>Int索引</td>
+<td>该缩影位置上的char</td>
+</tr>
+<tr>
+<td>getChar(),getBytes()</td>
+<td></td>
+<td>复制</td>
+</tr>
+<tr>
+<td>toCharArray()</td>
+<td></td>
+<td>生成char[]</td>
+</tr>
+<tr>
+<td>equals(),equalsIgnoreCase()</td>
+<td></td>
+<td>比较字符串</td>
+</tr>
+<tr>
+<td>compareTo()</td>
+<td></td>
+<td>按词典序比较字符串</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> net.mindview.util.Print.print;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StringOperation</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;good,world&quot;</span>, s2=<span class="hljs-string">&quot;hello,world&quot;</span>;<br>        print(s1.regionMatches(<span class="hljs-number">5</span>,s2,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>)); <span class="hljs-comment">//true</span><br>        print(s1.startsWith(<span class="hljs-string">&quot;g&quot;</span>)); <span class="hljs-comment">//true</span><br>        print(s1.endsWith(<span class="hljs-string">&quot;g&quot;</span>));<span class="hljs-comment">//false</span><br>        print(s1.length());<span class="hljs-comment">//10</span><br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="格式化说明符"><a href="#格式化说明符" class="headerlink" title="格式化说明符"></a>格式化说明符</h2><table>
+<thead>
+<tr>
+<th align="center">类型转换字符</th>
+<th></th>
+<th align="center"></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">d</td>
+<td>十进制</td>
+<td align="center">e</td>
+<td>浮点数(科学计数)</td>
+</tr>
+<tr>
+<td align="center">c</td>
+<td>Unicode字符</td>
+<td align="center">x</td>
+<td>十六进制</td>
+</tr>
+<tr>
+<td align="center">b</td>
+<td>Boolean</td>
+<td align="center">h</td>
+<td>散列码</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td>String</td>
+<td align="center">%</td>
+<td>%</td>
+</tr>
+<tr>
+<td align="center">f</td>
+<td>浮点数</td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="正则表达式-Regular-Expression"><a href="#正则表达式-Regular-Expression" class="headerlink" title="正则表达式(Regular Expression)"></a>正则表达式(Regular Expression)</h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs livescript">-?查找带负号的数<br><span class="hljs-string">\\d</span> 表示一位数字<br><span class="hljs-string">\\\\</span> 普通反斜线<br>-?<span class="hljs-string">\\d+</span><br>(-|<span class="hljs-string">\\+)?</span> 一个-或者一个+<br><span class="hljs-string">\\W</span> 非单词字符<br><span class="hljs-string">\\w</span> 单词字符<br><span class="hljs-string">\?</span> 问号<br></code></pre></td></tr></table></figure>
+
+<h3 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h3><table>
+<thead>
+<tr>
+<th>B</th>
+<th>指定字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\xhh</td>
+<td>十六进制值为oxhh的字符</td>
+</tr>
+<tr>
+<td>\uhhhh</td>
+<td>十六进制值为oxhhhh的字符</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>Tab</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行符</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>换页</td>
+</tr>
+<tr>
+<td>\e</td>
+<td>转义</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h3><table>
+<thead>
+<tr>
+<th>.</th>
+<th>任意字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[abc]</td>
+<td>a|b|c</td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td>否定</td>
+</tr>
+<tr>
+<td>[a-zA-Z]</td>
+<td>a-z,A-Z范围</td>
+</tr>
+<tr>
+<td>[abc[hij]]</td>
+<td>a|b|c|h|i|j</td>
+</tr>
+<tr>
+<td>[a-z&amp;&amp;[hij]]</td>
+<td>h|i|j</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>空白符</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>非空白符</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>非数字</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>词字符</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>非词字符</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="边界匹配符"><a href="#边界匹配符" class="headerlink" title="边界匹配符"></a>边界匹配符</h3><table>
+<thead>
+<tr>
+<th>^</th>
+<th>一行的起始</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$</td>
+<td>一行的结束</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>词的边界</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>非词的边界</td>
+</tr>
+<tr>
+<td>\G</td>
+<td>前一个匹配的结束</td>
+</tr>
+</tbody></table>
+<h3 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h3><ul>
+<li>贪婪型:尽可能多的匹配</li>
+<li>勉强型:匹配最少的字数</li>
+<li>占有型:防止回溯,java中才有</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>贪婪型</th>
+<th>勉强型</th>
+<th>占有型</th>
+<th>符合匹配</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>X?</td>
+<td>X??</td>
+<td>X?+</td>
+<td>一个或零个X</td>
+</tr>
+<tr>
+<td>X*</td>
+<td>X*?</td>
+<td>X*+</td>
+<td>零个或多个X</td>
+</tr>
+<tr>
+<td>X+</td>
+<td>X+?</td>
+<td>X++</td>
+<td>一个或多个X</td>
+</tr>
+<tr>
+<td>X{n}</td>
+<td>X{n}?</td>
+<td>X{n}+</td>
+<td>恰好n次X</td>
+</tr>
+<tr>
+<td>X{n,m}</td>
+<td>X{n,m}?</td>
+<td>X{n,m}+</td>
+<td>X至少n次,且不超过m次</td>
+</tr>
+</tbody></table>
+<h3 id="Pattern-compile"><a href="#Pattern-compile" class="headerlink" title="Pattern.compile()"></a>Pattern.compile()</h3><p>编译正则表达式</p>
+<h3 id="Pattern-matcher"><a href="#Pattern-matcher" class="headerlink" title="Pattern.matcher()"></a>Pattern.matcher()</h3><p>生成Matcher对象</p>
+<h3 id="Matcher-matches"><a href="#Matcher-matches" class="headerlink" title="Matcher.matches()"></a>Matcher.matches()</h3><p>判断整个输入字符串是否匹配正则表达式模式</p>
+<h3 id="Matcher-find-Matcher-find-int-i"><a href="#Matcher-find-Matcher-find-int-i" class="headerlink" title="Matcher.find()&#x2F;Matcher.find(int i)"></a>Matcher.find()&#x2F;Matcher.find(int i)</h3><p>查找(int i可以指定起始位置)</p>
+<h3 id="Pattern标记"><a href="#Pattern标记" class="headerlink" title="Pattern标记"></a>Pattern标记</h3><table>
+<thead>
+<tr>
+<th>编译标记</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pattern.CANON_EQ</td>
+<td>规范的等价性</td>
+</tr>
+<tr>
+<td>Pattern.CASE_INSENSITIVE(?i)</td>
+<td>大小写不敏感</td>
+</tr>
+<tr>
+<td>Pattern.COMMENTS(?x)</td>
+<td>忽略空格符,注释</td>
+</tr>
+<tr>
+<td>Pattern.DOTALL(?x)</td>
+<td>“.”匹配所有字符,包括行终结符</td>
+</tr>
+<tr>
+<td>Pattern.MULTILINE(?m)</td>
+<td>^,$匹配一行的开始和结束</td>
+</tr>
+<tr>
+<td>Pattern.UNICODE_CASE(?u)</td>
+<td>大小写不敏感按照Unicode标准</td>
+</tr>
+<tr>
+<td>Pattern.UNIX_LINES(?d)</td>
+<td>.,^,$均只识别行终结符\n</td>
+</tr>
+</tbody></table>
+<h2 id="Scanner"><a href="#Scanner" class="headerlink" title="Scanner"></a>Scanner</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Scanner</span> <span class="hljs-variable">stdin</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(SimpleRead.input);<br><span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> stdin.nextLine();<br><span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> stdin.nextInt();<br><span class="hljs-type">double</span> <span class="hljs-variable">favourite</span> <span class="hljs-operator">=</span> stdin.nextDouble();<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>Scanner的构造器可以接受任何类型的输入对象,包括File对象,InputStream对象,String或Readable对象.</li>
+</ul>
+<h3 id="useDelimiter"><a href="#useDelimiter" class="headerlink" title="useDelimiter()"></a>useDelimiter()</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ScannerDelimiter</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(<span class="hljs-string">&quot;12, 42, 12&quot;</span>);<br>        scanner.useDelimiter(<span class="hljs-string">&quot;\\s*,\\s*&quot;</span>);<br>        <span class="hljs-keyword">while</span> (scanner.hasNextInt())&#123;<br>            System.out.println(scanner.nextInt());<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-comment">/*out:</span><br><span class="hljs-comment">12</span><br><span class="hljs-comment">42</span><br><span class="hljs-comment">12</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java-String/" class="print-no-link">#Java, String</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java String</div>
+      <div>https://meteor041.git.io/2024/09/11/Java-String/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>meteor041</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/11/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"pVYty8uzP1PdUg8O8dWkvawY-MdYXbMMI","appKey":"BOUpaNblyKTkI91Yh4K6npX9","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
