@@ -19,22 +19,26 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="数组创建方式1234NewClass[] a;NewClass[] b &#x3D; new NewClass[10];NewClass[] c &#x3D; &#123;new NewClass(), new NewClass(), new NewClass()&#125;;NewClass[] p &#x3D; new NewClass&#123;new NewClass(), new NewClass(), new Ne">
+    <meta name="description" content="构建单周期CPUⅡ(add, sub, and, or, slt, beq)新增信号RegDst1:从指令15:11位中读取数据到A3端口 0:从指令20:16位中读取数据到A3端口 ALUSrc 1:从EXT中读取符号扩展的立即数 0:从寄存器文件RD2端口中读取数据  MemtoReg 1:将从数据存储器中读取的数据输出到WD3 0:将从ALU中读取的数据输出到WD3  信号表   指令 Re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java-Array">
-<meta property="og:url" content="https://meteor041.git.io/2024/09/11/Java-Array/index.html">
+<meta property="og:title" content="构建单周期CPUⅡ(add, sub, and, or, slt, beq)">
+<meta property="og:url" content="https://meteor041.git.io/2024/09/11/%E6%9E%84%E5%BB%BA%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E2%85%A1-add-sub-and-or-slt-beq/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="数组创建方式1234NewClass[] a;NewClass[] b &#x3D; new NewClass[10];NewClass[] c &#x3D; &#123;new NewClass(), new NewClass(), new NewClass()&#125;;NewClass[] p &#x3D; new NewClass&#123;new NewClass(), new NewClass(), new Ne">
+<meta property="og:description" content="构建单周期CPUⅡ(add, sub, and, or, slt, beq)新增信号RegDst1:从指令15:11位中读取数据到A3端口 0:从指令20:16位中读取数据到A3端口 ALUSrc 1:从EXT中读取符号扩展的立即数 0:从寄存器文件RD2端口中读取数据  MemtoReg 1:将从数据存储器中读取的数据输出到WD3 0:将从ALU中读取的数据输出到WD3  信号表   指令 Re">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-11T04:44:54.000Z">
-<meta property="article:modified_time" content="2024-09-11T04:45:00.986Z">
+<meta property="og:image" content="https://meteor041.git.io/images%5Cimage-20240911230937221.png">
+<meta property="og:image" content="https://meteor041.git.io/images%5Cimage-20240911225650083.png">
+<meta property="og:image" content="https://meteor041.git.io/images%5Cimage-20240911225716228.png">
+<meta property="article:published_time" content="2024-09-11T15:24:16.000Z">
+<meta property="article:modified_time" content="2024-09-11T15:30:51.886Z">
 <meta property="article:author" content="meteor041">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/images%5Cimage-20240911230937221.png">
   
   
   
-  <title>Java-Array - meteor041</title>
+  <title>构建单周期CPUⅡ(add, sub, and, or, slt, beq) - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java-Array"></span>
+            <span id="subtitle" data-typed-text="构建单周期CPUⅡ(add, sub, and, or, slt, beq)"></span>
           
         </div>
 
@@ -211,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-11 12:44" pubdate>
-          2024年9月11日 下午
+        <time datetime="2024-09-11 23:24" pubdate>
+          2024年9月11日 晚上
         </time>
       </span>
     
@@ -223,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          121 字
+          331 字
         
       </span>
     
@@ -234,7 +238,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -271,61 +275,138 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java-Array</h1>
+            <h1 id="seo-header">构建单周期CPUⅡ(add, sub, and, or, slt, beq)</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="创建方式"><a href="#创建方式" class="headerlink" title="创建方式"></a>创建方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">NewClass[] a;<br>NewClass[] b = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>[<span class="hljs-number">10</span>];<br>NewClass[] c = &#123;<span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>()&#125;;<br>NewClass[] p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>&#123;<span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">NewClass</span>()&#125;;<br></code></pre></td></tr></table></figure>
-
-<h2 id="返回数组"><a href="#返回数组" class="headerlink" title="返回数组"></a>返回数组</h2><ul>
-<li>Java可以直接返回数组</li>
+                <h1 id="构建单周期CPUⅡ-add-sub-and-or-slt-beq"><a href="#构建单周期CPUⅡ-add-sub-and-or-slt-beq" class="headerlink" title="构建单周期CPUⅡ(add, sub, and, or, slt, beq)"></a>构建单周期CPUⅡ(add, sub, and, or, slt, beq)</h1><h2 id="新增信号"><a href="#新增信号" class="headerlink" title="新增信号"></a>新增信号</h2><h3 id="RegDst"><a href="#RegDst" class="headerlink" title="RegDst"></a>RegDst</h3><p>1:从指令15:11位中读取数据到A3端口</p>
+<p>0:从指令20:16位中读取数据到A3端口</p>
+<h3 id="ALUSrc"><a href="#ALUSrc" class="headerlink" title="ALUSrc"></a>ALUSrc</h3><ul>
+<li>1:从EXT中读取符号扩展的立即数</li>
+<li>0:从寄存器文件RD2端口中读取数据</li>
 </ul>
-<h2 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span>[][] b = &#123;<br>                &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;,<br>                &#123;<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>&#125;,<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h3 id="Arrays-deepToString"><a href="#Arrays-deepToString" class="headerlink" title="Arrays.deepToString()"></a>Arrays.deepToString()</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(Arrays.deepToString(a));<br></code></pre></td></tr></table></figure>
-
-<p>将多维数组转换为字符串.对基本数组和对象数组都起作用.</p>
-<h2 id="Arrays实用功能"><a href="#Arrays实用功能" class="headerlink" title="Arrays实用功能"></a>Arrays实用功能</h2><table>
+<h3 id="MemtoReg"><a href="#MemtoReg" class="headerlink" title="MemtoReg"></a>MemtoReg</h3><ul>
+<li>1:将从数据存储器中读取的数据输出到WD3</li>
+<li>0:将从ALU中读取的数据输出到WD3</li>
+</ul>
+<h2 id="信号表"><a href="#信号表" class="headerlink" title="信号表"></a>信号表</h2><table>
 <thead>
 <tr>
-<th>System.arraycopy()</th>
-<th>复制数组</th>
+<th>指令</th>
+<th>RegDst</th>
+<th>ALUSrc</th>
+<th>MemtoReg</th>
+<th>ALUControl</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>Arrays.fill()</td>
-<td>以单个值填充数组</td>
+<td>R指令(add, sub, and, or, slt)</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>varies</td>
 </tr>
 <tr>
-<td>Arrays.equals()</td>
-<td>判断相等</td>
+<td>lw,sw</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>010(+)</td>
 </tr>
 <tr>
-<td>Arrays.sort()</td>
-<td>排序</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
+<td>beq</td>
+<td>x</td>
+<td>0</td>
+<td>x</td>
+<td>110(-)</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-</tr>
-<tr>
+<td></td>
 <td></td>
 <td></td>
 </tr>
 </tbody></table>
+<h3 id="ALU"><a href="#ALU" class="headerlink" title="ALU"></a>ALU</h3><table>
+<thead>
+<tr>
+<th>ALUOp</th>
+<th>含义</th>
+<th>ALUOp</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>00</td>
+<td>加法</td>
+<td>10</td>
+<td>依赖于func</td>
+</tr>
+<tr>
+<td>01</td>
+<td>减法</td>
+<td>11</td>
+<td>无定义</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>ALUOp</th>
+<th>Funct</th>
+<th>ALUControl</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>00</td>
+<td>X</td>
+<td>010(加)</td>
+</tr>
+<tr>
+<td>X1</td>
+<td>X</td>
+<td>110(减)</td>
+</tr>
+<tr>
+<td>1X</td>
+<td>100000(add)</td>
+<td>010(加)</td>
+</tr>
+<tr>
+<td>1X</td>
+<td>100010(sub)</td>
+<td>110(减)</td>
+</tr>
+<tr>
+<td>1X</td>
+<td>100100(and)</td>
+<td>000(与)</td>
+</tr>
+<tr>
+<td>1X</td>
+<td>100101(or)</td>
+<td>001(或)</td>
+</tr>
+<tr>
+<td>1X</td>
+<td>101010(slt)</td>
+<td>111(小于置位)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>这里引用图表来自黑皮书,采用两级判断(先判断ALUOp,再判断ALUControl值),这里我采用另一种方法,对于非R型指令直接输出ALUControl,对R型指令两级判断.(见后图CU)</li>
+</ul>
+<h3 id="add"><a href="#add" class="headerlink" title="add"></a>add</h3><p>000000(31:26) + rs(25:21) + rt(20:16) + rd(15:11) + 00000(10:6) + 100000(add,5:0)</p>
+<h3 id="sub"><a href="#sub" class="headerlink" title="sub"></a>sub</h3><p>000000(31:26) + rs(25:21) + rt(20:16) + rd(15:11) + 00000(10:6) + 100010(sub,5:0)</p>
+<h3 id="and"><a href="#and" class="headerlink" title="and"></a>and</h3><p>000000(31:26) + rs(25:21) + rt(20:16) + rd(15:11) + 00000(10:6) + 100100(and,5:0)</p>
+<h3 id="or"><a href="#or" class="headerlink" title="or"></a>or</h3><p>000000(31:26) + rs(25:21) + rt(20:16) + rd(15:11) + 00000(10:6) + 100101(or, 5:0)</p>
+<h3 id="slt"><a href="#slt" class="headerlink" title="slt"></a>slt</h3><p>000000(31:26) + rs(25:21) + rt(20:16) + rd(15:11) + 00000(10:6) + 101010(slt, 5:0)</p>
+<h3 id="beq"><a href="#beq" class="headerlink" title="beq"></a>beq</h3><p>000100(31:26) + rs(25:21) + rt(20:16) + offset(15:0)</p>
+<h2 id="更新组件"><a href="#更新组件" class="headerlink" title="更新组件"></a>更新组件</h2><h3 id="ALU-1"><a href="#ALU-1" class="headerlink" title="ALU"></a>ALU</h3><p><img src="/images%5Cimage-20240911230937221.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="CU"><a href="#CU" class="headerlink" title="CU"></a>CU</h3><p><img src="/images%5Cimage-20240911225650083.png" srcset="/img/loading.gif" lazyload alt="image-20240911225650083"></p>
+<h2 id="整体"><a href="#整体" class="headerlink" title="整体"></a>整体</h2><p><img src="/images%5Cimage-20240911225716228.png" srcset="/img/loading.gif" lazyload alt="image-20240911225716228"></p>
 
                 
               </div>
@@ -338,7 +419,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Java/" class="print-no-link">#Java</a>
+        <a href="/tags/CO/" class="print-no-link">#CO</a>
       
     </div>
   
@@ -350,8 +431,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java-Array</div>
-      <div>https://meteor041.git.io/2024/09/11/Java-Array/</div>
+      <div>构建单周期CPUⅡ(add, sub, and, or, slt, beq)</div>
+      <div>https://meteor041.git.io/2024/09/11/构建单周期CPUⅡ-add-sub-and-or-slt-beq/</div>
     </div>
     <div class="license-meta">
       
@@ -395,18 +476,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/11/%E6%9E%84%E5%BB%BA%E5%8D%95%E5%91%A8%E6%9C%9FCPU-%E5%88%9D%E6%AD%A5-%E5%8C%85%E6%8B%AClw%E5%92%8Csw/" title="构建单周期CPU(初步,包括lw和sw)">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">构建单周期CPU(初步,包括lw和sw)</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/11/Java-String/" title="Java String">
-                        <span class="hidden-mobile">Java String</span>
+                      <a href="/2024/09/11/%E6%9E%84%E5%BB%BA%E5%8D%95%E5%91%A8%E6%9C%9FCPU-%E5%88%9D%E6%AD%A5-%E5%8C%85%E6%8B%AClw%E5%92%8Csw/" title="构建单周期CPU(初步,包括lw和sw)">
+                        <span class="hidden-mobile">构建单周期CPU(初步,包括lw和sw)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
