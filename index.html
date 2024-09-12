@@ -240,7 +240,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/09/12/%E6%9E%84%E5%BB%BA%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E8%AE%B0%E5%BD%95%E2%85%A2/" target="_self">
         <div>
-          构建单周期CPU记录Ⅲ(addi, j)addi对于addi,不需要新增器件,addi与add的不同,本质上是将其中一个寄存器换成了立即数. 比较两者的机器码           可以发现:  rs不变 rt的作用从原来的提供加数,变为赋值地址 rd消失,立即数代替rt成为加数  因此修改如下:  A1端口不变,仍然连接Instr[25:21] SrcB不再接收Instr[20:16]的值,而是立
+          
         </div>
       </a>
 
@@ -313,7 +313,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/09/11/%E6%9E%84%E5%BB%BA%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E2%85%A1-add-sub-and-or-slt-beq/" target="_self">
         <div>
-          构建单周期CPU记录Ⅱ(add, sub, and, or, slt, beq)新增信号RegDst1:从指令15:11位中读取数据到A3端口 0:从指令20:16位中读取数据到A3端口 ALUSrc 1:从EXT中读取符号扩展的立即数 0:从寄存器文件RD2端口中读取数据  MemtoReg 1:将从数据存储器中读取的数据输出到WD3 0:将从ALU中读取的数据输出到WD3  信号表   指令
+          
         </div>
       </a>
 
@@ -353,7 +353,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/09/11/%E6%9E%84%E5%BB%BA%E5%8D%95%E5%91%A8%E6%9C%9FCPU-%E5%88%9D%E6%AD%A5-%E5%8C%85%E6%8B%AClw%E5%92%8Csw/" target="_self">
         <div>
-          构建单周期CPU记录Ⅰ(初步,包括lw和sw)核心部件PC(Program Counter,程序计数器) IM(Instuction Memory,指令存储器) GRF(Register File,寄存器文件) DM(Data Memory,数据存储器) 附加部件ALU SPLT(splitter,分离器) EXT(extender,扩位器) NXTAD(Next Address,下一个地址的计算
+          
         </div>
       </a>
 
@@ -393,7 +393,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/09/11/Java-Array/" target="_self">
         <div>
-          数组创建方式1234NewClass[] a;NewClass[] b = new NewClass[10];NewClass[] c = &#123;new NewClass(), new NewClass(), new NewClass()&#125;;NewClass[] p = new NewClass&#123;new NewClass(), new NewClass(), new Ne
+          
         </div>
       </a>
 
@@ -433,7 +433,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/09/11/Java-String/" target="_self">
         <div>
-          字符串String对象不可变 (修改字符串的方法实质上是生成了一个新的String对象) StringBuilder12345678910public String toString()&#123;    StringBuilder result = new StringBuilder(&quot;[&quot;);    for (int i = 0; i &lt; 10; i++)&#123;
+          
         </div>
       </a>
 
@@ -473,7 +473,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/09/11/hello-world/" target="_self">
         <div>
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick
+          
         </div>
       </a>
 
@@ -544,6 +544,60 @@
     </div>
   
   
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
   
 </div>
 
@@ -595,6 +649,8 @@
 
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
