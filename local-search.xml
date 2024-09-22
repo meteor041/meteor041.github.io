@@ -27,7 +27,7 @@
     <link href="/2024/09/18/%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF/"/>
     <url>/2024/09/18/%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF/</url>
     
-    <content type="html"><![CDATA[<h2 id="二极管"><a href="#二极管" class="headerlink" title="二极管"></a>二极管</h2><ul><li><p>一个PN结就是一只晶体二极管</p></li><li><p>正向导通:外加正向电压大于开启电压$V_D$,二极管导通,$U_D&#x3D;V_D$</p></li><li><p>反向截止:外加反向电压或电压小于开启电压$V_D$,二极管截止,$I_D&#x3D;0$</p></li><li><p>击穿:外加反向电压超过一个阈值$V_Z$时,二极管会被击穿,压降是$V_Z$</p></li></ul><p>![image-20240918174155826](C:\Users\Liu Xinyu\Desktop\hexo_doc\source_posts\组合逻辑电路\image-20240918174155826.png)</p><h2 id="晶体三极管"><a href="#晶体三极管" class="headerlink" title="晶体三极管"></a>晶体三极管</h2><p>图为NPN型</p><p>![image-20240918174330224](C:\Users\Liu Xinyu\Desktop\hexo_doc\source_posts\组合逻辑电路\image-20240918174330224.png)</p><p>![image-20240918174340598](C:\Users\Liu Xinyu\Desktop\hexo_doc\source_posts\组合逻辑电路\image-20240918174340598.png)</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="二极管"><a href="#二极管" class="headerlink" title="二极管"></a>二极管</h2><ul><li><p>一个PN结就是一只晶体二极管</p></li><li><p>正向导通:外加正向电压大于开启电压$V_D$,二极管导通,$U_D&#x3D;V_D$</p></li><li><p>反向截止:外加反向电压或电压小于开启电压$V_D$,二极管截止,$I_D&#x3D;0$</p></li><li><p>击穿:外加反向电压超过一个阈值$V_Z$时,二极管会被击穿,压降是$V_Z$</p></li></ul><p><img src="image-20240918174155826.png" alt="image-20240918174155826"></p><h2 id="晶体三极管"><a href="#晶体三极管" class="headerlink" title="晶体三极管"></a>晶体三极管</h2><p>图为NPN型</p><p><img src="image-20240918174330224.png" alt="image-20240918174330224"></p><p><img src="image-20240918174340598.png" alt="image-20240918174340598"></p>]]></content>
     
     
     
