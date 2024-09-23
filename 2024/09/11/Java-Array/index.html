@@ -27,7 +27,7 @@
 <meta property="og:description" content="数组创建方式1234NewClass[] a;NewClass[] b &#x3D; new NewClass[10];NewClass[] c &#x3D; &#123;new NewClass(), new NewClass(), new NewClass()&#125;;NewClass[] p &#x3D; new NewClass&#123;new NewClass(), new NewClass(), new Ne">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-09-11T04:44:54.000Z">
-<meta property="article:modified_time" content="2024-09-21T03:37:37.055Z">
+<meta property="article:modified_time" content="2024-09-23T00:14:44.610Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          450 字
+          499 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          4 分钟
+          5 分钟
         
       </span>
     
@@ -287,7 +287,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年9月21日 中午
+                    本文最后更新于 2024年9月23日 早上
                   
                 
               </p>
@@ -333,7 +333,10 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Integer&gt; l1 = Arrays.asList(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);<br>System.out.println(l1);<br><span class="hljs-comment">// [1, 2, 3]</span><br>List&lt;Student&gt; l2 = Arrays.asList(<br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;xiaoming&quot;</span>,<span class="hljs-number">21</span>),<br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;xiaomei&quot;</span>,<span class="hljs-number">19</span>));<br>System.out.println(l2);<br><span class="hljs-comment">// [xiaoming 21, xiaomei 19]</span><br></code></pre></td></tr></table></figure>
 
-
+<h3 id="setAll"><a href="#setAll" class="headerlink" title="setAll()"></a>setAll()</h3><blockquote>
+<p>使用提供的生成器函数设置指定数组的所有元素以计算每个元素</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">Set&lt;Integer&gt;[] s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>[maxlen];<br>Arrays.setAll(s, i -&gt;<span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;Integer&gt;());<br>s[<span class="hljs-number">0</span>].add(<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure>
 
 
                 
