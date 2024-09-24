@@ -50,13 +50,8 @@
 <meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924193047096.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924193237747.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924193352492.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924185908829.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924185924211.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924193047096.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924193237747.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924193352492.png">
 <meta property="article:published_time" content="2024-09-24T07:51:57.000Z">
-<meta property="article:modified_time" content="2024-09-24T11:51:39.836Z">
+<meta property="article:modified_time" content="2024-09-24T15:26:24.288Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -255,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1k 字
         
       </span>
     
@@ -266,7 +261,7 @@
         
         
         
-          11 分钟
+          9 分钟
         
       </span>
     
@@ -428,30 +423,6 @@
 <h3 id="主要部件"><a href="#主要部件" class="headerlink" title="主要部件"></a>主要部件</h3><p><img src="image-20240924185908829.png" srcset="/img/loading.gif" lazyload alt="32个32位寄存器"></p>
 <p><img src="image-20240924185924211.png" srcset="/img/loading.gif" lazyload alt="选择器组件"></p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="三态"><a href="#三态" class="headerlink" title="三态"></a>三态</h4><blockquote>
-<p>在选择器组件中,我们必须将DMX(demultiplexer)中的three-state设置为yes</p>
-<p>启用three-state后,会控制demultiplexer的输入输出端口进入高阻态</p>
-</blockquote>
-<p><img src="image-20240924193047096.png" srcset="/img/loading.gif" lazyload alt="示例电路"></p>
-<blockquote>
-<p>先设定DMX的three-state为no,WE为1,IN为1,SEL为0,在时钟信号上升沿:</p>
-</blockquote>
-<p><img src="image-20240924193237747.png" srcset="/img/loading.gif" lazyload alt="OUT1为高电平"></p>
-<blockquote>
-<p>可以看到寄存器1存储值为1,OUT1为高电平</p>
-</blockquote>
-<blockquote>
-<p>接着再令SEL为1,在下一个时钟上升沿:</p>
-</blockquote>
-<p><img src="image-20240924193352492.png" srcset="/img/loading.gif" lazyload alt="OUT1恢复为低电平,OUT2变为高电平"></p>
-<blockquote>
-<p>可以看到OUT1恢复为低电平,OUT2变为高电平,这其实并不符合我们的本意.OUT1此刻应该保持为高电平,且寄存器1不应该改变值为0.</p>
-</blockquote>
-<blockquote>
-<p>最简便的对策就是勾选three-state,这样DMX的输出端口在未被SEL信号选中的时候会输出高阻值(X),避免对连接的寄存器和输出端口产生影响.</p>
-</blockquote>
-<p><img src="image-20240924185908829.png" srcset="/img/loading.gif" lazyload alt="32个32位寄存器"></p>
-<p><img src="image-20240924185924211.png" srcset="/img/loading.gif" lazyload alt="选择器组件"></p>
-<h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h3><h4 id="三态-1"><a href="#三态-1" class="headerlink" title="三态"></a>三态</h4><blockquote>
 <p>在选择器组件中,我们必须将DMX(demultiplexer)中的three-state设置为yes</p>
 <p>启用three-state后,会控制demultiplexer的输入输出端口进入高阻态</p>
 </blockquote>
