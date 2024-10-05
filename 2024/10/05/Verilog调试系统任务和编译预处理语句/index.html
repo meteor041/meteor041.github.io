@@ -19,27 +19,24 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="1 搭建一个能处理三个输入指令的电路     00 输出0    01 输出上一次输出+1($a_n&#x3D;a_{n-1}+1$)   10 输出之前输出之和($a_n&#x3D;\mathop\Sigma\limits^{n-1}_{i&#x3D;0}a_i$)     2 向量相乘  123456789101112131415module dotProduct(    input [31:">
+    <meta name="description" content="$monitor监视被测试模块的所有感兴趣的信号. $monitor(p1,p2,…pn)按照格式字符串打印信号 1$monitor($time, ,&quot;rxd&#x3D;%b txd&#x3D;%b&quot;,rxd,txd);  $monitor on&#x2F; monitor off启动&#x2F;关闭监控任务 $time返回一个64位的整数来表示当前的仿真时刻值(总是输出整数) $realtime">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一次上机">
-<meta property="og:url" content="https://meteor041.git.io/2024/09/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA/index.html">
+<meta property="og:title" content="Verilog调试系统任务和编译预处理语句">
+<meta property="og:url" content="https://meteor041.git.io/2024/10/05/Verilog%E8%B0%83%E8%AF%95%E7%B3%BB%E7%BB%9F%E4%BB%BB%E5%8A%A1%E5%92%8C%E7%BC%96%E8%AF%91%E9%A2%84%E5%A4%84%E7%90%86%E8%AF%AD%E5%8F%A5/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="1 搭建一个能处理三个输入指令的电路     00 输出0    01 输出上一次输出+1($a_n&#x3D;a_{n-1}+1$)   10 输出之前输出之和($a_n&#x3D;\mathop\Sigma\limits^{n-1}_{i&#x3D;0}a_i$)     2 向量相乘  123456789101112131415module dotProduct(    input [31:">
+<meta property="og:description" content="$monitor监视被测试模块的所有感兴趣的信号. $monitor(p1,p2,…pn)按照格式字符串打印信号 1$monitor($time, ,&quot;rxd&#x3D;%b txd&#x3D;%b&quot;,rxd,txd);  $monitor on&#x2F; monitor off启动&#x2F;关闭监控任务 $time返回一个64位的整数来表示当前的仿真时刻值(总是输出整数) $realtime">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://meteor041.git.io/2024/09/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA/image-20240923220646182.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/09/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA/image-20240923220711838.png">
-<meta property="article:published_time" content="2024-09-23T13:49:58.000Z">
-<meta property="article:modified_time" content="2024-09-30T07:21:58.503Z">
+<meta property="article:published_time" content="2024-10-05T03:47:11.000Z">
+<meta property="article:modified_time" content="2024-10-05T03:47:23.494Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://meteor041.git.io/2024/09/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA/image-20240923220646182.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>第一次上机 - meteor041</title>
+  <title>Verilog调试系统任务和编译预处理语句 - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="第一次上机"></span>
+            <span id="subtitle" data-typed-text="Verilog调试系统任务和编译预处理语句"></span>
           
         </div>
 
@@ -216,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-23 21:49" pubdate>
-          2024年9月23日 晚上
+        <time datetime="2024-10-05 11:47" pubdate>
+          2024年10月5日 中午
         </time>
       </span>
     
@@ -228,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          292 字
+          395 字
         
       </span>
     
@@ -239,7 +236,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -285,12 +282,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">第一次上机</h1>
+            <h1 id="seo-header">Verilog调试系统任务和编译预处理语句</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年9月30日 下午
+                    本文最后更新于 2024年10月5日 中午
                   
                 
               </p>
@@ -298,40 +295,31 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><blockquote>
-<p>搭建一个能处理三个输入指令的电路</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>00</th>
-<th>输出0</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>01</td>
-<td>输出上一次输出+1($a_n&#x3D;a_{n-1}+1$)</td>
-</tr>
-<tr>
-<td>10</td>
-<td>输出之前输出之和($a_n&#x3D;\mathop\Sigma\limits^{n-1}_{i&#x3D;0}a_i$)</td>
-</tr>
-</tbody></table>
-<p><img src="image-20240923220646182.png" srcset="/img/loading.gif" lazyload alt="image-20240923220646182"></p>
-<p><img src="image-20240923220711838.png" srcset="/img/loading.gif" lazyload alt="image-20240923220711838"></p>
-<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><blockquote>
-<p>向量相乘</p>
-</blockquote>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> dotProduct(<br>    <span class="hljs-keyword">input</span> [<span class="hljs-number">31</span>:<span class="hljs-number">0</span>] vector_a,<br>    <span class="hljs-keyword">input</span> [<span class="hljs-number">31</span>:<span class="hljs-number">0</span>] vector_b,<br>    <span class="hljs-keyword">output</span> <span class="hljs-keyword">reg</span>[<span class="hljs-number">4</span>:<span class="hljs-number">0</span>] out<br>    );<br>    <span class="hljs-keyword">reg</span>[<span class="hljs-number">4</span>:<span class="hljs-number">0</span>] t;<br>    <span class="hljs-keyword">integer</span> i;<br>    <span class="hljs-keyword">always</span> @(vector_a <span class="hljs-keyword">or</span> vector_b)<span class="hljs-keyword">begin</span><br>      t = <span class="hljs-number">5&#x27;b0</span>;<br>      <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">32</span>; i=i+<span class="hljs-number">1</span>)<span class="hljs-keyword">begin</span><br>        t = t + (vector_a[i] * vector_b[i]);<br>      <span class="hljs-keyword">end</span><br>      out = t;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+                <h2 id="monitor"><a href="#monitor" class="headerlink" title="$monitor"></a>$monitor</h2><p>监视被测试模块的所有感兴趣的信号.</p>
+<h2 id="monitor-p1-p2-…pn"><a href="#monitor-p1-p2-…pn" class="headerlink" title="$monitor(p1,p2,…pn)"></a>$monitor(p1,p2,…pn)</h2><p>按照格式字符串打印信号</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-built_in">$monitor</span>(<span class="hljs-built_in">$time</span>, ,<span class="hljs-string">&quot;rxd=%b txd=%b&quot;</span>,rxd,txd);<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> dotProduct_tb();<br>    <span class="hljs-keyword">reg</span>[<span class="hljs-number">31</span>:<span class="hljs-number">0</span>] a;<br>    <span class="hljs-keyword">reg</span>[<span class="hljs-number">31</span>:<span class="hljs-number">0</span>] b;<br>    <span class="hljs-keyword">wire</span>[<span class="hljs-number">4</span>:<span class="hljs-number">0</span>] out;<br><br>    <span class="hljs-keyword">initial</span> <span class="hljs-keyword">begin</span><br>      a=<span class="hljs-number">32&#x27;b0</span>;<br>      b=<span class="hljs-number">32&#x27;b0</span>;<br>      #<span class="hljs-number">100</span><br>      a=<span class="hljs-number">32&#x27;d10</span>;<br>      b=<span class="hljs-number">32&#x27;d10</span>;<br>    <span class="hljs-keyword">end</span><br>    dotProduct uvv(<span class="hljs-variable">.vector_a</span>(a), <span class="hljs-variable">.vector_b</span>(b), <span class="hljs-variable">.out</span>(out));<br><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+<h2 id="monitor-on-monitor-off"><a href="#monitor-on-monitor-off" class="headerlink" title="$monitor on&#x2F; monitor off"></a>$monitor on&#x2F; monitor off</h2><p>启动&#x2F;关闭监控任务</p>
+<h2 id="time"><a href="#time" class="headerlink" title="$time"></a>$time</h2><p>返回一个64位的整数来表示当前的仿真时刻值(总是输出整数)</p>
+<h2 id="realtime"><a href="#realtime" class="headerlink" title="$realtime"></a>$realtime</h2><p>和$time作用相似,返回的是实型数</p>
+<h2 id="finish"><a href="#finish" class="headerlink" title="$finish"></a>$finish</h2><p>退出仿真器,返回主操作系统</p>
+<h2 id="stop"><a href="#stop" class="headerlink" title="$stop"></a>$stop</h2><p>将EDA工具置为暂停模式</p>
+<h2 id="readmemb"><a href="#readmemb" class="headerlink" title="$readmemb"></a>$readmemb</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-built_in">$readmemb</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;);<br><span class="hljs-built_in">$readmemb</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;);<br><span class="hljs-built_in">$readmemb</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;结束地址&gt;);<br><span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;);<br><span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;);<br><span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;结束地址&gt;);<br></code></pre></td></tr></table></figure>
 
-<h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><blockquote>
-<p>MIPS求数组中最长连续递增子数组</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// C语言示例代码</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">int</span> n;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <span class="hljs-type">int</span> max = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> len = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> last=<span class="hljs-number">-1</span>, curr;<br>    <span class="hljs-keyword">while</span> (n--)&#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;curr);<br>        <span class="hljs-keyword">if</span> (curr &gt; last)&#123;<br>            len += <span class="hljs-number">1</span>;<br>            max = len &gt; max ? len : max;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            len = <span class="hljs-number">1</span>;<br>        &#125;<br>        last = curr;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, max);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>读取数据文件,其中<code>readmemb</code>读取的数字必须是二进制,<code>readmemh</code>读取的数字必须是十六进制.</p>
+<h2 id="random"><a href="#random" class="headerlink" title="$random"></a>$random</h2><p>产生随机数</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">reg</span>[<span class="hljs-number">23</span>:<span class="hljs-number">0</span>] <span class="hljs-keyword">rand</span><br><span class="hljs-keyword">rand</span> = <span class="hljs-built_in">$random</span> % <span class="hljs-number">60</span>;<br><span class="hljs-comment">// 产生一个[-59,59]内的随机数</span><br></code></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs assembly">.eqv n, $s0<br>.eqv max, $s1<br>.eqv len, $s2<br>.eqv curr, $s3<br>.eqv last, $s4<br><br>.macro printInt(%int)<br>	move $a0, %int<br>	li $v0, 1<br>	syscall<br>.end_macro <br><br>.macro inputInt(%int)<br>	li $v0, 5<br>	syscall<br>	move %int, $v0<br>.end_macro<br><br>.macro forLoop(%ct,%n,%startLabel,%endLabel)<br>	%startLabel:<br>	beq %ct, %n, %endLabel<br>.end_macro<br><br>.macro forEnd(%ct,%startLabel,%endLabel)<br>	addi %ct, %ct, 1<br>	j %startLabel<br>	%endLabel:<br>.end_macro<br><br>li last, -1<br>li $t0, 0<br>inputInt(n)<br>forLoop($t0,n,start,end)<br>	inputInt(curr)<br>	ble curr, last, less<br>		add len, len, 1<br>		bge max, len, skip<br>		move max, len<br>		skip:<br>		j tail<br>	less:<br>		li len, 1<br>	tail:<br>		move last, curr<br>forEnd($t0,start,end)<br><br>printInt(max)<br></code></pre></td></tr></table></figure>
+<h1 id="编译预处理"><a href="#编译预处理" class="headerlink" title="编译预处理"></a>编译预处理</h1><h2 id="define"><a href="#define" class="headerlink" title="&#96;define"></a>&#96;define</h2><p>用一个指定的标识符(即名字)来代表一个字符串</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-meta">`<span class="hljs-keyword">define</span> 标识符(宏名) 字符串(宏内容)</span><br></code></pre></td></tr></table></figure>
+
+<p>例:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> test;<br>    <span class="hljs-keyword">reg</span> a,b,c,d,e,out;<br>	<span class="hljs-meta">`<span class="hljs-keyword">define</span> expression a + b + c + d</span><br>    <span class="hljs-keyword">assign</span> out = `expression + e;<br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="timescale"><a href="#timescale" class="headerlink" title="&#96;timescale"></a>&#96;timescale</h2><p>说明在该命令后的模块的事件单位和时间精度</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-meta">`<span class="hljs-keyword">timescale</span> &lt;时间单位&gt;/&lt;时间精度&gt;</span><br></code></pre></td></tr></table></figure>
+
+
 
 
                 
@@ -357,8 +345,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>第一次上机</div>
-      <div>https://meteor041.git.io/2024/09/23/第一次上机/</div>
+      <div>Verilog调试系统任务和编译预处理语句</div>
+      <div>https://meteor041.git.io/2024/10/05/Verilog调试系统任务和编译预处理语句/</div>
     </div>
     <div class="license-meta">
       
@@ -370,7 +358,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月23日</div>
+          <div>2024年10月5日</div>
         </div>
       
       
@@ -402,18 +390,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/" title="计组P0总结">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">计组P0总结</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/23/MIPS/" title="MIPS">
-                        <span class="hidden-mobile">MIPS</span>
+                      <a href="/2024/09/29/%E5%8A%9B%E6%89%A3%E5%8F%8C%E5%91%A8%E8%B5%9B140/" title="力扣双周赛140">
+                        <span class="hidden-mobile">力扣双周赛140</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
