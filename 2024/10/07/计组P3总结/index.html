@@ -1,0 +1,779 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="meteor041">
+  <meta name="keywords" content="Computer Organization">
+  
+    <meta name="description" content="[!NOTE] MIPS的考察方式为将C语言代码翻译成MIPS汇编语言,其中对for循环的翻译、递归函数的转换最为重要  往年题删数问题 键盘输入一个高精度的正整数 n（不超过 250 位），去掉其中任意 k个数字后剩下的数字按原左右次序将组成一个新的非负整数。编程对给定的 n 和 k，寻找一种方案使得剩下的数字组成的新数最小。  题目来源P1106 删数问题 - 洛谷 | 计算机科学教育新生态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计组P3总结">
+<meta property="og:url" content="https://meteor041.git.io/2024/10/07/%E8%AE%A1%E7%BB%84P3%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="meteor041">
+<meta property="og:description" content="[!NOTE] MIPS的考察方式为将C语言代码翻译成MIPS汇编语言,其中对for循环的翻译、递归函数的转换最为重要  往年题删数问题 键盘输入一个高精度的正整数 n（不超过 250 位），去掉其中任意 k个数字后剩下的数字按原左右次序将组成一个新的非负整数。编程对给定的 n 和 k，寻找一种方案使得剩下的数字组成的新数最小。  题目来源P1106 删数问题 - 洛谷 | 计算机科学教育新生态">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-10-07T08:35:05.000Z">
+<meta property="article:modified_time" content="2024-10-07T09:02:27.995Z">
+<meta property="article:author" content="meteor041">
+<meta property="article:tag" content="Computer Organization">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>计组P3总结 - meteor041</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"meteor041.git.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计组P3总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-07 16:35" pubdate>
+          2024年10月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">计组P3总结</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年10月7日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>[!NOTE]</p>
+<p>MIPS的考察方式为将C语言代码翻译成MIPS汇编语言,其中对for循环的翻译、递归函数的转换最为重要</p>
+</blockquote>
+<h1 id="往年题"><a href="#往年题" class="headerlink" title="往年题"></a>往年题</h1><h2 id="删数问题"><a href="#删数问题" class="headerlink" title="删数问题"></a>删数问题</h2><blockquote>
+<p>键盘输入一个高精度的正整数 <code>n</code>（不超过 250 位），去掉其中任意 <code>k</code>个数字后剩下的数字按原左右次序将组成一个新的非负整数。编程对给定的 <code>n</code> 和 <code>k</code>，寻找一种方案使得剩下的数字组成的新数最小。</p>
+</blockquote>
+<h3 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1106">P1106 删数问题 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a></p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>已知我们要删掉m个数,我们要使得新数字最小,一定会选择前m+1位数中最小的那位作为最高位,设该位为k,则k之前的位均可以删去,保留第i位,对于第i+1位到末尾的数据,我们将m修改为m-(i-1)(因为此时数字已经删去i-1位),采取同样的上述操作,直到m&#x3D;0.</p>
+</blockquote>
+<h3 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,k,a[<span class="hljs-number">257</span>],rest,t=<span class="hljs-number">1</span>,minp,cnt=<span class="hljs-number">0</span>;<br><span class="hljs-type">bool</span> flag=<span class="hljs-number">0</span>;<br>string num;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    cin&gt;&gt;num&gt;&gt;k;<br>    n=num.<span class="hljs-built_in">length</span>();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i)a[i]=num[i<span class="hljs-number">-1</span>]-<span class="hljs-string">&#x27;0&#x27;</span>;<br>    rest=n-k;<br>    <span class="hljs-keyword">while</span>(cnt&lt;rest)&#123;<br>        minp=t;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=t;i&lt;=k+t;++i)<span class="hljs-keyword">if</span>(a[minp]&gt;a[i])minp=i;<br>        <span class="hljs-keyword">if</span>(a[minp])flag=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span>(flag)cout&lt;&lt;a[minp];<br>        k-=minp-t;<br>        t=minp<span class="hljs-number">+1</span>;<br>        cnt++;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(!flag)cout&lt;&lt;<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Java代码"><a href="#Java代码" class="headerlink" title="Java代码"></a>Java代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution1106</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">sc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> sc.next();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> sc.nextInt();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> n.length();<br>        <span class="hljs-type">int</span>[] a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[len];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            a[i] = n.charAt(i) - <span class="hljs-string">&#x27;0&#x27;</span>;<br>        &#125;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">rest</span> <span class="hljs-operator">=</span> len - k;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> minp;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">while</span> (cnt &lt; rest) &#123;<br>            minp = t;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> t; i &lt;= k + t; i++) &#123;<br>                minp = a[minp] &gt; a[i] ? i : minp;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (a[minp] &gt; <span class="hljs-number">0</span>) flag = <span class="hljs-literal">true</span>;<br>            <span class="hljs-keyword">if</span> (flag) &#123;<br>                System.out.print(a[minp]);<br>            &#125;<br>            k -= minp - t;<br>            t = minp + <span class="hljs-number">1</span>;<br>            cnt++;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (!flag)&#123;<br>            System.out.print(<span class="hljs-number">0</span>);<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="MIPS答案"><a href="#MIPS答案" class="headerlink" title="MIPS答案"></a>MIPS答案</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><code class="hljs assembly">.data<br>	a: .space 600<br>	<br>.macro push(%i)<br>	subi $sp, $sp, 4<br>	sw %i, 0($sp)<br>.end_macro<br><br>.macro pop(%i)<br>	lw %i, 0($sp)<br>	addi $sp, $sp, 4<br>.end_macro<br><br>.macro inputInt(%i)<br>	li $v0, 5<br>	syscall<br>	move %i, $v0<br>.end_macro<br><br>.macro printInt(%i)<br>	li $v0, 1<br>	move $a0, %i<br>	syscall<br>.end_macro<br><br>.macro printChar(%c)<br>	li $v0, 11<br>	move $a0, %c<br>	syscall<br>.end_macro<br><br>.macro inputStr(%str)<br>	li $v0, 12<br>	la $a0, %str<br>	li $a1, 150<br>	syscall<br>.end_macro<br><br># 使用$t7($t7=i) for (int i = t; i &lt;= k + t; i++)<br>.macro for_begin(%startLabel, %endLabel, %low, %high)<br>	move $t7, %low<br>	%startLabel:<br>	bgt $t7, %high, %endLabel<br>.end_macro<br><br>.macro for_end(%startLabel, %endLabel)<br>	addi $t7, $t7, 1<br>	j %startLabel<br>	%endLabel:<br>.end_macro<br><br>#使用$t7(记录字符串个数),$t6(记录字符当前对应位置)<br>.macro input_char_begin(%startLabel, %endLabel)<br>	li $t7, -1<br>	li $t6, -4<br>	%startLabel:<br>	beq $v0, 10, %endLabel<br>.end_macro<br><br>.macro input_char_end(%startLabel, %endLabel, %str, %len)<br>	addi $t7, $t7, 1<br>	addi $t6, $t6, 4<br>	sw $v0, %str($t6)<br>	j %startLabel<br>	%endLabel:<br>	move %len, $t7<br>.end_macro<br><br>.macro while_begin(%startLabel, %endLabel, %cnt, %rest)<br>	%startLabel:<br>	bge %cnt, %rest, %endLabel<br>.end_macro<br><br>.macro while_end(%startLabel, %endLabel)<br>	j %startLabel<br>	%endLabel:<br>.end_macro<br><br>.macro load_data(%arr, %i, %data)<br>	push($t4)<br>	li $t5, 4<br>	mult $t5, %i<br>	mflo $t5<br>	lw %data, %arr($t5)<br>	pop($t4)<br>.end_macro<br><br>.text<br># 读入字符串a<br>input_char_begin(start1,end1)<br>	li $v0, 12 # 读入一个字符到$v0<br>	syscall<br>input_char_end(start1,end1,a,$s0)<br>#a记录字符串位置,$s0记录字符串长度(len)<br><br># 读入k<br>inputInt($t0) #$t0=k,要删去的字符个数<br>#48-57<br>#rest = $s1<br>sub $s1, $s0, $t0 # rest = len - k<br>#cnt = $t1 = 0<br>li $t1, 0<br># minp = $t2 = 0<br>li $t2, 0<br># t = $t3 = 0<br>li $t3, 0<br>#flag = $t4 = 0 (false)<br>li $t4, 0<br><br>while_begin(start2,end2,$t1,$s1)<br>	move $t2, $t3 # minp = t<br>	for_begin(start3, end3,$t3,$t0)<br>		# minp = a[minp] &gt; a[i] ? i : minp;<br>		push($s4)<br>		push($s5)<br>		load_data(a,$t2,$s4) # $s4 = a[minp]<br>		load_data(a,$t7,$s5) # $s5 = a[i], <br>		bgt $s4, $s5, update<br>		j skip<br>		update:<br>			move $t2, $t7 # minp = i<br>		skip:<br>			pop($s5)<br>			pop($s4)<br>	for_end(start3,end3)<br>	<br>	#printInt($t2)<br>	load_data(a, $t2, $t5) # $t5 = a[minp]<br>	#printInt($t5)<br>	bgt $t5, $0, flag_true<br>	j skip2<br>	flag_true:<br>		li $t4, 1 # flag = true;<br>	skip2:<br>	<br>	beq $t4, $0, skip3  # if (flag) print(a[minp])<br>		load_data(a, $t2, $t5)# $t5 = a[minp]<br>		printChar($t5)<br>	skip3:<br>		<br>	sub $t0, $t0, $t2 # k = k - minp<br>	add $t0, $t0, $t3 # k = k + t<br>	addi $t3, $t2, 1 # t = minp + 1<br>	addi $t1, $t1, 1 # cnt++<br>while_end(start2,end2)<br><br>beq $t4, 1, skip4<br>li $s2, 0<br>printInt($s2)<br>skip4:<br><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="加法拆分"><a href="#加法拆分" class="headerlink" title="加法拆分"></a>加法拆分</h2><blockquote>
+<p>给一个数n,<strong>按照字典序</strong>输出它可能的加法拆分</p>
+</blockquote>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>采用dfs</p>
+</blockquote>
+<h3 id="C代码"><a href="#C代码" class="headerlink" title="C代码"></a>C代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> arr[<span class="hljs-number">5000</span>];<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">printArr</span><span class="hljs-params">(<span class="hljs-type">int</span> *arr, <span class="hljs-type">int</span> cnt)</span><br>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; cnt - <span class="hljs-number">1</span>; i++)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, arr[i]);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;+&quot;</span>);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, arr[cnt - <span class="hljs-number">1</span>]);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> *arr, <span class="hljs-type">int</span> cnt, <span class="hljs-type">int</span> left, <span class="hljs-type">int</span> last)</span><br>&#123;<br>    <span class="hljs-keyword">if</span> (left == <span class="hljs-number">0</span>)<br>    &#123;<br>        printArr(arr, cnt);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = last; k &lt;= left; k++)<br>    &#123;<br>        arr[cnt] = k;<br>        dfs(arr, cnt + <span class="hljs-number">1</span>, left - k, k);<br>    &#125;<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> n;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    dfs(arr, <span class="hljs-number">0</span>, n, <span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="MIPS答案-1"><a href="#MIPS答案-1" class="headerlink" title="MIPS答案"></a>MIPS答案</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><code class="hljs assembly">.data<br>	arr: .space 200 # 用于存放待打印数字的数组<br>	enter: .word &#x27;\n&#x27;<br>	plus: .word  &#x27;+&#x27;<br>	test: .word &#x27;t&#x27;<br>	<br>#放入堆栈<br>.macro push(%i)<br>	addi $sp, $sp, -4<br>	sw %i, 0($sp)<br>.end_macro<br><br>#从堆栈中取出<br>.macro pop(%i)<br>	lw %i, 0($sp)<br>	addi $sp, $sp, 4<br>.end_macro<br><br>#读入整数<br>.macro inputInt(%int)<br>	li $v0, 5<br>	syscall<br>	move %int, $v0<br>.end_macro<br><br>#打印整数<br>.macro printInt(%int)<br>	li $v0, 1<br>	move $a0, %int<br>	syscall<br>.end_macro<br><br># 打印字符<br>.macro printChar(%c)<br>	li $v0, 4<br>	la $a0, %c<br>	syscall<br>.end_macro<br><br>#结束程序<br>.macro done<br>	li $v0, 10<br>	syscall<br>.end_macro<br><br>#for循环<br>.macro for_begin(%startLabel, %endLabel, %start, %end)<br>	move $t7, %start<br>	%startLabel:<br>	bgt $t7, %end, %endLabel<br>.end_macro<br><br>.macro for_end(%startLabel, %endLabel)<br>	addi $t7, $t7, 1<br>	j %startLabel<br>	%endLabel:<br>.end_macro<br><br># 将数据存在arr的指定位置<br>.macro store_data(%arr, %data, %index)<br>	push($t5)<br>	li $t5, 4<br>	mult $t5, %index<br>	mflo $t5<br>	sw %data, %arr($t5)<br>	pop($t5)<br>.end_macro<br><br># arr的指定位置读取数据<br>.macro load_data(%arr, %data, %index)<br>	push($t5)<br>	li $t5, 4<br>	mult $t5, %index<br>	mflo $t5<br>	lw %data, %arr($t5)<br>	pop($t5)<br>.end_macro<br><br>#打印指定长度的数组<br>.macro printArr(%arr, %cnt)<br>	li $t4, 0<br>	print_loop:<br>		bge $t4, %cnt, print_end<br>		<br>		load_data(%arr, $t6, $t4)<br>		printInt($t6)<br>		addi $t4, $t4, 1<br>		bge $t4, %cnt, print_end<br>		printChar(plus)<br>		print_skip:<br>		j print_loop<br>	print_end:<br>		printChar(enter)<br>.end_macro<br><br># 数据指代<br>.eqv n $s0<br>.eqv cnt $a1<br>.eqv left $a2<br>.eqv last $a3<br><br>.text<br>inputInt(n)<br>li cnt, 0<br>move left, n<br>li last, 1<br>jal dfs<br>done<br><br>dfs:<br>	push($ra)<br>	beq left, $0, dfs_return<br>	for_begin(dfs_start,dfs_end,last,left)<br>		# $t7 = k<br>		store_data(arr, $t7, cnt)<br>		push(cnt)<br>		push(left)<br>		push(last)<br>		push($t7)<br>		addi cnt, cnt, 1<br>		sub left, left, $t7<br>		move last, $t7<br>		jal dfs<br>		pop($t7)<br>		pop(last)<br>		pop(left)<br>		pop(cnt)<br>	for_end(dfs_start, dfs_end)<br>	j dfs_done<br>	<br>	dfs_return:<br>		printArr(arr, cnt)<br>	<br>	dfs_done:<br>		pop($ra)<br>		jr $ra<br><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="易错点"><a href="#易错点" class="headerlink" title="易错点"></a>易错点</h3><ul>
+<li><code>$a0</code>作为<code>Syscall</code>打印时需要的参数,要避免用户自定义函数中的参数含有<code>$a0</code>,产生不必要的冲突.或者修改<code>print</code>函数,采用入栈+退栈的方式(该方法更安全):</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs assembly">.macro printInt(%int)<br>	push($a0)<br>	li $v0, 1<br>	move $a0, %int<br>	syscall<br>	pop($a0)<br>.end_macro<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>字符应当被指定为<code>word</code>在<code>MIP32</code>中占<code>4</code>字节,即<code>32</code>位,打印字符方式为:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs assembly">.data <br>	plus: .word &#x27;+&#x27;<br>.text<br>	li $v0, 4<br>	move $a0, plus<br>	syscall<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>计组P3总结</div>
+      <div>https://meteor041.git.io/2024/10/07/计组P3总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>meteor041</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/06/%E5%B9%B6%E6%9F%A5%E9%9B%86/" title="并查集">
+                        <span class="hidden-mobile">并查集</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appKey":"pUUnAo42ScpxvJ9HPTKdpwLM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://dehrbdkk.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appkey":"pUUnAo42ScpxvJ9HPTKdpwLM"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
