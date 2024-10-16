@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://meteor041.git.io/2024/10/07/%E8%AE%A1%E7%BB%84P2%E6%80%BB%E7%BB%93/image-20241008194552753.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/10/07/%E8%AE%A1%E7%BB%84P2%E6%80%BB%E7%BB%93/image-20241008201630823.png">
 <meta property="article:published_time" content="2024-10-07T08:35:05.000Z">
-<meta property="article:modified_time" content="2024-10-15T16:26:47.102Z">
+<meta property="article:modified_time" content="2024-10-16T00:24:33.534Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.7k 字
+          8.8k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          73 分钟
+          74 分钟
         
       </span>
     
@@ -290,7 +290,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年10月16日 凌晨
+                    本文最后更新于 2024年10月16日 早上
                   
                 
               </p>
@@ -493,6 +493,14 @@
 
 <h3 id="MIPS答案-14"><a href="#MIPS答案-14" class="headerlink" title="MIPS答案"></a>MIPS答案</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><code class="hljs assembly">.data<br>	a:.space 4000<br>	enter:.word &#x27;\n&#x27;<br>	<br>.macro done<br>	li $v0, 10<br>	syscall<br>.end_macro<br><br>.macro inputInt(%int)<br>	li $v0, 5<br>	syscall<br>	move %int, $v0<br>.end_macro<br><br>.macro printInt(%int)<br>	li $v0, 1<br>	move $a0, %int<br>	syscall<br>.end_macro<br><br>.macro printStr(%str)<br>	li $v0, 4<br>	la $a0, %str<br>	syscall<br>.end_macro<br><br>.macro for_begin(%startLabel, %endLabel, %i, %start, %end)<br>	move %i, %start<br>	%startLabel:<br>	beq %i, %end, %endLabel<br>.end_macro<br><br>.macro for_c_begin(%startLabel, %endLabel, %i, %start, %end)<br>	move %i, %start<br>	%startLabel:<br>	bgt %i, %end, %endLabel<br>.end_macro<br><br>.macro for_decrease_begin(%startLabel, %endLabel, %i, %start, %end)<br>	li %i, %start<br>	subi %i, %i, 1<br>	%startLabel:<br>	blt %i, %end, %endLabel<br>.end_macro<br><br>.macro for_decrease_c_begin(%startLabel, %endLabel, %i, %start, %end)<br>	move %i, %start<br>	%startLabel:<br>	blt %i, %end, %endLabel<br>.end_macro<br><br>.macro for_decrease_end(%startLabel, %endLabel, %i)<br>	subi %i, %i, 1<br>	j %startLabel<br>	%endLabel:<br>.end_macro<br><br>.macro for_end(%startLabel, %endLabel, %i)<br>	addi %i, %i, 1<br>	j %startLabel<br>	%endLabel:<br>.end_macro<br><br>.macro load_arr(%arr, %index, %value)<br>	sll $t9, %index, 2<br>	lw %value, %arr($t9)<br>.end_macro<br><br>.macro store_arr(%arr, %index, %value)<br>	sll $t9, %index, 2<br>	sw %value, %arr($t9)<br>.end_macro<br><br><br>.eqv i, $t0<br>.eqv k, $t1<br>.eqv s, $t2<br>.eqv temp, $t3<br>.eqv c, $t4<br>.eqv jj, $t5<br>.eqv n, $s0<br>.eqv two, $s1<br>.eqv ten, $s2<br>.eqv max, $s3<br>.eqv one, $s4<br>.eqv MAX, 1000<br><br>.text<br>	li one, 1<br>	li two, 2<br>	li ten, 10<br>	li max, MAX<br>	#for_c_begin(start0, end0, i, $0, MAX)<br>		#store_arr(a, i, 0)<br>	#for_end(start0, end0, i)<br>	<br>	inputInt(n)<br>	store_arr(a, $0, one)<br>	li jj, 0<br>	for_c_begin(start1, end1, i, two, n) # 2&lt;=i&lt;=n<br>		li c, 0<br>		for_c_begin(start2, end2, k, $0, jj)<br>			load_arr(a, k, temp)<br>			mult temp, i<br>			mflo s<br>			add s, s, c # s = a[k] * i + c<br>			div s, ten<br>			mfhi temp<br>			mflo c # c = s / 10<br>			store_arr(a, k, temp) # a[k] = s % 10<br>			beqz c, skip<br>			bne k, jj, skip<br>			addi jj, jj, 1<br>			skip: <br>		for_end(start2, end2, k)<br>	for_end(start1, end1, i)<br>	<br>	for_decrease_c_begin(start4, end4, i, jj, $0) #k&gt;=i&gt;=0<br>		load_arr(a, i, temp)<br>		printInt(temp)<br>	for_decrease_end(start4, end4, i)<br>	<br>	printStr(enter)<br>	done<br><br></code></pre></td></tr></table></figure>
 
+<h3 id="易错点-5"><a href="#易错点-5" class="headerlink" title="易错点"></a>易错点</h3><ul>
+<li>超时问题,题目所给字符串为1000,为了避免每次循环都要进行1000次,我们设立一个参数<code>jj</code>,用来记录计算答案可能到达的最高位<ul>
+<li>初始,<code>jj</code>&#x3D;0</li>
+<li>在for循环中,若循环参数<code>j</code>&#x3D;&#x3D;<code>jj</code>,且此时向高一位传递的数不为0(<code>c!=0</code>),则对<code>jj</code>加一操作</li>
+</ul>
+</li>
+<li><code>load_arr</code>与<code>store_arr</code>中不要用mult,这样涉及的寄存器会增多,且指令数会暴增,必须用<code>sll</code>.</li>
+</ul>
 
                 
               </div>
