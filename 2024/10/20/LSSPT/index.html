@@ -19,24 +19,24 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="HashMap作用 字典  方法创建1HashMap&lt;Integer, Integer&gt; hm &#x3D; new HashMap&lt;&gt;();  添加键值对123456hm.put(1,2);hm.putIfAbsent(2,3); &#x2F;&#x2F;仅在hm原本不包含2对应的键值对时执行添加2-3键值对的操作&#x2F;&#x2F; 添加所有键值对HashMap&lt;Integer, Integer&gt; hm">
+    <meta name="description" content="Introductionconventional deep learning-based methods LSTM, GCN explore group activity representations under supervised or weakly supervised modes require manually annotated personal action, labels(数据标">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java HashMap">
-<meta property="og:url" content="https://meteor041.git.io/2024/10/12/Java-HashMap/index.html">
+<meta property="og:title" content="LSSPT">
+<meta property="og:url" content="https://meteor041.git.io/2024/10/20/LSSPT/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="HashMap作用 字典  方法创建1HashMap&lt;Integer, Integer&gt; hm &#x3D; new HashMap&lt;&gt;();  添加键值对123456hm.put(1,2);hm.putIfAbsent(2,3); &#x2F;&#x2F;仅在hm原本不包含2对应的键值对时执行添加2-3键值对的操作&#x2F;&#x2F; 添加所有键值对HashMap&lt;Integer, Integer&gt; hm">
+<meta property="og:description" content="Introductionconventional deep learning-based methods LSTM, GCN explore group activity representations under supervised or weakly supervised modes require manually annotated personal action, labels(数据标">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-12T14:48:36.000Z">
-<meta property="article:modified_time" content="2024-10-13T13:43:17.138Z">
+<meta property="article:published_time" content="2024-10-20T11:54:59.000Z">
+<meta property="article:modified_time" content="2024-10-20T16:40:08.560Z">
 <meta property="article:author" content="meteor041">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Computer Organization">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Java HashMap - meteor041</title>
+  <title>LSSPT - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Java HashMap"></span>
+            <span id="subtitle" data-typed-text="LSSPT"></span>
           
         </div>
 
@@ -213,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-12 22:48" pubdate>
-          2024年10月12日 晚上
+        <time datetime="2024-10-20 19:54" pubdate>
+          2024年10月20日 晚上
         </time>
       </span>
     
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          283 字
+          373 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -282,12 +282,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Java HashMap</h1>
+            <h1 id="seo-header">LSSPT</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年10月13日 晚上
+                    本文最后更新于 2024年10月21日 凌晨
                   
                 
               </p>
@@ -295,34 +295,72 @@
             
               <div class="markdown-body">
                 
-                <h1 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><blockquote>
-<p>字典</p>
-</blockquote>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Java">HashMap&lt;Integer, Integer&gt; hm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br></code></pre></td></tr></table></figure>
-
-<h3 id="添加键值对"><a href="#添加键值对" class="headerlink" title="添加键值对"></a>添加键值对</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">hm.put(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<br>hm.putIfAbsent(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>); <span class="hljs-comment">//仅在hm原本不包含2对应的键值对时执行添加2-3键值对的操作</span><br><br><span class="hljs-comment">// 添加所有键值对</span><br>HashMap&lt;Integer, Integer&gt; hm2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>hm2.putAll(hm);<br></code></pre></td></tr></table></figure>
-
-<h3 id="删除键值对"><a href="#删除键值对" class="headerlink" title="删除键值对"></a>删除键值对</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">hm.remove(<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure>
-
-<h3 id="访问键值对"><a href="#访问键值对" class="headerlink" title="访问键值对"></a>访问键值对</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(hm.get(<span class="hljs-number">2</span>)); <span class="hljs-comment">// 打印2对应的元素</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 对键集合遍历for循环</span><br><span class="hljs-keyword">for</span> (Integer i : hm.keySet()) &#123;<br>    System.out.println(<span class="hljs-string">&quot;key: &quot;</span> + i + <span class="hljs-string">&quot; values: &quot;</span> + Sites.get(i));<br>&#125;<br><br><span class="hljs-comment">// iterator</span><br>Iterator&lt;Integer&gt; it = hm.keySet().iterator();<br><span class="hljs-keyword">while</span> (it.hasNext()) &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> it.next;<br>    System.out.println(<span class="hljs-string">&quot;key: &quot;</span> + key + <span class="hljs-string">&quot; values: &quot;</span> + Sites.get(key));<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">hashmap.merge(key, value, remappingFunction)<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果 key 对应的 value 不存在，则返回该 value 值，如果存在，则返回通过 remappingFunction 重新计算后的值。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">hm2.merge(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,(k,v)-&gt;v+<span class="hljs-number">1</span>); <span class="hljs-comment">// 若keySet中不包含1,则插入1-1键值对,若有则对v加一</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="compute"><a href="#compute" class="headerlink" title="compute"></a>compute</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">hashmap.compute(K key, BiFunction remappingFunction);<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>对<code>hashMap</code>中的指定<code>key</code>的值进行重新计算</p>
-<p>若<code>key</code>对应的<code>value</code>不存在,则返回<code>null</code>,若存在则返回通过<code>remappingFunction</code>重新计算后的值</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">newPrice</span> <span class="hljs-operator">=</span> prices.compute(<span class="hljs-string">&quot;Shoes&quot;</span>, (key, value) -&gt; value - value * <span class="hljs-number">10</span>/<span class="hljs-number">100</span>);<br></code></pre></td></tr></table></figure>
-
+                <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="conventional-deep-learning-based-methods"><a href="#conventional-deep-learning-based-methods" class="headerlink" title="conventional deep learning-based methods"></a>conventional deep learning-based methods</h2><ul>
+<li>LSTM, GCN</li>
+<li>explore group activity representations under supervised or weakly supervised modes</li>
+<li>require manually annotated personal action, labels(数据标记?)</li>
+</ul>
+<h2 id="background"><a href="#background" class="headerlink" title="background"></a>background</h2><ul>
+<li>NLP:unsupervised</li>
+<li>SSL developes</li>
+<li>SSRL, the temporal evolution (时间演变) not yet been explicitly exploited</li>
+<li>predictive coding scheme (预测编码方案)</li>
+</ul>
+<h2 id="group-activities"><a href="#group-activities" class="headerlink" title="group activities"></a>group activities</h2><ul>
+<li>more complex state dynamics</li>
+<li>lead to failure of SSRL using RNN(复杂序列<strong>关系</strong>建模困难)</li>
+<li>LSTM相关模型缺乏注意力机制(attention to the history sequence dependencies)</li>
+<li>Transformer networks in NLP restricted to normal data</li>
+<li>人类在长周期group activity中重复某种运动</li>
+<li><strong>exploiting multiple ranges of historical information</strong></li>
+</ul>
+<h2 id="LSSPT"><a href="#LSSPT" class="headerlink" title="LSSPT"></a>LSSPT</h2><h3 id="encoder-decoder-framework"><a href="#encoder-decoder-framework" class="headerlink" title="encoder-decoder framework"></a>encoder-decoder framework</h3><ul>
+<li>encoder: summarize group state</li>
+<li>decoder: anticipate the state in the future</li>
+<li>based on relation graph and casual Transformer</li>
+</ul>
+<h3 id="sparse-graph-Transformer"><a href="#sparse-graph-Transformer" class="headerlink" title="sparse graph Transformer"></a>sparse graph Transformer</h3><ul>
+<li>spatial state context in short time</li>
+</ul>
+<h3 id="casual-temporal-Transformer-CTT"><a href="#casual-temporal-Transformer-CTT" class="headerlink" title="casual temporal Transformer(CTT)"></a>casual temporal Transformer(CTT)</h3><ul>
+<li>long range temporal dynamics</li>
+</ul>
+<h1 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h1><h2 id="predictive-coding"><a href="#predictive-coding" class="headerlink" title="predictive coding"></a>predictive coding</h2><ul>
+<li>时空编码函数</li>
+<li>预测函数</li>
+<li>优化函数</li>
+</ul>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><ul>
+<li>特征提取<ul>
+<li>I3D预训练模型提取人物特征</li>
+</ul>
+</li>
+<li>长短状态编码</li>
+<li>长短状态解码</li>
+<li>推理训练<ul>
+<li>重构损失reconstructed loss</li>
+<li>对比损失contrasitive loss </li>
+<li>对抗损失adversarial loss</li>
+</ul>
+</li>
+</ul>
+<h2 id="Long-Short-State-Encoder"><a href="#Long-Short-State-Encoder" class="headerlink" title="Long-Short State Encoder"></a>Long-Short State Encoder</h2><h3 id="sparse-graph-transformer"><a href="#sparse-graph-transformer" class="headerlink" title="sparse graph transformer"></a>sparse graph transformer</h3><h4 id="building"><a href="#building" class="headerlink" title="building"></a>building</h4><p>${p{}^t_i}{}^N_{i&#x3D;1}$,$p_i\in \mathit R^d$表示第i个人的特征</p>
+<p>$稀疏矩阵G^t&#x3D;{V^t,E^t}$,$V_t&#x3D;{p{}^t_i}{}^N_{i&#x3D;1}$表示节点,$E_t&#x3D;{(i,j)|p_i,p_j 在n时刻连结}$</p>
+<p>$节点的邻居Nei(i,t)&#x3D;{p^t_j}{}^M_{i&#x3D;1},其中p^t_j满足(i,j)\in E^t$</p>
+<h4 id="update"><a href="#update" class="headerlink" title="update"></a>update</h4><p>通过邻居节点传递的key,自身节点的equry更新节点信息,由原先的$h_i$变为$\hat{h_i}$<br>$$<br>\hat{h_i}&#x3D;softmax(\frac{[q_i^Tk_j]<em>{j&#x3D;1:N}}{\sqrt{d_k}})[v_i]^N</em>{i&#x3D;1}\<br>q_i表示query\<br>k_j表示key\<br>v_i表示value<br>$$</p>
+<h4 id="group-state-modeling"><a href="#group-state-modeling" class="headerlink" title="group state modeling"></a>group state modeling</h4><p>$$<br>小组状态g_t&#x3D;P_{max}(Norm(f_o(\hat{p_i}),…,f_o(\hat{p_N})))\<br>P_{max}池化层\<br>Norm层标准化\<br>f_o全连接层\<br>$$</p>
+<h4 id="casual-temporal-transformer"><a href="#casual-temporal-transformer" class="headerlink" title="casual temporal transformer"></a>casual temporal transformer</h4><ul>
+<li>masked Transformer<ul>
+<li>为绝对帧添加时间位置编码</li>
+<li>多层CTT层传递,masked multihead attention, LayerNorm(层归一化),MLP(what???)</li>
+<li>mask保证模型只注意部分特定输入(类似于LLM中后文不会影响前文语素的注意力分配机制)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Long-Short-State-Decoder"><a href="#Long-Short-State-Decoder" class="headerlink" title="Long-Short State Decoder"></a>Long-Short State Decoder</h2><ul>
+<li>state attention modules: 建立长短期之间的依赖</li>
+<li>state update modules: 输出长短期信息</li>
+</ul>
 
                 
               </div>
@@ -332,13 +370,6 @@
               <div class="post-metas my-3">
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Java/" class="print-no-link">#Java</a>
-      
-    </div>
-  
 </div>
 
 
@@ -347,8 +378,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Java HashMap</div>
-      <div>https://meteor041.git.io/2024/10/12/Java-HashMap/</div>
+      <div>LSSPT</div>
+      <div>https://meteor041.git.io/2024/10/20/LSSPT/</div>
     </div>
     <div class="license-meta">
       
@@ -360,7 +391,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年10月12日</div>
+          <div>2024年10月20日</div>
         </div>
       
       
@@ -392,18 +423,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/20/LSSPT/" title="LSSPT">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LSSPT</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/12/PriorityQueue/" title="Java-PriorityQueue">
-                        <span class="hidden-mobile">Java-PriorityQueue</span>
+                      <a href="/2024/10/12/Java-HashMap/" title="Java HashMap">
+                        <span class="hidden-mobile">Java HashMap</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
