@@ -4,11 +4,24 @@
   
   
   <entry>
+    <title>manimce</title>
+    <link href="/2024/10/22/manimce/"/>
+    <url>/2024/10/22/manimce/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda activate manimce<br></code></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">manim basic.py <br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Video Action Recognition</title>
     <link href="/2024/10/21/Video%20Action%20Recognition/"/>
     <url>/2024/10/21/Video%20Action%20Recognition/</url>
     
-    <content type="html"><![CDATA[<h1 id="Video-Action-Recognition"><a href="#Video-Action-Recognition" class="headerlink" title="Video Action Recognition"></a>Video Action Recognition</h1><ul><li><h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2></li><li><h2 id="3D-ConvNets"><a href="#3D-ConvNets" class="headerlink" title="3D ConvNets"></a>3D ConvNets</h2><ul><li>large parameters</li></ul></li><li><h2 id="Two-Stream-Network"><a href="#Two-Stream-Network" class="headerlink" title="Two-Stream Network"></a>Two-Stream Network</h2></li><li><h2 id="3D-Fused-Two-Stream"><a href="#3D-Fused-Two-Stream" class="headerlink" title="3D-Fused Two-Stream"></a>3D-Fused Two-Stream</h2></li><li><h2 id="Inflated-3D-I3D"><a href="#Inflated-3D-I3D" class="headerlink" title="Inflated 3D(I3D)"></a>Inflated 3D(I3D)</h2><ul><li>infate to 3D from 2D</li></ul></li><li><h2 id="Temporal-Segment-Networks"><a href="#Temporal-Segment-Networks" class="headerlink" title="Temporal Segment Networks"></a>Temporal Segment Networks</h2><ul><li>segmental consensus</li><li>late fusion</li></ul></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="Video-Action-Recognition"><a href="#Video-Action-Recognition" class="headerlink" title="Video Action Recognition"></a>Video Action Recognition</h1><ul><li><h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2></li><li><h2 id="3D-ConvNets"><a href="#3D-ConvNets" class="headerlink" title="3D ConvNets"></a>3D ConvNets</h2><ul><li><p>![image-20241022001842588](Video Action Recognition&#x2F;image-20241022001842588.png)</p></li><li><p>large parameters</p></li><li><p>extract feature</p></li></ul></li><li><h2 id="Two-Stream-Network"><a href="#Two-Stream-Network" class="headerlink" title="Two-Stream Network"></a>Two-Stream Network</h2></li><li><h2 id="3D-Fused-Two-Stream"><a href="#3D-Fused-Two-Stream" class="headerlink" title="3D-Fused Two-Stream"></a>3D-Fused Two-Stream</h2></li><li><h2 id="Inflated-3D-I3D"><a href="#Inflated-3D-I3D" class="headerlink" title="Inflated 3D(I3D)"></a>Inflated 3D(I3D)</h2><ul><li>infate to 3D from 2D</li><li>use parameters in 2D models</li><li>bootstrapping</li></ul></li><li><h2 id="Temporal-Segment-Networks"><a href="#Temporal-Segment-Networks" class="headerlink" title="Temporal Segment Networks"></a>Temporal Segment Networks</h2><ul><li>segmental consensus</li><li>late fusion</li></ul></li></ul>]]></content>
     
     
     
