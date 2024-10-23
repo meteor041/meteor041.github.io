@@ -19,18 +19,29 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="CPU 设计文档整体架构![整体架构](CPU 设计文档&#x2F;image-20241022231853793.png) 部件PC(Program Counter) 程序计数器,用于指示指令的位置. 主体为一个寄存器,用于存储指令地址,在时钟上升沿时输出到PC&#96;  ![PC](CPU 设计文档&#x2F;image-20241022185634323.png) IM(Insturcti">
+    <meta name="description" content="CPU 设计文档整体架构 部件PC(Program Counter) 程序计数器,用于指示指令的位置. 主体为一个寄存器,用于存储指令地址,在时钟上升沿时输出到PC&#96;   IM(Insturction Memory) 指令存储器,存储指令内容. 主体为一个ROM,通过PC输入地址,将PC所对应的指令输出到Instr.   DM(Data Memory) 数据存储器,与CPU直接交换数据的内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单周期CPU设计文档">
 <meta property="og:url" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="CPU 设计文档整体架构![整体架构](CPU 设计文档&#x2F;image-20241022231853793.png) 部件PC(Program Counter) 程序计数器,用于指示指令的位置. 主体为一个寄存器,用于存储指令地址,在时钟上升沿时输出到PC&#96;  ![PC](CPU 设计文档&#x2F;image-20241022185634323.png) IM(Insturcti">
+<meta property="og:description" content="CPU 设计文档整体架构 部件PC(Program Counter) 程序计数器,用于指示指令的位置. 主体为一个寄存器,用于存储指令地址,在时钟上升沿时输出到PC&#96;   IM(Insturction Memory) 指令存储器,存储指令内容. 主体为一个ROM,通过PC输入地址,将PC所对应的指令输出到Instr.   DM(Data Memory) 数据存储器,与CPU直接交换数据的内">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022231853793.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022185634323.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022190043406.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022231940141.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022190555004.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022232019925.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022190810134.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022232119130.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022232220391.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022232239176.png">
 <meta property="article:published_time" content="2024-10-22T12:30:00.000Z">
-<meta property="article:modified_time" content="2024-10-23T06:36:15.540Z">
+<meta property="article:modified_time" content="2024-10-23T07:01:02.418Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/10/22/CPU%20%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022231853793.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -225,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          1.3k 字
         
       </span>
     
@@ -295,48 +306,48 @@
             
               <div class="markdown-body">
                 
-                <h1 id="CPU-设计文档"><a href="#CPU-设计文档" class="headerlink" title="CPU 设计文档"></a>CPU 设计文档</h1><h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p>![整体架构](CPU 设计文档&#x2F;image-20241022231853793.png)</p>
+                <h1 id="CPU-设计文档"><a href="#CPU-设计文档" class="headerlink" title="CPU 设计文档"></a>CPU 设计文档</h1><h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p><img src="image-20241022231853793.png" srcset="/img/loading.gif" lazyload alt="整体架构"></p>
 <h2 id="部件"><a href="#部件" class="headerlink" title="部件"></a>部件</h2><h3 id="PC-Program-Counter"><a href="#PC-Program-Counter" class="headerlink" title="PC(Program Counter)"></a>PC(Program Counter)</h3><blockquote>
 <p>程序计数器,用于指示指令的位置.</p>
 <p>主体为一个寄存器,用于存储指令地址,在时钟上升沿时输出到PC&#96;</p>
 </blockquote>
-<p>![PC](CPU 设计文档&#x2F;image-20241022185634323.png)</p>
+<p><img src="image-20241022185634323.png" srcset="/img/loading.gif" lazyload alt="PC"></p>
 <h3 id="IM-Insturction-Memory"><a href="#IM-Insturction-Memory" class="headerlink" title="IM(Insturction Memory)"></a>IM(Insturction Memory)</h3><blockquote>
 <p>指令存储器,存储指令内容.</p>
 <p>主体为一个ROM,通过PC输入地址,将PC所对应的指令输出到Instr.</p>
 </blockquote>
-<p>![IM](CPU 设计文档&#x2F;image-20241022190043406.png)</p>
+<p><img src="image-20241022190043406.png" srcset="/img/loading.gif" lazyload alt="IM"></p>
 <h3 id="DM-Data-Memory"><a href="#DM-Data-Memory" class="headerlink" title="DM(Data Memory)"></a>DM(Data Memory)</h3><blockquote>
 <p>数据存储器,与CPU直接交换数据的内部存储器</p>
 <p>主体为一个RAM,即可读又可写,WE为1时,将WD数据写入到A地址;WE为0时,读出WD地址对应数据到RD</p>
 </blockquote>
-<p>![DM](CPU 设计文档&#x2F;image-20241022231940141.png)</p>
+<p><img src="image-20241022231940141.png" srcset="/img/loading.gif" lazyload alt="DM"></p>
 <h3 id="GRF-Register-File"><a href="#GRF-Register-File" class="headerlink" title="GRF(Register File)"></a>GRF(Register File)</h3><blockquote>
 <p>CPU内部的寄存器堆</p>
 <p>有32个32位寄存器,通过A1&#x2F;A2选择寄存器读出到RD1&#x2F;RD2,通过A3选择寄存器写入数据WD3</p>
 </blockquote>
-<p>![GRF](CPU 设计文档&#x2F;image-20241022190555004.png)</p>
+<p><img src="image-20241022190555004.png" srcset="/img/loading.gif" lazyload alt="GRF"></p>
 <h3 id="ALU-Arithmetic-and-Logical-Unit"><a href="#ALU-Arithmetic-and-Logical-Unit" class="headerlink" title="ALU(Arithmetic and Logical Unit)"></a>ALU(Arithmetic and Logical Unit)</h3><blockquote>
 <p>计算单元,支持多种计算操作</p>
 <p>由SrcA与SrcB读入两个操作数,通过ALUControl选择计算类型,输出到ALUResult</p>
 </blockquote>
-<p>![ALU](CPU 设计文档&#x2F;image-20241022232019925.png)</p>
+<p><img src="image-20241022232019925.png" srcset="/img/loading.gif" lazyload alt="ALU"></p>
 <h3 id="SPT-Splitter"><a href="#SPT-Splitter" class="headerlink" title="SPT(Splitter)"></a>SPT(Splitter)</h3><blockquote>
 <p>分线器,分割指令的不同位</p>
 </blockquote>
-<p>![SPT](CPU 设计文档&#x2F;image-20241022190810134.png)</p>
+<p><img src="image-20241022190810134.png" srcset="/img/loading.gif" lazyload alt="SPT"></p>
 <h3 id="EXT-Extender"><a href="#EXT-Extender" class="headerlink" title="EXT(Extender)"></a>EXT(Extender)</h3><blockquote>
 <p>扩位器,当ExtControl为0时,将输入的立即数由16位有符号扩展变为32位;当ExtControl为1时,将输入的立即数由16位零扩展变为32位</p>
 </blockquote>
-<p>![EXT](CPU 设计文档&#x2F;image-20241022232119130.png)</p>
+<p><img src="image-20241022232119130.png" srcset="/img/loading.gif" lazyload alt="EXT"></p>
 <h3 id="NXTAD-Next-Address"><a href="#NXTAD-Next-Address" class="headerlink" title="NXTAD(Next Address)"></a>NXTAD(Next Address)</h3><blockquote>
 <p>用于计算PC输入的下一个指令地址</p>
 </blockquote>
-<p>![NXTAD](CPU 设计文档&#x2F;image-20241022232220391.png)</p>
+<p><img src="image-20241022232220391.png" srcset="/img/loading.gif" lazyload alt="NXTAD"></p>
 <h3 id="CU-Control-Unit"><a href="#CU-Control-Unit" class="headerlink" title="CU(Control Unit)"></a>CU(Control Unit)</h3><blockquote>
 <p>控制单元,通过输入指令,决定输出信号</p>
 </blockquote>
-<p>![CU](CPU 设计文档&#x2F;image-20241022232239176.png)</p>
+<p><img src="image-20241022232239176.png" srcset="/img/loading.gif" lazyload alt="CU"></p>
 <h2 id="ALU信号表"><a href="#ALU信号表" class="headerlink" title="ALU信号表"></a>ALU信号表</h2><table>
 <thead>
 <tr>
