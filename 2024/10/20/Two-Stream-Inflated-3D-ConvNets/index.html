@@ -19,24 +19,28 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="Video Action Recognition LSTM 3D ConvNets  ![image-20241022001842588](Video Action Recognition&#x2F;image-20241022001842588.png)  large parameters  extract feature  Two-Stream Network 3D-Fused Two-Str">
+    <meta name="description" content="Two-Stream Inflated 3D ConvNets 视频分类方向 采用先进的二维图像识别架构,拓展过滤器和池化内核到3维 基于双流神经网络:局部运动效果较好  论文发表时基于Inception,后改为基于ResNet  Related Work 视频领域对于使用2D还是3D暂无定论,一种基本方法是2D网络配上LSTM,LSTM作为时空建模;或者配备光流;或者直接建立3D网络  Conv">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Video Action Recognition">
-<meta property="og:url" content="https://meteor041.git.io/2024/10/21/Video%20Action%20Recognition/index.html">
+<meta property="og:title" content="Two-Stream Inflated 3D ConvNets">
+<meta property="og:url" content="https://meteor041.git.io/2024/10/20/Two-Stream-Inflated-3D-ConvNets/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="Video Action Recognition LSTM 3D ConvNets  ![image-20241022001842588](Video Action Recognition&#x2F;image-20241022001842588.png)  large parameters  extract feature  Two-Stream Network 3D-Fused Two-Str">
+<meta property="og:description" content="Two-Stream Inflated 3D ConvNets 视频分类方向 采用先进的二维图像识别架构,拓展过滤器和池化内核到3维 基于双流神经网络:局部运动效果较好  论文发表时基于Inception,后改为基于ResNet  Related Work 视频领域对于使用2D还是3D暂无定论,一种基本方法是2D网络配上LSTM,LSTM作为时空建模;或者配备光流;或者直接建立3D网络  Conv">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-21T14:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-22T06:01:36.858Z">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/20/Two-Stream-Inflated-3D-ConvNets/image-20241021165310989.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/20/Two-Stream-Inflated-3D-ConvNets/image-20241021164927825.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/10/20/Two-Stream-Inflated-3D-ConvNets/image-20241021165442590.png">
+<meta property="article:published_time" content="2024-10-20T13:54:55.000Z">
+<meta property="article:modified_time" content="2024-10-25T00:32:02.990Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="CV">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/10/20/Two-Stream-Inflated-3D-ConvNets/image-20241021165310989.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Video Action Recognition - meteor041</title>
+  <title>Two-Stream Inflated 3D ConvNets - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Video Action Recognition"></span>
+            <span id="subtitle" data-typed-text="Two-Stream Inflated 3D ConvNets"></span>
           
         </div>
 
@@ -213,8 +217,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-21 22:00" pubdate>
-          2024年10月21日 晚上
+        <time datetime="2024-10-20 21:54" pubdate>
+          2024年10月20日 晚上
         </time>
       </span>
     
@@ -225,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14 字
+          341 字
         
       </span>
     
@@ -236,7 +240,7 @@
         
         
         
-          1 分钟
+          3 分钟
         
       </span>
     
@@ -282,12 +286,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Video Action Recognition</h1>
+            <h1 id="seo-header">Two-Stream Inflated 3D ConvNets</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年10月22日 下午
+                    本文最后更新于 2024年10月25日 早上
                   
                 
               </p>
@@ -295,30 +299,43 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Video-Action-Recognition"><a href="#Video-Action-Recognition" class="headerlink" title="Video Action Recognition"></a>Video Action Recognition</h1><ul>
-<li><h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2></li>
-<li><h2 id="3D-ConvNets"><a href="#3D-ConvNets" class="headerlink" title="3D ConvNets"></a>3D ConvNets</h2></li>
-</ul>
-<p>![image-20241022001842588](Video Action Recognition&#x2F;image-20241022001842588.png)</p>
+                <h1 id="Two-Stream-Inflated-3D-ConvNets"><a href="#Two-Stream-Inflated-3D-ConvNets" class="headerlink" title="Two-Stream Inflated 3D ConvNets"></a>Two-Stream Inflated 3D ConvNets</h1><blockquote>
+<p>视频分类方向</p>
+<p>采用先进的二维图像识别架构,拓展过滤器和池化内核到3维</p>
+<p>基于双流神经网络:局部运动效果较好 </p>
+<p>论文发表时基于Inception,后改为基于ResNet</p>
+</blockquote>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><blockquote>
+<p>视频领域对于使用2D还是3D暂无定论,一种基本方法是2D网络配上LSTM,LSTM作为时空建模;或者配备光流;或者直接建立3D网络</p>
+</blockquote>
+<h3 id="ConvNet-LSTM"><a href="#ConvNet-LSTM" class="headerlink" title="ConvNet+LSTM"></a>ConvNet+LSTM</h3><p><img src="image-20241021165310989.png" srcset="/img/loading.gif" lazyload alt="image-20241021165310989"></p>
 <ul>
-<li><p>large parameters</p>
-</li>
-<li><p>extract feature</p>
-</li>
-<li><h2 id="Two-Stream-Network"><a href="#Two-Stream-Network" class="headerlink" title="Two-Stream Network"></a>Two-Stream Network</h2></li>
-<li><h2 id="3D-Fused-Two-Stream"><a href="#3D-Fused-Two-Stream" class="headerlink" title="3D-Fused Two-Stream"></a>3D-Fused Two-Stream</h2></li>
-<li><h2 id="Inflated-3D-I3D"><a href="#Inflated-3D-I3D" class="headerlink" title="Inflated 3D(I3D)"></a>Inflated 3D(I3D)</h2><ul>
-<li>infate to 3D from 2D</li>
-<li>use parameters in 2D models</li>
-<li>bootstrapping</li>
+<li>从每一帧中独立提取特征,在整个视频中整合预测</li>
+<li>ConvNet忽略时间结构,因此加入LSTM</li>
 </ul>
-</li>
-<li><h2 id="Temporal-Segment-Networks"><a href="#Temporal-Segment-Networks" class="headerlink" title="Temporal Segment Networks"></a>Temporal Segment Networks</h2><ul>
-<li>segmental consensus</li>
-<li>late fusion</li>
+<h3 id="3D-ConvNets"><a href="#3D-ConvNets" class="headerlink" title="3D ConvNets"></a>3D ConvNets</h3><ul>
+<li>直接创建时空数据的分层展示</li>
+<li>因为多了一层内核的维度,其参数比2D卷积网络更为复杂,难以训练</li>
 </ul>
-</li>
-</ul>
+<h3 id="Two-Stream-Network-双流神经网络"><a href="#Two-Stream-Network-双流神经网络" class="headerlink" title="Two-Stream Network 双流神经网络"></a>Two-Stream Network 双流神经网络</h3><p><img src="image-20241021164927825.png" srcset="/img/loading.gif" lazyload alt="two-stream"></p>
+<blockquote>
+<p>由两个2D神经网络构成:</p>
+<p>空间流:学习场景信息</p>
+<p>时间流:分析光流图像,学习时间信息</p>
+<p>最后加权平均</p>
+</blockquote>
+<h3 id="3D-Fused-Two-Stream"><a href="#3D-Fused-Two-Stream" class="headerlink" title="3D-Fused Two-Stream"></a>3D-Fused Two-Stream</h3><p><img src="image-20241021165442590.png" srcset="/img/loading.gif" lazyload alt="image-20241021165442590"></p>
+<blockquote>
+<p>提前融合(fuse),用一个3D卷积神经网络输出结果</p>
+</blockquote>
+<h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><h3 id="inflate"><a href="#inflate" class="headerlink" title="inflate"></a>inflate</h3><blockquote>
+<p>将2D的Kernel,pooling layer直接转换为3D</p>
+</blockquote>
+<h3 id="bootstrapping"><a href="#bootstrapping" class="headerlink" title="bootstrapping"></a>bootstrapping</h3><blockquote>
+<p>将图像复制N次形成一个无聊视频,将3D模型在ImageNet上预训练,以满足无聊视频的不动点.</p>
+<p>途径:将图片的参数复制N次(N是时间维度),再除以N实现缩放</p>
+<p>确保卷积filter对图像和视频输入的处理一致</p>
+</blockquote>
 
                 
               </div>
@@ -343,8 +360,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Video Action Recognition</div>
-      <div>https://meteor041.git.io/2024/10/21/Video Action Recognition/</div>
+      <div>Two-Stream Inflated 3D ConvNets</div>
+      <div>https://meteor041.git.io/2024/10/20/Two-Stream-Inflated-3D-ConvNets/</div>
     </div>
     <div class="license-meta">
       
@@ -356,7 +373,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年10月21日</div>
+          <div>2024年10月20日</div>
         </div>
       
       
@@ -388,9 +405,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/22/manimce/" title="manimce">
+                      <a href="/2024/10/21/video-Action-Recognition/" title="Video Action Recognition">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">manimce</span>
+                        <span class="hidden-mobile">Video Action Recognition</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -398,8 +415,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/20/Two-Stream%20Inflated%203D%20ConvNets/" title="Two-Stream Inflated 3D ConvNets">
-                        <span class="hidden-mobile">Two-Stream Inflated 3D ConvNets</span>
+                      <a href="/2024/10/20/LSSPT/" title="LSSPT">
+                        <span class="hidden-mobile">LSSPT</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

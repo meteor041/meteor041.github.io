@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>递归下降</title>
+    <link href="/2024/10/24/%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D/"/>
+    <url>/2024/10/24/%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Grammer文法"><a href="#Grammer文法" class="headerlink" title="Grammer文法"></a>Grammer文法</h2><h3 id="Lex词法"><a href="#Lex词法" class="headerlink" title="Lex词法"></a>Lex词法</h3><blockquote><p>语言中的词汇及其属性和含义的规则</p></blockquote><p>$$<br>&lt;var_name&gt;\rightarrow <letter>|<letter>&lt;var_name&gt;\<br><letter>\rightarrow a^<code>|b^</code>|…|z^&#96;<br>$$</letter></letter></letter></p><p>$$<br>&lt;&gt;标识语法成分的边界\<br>\rightarrow表示左侧部分由右侧部分的具体规则组合而成\<br>|表示规则可以从其两侧提供的任意选项中选取\<br>变量名定义为:有至少一个(大于0个)小写字母组成的字符串\<br>$$</p><h3 id="Syntax-语法"><a href="#Syntax-语法" class="headerlink" title="Syntax 语法"></a>Syntax 语法</h3><blockquote><p>描述语言中句子结构和组织方式的规则</p></blockquote><h2 id="词法-语法分析"><a href="#词法-语法分析" class="headerlink" title="词法&amp;语法分析"></a>词法&amp;语法分析</h2><h3 id="Lexer-词法分析"><a href="#Lexer-词法分析" class="headerlink" title="Lexer 词法分析"></a>Lexer 词法分析</h3><h4 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h4><blockquote><p>文本的最小语法单元,试译作”语素”</p></blockquote><h3 id="Parser-语法分析"><a href="#Parser-语法分析" class="headerlink" title="Parser 语法分析"></a>Parser 语法分析</h3><p>$$<br>Expr&lt;表达式&gt;\rightarrow &lt;项&gt;|&lt;项&gt;+&lt;表达式&gt;\<br>Term&lt;项&gt;\rightarrow &lt;因子&gt;|&lt;因子&gt;*&lt;项&gt;\<br>Factor&lt;因子&gt;\rightarrow ‘i’<br>$$</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>OOPre</tag>
+      
+      <tag>Java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>单周期CPU设计文档</title>
     <link href="/2024/10/23/%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/"/>
     <url>/2024/10/23/%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/</url>
@@ -37,10 +58,10 @@
   
   <entry>
     <title>Video Action Recognition</title>
-    <link href="/2024/10/21/Video%20Action%20Recognition/"/>
-    <url>/2024/10/21/Video%20Action%20Recognition/</url>
+    <link href="/2024/10/21/video-Action-Recognition/"/>
+    <url>/2024/10/21/video-Action-Recognition/</url>
     
-    <content type="html"><![CDATA[<h1 id="Video-Action-Recognition"><a href="#Video-Action-Recognition" class="headerlink" title="Video Action Recognition"></a>Video Action Recognition</h1><ul><li><h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2></li><li><h2 id="3D-ConvNets"><a href="#3D-ConvNets" class="headerlink" title="3D ConvNets"></a>3D ConvNets</h2></li></ul><p>![image-20241022001842588](Video Action Recognition&#x2F;image-20241022001842588.png)</p><ul><li><p>large parameters</p></li><li><p>extract feature</p></li><li><h2 id="Two-Stream-Network"><a href="#Two-Stream-Network" class="headerlink" title="Two-Stream Network"></a>Two-Stream Network</h2></li><li><h2 id="3D-Fused-Two-Stream"><a href="#3D-Fused-Two-Stream" class="headerlink" title="3D-Fused Two-Stream"></a>3D-Fused Two-Stream</h2></li><li><h2 id="Inflated-3D-I3D"><a href="#Inflated-3D-I3D" class="headerlink" title="Inflated 3D(I3D)"></a>Inflated 3D(I3D)</h2><ul><li>infate to 3D from 2D</li><li>use parameters in 2D models</li><li>bootstrapping</li></ul></li><li><h2 id="Temporal-Segment-Networks"><a href="#Temporal-Segment-Networks" class="headerlink" title="Temporal Segment Networks"></a>Temporal Segment Networks</h2><ul><li>segmental consensus</li><li>late fusion</li></ul></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="Video-Action-Recognition"><a href="#Video-Action-Recognition" class="headerlink" title="Video Action Recognition"></a>Video Action Recognition</h1><ul><li><h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2></li><li><h2 id="3D-ConvNets"><a href="#3D-ConvNets" class="headerlink" title="3D ConvNets"></a>3D ConvNets</h2></li></ul><p><img src="image-20241022001842588.png" alt="image-20241022001842588"></p><ul><li><p>large parameters</p></li><li><p>extract feature</p></li><li><h2 id="Two-Stream-Network"><a href="#Two-Stream-Network" class="headerlink" title="Two-Stream Network"></a>Two-Stream Network</h2></li><li><h2 id="3D-Fused-Two-Stream"><a href="#3D-Fused-Two-Stream" class="headerlink" title="3D-Fused Two-Stream"></a>3D-Fused Two-Stream</h2></li><li><h2 id="Inflated-3D-I3D"><a href="#Inflated-3D-I3D" class="headerlink" title="Inflated 3D(I3D)"></a>Inflated 3D(I3D)</h2><ul><li>infate to 3D from 2D</li><li>use parameters in 2D models</li><li>bootstrapping</li></ul></li><li><h2 id="Temporal-Segment-Networks"><a href="#Temporal-Segment-Networks" class="headerlink" title="Temporal Segment Networks"></a>Temporal Segment Networks</h2><ul><li>segmental consensus</li><li>late fusion</li></ul></li></ul>]]></content>
     
     
     
@@ -56,10 +77,10 @@
   
   <entry>
     <title>Two-Stream Inflated 3D ConvNets</title>
-    <link href="/2024/10/20/Two-Stream%20Inflated%203D%20ConvNets/"/>
-    <url>/2024/10/20/Two-Stream%20Inflated%203D%20ConvNets/</url>
+    <link href="/2024/10/20/Two-Stream-Inflated-3D-ConvNets/"/>
+    <url>/2024/10/20/Two-Stream-Inflated-3D-ConvNets/</url>
     
-    <content type="html"><![CDATA[<h1 id="Two-Stream-Inflated-3D-ConvNets"><a href="#Two-Stream-Inflated-3D-ConvNets" class="headerlink" title="Two-Stream Inflated 3D ConvNets"></a>Two-Stream Inflated 3D ConvNets</h1><blockquote><p>视频分类方向</p><p>采用先进的二维图像识别架构,拓展过滤器和池化内核到3维</p><p>基于双流神经网络:局部运动效果较好 </p><p>论文发表时基于Inception,后改为基于ResNet</p></blockquote><h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><blockquote><p>视频领域对于使用2D还是3D暂无定论,一种基本方法是2D网络配上LSTM,LSTM作为时空建模;或者配备光流;或者直接建立3D网络</p></blockquote><h3 id="ConvNet-LSTM"><a href="#ConvNet-LSTM" class="headerlink" title="ConvNet+LSTM"></a>ConvNet+LSTM</h3><p>![image-20241021165310989](Two-Stream Inflated 3D ConvNets&#x2F;image-20241021165310989.png)</p><ul><li>从每一帧中独立提取特征,在整个视频中整合预测</li><li>ConvNet忽略时间结构,因此加入LSTM</li></ul><h3 id="3D-ConvNets"><a href="#3D-ConvNets" class="headerlink" title="3D ConvNets"></a>3D ConvNets</h3><ul><li>直接创建时空数据的分层展示</li><li>因为多了一层内核的维度,其参数比2D卷积网络更为复杂,难以训练</li></ul><h3 id="Two-Stream-Network-双流神经网络"><a href="#Two-Stream-Network-双流神经网络" class="headerlink" title="Two-Stream Network 双流神经网络"></a>Two-Stream Network 双流神经网络</h3><p>![two-stream](Two-Stream Inflated 3D ConvNets&#x2F;image-20241021164927825.png)</p><blockquote><p>由两个2D神经网络构成:</p><p>空间流:学习场景信息</p><p>时间流:分析光流图像,学习时间信息</p><p>最后加权平均</p></blockquote><h3 id="3D-Fused-Two-Stream"><a href="#3D-Fused-Two-Stream" class="headerlink" title="3D-Fused Two-Stream"></a>3D-Fused Two-Stream</h3><p>![image-20241021165442590](Two-Stream Inflated 3D ConvNets&#x2F;image-20241021165442590.png)</p><blockquote><p>提前融合(fuse),用一个3D卷积神经网络输出结果</p></blockquote><h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><h3 id="inflate"><a href="#inflate" class="headerlink" title="inflate"></a>inflate</h3><blockquote><p>将2D的Kernel,pooling layer直接转换为3D</p></blockquote><h3 id="bootstrapping"><a href="#bootstrapping" class="headerlink" title="bootstrapping"></a>bootstrapping</h3><blockquote><p>将图像复制N次形成一个无聊视频,将3D模型在ImageNet上预训练,以满足无聊视频的不动点.</p><p>途径:将图片的参数复制N次(N是时间维度),再除以N实现缩放</p><p>确保卷积filter对图像和视频输入的处理一致</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="Two-Stream-Inflated-3D-ConvNets"><a href="#Two-Stream-Inflated-3D-ConvNets" class="headerlink" title="Two-Stream Inflated 3D ConvNets"></a>Two-Stream Inflated 3D ConvNets</h1><blockquote><p>视频分类方向</p><p>采用先进的二维图像识别架构,拓展过滤器和池化内核到3维</p><p>基于双流神经网络:局部运动效果较好 </p><p>论文发表时基于Inception,后改为基于ResNet</p></blockquote><h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><blockquote><p>视频领域对于使用2D还是3D暂无定论,一种基本方法是2D网络配上LSTM,LSTM作为时空建模;或者配备光流;或者直接建立3D网络</p></blockquote><h3 id="ConvNet-LSTM"><a href="#ConvNet-LSTM" class="headerlink" title="ConvNet+LSTM"></a>ConvNet+LSTM</h3><p><img src="image-20241021165310989.png" alt="image-20241021165310989"></p><ul><li>从每一帧中独立提取特征,在整个视频中整合预测</li><li>ConvNet忽略时间结构,因此加入LSTM</li></ul><h3 id="3D-ConvNets"><a href="#3D-ConvNets" class="headerlink" title="3D ConvNets"></a>3D ConvNets</h3><ul><li>直接创建时空数据的分层展示</li><li>因为多了一层内核的维度,其参数比2D卷积网络更为复杂,难以训练</li></ul><h3 id="Two-Stream-Network-双流神经网络"><a href="#Two-Stream-Network-双流神经网络" class="headerlink" title="Two-Stream Network 双流神经网络"></a>Two-Stream Network 双流神经网络</h3><p><img src="image-20241021164927825.png" alt="two-stream"></p><blockquote><p>由两个2D神经网络构成:</p><p>空间流:学习场景信息</p><p>时间流:分析光流图像,学习时间信息</p><p>最后加权平均</p></blockquote><h3 id="3D-Fused-Two-Stream"><a href="#3D-Fused-Two-Stream" class="headerlink" title="3D-Fused Two-Stream"></a>3D-Fused Two-Stream</h3><p><img src="image-20241021165442590.png" alt="image-20241021165442590"></p><blockquote><p>提前融合(fuse),用一个3D卷积神经网络输出结果</p></blockquote><h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><h3 id="inflate"><a href="#inflate" class="headerlink" title="inflate"></a>inflate</h3><blockquote><p>将2D的Kernel,pooling layer直接转换为3D</p></blockquote><h3 id="bootstrapping"><a href="#bootstrapping" class="headerlink" title="bootstrapping"></a>bootstrapping</h3><blockquote><p>将图像复制N次形成一个无聊视频,将3D模型在ImageNet上预训练,以满足无聊视频的不动点.</p><p>途径:将图片的参数复制N次(N是时间维度),再除以N实现缩放</p><p>确保卷积filter对图像和视频输入的处理一致</p></blockquote>]]></content>
     
     
     
