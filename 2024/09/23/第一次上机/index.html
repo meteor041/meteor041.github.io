@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="1 搭建一个能处理三个输入指令的电路     00 输出0    01 输出上一次输出+1($a_n&#x3D;a_{n-1}+1$)   10 输出之前输出之和($a_n&#x3D;\mathop\Sigma\limits^{n-1}_{i&#x3D;0}a_i$)     2 向量相乘  123456789101112131415module dotProduct(    input [31:">
+    <meta name="description" content="1 搭建一个能处理三个输入指令的电路      00 输出0     01 输出上一次输出+1($an&#x3D;a{n-1}+1$)   10 输出之前输出之和($an&#x3D;\mathop\Sigma\limits^{n-1}{i&#x3D;0}a_i$)       2 向量相乘  123456789101112131415module dotProduct(    input [31:0] vector_a,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第一次上机">
 <meta property="og:url" content="https://meteor041.git.io/2024/09/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="1 搭建一个能处理三个输入指令的电路     00 输出0    01 输出上一次输出+1($a_n&#x3D;a_{n-1}+1$)   10 输出之前输出之和($a_n&#x3D;\mathop\Sigma\limits^{n-1}_{i&#x3D;0}a_i$)     2 向量相乘  123456789101112131415module dotProduct(    input [31:">
+<meta property="og:description" content="1 搭建一个能处理三个输入指令的电路      00 输出0     01 输出上一次输出+1($an&#x3D;a{n-1}+1$)   10 输出之前输出之和($an&#x3D;\mathop\Sigma\limits^{n-1}{i&#x3D;0}a_i$)       2 向量相乘  123456789101112131415module dotProduct(    input [31:0] vector_a,">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/09/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA/image-20240923220646182.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/09/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA/image-20240923220711838.png">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          292 字
+          288 字
         
       </span>
     
@@ -301,6 +301,7 @@
                 <h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><blockquote>
 <p>搭建一个能处理三个输入指令的电路</p>
 </blockquote>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -308,31 +309,30 @@
 <th>输出0</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>01</td>
-<td>输出上一次输出+1($a_n&#x3D;a_{n-1}+1$)</td>
+<td>输出上一次输出+1($a<em>n=a</em>{n-1}+1$)</td>
 </tr>
 <tr>
 <td>10</td>
-<td>输出之前输出之和($a_n&#x3D;\mathop\Sigma\limits^{n-1}_{i&#x3D;0}a_i$)</td>
+<td>输出之前输出之和($a<em>n=\mathop\Sigma\limits^{n-1}</em>{i=0}a_i$)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><img src="image-20240923220646182.png" srcset="/img/loading.gif" lazyload alt="image-20240923220646182"></p>
 <p><img src="image-20240923220711838.png" srcset="/img/loading.gif" lazyload alt="image-20240923220711838"></p>
 <h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><blockquote>
 <p>向量相乘</p>
 </blockquote>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> dotProduct(<br>    <span class="hljs-keyword">input</span> [<span class="hljs-number">31</span>:<span class="hljs-number">0</span>] vector_a,<br>    <span class="hljs-keyword">input</span> [<span class="hljs-number">31</span>:<span class="hljs-number">0</span>] vector_b,<br>    <span class="hljs-keyword">output</span> <span class="hljs-keyword">reg</span>[<span class="hljs-number">4</span>:<span class="hljs-number">0</span>] out<br>    );<br>    <span class="hljs-keyword">reg</span>[<span class="hljs-number">4</span>:<span class="hljs-number">0</span>] t;<br>    <span class="hljs-keyword">integer</span> i;<br>    <span class="hljs-keyword">always</span> @(vector_a <span class="hljs-keyword">or</span> vector_b)<span class="hljs-keyword">begin</span><br>      t = <span class="hljs-number">5&#x27;b0</span>;<br>      <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">32</span>; i=i+<span class="hljs-number">1</span>)<span class="hljs-keyword">begin</span><br>        t = t + (vector_a[i] * vector_b[i]);<br>      <span class="hljs-keyword">end</span><br>      out = t;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
-
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> dotProduct_tb();<br>    <span class="hljs-keyword">reg</span>[<span class="hljs-number">31</span>:<span class="hljs-number">0</span>] a;<br>    <span class="hljs-keyword">reg</span>[<span class="hljs-number">31</span>:<span class="hljs-number">0</span>] b;<br>    <span class="hljs-keyword">wire</span>[<span class="hljs-number">4</span>:<span class="hljs-number">0</span>] out;<br><br>    <span class="hljs-keyword">initial</span> <span class="hljs-keyword">begin</span><br>      a=<span class="hljs-number">32&#x27;b0</span>;<br>      b=<span class="hljs-number">32&#x27;b0</span>;<br>      #<span class="hljs-number">100</span><br>      a=<span class="hljs-number">32&#x27;d10</span>;<br>      b=<span class="hljs-number">32&#x27;d10</span>;<br>    <span class="hljs-keyword">end</span><br>    dotProduct uvv(<span class="hljs-variable">.vector_a</span>(a), <span class="hljs-variable">.vector_b</span>(b), <span class="hljs-variable">.out</span>(out));<br><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
-
 <h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><blockquote>
 <p>MIPS求数组中最长连续递增子数组</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// C语言示例代码</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">int</span> n;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <span class="hljs-type">int</span> max = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> len = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> last=<span class="hljs-number">-1</span>, curr;<br>    <span class="hljs-keyword">while</span> (n--)&#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;curr);<br>        <span class="hljs-keyword">if</span> (curr &gt; last)&#123;<br>            len += <span class="hljs-number">1</span>;<br>            max = len &gt; max ? len : max;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            len = <span class="hljs-number">1</span>;<br>        &#125;<br>        last = curr;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, max);<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs assembly">.eqv n, $s0<br>.eqv max, $s1<br>.eqv len, $s2<br>.eqv curr, $s3<br>.eqv last, $s4<br><br>.macro printInt(%int)<br>	move $a0, %int<br>	li $v0, 1<br>	syscall<br>.end_macro <br><br>.macro inputInt(%int)<br>	li $v0, 5<br>	syscall<br>	move %int, $v0<br>.end_macro<br><br>.macro forLoop(%ct,%n,%startLabel,%endLabel)<br>	%startLabel:<br>	beq %ct, %n, %endLabel<br>.end_macro<br><br>.macro forEnd(%ct,%startLabel,%endLabel)<br>	addi %ct, %ct, 1<br>	j %startLabel<br>	%endLabel:<br>.end_macro<br><br>li last, -1<br>li $t0, 0<br>inputInt(n)<br>forLoop($t0,n,start,end)<br>	inputInt(curr)<br>	ble curr, last, less<br>		add len, len, 1<br>		bge max, len, skip<br>		move max, len<br>		skip:<br>		j tail<br>	less:<br>		li len, 1<br>	tail:<br>		move last, curr<br>forEnd($t0,start,end)<br><br>printInt(max)<br></code></pre></td></tr></table></figure>
-
 
                 
               </div>

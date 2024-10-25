@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          390 字
+          371 字
         
       </span>
     
@@ -344,12 +344,23 @@
 </ul>
 </li>
 </ul>
-<h2 id="Long-Short-State-Encoder"><a href="#Long-Short-State-Encoder" class="headerlink" title="Long-Short State Encoder"></a>Long-Short State Encoder</h2><h3 id="sparse-graph-transformer"><a href="#sparse-graph-transformer" class="headerlink" title="sparse graph transformer"></a>sparse graph transformer</h3><h4 id="building"><a href="#building" class="headerlink" title="building"></a>building</h4><p>${p{}^t_i}{}^N_{i&#x3D;1}$,$p_i\in \mathit R^d$表示第i个人的特征</p>
-<p>$稀疏矩阵G^t&#x3D;{V^t,E^t}$,$V_t&#x3D;{p{}^t_i}{}^N_{i&#x3D;1}$表示节点,$E_t&#x3D;{(i,j)|p_i,p_j 在n时刻连结}$</p>
-<p>$节点的邻居Nei(i,t)&#x3D;{p^t_j}{}^M_{i&#x3D;1},其中p^t_j满足(i,j)\in E^t$</p>
-<h4 id="update"><a href="#update" class="headerlink" title="update"></a>update</h4><p>通过邻居节点传递的key,自身节点的equry更新节点信息,由原先的$h_i$变为$\hat{h_i}$<br>$$<br>\begin{split}<br>&amp;\hat{h_i}&#x3D;softmax(\frac{[q_i^Tk_j]_ {j&#x3D;1:N} }{ \sqrt{d_k} })[v_i]^N_{i&#x3D;1}\<br>&amp;q_i表示query\<br>&amp;k_j表示key\<br>&amp;v_i表示value\<br>\end{split}<br>$$</p>
-<h4 id="group-state-modeling"><a href="#group-state-modeling" class="headerlink" title="group state modeling"></a>group state modeling</h4><p>$$<br>\begin{split}<br>&amp;小组状态g_t&#x3D;P_{max}(Norm(f_o(\hat{p_i}),…,f_o(\hat{p_N}))) \<br>&amp;P_{max}池化层 \<br>&amp;Norm层标准化 \<br>&amp;f_o全连接层 \<br>\end{split}<br>$$</p>
-<h4 id="casual-temporal-transformer"><a href="#casual-temporal-transformer" class="headerlink" title="casual temporal transformer"></a>casual temporal transformer</h4><ul>
+<h2 id="Long-Short-State-Encoder"><a href="#Long-Short-State-Encoder" class="headerlink" title="Long-Short State Encoder"></a>Long-Short State Encoder</h2><h3 id="sparse-graph-transformer"><a href="#sparse-graph-transformer" class="headerlink" title="sparse graph transformer"></a>sparse graph transformer</h3><h4 id="building"><a href="#building" class="headerlink" title="building"></a>building</h4><p>${p{}^t<em>i}{}^N</em>{i=1}$,$p_i\in \mathit R^d$表示第i个人的特征</p>
+<p>$稀疏矩阵G^t={V^t,E^t}$,$V<em>t={p{}^t_i}{}^N</em>{i=1}$表示节点,$E_t={(i,j)|p_i,p_j 在n时刻连结}$</p>
+<p>$节点的邻居Nei(i,t)={p^t<em>j}{}^M</em>{i=1},其中p^t_j满足(i,j)\in E^t$</p>
+<h4 id="update"><a href="#update" class="headerlink" title="update"></a>update</h4><p>通过邻居节点传递的key,自身节点的equry更新节点信息,由原先的$h_i$变为$\hat{h_i}$</p>
+<script type="math/tex; mode=display">
+\begin{split}
+&\hat{h_i}=softmax(\frac{[q_i^Tk_j]_ {j=1:N} }{ \sqrt{d_k} })[v_i]^N_{i=1}\\
+&q_i表示query\\
+&k_j表示key\\
+&v_i表示value\\
+\end{split}</script><h4 id="group-state-modeling"><a href="#group-state-modeling" class="headerlink" title="group state modeling"></a>group state modeling</h4><script type="math/tex; mode=display">
+\begin{split}
+&小组状态g_t=P_{max}(Norm(f_o(\hat{p_i}),...,f_o(\hat{p_N}))) \\
+&P_{max}池化层 \\
+&Norm层标准化 \\
+&f_o全连接层 \\
+\end{split}</script><h4 id="casual-temporal-transformer"><a href="#casual-temporal-transformer" class="headerlink" title="casual temporal transformer"></a>casual temporal transformer</h4><ul>
 <li>masked Transformer<ul>
 <li>为绝对帧添加时间位置编码</li>
 <li>多层CTT层传递,masked multihead attention, LayerNorm(层归一化),MLP(what???)</li>

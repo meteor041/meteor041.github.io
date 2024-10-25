@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="构建单周期CPU记录Ⅲ(addi, j)addi对于addi,不需要新增器件,addi与add的不同,本质上是将其中一个寄存器换成了立即数. 比较两者的机器码           可以发现:  rs不变 rt的作用从原来的提供加数,变为赋值地址 rd消失,立即数代替rt成为加数  因此修改如下:  A1端口不变,仍然连接Instr[25:21] SrcB不再接收Instr[20:16]的值,而是立">
+    <meta name="description" content="构建单周期CPU记录Ⅲ(addi, j)addi对于addi,不需要新增器件,addi与add的不同,本质上是将其中一个寄存器换成了立即数. 比较两者的机器码               可以发现:  rs不变 rt的作用从原来的提供加数,变为赋值地址 rd消失,立即数代替rt成为加数  因此修改如下:  A1端口不变,仍然连接Instr[25:21] SrcB不再接收Instr[20:16]的值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="构建单周期CPU记录Ⅲ">
 <meta property="og:url" content="https://meteor041.git.io/2024/09/12/%E6%9E%84%E5%BB%BA%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E8%AE%B0%E5%BD%95%E2%85%A2/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="构建单周期CPU记录Ⅲ(addi, j)addi对于addi,不需要新增器件,addi与add的不同,本质上是将其中一个寄存器换成了立即数. 比较两者的机器码           可以发现:  rs不变 rt的作用从原来的提供加数,变为赋值地址 rd消失,立即数代替rt成为加数  因此修改如下:  A1端口不变,仍然连接Instr[25:21] SrcB不再接收Instr[20:16]的值,而是立">
+<meta property="og:description" content="构建单周期CPU记录Ⅲ(addi, j)addi对于addi,不需要新增器件,addi与add的不同,本质上是将其中一个寄存器换成了立即数. 比较两者的机器码               可以发现:  rs不变 rt的作用从原来的提供加数,变为赋值地址 rd消失,立即数代替rt成为加数  因此修改如下:  A1端口不变,仍然连接Instr[25:21] SrcB不再接收Instr[20:16]的值">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/09/12/%E6%9E%84%E5%BB%BA%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E8%AE%B0%E5%BD%95%E2%85%A2/image-20240912170401633.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/09/12/%E6%9E%84%E5%BB%BA%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E8%AE%B0%E5%BD%95%E2%85%A2/image-20240912170419516.png">
@@ -302,16 +302,20 @@
                 
                 <h1 id="构建单周期CPU记录Ⅲ-addi-j"><a href="#构建单周期CPU记录Ⅲ-addi-j" class="headerlink" title="构建单周期CPU记录Ⅲ(addi, j)"></a>构建单周期CPU记录Ⅲ(addi, j)</h1><h2 id="addi"><a href="#addi" class="headerlink" title="addi"></a>addi</h2><p>对于addi,不需要新增器件,addi与add的不同,本质上是将其中一个寄存器换成了立即数.</p>
 <p>比较两者的机器码</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th><img src="image-20240912170401633.png" srcset="/img/loading.gif" lazyload alt="add"></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><img src="image-20240912170419516.png" srcset="/img/loading.gif" lazyload alt="addi"></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>可以发现:</p>
 <ul>
 <li>rs不变</li>
@@ -328,7 +332,8 @@
 <h2 id="j"><a href="#j" class="headerlink" title="j"></a>j</h2><p>对NXTAD(对下一个地址的计算器)做出修改,新增Jump信号</p>
 <p><img src="image-20240912172223432.png" srcset="/img/loading.gif" lazyload alt="NXTAD(新增Jump信号)"></p>
 <h1 id="整体"><a href="#整体" class="headerlink" title="整体"></a>整体</h1><p><img src="image-20240912172136927.png" srcset="/img/loading.gif" lazyload alt="整体"></p>
-<h1 id="附"><a href="#附" class="headerlink" title="附"></a>附</h1><h2 id="信号表"><a href="#信号表" class="headerlink" title="信号表"></a>信号表</h2><table>
+<h1 id="附"><a href="#附" class="headerlink" title="附"></a>附</h1><h2 id="信号表"><a href="#信号表" class="headerlink" title="信号表"></a>信号表</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>指令</th>
@@ -343,7 +348,8 @@
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>lw</td>
 <td>1</td>
 <td>0</td>
@@ -521,9 +527,10 @@
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
                 
               </div>

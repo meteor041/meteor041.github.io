@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="Grammer文法Lex词法 语言中的词汇及其属性和含义的规则  $$&lt;var_name&gt;\rightarrow |&lt;var_name&gt;\\rightarrow a^|b^|…|z^&#96;$$ $$&lt;&gt;标识语法成分的边界\\rightarrow表示左侧部分由右侧部分的具体规则组合而成\|表示规则可以从其两侧提供的任意选项中选取\变量名定义为:有至少一个(大于">
+    <meta name="description" content="Grammer文法Lex词法 语言中的词汇及其属性和含义的规则   \rightarrow |\\ \rightarrow a^&#96;|b^&#96;|...|z^&#96; 标识语法成分的边界\\ \rightarrow表示左侧部分由右侧部分的具体规则组合而成\\ |表示规则可以从其两侧提供的任意选项中选取\\ 变量名定义为:有至少一个(大于0个)小写字母组成的字符串\\Syntax 语法 描述语言中句子结构和组织">
 <meta property="og:type" content="article">
 <meta property="og:title" content="递归下降">
 <meta property="og:url" content="https://meteor041.git.io/2024/10/24/%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="Grammer文法Lex词法 语言中的词汇及其属性和含义的规则  $$&lt;var_name&gt;\rightarrow |&lt;var_name&gt;\\rightarrow a^|b^|…|z^&#96;$$ $$&lt;&gt;标识语法成分的边界\\rightarrow表示左侧部分由右侧部分的具体规则组合而成\|表示规则可以从其两侧提供的任意选项中选取\变量名定义为:有至少一个(大于">
+<meta property="og:description" content="Grammer文法Lex词法 语言中的词汇及其属性和含义的规则   \rightarrow |\\ \rightarrow a^&#96;|b^&#96;|...|z^&#96; 标识语法成分的边界\\ \rightarrow表示左侧部分由右侧部分的具体规则组合而成\\ |表示规则可以从其两侧提供的任意选项中选取\\ 变量名定义为:有至少一个(大于0个)小写字母组成的字符串\\Syntax 语法 描述语言中句子结构和组织">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-24T06:08:52.000Z">
 <meta property="article:modified_time" content="2024-10-24T12:48:53.140Z">
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          201 字
+          157 字
         
       </span>
     
@@ -299,16 +299,22 @@
                 <h2 id="Grammer文法"><a href="#Grammer文法" class="headerlink" title="Grammer文法"></a>Grammer文法</h2><h3 id="Lex词法"><a href="#Lex词法" class="headerlink" title="Lex词法"></a>Lex词法</h3><blockquote>
 <p>语言中的词汇及其属性和含义的规则</p>
 </blockquote>
-<p>$$<br>&lt;var_name&gt;\rightarrow <letter>|<letter>&lt;var_name&gt;\<br><letter>\rightarrow a^<code>|b^</code>|…|z^&#96;<br>$$</letter></letter></letter></p>
-<p>$$<br>&lt;&gt;标识语法成分的边界\<br>\rightarrow表示左侧部分由右侧部分的具体规则组合而成\<br>|表示规则可以从其两侧提供的任意选项中选取\<br>变量名定义为:有至少一个(大于0个)小写字母组成的字符串\<br>$$</p>
-<h3 id="Syntax-语法"><a href="#Syntax-语法" class="headerlink" title="Syntax 语法"></a>Syntax 语法</h3><blockquote>
+<script type="math/tex; mode=display">
+<var\_name>\rightarrow <letter>|<letter><var\_name>\\
+<letter>\rightarrow a^`|b^`|...|z^`</script><script type="math/tex; mode=display">
+<>标识语法成分的边界\\
+\rightarrow表示左侧部分由右侧部分的具体规则组合而成\\
+|表示规则可以从其两侧提供的任意选项中选取\\
+变量名定义为:有至少一个(大于0个)小写字母组成的字符串\\</script><h3 id="Syntax-语法"><a href="#Syntax-语法" class="headerlink" title="Syntax 语法"></a>Syntax 语法</h3><blockquote>
 <p>描述语言中句子结构和组织方式的规则</p>
 </blockquote>
-<h2 id="词法-语法分析"><a href="#词法-语法分析" class="headerlink" title="词法&amp;语法分析"></a>词法&amp;语法分析</h2><h3 id="Lexer-词法分析"><a href="#Lexer-词法分析" class="headerlink" title="Lexer 词法分析"></a>Lexer 词法分析</h3><h4 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h4><blockquote>
+<h2 id="词法-amp-语法分析"><a href="#词法-amp-语法分析" class="headerlink" title="词法&amp;语法分析"></a>词法&amp;语法分析</h2><h3 id="Lexer-词法分析"><a href="#Lexer-词法分析" class="headerlink" title="Lexer 词法分析"></a>Lexer 词法分析</h3><h4 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h4><blockquote>
 <p>文本的最小语法单元,试译作”语素”</p>
 </blockquote>
-<h3 id="Parser-语法分析"><a href="#Parser-语法分析" class="headerlink" title="Parser 语法分析"></a>Parser 语法分析</h3><p>$$<br>Expr&lt;表达式&gt;\rightarrow &lt;项&gt;|&lt;项&gt;+&lt;表达式&gt;\<br>Term&lt;项&gt;\rightarrow &lt;因子&gt;|&lt;因子&gt;*&lt;项&gt;\<br>Factor&lt;因子&gt;\rightarrow ‘i’<br>$$</p>
-
+<h3 id="Parser-语法分析"><a href="#Parser-语法分析" class="headerlink" title="Parser 语法分析"></a>Parser 语法分析</h3><script type="math/tex; mode=display">
+Expr<表达式>\rightarrow <项>|<项>+<表达式>\\
+Term<项>\rightarrow <因子>|<因子>*<项>\\
+Factor<因子>\rightarrow 'i'</script>
                 
               </div>
             
