@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/10/25/%E6%AC%A1%E5%BA%8F%E5%85%B3%E7%B3%BB/image-20241025082644058.png">
 <meta property="article:published_time" content="2024-10-25T01:57:00.000Z">
-<meta property="article:modified_time" content="2024-10-25T02:42:02.579Z">
+<meta property="article:modified_time" content="2024-10-25T08:07:57.988Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="discrete mathmatics">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          208 字
+          211 字
         
       </span>
     
@@ -289,7 +289,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年10月25日 上午
+                    本文最后更新于 2024年10月25日 下午
                   
                 
               </p>
@@ -313,15 +313,18 @@
 <li><p>&lt;表示严格偏序关系,&lt;$P,&lt;$&gt;为严格偏序(拟序)结构</p>
 </li>
 </ul>
-<script type="math/tex; mode=display">
-\lt=\leq-I_P</script><h2 id="遮盖"><a href="#遮盖" class="headerlink" title="遮盖"></a>遮盖</h2><script type="math/tex; mode=display">
-y遮盖x\Leftrightarrow x<y\wedge \neg\exist (z\in P\wedge x<z \wedge z<y)</script><h2 id="哈斯图-偏序结构图"><a href="#哈斯图-偏序结构图" class="headerlink" title="哈斯图/偏序结构图"></a>哈斯图/偏序结构图</h2><p>偏序结构通常用<strong>简化的关系图</strong>来表示</p>
+<script type="math/tex; mode=display">\lt=\leq-I_P</script><h2 id="遮盖"><a href="#遮盖" class="headerlink" title="遮盖"></a>遮盖</h2><script type="math/tex; mode=display">
+\begin{align}
+&y遮盖x\Leftrightarrow x<y\wedge \neg \exist (z\in P\wedge x<z \wedge z<y)
+\end{align}</script><h2 id="哈斯图-偏序结构图"><a href="#哈斯图-偏序结构图" class="headerlink" title="哈斯图/偏序结构图"></a>哈斯图/偏序结构图</h2><p>偏序结构通常用<strong>简化的关系图</strong>来表示</p>
 <h2 id="偏序结构中的特殊元素"><a href="#偏序结构中的特殊元素" class="headerlink" title="偏序结构中的特殊元素"></a>偏序结构中的特殊元素</h2><script type="math/tex; mode=display">
-\lt A,\leq\gt是偏序结构,并且B\subseteq A,则\\
- (1)b是B的最大元\Leftrightarrow b\in B\wedge \forall x(x\in B\rightarrow x\leq b)\\
- (2)b是B的最小元\Leftrightarrow b\in B\wedge \forall x(x\in B\rightarrow b\leq x)\\
- (3)b是B的极大元\Leftrightarrow \neg\exist x(x\in B\wedge b<x)\\
-  (4)b是B的极小元\Leftrightarrow \neg\exist x(x\in B\wedge x<b)\\</script><ul>
+\begin{align}
+&\lt A,\leq\gt是偏序结构,并且B\subseteq A,则\\\\
+ &(1)b是B的最大元\Leftrightarrow b\in B\wedge \forall x(x\in B\rightarrow x\leq b)\\\\
+ &(2)b是B的最小元\Leftrightarrow b\in B\wedge \forall x(x\in B\rightarrow b\leq x)\\\\
+ &(3)b是B的极大元\Leftrightarrow \neg\exist x(x\in B\wedge b<x)\\\\
+  &(4)b是B的极小元\Leftrightarrow \neg\exist x(x\in B\wedge x<b)\\\\
+\end{align}</script><ul>
 <li>B的最大元、最小元<strong>若存在,则唯一</strong></li>
 <li>B的极大元、极小元若存在,不一定唯一</li>
 <li>若B是<strong>有穷集</strong>,则B的极大元、极小元必存在,但B的最大元、最小元不一定存在</li>
@@ -332,41 +335,53 @@ y遮盖x\Leftrightarrow x<y\wedge \neg\exist (z\in P\wedge x<z \wedge z<y)</scri
 <li><strong>但并非每个全序结构都是良序的</strong></li>
 </ul>
 <h2 id="良序的充要条件"><a href="#良序的充要条件" class="headerlink" title="良序的充要条件"></a>良序的充要条件</h2><h3 id="定理A"><a href="#定理A" class="headerlink" title="定理A"></a>定理A</h3><script type="math/tex; mode=display">
-若\leq为集合P上的偏序关系,则\leq为P上良序关系,当且仅当\\
-a.\leq 为P上的全序关系；\\
-b.P上的每个非空子集都有极小元。\\</script><h3 id="定理B"><a href="#定理B" class="headerlink" title="定理B"></a>定理B</h3><script type="math/tex; mode=display">
-设\lt A,\leq\gt为全序结构,则\lt A,\leq\gt是良序结构的充分必要条件是:\\
-不存在A中元素的无穷序列a_0,a_1,a_2,...,使得对每个i\in N,皆有a_{i+1}<a_i\\</script><h2 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h2><blockquote>
+\begin{align}
+&若\leq为集合P上的偏序关系,则\leq为P上良序关系,当且仅当\\\\
+&a.\leq 为P上的全序关系；\\\\
+&b.P上的每个非空子集都有极小元。\\\\
+\end{align}</script><h3 id="定理B"><a href="#定理B" class="headerlink" title="定理B"></a>定理B</h3><script type="math/tex; mode=display">
+\begin{align}
+&设\lt A,\leq\gt为全序结构,则\lt A,\leq\gt是良序结构的充分必要条件是:\\\\
+&不存在A中元素的无穷序列a_0,a_1,a_2,...,使得对每个i\in N,皆有a_{i+1}<a_i\\\\
+\end{align}</script><h2 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h2><blockquote>
 <p>如果集合A上的关系R是自反,对称,传递的,则R在A上是<strong>等价关系</strong></p>
 </blockquote>
 <h3 id="等价类"><a href="#等价类" class="headerlink" title="等价类"></a>等价类</h3><blockquote>
 <p>设R是集合A上的等价关系,对于每个x$\in$A,A中与x有关系R的元素的集合称为<strong>x关于R的等价类</strong>,简称为x的等价类,记作$[x]_R$</p>
 </blockquote>
 <script type="math/tex; mode=display">
-[x]_R=\{y|y\in A\wedge x R y\}\\
-[x]_R\subseteq A</script><h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3><script type="math/tex; mode=display">
 \begin{align}
-&R是非空集合A上的等价关系,则有:\\
-&(1)对于每个x\in A,x\in [x]_R,即[x]_R是A的非空子集\\
-&(2)[x]_R=[y]_R当且仅当xRy\\
-&(3)若x, y\in A且x \bar Ry,则[x]_R\cap [y]_R=\emptyset\\
+&[x]_R=\{y|y\in A\wedge x R y\}\\\\
+&[x]_R\subseteq A
+\end{align}</script><h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3><script type="math/tex; mode=display">
+\begin{align}
+&R是非空集合A上的等价关系,则有:\\\\
+&(1)对于每个x\in A,x\in [x]_R,即[x]_R是A的非空子集\\\\
+&(2)[x]_R=[y]_R当且仅当xRy\\\\
+&(3)若x, y\in A且x \bar Ry,则[x]_R\cap [y]_R=\emptyset\\\\
 &(4)\mathop{\bigcup}\limits_{x\in A}[x]_R=A
 \end{align}</script><script type="math/tex; mode=display">
-(4)证明:\forall x\in A,x\in [x]_R,则x\in\mathop{\bigcup}\limits_{x\in A}[x]_R\\
-\forall x\in A,则[x]_R\subseteq A,所以\mathop{\bigcup}\limits_{x\in A}[x]_R\subseteq A\\
-故\mathop{\bigcup}\limits_{x\in A}[x]_R=A\\</script><h3 id="商集"><a href="#商集" class="headerlink" title="商集"></a>商集</h3><blockquote>
+\begin{align}
+&(4)证明:\forall x\in A,x\in [x]_R,则x\in\mathop{\bigcup}\limits_{x\in A}[x]_R\\\\
+&\forall x\in A,则[x]_R\subseteq A,所以\mathop{\bigcup}\limits_{x\in A}[x]_R\subseteq A\\\\
+&故\mathop{\bigcup}\limits_{x\in A}[x]_R=A\\\\
+\end{align}</script><h3 id="商集"><a href="#商集" class="headerlink" title="商集"></a>商集</h3><blockquote>
 <p>R是A上的等价关系,所有等价类组成的集合称为A关于R的商集,记作A/R</p>
 <p>例如A={1,2,3,4,5,6,7},A/R={ {1,4,7}, {2,5}, {3,6} }</p>
 <p><img src="image-20241025082644058.png" srcset="/img/loading.gif" lazyload alt="模3同余关系图"></p>
 </blockquote>
 <script type="math/tex; mode=display">
-A/R=\{[x]_R|x\in A\}</script><h2 id="划分"><a href="#划分" class="headerlink" title="划分"></a>划分</h2><script type="math/tex; mode=display">
-设A是非空集合,\pi\subseteq \rho(A),若\pi满足以下三个条件,则称\pi为A上的一个划分:\\
-(1)对于每个S\in \pi,S=\emptyset\\
-(2)对于任意B,C\in \pi,若B\neq C,B\cap C=\emptyset\\
-(3)\cup \pi =A\\
-\pi中的元素称为划分块,\pi中划分块的个数称为秩\\
-有穷个划分快的划分称为有穷划分,否则称为无穷划分</script><h3 id="定理-1"><a href="#定理-1" class="headerlink" title="定理"></a>定理</h3><blockquote>
+\begin{align}
+&A/R=\{[x]_R|x\in A\}
+\end{align}</script><h2 id="划分"><a href="#划分" class="headerlink" title="划分"></a>划分</h2><script type="math/tex; mode=display">
+\begin{align}
+&设A是非空集合,\pi\subseteq \rho(A),若\pi满足以下三个条件,则称\pi为A上的一个划分:\\\\
+&(1)对于每个S\in \pi,S=\emptyset\\\\
+&(2)对于任意B,C\in \pi,若B\neq C,B\cap C=\emptyset\\\\
+&(3)\cup \pi =A\\\\
+&\pi中的元素称为划分块,\pi中划分块的个数称为秩\\\\
+&有穷个划分快的划分称为有穷划分,否则称为无穷划分
+\end{align}</script><h3 id="定理-1"><a href="#定理-1" class="headerlink" title="定理"></a>定理</h3><blockquote>
 <p>非空集合A上的等价关系R,决定了A上的一个划分,即商集A/R</p>
 </blockquote>
 <h3 id="定理-2"><a href="#定理-2" class="headerlink" title="定理"></a>定理</h3><blockquote>
@@ -375,8 +390,10 @@ A/R=\{[x]_R|x\in A\}</script><h2 id="划分"><a href="#划分" class="headerlink
 <p>则$R_\pi$必是A上的等价关系且$A/R_\pi=\pi$</p>
 </blockquote>
 <script type="math/tex; mode=display">
-\pi=\{C_1,C_2,...,C_n\}\\
-R_\pi=(C_1\times C_1)\cup (C_2\times C_2)\cup...\cup(C_n\times C_n)\\</script>
+\begin{align}
+&\pi=\{C_1,C_2,...,C_n\}\\\\
+&R_\pi=(C_1\times C_1)\cup (C_2\times C_2)\cup...\cup(C_n\times C_n)\\\\
+\end{align}</script>
                 
               </div>
             
