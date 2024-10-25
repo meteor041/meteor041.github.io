@@ -27,7 +27,7 @@
 <meta property="og:description" content="Introductionconventional deep learning-based methods LSTM, GCN explore group activity representations under supervised or weakly supervised modes require manually annotated personal action, labels(数据标">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-20T11:54:59.000Z">
-<meta property="article:modified_time" content="2024-10-21T08:24:58.004Z">
+<meta property="article:modified_time" content="2024-10-25T01:19:06.876Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="CV">
 <meta name="twitter:card" content="summary_large_image">
@@ -287,7 +287,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年10月21日 下午
+                    本文最后更新于 2024年10月25日 上午
                   
                 
               </p>
@@ -344,9 +344,9 @@
 </ul>
 </li>
 </ul>
-<h2 id="Long-Short-State-Encoder"><a href="#Long-Short-State-Encoder" class="headerlink" title="Long-Short State Encoder"></a>Long-Short State Encoder</h2><h3 id="sparse-graph-transformer"><a href="#sparse-graph-transformer" class="headerlink" title="sparse graph transformer"></a>sparse graph transformer</h3><h4 id="building"><a href="#building" class="headerlink" title="building"></a>building</h4><p>${p{}^t<em>i}{}^N</em>{i=1}$,$p_i\in \mathit R^d$表示第i个人的特征</p>
-<p>$稀疏矩阵G^t={V^t,E^t}$,$V<em>t={p{}^t_i}{}^N</em>{i=1}$表示节点,$E_t={(i,j)|p_i,p_j 在n时刻连结}$</p>
-<p>$节点的邻居Nei(i,t)={p^t<em>j}{}^M</em>{i=1},其中p^t_j满足(i,j)\in E^t$</p>
+<h2 id="Long-Short-State-Encoder"><a href="#Long-Short-State-Encoder" class="headerlink" title="Long-Short State Encoder"></a>Long-Short State Encoder</h2><h3 id="sparse-graph-transformer"><a href="#sparse-graph-transformer" class="headerlink" title="sparse graph transformer"></a>sparse graph transformer</h3><h4 id="building"><a href="#building" class="headerlink" title="building"></a>building</h4><p>$\{p{}^t_i\}{}^N_{i=1}$,$p_i\in \mathit R^d$表示第i个人的特征</p>
+<p>$稀疏矩阵G^t=\{V^t,E^t\}$,$V_t=\{p{}^t_i\}{}^N_{i=1}$表示节点,$E_t=\{(i,j)|p_i,p_j 在n时刻连结\}$</p>
+<p>$节点的邻居Nei(i,t)=\{p^t_j\}{}^M_{i=1},其中p^t_j满足(i,j)\in E^t$</p>
 <h4 id="update"><a href="#update" class="headerlink" title="update"></a>update</h4><p>通过邻居节点传递的key,自身节点的equry更新节点信息,由原先的$h_i$变为$\hat{h_i}$</p>
 <script type="math/tex; mode=display">
 \begin{split}
