@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="\(X\sim U(-\frac{1}{2},\frac{1}{2}),Y&#x3D;g(X)&#x3D;\begin{cases}lnX,X&gt;0,\\0,X\leq 0\end{cases}\)  \(\begin{align} E(Y)&#x3D;&amp;\int^{+\infty}_{\infty}g(x)f_X(x)dx\\ &#x3D;&amp;\int^{\frac{1}{2}}_{-\frac{1}">
+    <meta name="description" content="$X\sim U(-\frac{1}{2},\frac{1}{2}),Y&#x3D;g(X)&#x3D;\begin{cases}lnX,X&gt;0,\0,X\leq 0\end{cases}$  $\begin{align}E(Y)&#x3D;&amp;\int^{+\infty}_{\infty}g(x)f_X(x)dx\&#x3D;&amp;\int^{\frac{1}{2}}_{-\frac{1}{2}}g(x)\cdot1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="随机变量的数字特征">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/01/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="\(X\sim U(-\frac{1}{2},\frac{1}{2}),Y&#x3D;g(X)&#x3D;\begin{cases}lnX,X&gt;0,\\0,X\leq 0\end{cases}\)  \(\begin{align} E(Y)&#x3D;&amp;\int^{+\infty}_{\infty}g(x)f_X(x)dx\\ &#x3D;&amp;\int^{\frac{1}{2}}_{-\frac{1}">
+<meta property="og:description" content="$X\sim U(-\frac{1}{2},\frac{1}{2}),Y&#x3D;g(X)&#x3D;\begin{cases}lnX,X&gt;0,\0,X\leq 0\end{cases}$  $\begin{align}E(Y)&#x3D;&amp;\int^{+\infty}_{\infty}g(x)f_X(x)dx\&#x3D;&amp;\int^{\frac{1}{2}}_{-\frac{1}{2}}g(x)\cdot1">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/01/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/image-20241101101003214.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/01/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/image-20241101102752881.png">
@@ -230,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          920 字
+          923 字
         
       </span>
     
@@ -301,147 +301,91 @@
               <div class="markdown-body">
                 
                 <blockquote>
-<p><span class="math inline">\(X\sim
-U(-\frac{1}{2},\frac{1}{2}),Y=g(X)=\begin{cases}lnX,X&gt;0,\\0,X\leq
-0\end{cases}\)</span></p>
+<p>$X\sim U(-\frac{1}{2},\frac{1}{2}),Y=g(X)=\begin{cases}lnX,X&gt;0,\0,X\leq 0\end{cases}$</p>
 </blockquote>
-<p><span class="math inline">\(\begin{align}
-E(Y)=&amp;\int^{+\infty}_{\infty}g(x)f_X(x)dx\\
-=&amp;\int^{\frac{1}{2}}_{-\frac{1}{2}}g(x)\cdot1dx\\
-=&amp;\int^{\frac{1}{2}}_{0}\ln xdx\\
-=&amp;-\frac{1}{2}\ln 2-\frac{1}{2}\\
-\\
-E(Y^2)=&amp;\int^{+\infty}_{\infty}g^2(x)f_X(x)dx\\
-=&amp;\int^{\frac{1}{2}}_{0}\ln xdx\\
-=&amp;\frac{1}{2}\ln^2 2+1+\ln 2\\
-D(Y)=&amp;E(Y^2)-(E(Y))^2
-\end{align}\)</span></p>
-<figure>
-<img src="image-20241101101003214.png" srcset="/img/loading.gif" lazyload alt="image-20241101101003214">
-<figcaption aria-hidden="true">image-20241101101003214</figcaption>
-</figure>
+<p>$\begin{align}<br>E(Y)=&amp;\int^{+\infty}_{\infty}g(x)f_X(x)dx\<br>=&amp;\int^{\frac{1}{2}}_{-\frac{1}{2}}g(x)\cdot1dx\<br>=&amp;\int^{\frac{1}{2}}_{0}\ln xdx\<br>=&amp;-\frac{1}{2}\ln 2-\frac{1}{2}\<br>\<br>E(Y^2)=&amp;\int^{+\infty}_{\infty}g^2(x)f_X(x)dx\<br>=&amp;\int^{\frac{1}{2}}_{0}\ln xdx\<br>=&amp;\frac{1}{2}\ln^2 2+1+\ln 2\<br>D(Y)=&amp;E(Y^2)-(E(Y))^2<br>\end{align}$</p>
+<p><img src="image-20241101101003214.png" srcset="/img/loading.gif" lazyload alt="image-20241101101003214"></p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th><span class="math inline">\(X_i\)</span></th>
+<tr>
+<th>$X_i$</th>
 <th>1</th>
 <th>0</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>P</td>
-<td><span class="math inline">\(\frac{1}{n}\)</span></td>
-<td><span class="math inline">\(1-\frac{1}{n}\)</span></td>
+<td>$\frac{1}{n}$</td>
+<td>$1-\frac{1}{n}$</td>
 </tr>
 </tbody>
 </table>
-<p><span class="math inline">\(E(X_i)=1\cdot \frac{1}{n}+0\cdot
-(1-\frac{1}{n})=\frac{1}{n}\)</span></p>
-<p><span class="math inline">\(E(X)=\mathop{\Sigma} _{
-i=1}^{n}E(X_i)=1\)</span></p>
-<p><span class="math inline">\(E(X^2)=E(\Sigma_{i=1}^{n}X_i)^2=\Sigma_{i=1}^n
-E(X_i^2)+2\Sigma_{1\leq i\leq j\leq n}^nE(X_iX_j)\)</span></p>
+</div>
+<p>$E(X_i)=1\cdot \frac{1}{n}+0\cdot (1-\frac{1}{n})=\frac{1}{n}$</p>
+<p>$E(X)=\mathop{\Sigma} _{ i=1}^{n}E(X_i)=1$</p>
+<p>$E(X^2)=E(\Sigma_{i=1}^{n}X_i)^2=\Sigma_{i=1}^n E(X_i^2)+2\Sigma_{1\leq i\leq j\leq n}^nE(X_iX_j)$</p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th><span class="math inline">\(X_iX_j\)</span></th>
+<tr>
+<th>$X_iX_j$</th>
 <th>1</th>
 <th>0</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>P</td>
-<td><span class="math inline">\(\frac{1}{n(n-1)}\)</span></td>
-<td><span class="math inline">\(1-\frac{1}{n(n-1)}\)</span></td>
+<td>$\frac{1}{n(n-1)}$</td>
+<td>$1-\frac{1}{n(n-1)}$</td>
 </tr>
 </tbody>
 </table>
-<p><span class="math inline">\(E(X_iX_j)=\frac{1}{n(n-1)},i,j=1,2,...,n\)</span></p>
-<p><span class="math inline">\(E(X_i^2)=\frac{1}{n},n=1,2,...,n\)</span></p>
-<p><span class="math inline">\(E(X^2)=n\cdot \frac{1}{n}+2\cdot
-C^2_n\cdot \frac{1}{n(n-1)}=2\)</span></p>
-<p><span class="math inline">\(D(x)=2-1=1\)</span></p>
-<h2 id="标准化随机变量">标准化随机变量</h2>
-<p>设随机变量X的期望E(X),方差D(X)都存在,且D(X)$<span class="math inline">\(0,称\)</span>X^=$为X的标准化随机变量</p>
-<p><span class="math inline">\(E(X^\star)=0,D(X^\star)=1\)</span></p>
+</div>
+<p>$E(X_iX_j)=\frac{1}{n(n-1)},i,j=1,2,…,n$</p>
+<p>$E(X_i^2)=\frac{1}{n},n=1,2,…,n$</p>
+<p>$E(X^2)=n\cdot \frac{1}{n}+2\cdot C^2_n\cdot \frac{1}{n(n-1)}=2$</p>
+<p>$D(x)=2-1=1$</p>
+<h2 id="标准化随机变量"><a href="#标准化随机变量" class="headerlink" title="标准化随机变量"></a>标准化随机变量</h2><p>设随机变量X的期望E(X),方差D(X)都存在,且D(X)$\neq$0,称$X^\star=\frac{X-E(X)}{\sqrt{D(X)}}$为X的标准化随机变量</p>
+<p>$E(X^\star)=0,D(X^\star)=1$</p>
 <blockquote>
 <p>若已知分布的类型,及期望和方差,常能确定分布</p>
 </blockquote>
-<figure>
-<img src="image-20241101102752881.png" srcset="/img/loading.gif" lazyload alt="image-20241101102752881">
-<figcaption aria-hidden="true">image-20241101102752881</figcaption>
-</figure>
-<p><span class="math inline">\(\begin{align}
-&amp;\int^1_0(Ax^2+Bx)dx=\frac{A}{3}+\frac{B}{2}=1\\
-&amp;E(X)=\int^1_0x(Ax^2+Bx)dx=\frac{A}{4}+\frac{B}{3}=0.5\\
-\end{align}\)</span></p>
-<p><span class="math inline">\(得到:A=-6,B=6\)</span></p>
-<h2 id="协方差">协方差</h2>
-<p><span class="math inline">\(E((X-E(X))(Y-E(Y))为随机变量X,Y的协方差\)</span></p>
-<p><span class="math inline">\(记作\text{cov}(X,Y)=E(XY)-E(X)E(Y)\)</span></p>
-<p>称<span class="math inline">\(\begin{bmatrix}D(X)&amp;\text{cov}(X,Y)\\\text{cov}(X,Y)&amp;D(Y)\end{bmatrix}\)</span></p>
+<p><img src="image-20241101102752881.png" srcset="/img/loading.gif" lazyload alt="image-20241101102752881"></p>
+<p>$\begin{align}<br>&amp;\int^1_0(Ax^2+Bx)dx=\frac{A}{3}+\frac{B}{2}=1\<br>&amp;E(X)=\int^1_0x(Ax^2+Bx)dx=\frac{A}{4}+\frac{B}{3}=0.5\<br>\end{align}$</p>
+<p>$得到:A=-6,B=6$</p>
+<h2 id="协方差"><a href="#协方差" class="headerlink" title="协方差"></a>协方差</h2><p>$E((X-E(X))(Y-E(Y))为随机变量X,Y的协方差$</p>
+<p>$记作\text{cov}(X,Y)=E(XY)-E(X)E(Y)$</p>
+<p>称$\begin{bmatrix}D(X)&amp;\text{cov}(X,Y)\\text{cov}(X,Y)&amp;D(Y)\end{bmatrix}$</p>
 <p>为(X,Y)的协方差矩阵</p>
-<p><span class="math inline">\(\rho_{XY}=\frac{\text{cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}\)</span></p>
-<p>事实上:<span class="math inline">\(\rho_{XY}=\text{cov}(X^\star,Y^\star)\)</span></p>
+<p>$\rho_{XY}=\frac{\text{cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}$</p>
+<p>事实上:$\rho_{XY}=\text{cov}(X^\star,Y^\star)$</p>
 <blockquote>
-<p>若<span class="math inline">\(\rho_{XY}=0\)</span>,则称X,Y不相关</p>
+<p>若$\rho_{XY}=0$,则称X,Y不相关</p>
 </blockquote>
-<p><span class="math inline">\(\text{cov}(X,Y)=E((X-E(X))(Y-E(Y)))\\=E(XY)-E(X)E(Y)\)</span></p>
-<p>X,Y相互独立$$X,Y不相关</p>
-<figure>
-<img src="image-20241101110908054.png" srcset="/img/loading.gif" lazyload alt="image-20241101110908054">
-<figcaption aria-hidden="true">image-20241101110908054</figcaption>
-</figure>
-<p><span class="math inline">\(\begin{align}
-cov(U,V)=&amp;E(UV)-E(U)E(V)\\
-=&amp;E(a^2X^2-b^2Y^2)-[E(aX+bY)][E(aX-bY)]\\
-=&amp;a^2E(X^2)-b^2E(Y^2)-[a^2E^2(X)-b^2E^2(Y)]\\
-=&amp;a^2[E(X^2)-E^2(X)]-b^2[E(Y^2)-E^2(Y)]\\
-=&amp;a^2D(X)-b^2D(Y)\\
-=&amp;(a^2-b^2)\sigma^2\\
-D(U)=&amp;D(aX+bY)\\
-=&amp;a^2D(X)+b^2D(Y)=(a^2+b^2)\sigma^2\\
-D(Y)=&amp;(a^2+b^2)\sigma\\
-\rho_{UV}=&amp;\frac{cov(U,V)}{\sqrt {D(U)}\sqrt{D(V)}}\\
-=&amp;\frac{a^2-b^2}{a^2+b^2}\\
-\end{align}\)</span></p>
-<h2 id="协方差的性质">协方差的性质</h2>
-<ol type="1">
-<li><span class="math inline">\(cov(X,Y)=cov(Y,X)=E(XY)-E(X)E(Y)\)</span></li>
-<li><span class="math inline">\(\text{cov}(aX,bY)=ab\text{cov}(X,Y)\)</span></li>
-<li><span class="math inline">\(\text{cov}(X,X)=D(X)\)</span></li>
-<li><span class="math inline">\(|\text{cov}(X,Y)|^2\leq
-D(X)D(Y)\)</span>当且仅当<span class="math inline">\(P(Y-E(Y)=t_0(X-E(X)))=1\)</span></li>
+<p>$\text{cov}(X,Y)=E((X-E(X))(Y-E(Y)))\=E(XY)-E(X)E(Y)$</p>
+<p>X,Y相互独立$\Leftrightarrow $X,Y不相关</p>
+<p><img src="image-20241101110908054.png" srcset="/img/loading.gif" lazyload alt="image-20241101110908054"></p>
+<p>$\begin{align}<br>cov(U,V)=&amp;E(UV)-E(U)E(V)\<br>=&amp;E(a^2X^2-b^2Y^2)-[E(aX+bY)][E(aX-bY)]\<br>=&amp;a^2E(X^2)-b^2E(Y^2)-[a^2E^2(X)-b^2E^2(Y)]\<br>=&amp;a^2[E(X^2)-E^2(X)]-b^2[E(Y^2)-E^2(Y)]\<br>=&amp;a^2D(X)-b^2D(Y)\<br>=&amp;(a^2-b^2)\sigma^2\<br>D(U)=&amp;D(aX+bY)\<br>=&amp;a^2D(X)+b^2D(Y)=(a^2+b^2)\sigma^2\<br>D(Y)=&amp;(a^2+b^2)\sigma\<br>\rho_{UV}=&amp;\frac{cov(U,V)}{\sqrt {D(U)}\sqrt{D(V)}}\<br>=&amp;\frac{a^2-b^2}{a^2+b^2}\<br>\end{align}$</p>
+<h2 id="协方差的性质"><a href="#协方差的性质" class="headerlink" title="协方差的性质"></a>协方差的性质</h2><ol>
+<li>$cov(X,Y)=cov(Y,X)=E(XY)-E(X)E(Y)$</li>
+<li>$\text{cov}(aX,bY)=ab\text{cov}(X,Y)$</li>
+<li>$\text{cov}(X,X)=D(X)$</li>
+<li>$|\text{cov}(X,Y)|^2\leq D(X)D(Y)$当且仅当$P(Y-E(Y)=t_0(X-E(X)))=1$</li>
 </ol>
-<h3 id="cauchy-schwarz不等式">Cauchy-Schwarz不等式</h3>
-<p><span class="math inline">\(|E(XY)|^2\leq E(X^2)E(Y^2)\)</span></p>
-<p><span class="math inline">\(\begin{align}
-g(t)=&amp;E[(X-E(X))\cdot t-(Y-E(Y))]^2\\
-=&amp;E[(X-E(X))^2t^2-2(X-E(X))t(Y-E(Y))+(Y-E(Y))^2]\\
-=&amp;D(X)t^2-2\text{cov}(X,Y)+D(Y)\\
-\end{align}\)</span></p>
-<p>对于任何实数<span class="math inline">\(t\)</span>,<span class="math inline">\(g(t)\geq 0\rightarrow
-4\text{cov}^2(X,Y)-4D(X)D(Y)\leq 0\)</span></p>
-<p>即<span class="math inline">\(|cov(X,Y)|^2\leq D(X)D(Y)\)</span></p>
-<p><span class="math inline">\(g(t_0)=0\)</span>时,有两个相等的实零点</p>
-<p>等号成立,<span class="math inline">\(|cov(x,Y)|^2=D(X)D(Y)\)</span></p>
-<p><span class="math inline">\(t_0=\pm\sqrt{\frac{D(Y)}{D(X)}}\)</span></p>
-<p><span class="math inline">\(\begin{cases}E[(Y-E(Y))-t_0(X-E(X))]^2=0\\E[(Y-E(Y))-t_0(X-E(X))]=0\end{cases}\leftrightarrow
-\begin{cases}D[(Y-E(Y))-t_0(X-E(X))]=0\\E[(Y-E(Y))-t_0(X-E(X))=0]=1\end{cases}\)</span></p>
-<p>若X,Y服从二维正态分布,<span class="math inline">\(X,Y相互独立\Leftrightarrow X,Y不相关\)</span></p>
-<figure>
-<img src="image-20241101115529133.png" srcset="/img/loading.gif" lazyload alt="image-20241101115529133">
-<figcaption aria-hidden="true">image-20241101115529133</figcaption>
-</figure>
-<p><span class="math inline">\(\begin{align}
-&amp;E(X)=E(Y)=1,D(X)=D(Y)=4,\rho_{XY}=\frac{1}{2}\\
-&amp;cov(X,Y)=\rho_{XY}\sqrt{D(X)}\sqrt{D(Y)}=2\\
-&amp;cov(X,Z)=cov(X,X)+cov(X,Y)=D(X)+\rho_{XY}\sqrt{D(X)}\sqrt{D(Y)}\\
-&amp;=4+\frac{1}{2}\cdot\sqrt{4}\cdot \sqrt{4}=6\\
-&amp;D(Z)=D(X)+D(Y)+2cov(X,Y)=12\\
-&amp;\rho_{XZ}=\frac{\sqrt {3}}{2}\end{align}\)</span></p>
+<h3 id="Cauchy-Schwarz不等式"><a href="#Cauchy-Schwarz不等式" class="headerlink" title="Cauchy-Schwarz不等式"></a>Cauchy-Schwarz不等式</h3><p>$|E(XY)|^2\leq E(X^2)E(Y^2)$</p>
+<p>$\begin{align}<br>g(t)=&amp;E[(X-E(X))\cdot t-(Y-E(Y))]^2\<br>=&amp;E[(X-E(X))^2t^2-2(X-E(X))t(Y-E(Y))+(Y-E(Y))^2]\<br>=&amp;D(X)t^2-2\text{cov}(X,Y)+D(Y)\<br>\end{align}$</p>
+<p>对于任何实数$t$,$g(t)\geq 0\rightarrow 4\text{cov}^2(X,Y)-4D(X)D(Y)\leq 0$</p>
+<p>即$|cov(X,Y)|^2\leq D(X)D(Y)$</p>
+<p>$g(t_0)=0$时,有两个相等的实零点</p>
+<p>等号成立,$|cov(x,Y)|^2=D(X)D(Y)$</p>
+<p>$t_0=\pm\sqrt{\frac{D(Y)}{D(X)}}$</p>
+<p>$\begin{cases}E[(Y-E(Y))-t_0(X-E(X))]^2=0\E[(Y-E(Y))-t_0(X-E(X))]=0\end{cases}\leftrightarrow \begin{cases}D[(Y-E(Y))-t_0(X-E(X))]=0\E[(Y-E(Y))-t_0(X-E(X))=0]=1\end{cases}$</p>
+<p>若X,Y服从二维正态分布,$X,Y相互独立\Leftrightarrow X,Y不相关$</p>
+<p><img src="image-20241101115529133.png" srcset="/img/loading.gif" lazyload alt="image-20241101115529133"></p>
+<p>$\begin{align}<br>&amp;E(X)=E(Y)=1,D(X)=D(Y)=4,\rho_{XY}=\frac{1}{2}\<br>&amp;cov(X,Y)=\rho_{XY}\sqrt{D(X)}\sqrt{D(Y)}=2\<br>&amp;cov(X,Z)=cov(X,X)+cov(X,Y)=D(X)+\rho_{XY}\sqrt{D(X)}\sqrt{D(Y)}\<br>&amp;=4+\frac{1}{2}\cdot\sqrt{4}\cdot \sqrt{4}=6\<br>&amp;D(Z)=D(X)+D(Y)+2cov(X,Y)=12\<br>&amp;\rho_{XZ}=\frac{\sqrt {3}}{2}\end{align}$</p>
 
                 
               </div>
@@ -521,8 +465,8 @@ g(t)=&amp;E[(X-E(X))\cdot t-(Y-E(Y))]^2\\
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/30/%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/10/30/%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4/" title="指令流水线">
+                        <span class="hidden-mobile">指令流水线</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
