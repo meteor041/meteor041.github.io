@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="Two-Stream Inflated 3D ConvNets 视频分类方向 采用先进的二维图像识别架构,拓展过滤器和池化内核到3维 基于双流神经网络:局部运动效果较好  论文发表时基于Inception,后改为基于ResNet  Related Work 视频领域对于使用2D还是3D暂无定论,一种基本方法是2D网络配上LSTM,LSTM作为时空建模;或者配备光流;或者直接建立3D网络  Conv">
+    <meta name="description" content="Two-Stream Inflated 3D ConvNets  视频分类方向 采用先进的二维图像识别架构,拓展过滤器和池化内核到3维 基于双流神经网络:局部运动效果较好 论文发表时基于Inception,后改为基于ResNet  Related Work  视频领域对于使用2D还是3D暂无定论,一种基本方法是2D网络配上LSTM,LSTM作为时空建模;或者配备光流;或者直接建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Two-Stream Inflated 3D ConvNets">
 <meta property="og:url" content="https://meteor041.git.io/2024/10/20/Two-Stream-Inflated-3D-ConvNets/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="Two-Stream Inflated 3D ConvNets 视频分类方向 采用先进的二维图像识别架构,拓展过滤器和池化内核到3维 基于双流神经网络:局部运动效果较好  论文发表时基于Inception,后改为基于ResNet  Related Work 视频领域对于使用2D还是3D暂无定论,一种基本方法是2D网络配上LSTM,LSTM作为时空建模;或者配备光流;或者直接建立3D网络  Conv">
+<meta property="og:description" content="Two-Stream Inflated 3D ConvNets  视频分类方向 采用先进的二维图像识别架构,拓展过滤器和池化内核到3维 基于双流神经网络:局部运动效果较好 论文发表时基于Inception,后改为基于ResNet  Related Work  视频领域对于使用2D还是3D暂无定论,一种基本方法是2D网络配上LSTM,LSTM作为时空建模;或者配备光流;或者直接建">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/10/20/Two-Stream-Inflated-3D-ConvNets/image-20241021165310989.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/10/20/Two-Stream-Inflated-3D-ConvNets/image-20241021164927825.png">
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          341 字
+          344 字
         
       </span>
     
@@ -299,39 +299,59 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Two-Stream-Inflated-3D-ConvNets"><a href="#Two-Stream-Inflated-3D-ConvNets" class="headerlink" title="Two-Stream Inflated 3D ConvNets"></a>Two-Stream Inflated 3D ConvNets</h1><blockquote>
+                <h1 id="two-stream-inflated-3d-convnets">Two-Stream Inflated 3D
+ConvNets</h1>
+<blockquote>
 <p>视频分类方向</p>
 <p>采用先进的二维图像识别架构,拓展过滤器和池化内核到3维</p>
-<p>基于双流神经网络:局部运动效果较好 </p>
+<p>基于双流神经网络:局部运动效果较好</p>
 <p>论文发表时基于Inception,后改为基于ResNet</p>
 </blockquote>
-<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><blockquote>
+<h2 id="related-work">Related Work</h2>
+<blockquote>
 <p>视频领域对于使用2D还是3D暂无定论,一种基本方法是2D网络配上LSTM,LSTM作为时空建模;或者配备光流;或者直接建立3D网络</p>
 </blockquote>
-<h3 id="ConvNet-LSTM"><a href="#ConvNet-LSTM" class="headerlink" title="ConvNet+LSTM"></a>ConvNet+LSTM</h3><p><img src="image-20241021165310989.png" srcset="/img/loading.gif" lazyload alt="image-20241021165310989"></p>
+<h3 id="convnetlstm">ConvNet+LSTM</h3>
+<figure>
+<img src="image-20241021165310989.png" srcset="/img/loading.gif" lazyload alt="image-20241021165310989">
+<figcaption aria-hidden="true">image-20241021165310989</figcaption>
+</figure>
 <ul>
 <li>从每一帧中独立提取特征,在整个视频中整合预测</li>
 <li>ConvNet忽略时间结构,因此加入LSTM</li>
 </ul>
-<h3 id="3D-ConvNets"><a href="#3D-ConvNets" class="headerlink" title="3D ConvNets"></a>3D ConvNets</h3><ul>
+<h3 id="d-convnets">3D ConvNets</h3>
+<ul>
 <li>直接创建时空数据的分层展示</li>
 <li>因为多了一层内核的维度,其参数比2D卷积网络更为复杂,难以训练</li>
 </ul>
-<h3 id="Two-Stream-Network-双流神经网络"><a href="#Two-Stream-Network-双流神经网络" class="headerlink" title="Two-Stream Network 双流神经网络"></a>Two-Stream Network 双流神经网络</h3><p><img src="image-20241021164927825.png" srcset="/img/loading.gif" lazyload alt="two-stream"></p>
+<h3 id="two-stream-network-双流神经网络">Two-Stream Network
+双流神经网络</h3>
+<figure>
+<img src="image-20241021164927825.png" srcset="/img/loading.gif" lazyload alt="two-stream">
+<figcaption aria-hidden="true">two-stream</figcaption>
+</figure>
 <blockquote>
 <p>由两个2D神经网络构成:</p>
 <p>空间流:学习场景信息</p>
 <p>时间流:分析光流图像,学习时间信息</p>
 <p>最后加权平均</p>
 </blockquote>
-<h3 id="3D-Fused-Two-Stream"><a href="#3D-Fused-Two-Stream" class="headerlink" title="3D-Fused Two-Stream"></a>3D-Fused Two-Stream</h3><p><img src="image-20241021165442590.png" srcset="/img/loading.gif" lazyload alt="image-20241021165442590"></p>
+<h3 id="d-fused-two-stream">3D-Fused Two-Stream</h3>
+<figure>
+<img src="image-20241021165442590.png" srcset="/img/loading.gif" lazyload alt="image-20241021165442590">
+<figcaption aria-hidden="true">image-20241021165442590</figcaption>
+</figure>
 <blockquote>
 <p>提前融合(fuse),用一个3D卷积神经网络输出结果</p>
 </blockquote>
-<h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><h3 id="inflate"><a href="#inflate" class="headerlink" title="inflate"></a>inflate</h3><blockquote>
+<h2 id="approach">Approach</h2>
+<h3 id="inflate">inflate</h3>
+<blockquote>
 <p>将2D的Kernel,pooling layer直接转换为3D</p>
 </blockquote>
-<h3 id="bootstrapping"><a href="#bootstrapping" class="headerlink" title="bootstrapping"></a>bootstrapping</h3><blockquote>
+<h3 id="bootstrapping">bootstrapping</h3>
+<blockquote>
 <p>将图像复制N次形成一个无聊视频,将3D模型在ImageNet上预训练,以满足无聊视频的不动点.</p>
 <p>途径:将图片的参数复制N次(N是时间维度),再除以N实现缩放</p>
 <p>确保卷积filter对图像和视频输入的处理一致</p>
