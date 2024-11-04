@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="指令流水线 指令流水  取值 分析 执行 顺序执行方式,传统的冯诺依曼机采用顺序执行方式,又称为串行执行方式 一次重叠执行方式    一次重叠  优点:执行时间缩短1&#x2F;3,部件利用率提高 缺点:硬件上开销代价大,控制过程更为复杂  二次重叠执行方式    image-20241030162048191  缩短近2&#x2F;3(理想情况)  我们可以将指令执行">
+    <meta name="description" content="指令流水线指令流水 取值 分析 执行  顺序执行方式,传统的冯诺依曼机采用顺序执行方式,又称为串行执行方式  一次重叠执行方式   优点:执行时间缩短1&#x2F;3,部件利用率提高 缺点:硬件上开销代价大,控制过程更为复杂  二次重叠执行方式   缩短近2&#x2F;3(理想情况)  我们可以将指令执行分为四或五个阶段,并且每个阶段利用的部件相互独立,则可以让CPU实现同时运行四&#x2F;五条指令  流水线的表示方法  指">
 <meta property="og:type" content="article">
 <meta property="og:title" content="指令流水线">
 <meta property="og:url" content="https://meteor041.git.io/2024/10/30/%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="指令流水线 指令流水  取值 分析 执行 顺序执行方式,传统的冯诺依曼机采用顺序执行方式,又称为串行执行方式 一次重叠执行方式    一次重叠  优点:执行时间缩短1&#x2F;3,部件利用率提高 缺点:硬件上开销代价大,控制过程更为复杂  二次重叠执行方式    image-20241030162048191  缩短近2&#x2F;3(理想情况)  我们可以将指令执行">
+<meta property="og:description" content="指令流水线指令流水 取值 分析 执行  顺序执行方式,传统的冯诺依曼机采用顺序执行方式,又称为串行执行方式  一次重叠执行方式   优点:执行时间缩短1&#x2F;3,部件利用率提高 缺点:硬件上开销代价大,控制过程更为复杂  二次重叠执行方式   缩短近2&#x2F;3(理想情况)  我们可以将指令执行分为四或五个阶段,并且每个阶段利用的部件相互独立,则可以让CPU实现同时运行四&#x2F;五条指令  流水线的表示方法  指">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/10/30/%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4/image-20241030161836112.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/10/30/%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4/image-20241030162048191.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://meteor041.git.io/2024/10/30/%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4/image-20241030163719987.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/10/30/%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4/image-20241030190211089.png">
 <meta property="article:published_time" content="2024-10-30T01:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-01T04:07:28.396Z">
+<meta property="article:modified_time" content="2024-11-01T10:47:58.694Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          967 字
+          945 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          9 分钟
+          8 分钟
         
       </span>
     
@@ -296,7 +296,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月1日 中午
+                    本文最后更新于 2024年11月1日 晚上
                   
                 
               </p>
@@ -304,71 +304,50 @@
             
               <div class="markdown-body">
                 
-                <h1 id="指令流水线">指令流水线</h1>
-<h2 id="指令流水">指令流水</h2>
-<ol type="1">
-<li><p>取值</p></li>
-<li><p>分析</p></li>
-<li><p>执行</p></li>
-<li><p>顺序执行方式,传统的冯诺依曼机采用顺序执行方式,又称为串行执行方式</p></li>
-<li><p>一次重叠执行方式</p></li>
+                <h1 id="指令流水线"><a href="#指令流水线" class="headerlink" title="指令流水线"></a>指令流水线</h1><h2 id="指令流水"><a href="#指令流水" class="headerlink" title="指令流水"></a>指令流水</h2><ol>
+<li>取值</li>
+<li>分析</li>
+<li><p>执行</p>
+</li>
+<li><p>顺序执行方式,传统的冯诺依曼机采用顺序执行方式,又称为串行执行方式</p>
+</li>
+<li>一次重叠执行方式</li>
 </ol>
-<figure>
-<img src="image-20241030161836112.png" srcset="/img/loading.gif" lazyload alt="一次重叠">
-<figcaption aria-hidden="true">一次重叠</figcaption>
-</figure>
+<p><img src="image-20241030161836112.png" srcset="/img/loading.gif" lazyload alt="一次重叠"></p>
 <p>优点:执行时间缩短1/3,部件利用率提高</p>
 <p>缺点:硬件上开销代价大,控制过程更为复杂</p>
-<ol start="3" type="1">
+<ol>
 <li>二次重叠执行方式</li>
 </ol>
-<figure>
-<img src="image-20241030162048191.png" srcset="/img/loading.gif" lazyload alt="image-20241030162048191">
-<figcaption aria-hidden="true">image-20241030162048191</figcaption>
-</figure>
+<p><img src="image-20241030162048191.png" srcset="/img/loading.gif" lazyload alt="image-20241030162048191"></p>
 <p>缩短近2/3(理想情况)</p>
 <blockquote>
 <p>我们可以将指令执行分为四或五个阶段,并且每个阶段利用的部件相互独立,则可以让CPU实现同时运行四/五条指令</p>
 </blockquote>
 <p>流水线的表示方法</p>
-<ol type="1">
+<ol>
 <li>指令执行过程图</li>
 </ol>
-<p>​ <img src="image-20241030162415476.png" srcset="/img/loading.gif" lazyload alt="image-20241030162415476"></p>
-<ol start="2" type="1">
+<p>​    <img src="image-20241030162415476.png" srcset="/img/loading.gif" lazyload alt="image-20241030162415476"></p>
+<ol>
 <li>时空图</li>
 </ol>
-<figure>
-<img src="image-20241030162435291.png" srcset="/img/loading.gif" lazyload alt="image-20241030162435291">
-<figcaption aria-hidden="true">image-20241030162435291</figcaption>
-</figure>
-<h2 id="性能标准">性能标准</h2>
-<p><strong>吞吐率</strong>:处理完成n个任务所用的时间为<span class="math inline">\(T_k\)</span>,<span class="math inline">\(TP=\frac{n}{T_K}\)</span></p>
-<p><span class="math inline">\(TP_{max}=\frac{1}{\Delta t}\)</span></p>
-<figure>
-<img src="image-20241030162818987.png" srcset="/img/loading.gif" lazyload alt="image-20241030162818987">
-<figcaption aria-hidden="true">image-20241030162818987</figcaption>
-</figure>
-<p><span class="math inline">\(0-k\Delta t\)</span>:装入时间</p>
-<p><span class="math inline">\(k\Delta t-(k+n-1)\Delta t\)</span></p>
+<p><img src="image-20241030162435291.png" srcset="/img/loading.gif" lazyload alt="image-20241030162435291"></p>
+<h2 id="性能标准"><a href="#性能标准" class="headerlink" title="性能标准"></a>性能标准</h2><p><strong>吞吐率</strong>:处理完成n个任务所用的时间为$T_k$,$TP=\frac{n}{T_K}$</p>
+<p> $TP_{max}=\frac{1}{\Delta t}$</p>
+<p><img src="image-20241030162818987.png" srcset="/img/loading.gif" lazyload alt="image-20241030162818987"></p>
+<p>$0-k\Delta t$:装入时间</p>
+<p>$k\Delta t-(k+n-1)\Delta t$</p>
 <p><strong>加速比</strong>:完成同样一批任务,不使用流水线所用的时间与所用流水线的时间之比</p>
 <p><strong>效率</strong>:流水线的设备利用率</p>
-<figure>
-<img src="image-20241030163430255.png" srcset="/img/loading.gif" lazyload alt="image-20241030163430255">
-<figcaption aria-hidden="true">image-20241030163430255</figcaption>
-</figure>
-<p><span class="math inline">\(n\rightarrow
-\infty时,E_{max}=1\)</span></p>
-<h2 id="影响因素">影响因素</h2>
-<figure>
-<img src="image-20241030163719987.png" srcset="/img/loading.gif" lazyload alt="机器周期的设置">
-<figcaption aria-hidden="true">机器周期的设置</figcaption>
-</figure>
+<p><img src="image-20241030163430255.png" srcset="/img/loading.gif" lazyload alt="image-20241030163430255"></p>
+<p>$n\rightarrow \infty时,E_{max}=1$</p>
+<h2 id="影响因素"><a href="#影响因素" class="headerlink" title="影响因素"></a>影响因素</h2><p><img src="image-20241030163719987.png" srcset="/img/loading.gif" lazyload alt="机器周期的设置"></p>
 <blockquote>
 <p>由经典MIPS架构提出的五阶段执行理念</p>
 </blockquote>
 <p>五阶段:</p>
-<ol type="1">
+<ol>
 <li><strong>Instruction Fetch</strong>:取指令</li>
 <li><strong>Instruction Decode</strong>:解码指令</li>
 <li><strong>EXecute</strong>:执行指令</li>
@@ -380,48 +359,42 @@
 <p>为了保证各阶段之间数据的传递,我们在每个阶段之间需要增加一个缓冲寄存器(或称为锁存器),作用是保存本流水段的执行结果,提供给下一流水段使用</p>
 </blockquote>
 <p>影响因素</p>
-<ol type="1">
+<ol>
 <li>结构相关(资源冲突)</li>
 <li>数据相关(数据冲突)</li>
 <li>控制相关(控制冲突)</li>
 </ol>
-<h3 id="结构相关">结构相关</h3>
-<p>多条指令在同一时刻争用同一资源而形成的冲突称为结构相关</p>
+<h3 id="结构相关"><a href="#结构相关" class="headerlink" title="结构相关"></a>结构相关</h3><p>多条指令在同一时刻争用同一资源而形成的冲突称为结构相关</p>
 <p>解决办法:</p>
-<ol type="1">
+<ol>
 <li>后一指令暂停一周期</li>
 <li>资源重复配置:数据存储器+指令存储器</li>
 </ol>
-<h3 id="数据相关">数据相关</h3>
-<p>在一个程序中,存在必须等前一条指令执行完才能执行后一条指令的情况</p>
-<p>解决办法:</p>
-<ol type="1">
-<li>把遇到数据相关的指令及其后续指令都暂停一至几个时钟周期,直到数据相关问题消失后再继续执行,分为:
-<ol type="1">
+<h3 id="数据相关"><a href="#数据相关" class="headerlink" title="数据相关"></a>数据相关</h3><p>在一个程序中,存在必须等前一条指令执行完才能执行后一条指令的情况</p>
+<p> 解决办法:</p>
+<ol>
+<li>把遇到数据相关的指令及其后续指令都暂停一至几个时钟周期,直到数据相关问题消失后再继续执行,分为:<ol>
 <li>硬件阻塞</li>
 <li>软件插入<code>NOP</code></li>
-</ol></li>
+</ol>
+</li>
 <li>数据旁路技术</li>
 <li>编译优化:通过编译器调整指令顺序来解决数据相关</li>
 </ol>
-<h3 id="控制相关">控制相关</h3>
-<p>当流水线遇到转移指令和其他改变PC值的指令而造成断流时,会引起控制相关</p>
+<h3 id="控制相关"><a href="#控制相关" class="headerlink" title="控制相关"></a>控制相关</h3><p>当流水线遇到转移指令和其他改变PC值的指令而造成断流时,会引起控制相关</p>
 <p>解决办法:</p>
-<ol type="1">
+<ol>
 <li>转移指令分支预测</li>
 <li>预取转移成功和不成功两个控制流方向上的目标指令</li>
 <li>加快和提前形成条件码</li>
 </ol>
 <p>流水线的分类</p>
-<ol type="1">
+<ol>
 <li>部件功能级,处理机级,处理机间级流水线</li>
 <li>单功能流水线和多功能流水线</li>
 <li>静态流水线和动态流水线</li>
 </ol>
-<figure>
-<img src="image-20241030190211089.png" srcset="/img/loading.gif" lazyload alt="数据通路">
-<figcaption aria-hidden="true">数据通路</figcaption>
-</figure>
+<p><img src="image-20241030190211089.png" srcset="/img/loading.gif" lazyload alt="数据通路"></p>
 <p>集中式控制器</p>
 <ul>
 <li>控制器只集中实现在ID阶段</li>
@@ -434,8 +407,7 @@
 <li>每级控制器只产生该级功能部件相关的译码信号</li>
 <li>流水指令,作为各级控制器的输入</li>
 </ul>
-<h2 id="多发技术">多发技术</h2>
-<ol type="1">
+<h2 id="多发技术"><a href="#多发技术" class="headerlink" title="多发技术"></a>多发技术</h2><ol>
 <li>超标量技术</li>
 </ol>
 <ul>
@@ -443,7 +415,7 @@
 <li>要配置多个功能部件</li>
 <li>不能调整指令的顺序</li>
 </ul>
-<ol start="2" type="1">
+<ol>
 <li>超流水技术</li>
 </ol>
 <ul>
@@ -452,7 +424,7 @@
 <li>不能调整指令的执行顺序</li>
 <li>靠编译器解决优化问题</li>
 </ul>
-<ol start="3" type="1">
+<ol>
 <li>超长指令字</li>
 </ol>
 

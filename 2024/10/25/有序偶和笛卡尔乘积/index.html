@@ -19,17 +19,17 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="有序偶和笛卡尔乘积 有序偶 定义  任给两个对象 x 和 y,将它们按规定的顺序构成的序列,称之为有序偶，记为&lt;x,y &gt; 其中,x 称为有序偶的第一元,y 称为第二元  表示方法 Kuratovski提出了一种有序偶的集合表示:\(\lt a,b\gt&#x3D; \{ \{a\}, \{a,b\} \}\) 定理 \[ \begin{align} &amp;唯一性">
+    <meta name="description" content="有序偶和笛卡尔乘积有序偶定义 任给两个对象 x 和 y,将它们按规定的顺序构成的序列,称之为有序偶，记为 其中,x 称为有序偶的第一元,y 称为第二元  表示方法Kuratovski提出了一种有序偶的集合表示:$\lt a,b\gt&#x3D; \{ \{a\}, \{a,b\} \}$ 定理 \begin{align} &amp;唯一性定理:&#x3D;\ \ iff\ \ u&#x3D;x\wedge v &#x3D; y\\\\ &amp;证明:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="有序偶和笛卡尔乘积">
 <meta property="og:url" content="https://meteor041.git.io/2024/10/25/%E6%9C%89%E5%BA%8F%E5%81%B6%E5%92%8C%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%98%E7%A7%AF/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="有序偶和笛卡尔乘积 有序偶 定义  任给两个对象 x 和 y,将它们按规定的顺序构成的序列,称之为有序偶，记为&lt;x,y &gt; 其中,x 称为有序偶的第一元,y 称为第二元  表示方法 Kuratovski提出了一种有序偶的集合表示:\(\lt a,b\gt&#x3D; \{ \{a\}, \{a,b\} \}\) 定理 \[ \begin{align} &amp;唯一性">
+<meta property="og:description" content="有序偶和笛卡尔乘积有序偶定义 任给两个对象 x 和 y,将它们按规定的顺序构成的序列,称之为有序偶，记为 其中,x 称为有序偶的第一元,y 称为第二元  表示方法Kuratovski提出了一种有序偶的集合表示:$\lt a,b\gt&#x3D; \{ \{a\}, \{a,b\} \}$ 定理 \begin{align} &amp;唯一性定理:&#x3D;\ \ iff\ \ u&#x3D;x\wedge v &#x3D; y\\\\ &amp;证明:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-25T01:55:35.000Z">
-<meta property="article:modified_time" content="2024-10-25T08:30:44.406Z">
+<meta property="article:modified_time" content="2024-11-01T14:24:34.647Z">
 <meta property="article:author" content="meteor041">
-<meta property="article:tag" content="discrete mathmatics">
+<meta property="article:tag" content="discrete mathematics">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          792 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          9 分钟
+          7 分钟
         
       </span>
     
@@ -287,7 +287,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年10月25日 下午
+                    本文最后更新于 2024年11月1日 晚上
                   
                 
               </p>
@@ -295,192 +295,133 @@
             
               <div class="markdown-body">
                 
-                <h1 id="有序偶和笛卡尔乘积">有序偶和笛卡尔乘积</h1>
-<h2 id="有序偶">有序偶</h2>
-<h3 id="定义">定义</h3>
-<blockquote>
-<p>任给两个对象 x 和
-y,将它们按规定的顺序构成的序列,称之为有序偶，记为&lt;x,y &gt;</p>
+                <h1 id="有序偶和笛卡尔乘积"><a href="#有序偶和笛卡尔乘积" class="headerlink" title="有序偶和笛卡尔乘积"></a>有序偶和笛卡尔乘积</h1><h2 id="有序偶"><a href="#有序偶" class="headerlink" title="有序偶"></a>有序偶</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>任给两个对象 x 和 y,将它们按规定的顺序构成的序列,称之为有序偶，记为<x,y></x,y></p>
 <p>其中,x 称为有序偶的第一元,y 称为第二元</p>
 </blockquote>
-<h3 id="表示方法">表示方法</h3>
-<p>Kuratovski提出了一种有序偶的集合表示:<span class="math inline">\(\lt
-a,b\gt= \{ \{a\}, \{a,b\} \}\)</span></p>
-<h3 id="定理">定理</h3>
-<p><span class="math display">\[
+<h3 id="表示方法"><a href="#表示方法" class="headerlink" title="表示方法"></a>表示方法</h3><p>Kuratovski提出了一种有序偶的集合表示:$\lt a,b\gt= \{ \{a\}, \{a,b\} \}$</p>
+<h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3><script type="math/tex; mode=display">
 \begin{align}
-&amp;唯一性定理:&lt;u,v&gt;=&lt;x,y&gt;\ \ iff\ \ u=x\wedge v = y\\\\
-&amp;证明:\\\\(充分性)
-&amp;u=x,v=y时,有\{u\}=\{x\},\{u,v\}=\{x,y\}\\\\
-&amp;因此\{\{u\},\{u,v\}\}=\{\{x\},\{x,y\}\}\\\\
-&amp;即&lt;u,v&gt;=&lt;x,y&gt;\\\\
-(必要性)&amp;分情况讨论:\\\\
-&amp;(1)设u=v\\\\
-&amp;因为&lt;u,v&gt;=\{\{u\},\{u,v\}\}=\\\\
-&amp;&lt;u,v&gt;=&lt;x,y&gt;=\{\{x\},\{x,y\}\}\\\\
-&amp;所以u=x=y\\\\
-&amp;u=x,v=y\\\\
-&amp;(2)设u\neq v\\\\
-&amp;\because\{\{u\},\{u,v\}\}=\{\{x\},\{x,y\}\}\\\\
-&amp;\therefore\{u\}=\{x\},\{u,v\}\}=\{x,y\}\\\\
-&amp;\therefore u=x,v=y\\\\
-&amp;\end{align}
-\]</span></p>
-<h2 id="笛卡尔乘积">笛卡尔乘积</h2>
-<h3 id="定义-1">定义</h3>
-<p><span class="math display">\[ A\times B=\{&lt;x,y&gt;|x\in A\wedge
-y\in B\} \]</span></p>
-<h3 id="性质">性质</h3>
-<ol type="1">
+&唯一性定理:<u,v>=<x,y>\ \ iff\ \ u=x\wedge v = y\\\\
+&证明:\\\\(充分性)
+&u=x,v=y时,有\{u\}=\{x\},\{u,v\}=\{x,y\}\\\\
+&因此\{\{u\},\{u,v\}\}=\{\{x\},\{x,y\}\}\\\\
+&即<u,v>=<x,y>\\\\
+(必要性)&分情况讨论:\\\\
+&(1)设u=v\\\\
+&因为<u,v>=\{\{u\},\{u,v\}\}=\\\\
+&<u,v>=<x,y>=\{\{x\},\{x,y\}\}\\\\
+&所以u=x=y\\\\
+&u=x,v=y\\\\
+&(2)设u\neq v\\\\
+&\because\{\{u\},\{u,v\}\}=\{\{x\},\{x,y\}\}\\\\
+&\therefore\{u\}=\{x\},\{u,v\}\}=\{x,y\}\\\\
+&\therefore u=x,v=y\\\\
+&\end{align}</script><h2 id="笛卡尔乘积"><a href="#笛卡尔乘积" class="headerlink" title="笛卡尔乘积"></a>笛卡尔乘积</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><script type="math/tex; mode=display">A\times B=\{<x,y>|x\in A\wedge y\in B\}</script><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ol>
 <li>不满足交换律</li>
 <li>不满足结合律</li>
-<li>当<span class="math inline">\(A=\emptyset\)</span>或<span class="math inline">\(B=\emptyset\)</span>时,<span class="math inline">\(A\times B=\emptyset\)</span></li>
-<li><span class="math inline">\(\sharp(A\times B)=\sharp A\cdot\sharp
-B\)</span></li>
+<li>当$A=\emptyset$或$B=\emptyset$时,$A\times B=\emptyset$</li>
+<li>$\sharp(A\times B)=\sharp A\cdot\sharp B$</li>
 </ol>
-<h3 id="定理-1">定理</h3>
-<p><span class="math display">\[
+<h3 id="定理-1"><a href="#定理-1" class="headerlink" title="定理"></a>定理</h3><script type="math/tex; mode=display">
 \begin{align}
-&amp;A\times B=\emptyset\ \ iff\ \ A=\emptyset或 B=\emptyset\\\\
-&amp;证明:只需证明A\times B\neq \emptyset\ \ iff\ \ A\neq \emptyset
-且B\neq\emptyset\\\\
-&amp;\because A \neq \emptyset,B\neq \emptyset\\\\
-&amp;\therefore 设x\in A,y\in B\\\\
-&amp;\therefore&lt;x,y&gt;\in A\times B\\\\
-&amp;\therefore A\times B\neq \emptyset\\\\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+&A\times B=\emptyset\ \ iff\ \ A=\emptyset或 B=\emptyset\\\\
+&证明:只需证明A\times B\neq \emptyset\ \ iff\ \ A\neq \emptyset 且B\neq\emptyset\\\\
+&\because A \neq \emptyset,B\neq \emptyset\\\\
+&\therefore 设x\in A,y\in B\\\\
+&\therefore<x,y>\in A\times B\\\\
+&\therefore A\times B\neq \emptyset\\\\
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;设A,B,C,D为任意四个非空集合,则\\\\
-&amp;A\times B\subseteq C\times D\ \ iff\ \ A\subseteq C且B\subseteq
-D\\\\
-&amp;证明:(充分性)任取x\in A,由于B\neq \emptyset,可取b\in B\\\\
-&amp;&lt;x,b&gt;\in A\times B\\\\
-&amp;因A\times B\subset C\times D\\\\
-&amp;&lt;x,b&gt;\in C\times D\\\\
-&amp;则x\in C,故A\subseteq C\\\\
-&amp;同理:B\subseteq D\\\\
-&amp;(必要性)任取&lt;a,b&gt;\in A\times B\\\\
-&amp;则a\in A且b\in B\\\\
-&amp;由A\subseteq C,B\subseteq D\\\\
-&amp;则a\in C,b\in D\\\\
-&amp;&lt;a,b&gt;\in C\times D\\\\
-&amp;A\times B\subseteq C\times D\\\\
-\end{align}
-\]</span></p>
-<h2 id="关系">关系</h2>
-<h3 id="定义-2">定义</h3>
-<p><span class="math display">\[
+&设A,B,C,D为任意四个非空集合,则\\\\
+&A\times B\subseteq C\times D\ \ iff\ \ A\subseteq C且B\subseteq D\\\\
+&证明:(充分性)任取x\in A,由于B\neq \emptyset,可取b\in B\\\\
+&<x,b>\in A\times B\\\\
+&因A\times B\subset C\times D\\\\
+&<x,b>\in C\times D\\\\
+&则x\in C,故A\subseteq C\\\\
+&同理:B\subseteq D\\\\
+&(必要性)任取<a,b>\in A\times B\\\\
+&则a\in A且b\in B\\\\
+&由A\subseteq C,B\subseteq D\\\\
+&则a\in C,b\in D\\\\
+&<a,b>\in C\times D\\\\
+&A\times B\subseteq C\times D\\\\
+\end{align}</script><h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><script type="math/tex; mode=display">
 \begin{align}
-&amp;关系的定义:\\\\
-&amp;R\subseteq X\times Y\\\\
-&amp;&lt;x,y&gt;\in R\Rightarrow x\ R\ y\\\\
-&amp;&lt;x,y&gt;\notin R\Rightarrow x\ \bar{R}\ y
-\end{align}
-\]</span></p>
-<p>$$ <span class="math display">\[\begin{align}
-&amp;全域关系U_x=\{&lt;x_i,x_j&gt;|x_i,x_j\in X\}=X\times X\\\\
-&amp;恒等关系I_x=\{&lt;x,x&gt;|x\in X\}
-\end{align}\]</span></p>
-<p>$$</p>
-<p><span class="math display">\[
+&关系的定义:\\\\
+&R\subseteq X\times Y\\\\
+&<x,y>\in R\Rightarrow x\ R\ y\\\\
+&<x,y>\notin R\Rightarrow x\ \bar{R}\ y
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;定义域dom(R)=\{x\in X|\exists y\in Y:&lt;x,y&gt;\in R\}\\\\
-&amp;值域ran(R)=\{y\in Y|\exists x\in X:&lt;x,y&gt;\in R\}\\\\
-&amp;dom(R)\subseteq X,ran(R)\subseteq Y\\\\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+&全域关系U_x=\{<x_i,x_j>|x_i,x_j\in X\}=X\times X\\\\
+&恒等关系I_x=\{<x,x>|x\in X\}
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;R的关系矩阵M_R=(r_{ij})_{m\times n}\\\\
-&amp;r_{ij}=
+&定义域dom(R)=\{x\in X|\exists y\in Y:<x,y>\in R\}\\\\
+&值域ran(R)=\{y\in Y|\exists x\in X:<x,y>\in R\}\\\\
+&dom(R)\subseteq X,ran(R)\subseteq Y\\\\
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+&R的关系矩阵M_R=(r_{ij})_{m\times n}\\\\
+&r_{ij}=
 \begin{cases}
 0\,\,若x_i\bar{R}y_i\\\\
 1\,\,若x_iRy_i
 \end{cases}
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;R=\{&lt;x_1,y_1&gt;,&lt;x_2,y_1&gt;,&lt;x_2,y_2&gt;,&lt;x_2,y_3&gt;\}\\\\
-&amp;关系矩阵为
+&R=\{<x_1,y_1>,<x_2,y_1>,<x_2,y_2>,<x_2,y_3>\}\\\\
+&关系矩阵为
 \begin{bmatrix}
-1&amp;0&amp;0\\\\
-1&amp;1&amp;1\\\\
+1&0&0\\\\
+1&1&1\\\\
 \end{bmatrix}
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;R自反\Leftrightarrow \forall x(x\in X\rightarrow &lt;x,x&gt;\in
-R)\\\\
-&amp;在R的关系图中,每个顶点均有自环\\\\
-&amp;R的关系矩阵中,主对角线元素均为1\\\\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+&R自反\Leftrightarrow \forall x(x\in X\rightarrow <x,x>\in R)\\\\
+&在R的关系图中,每个顶点均有自环\\\\
+&R的关系矩阵中,主对角线元素均为1\\\\
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;反自反\Leftrightarrow \\\\&amp;
-\forall x(x\in X\rightarrow &lt;x,x&gt;\notin R)\\\\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+&反自反\Leftrightarrow \\\\&
+\forall x(x\in X\rightarrow <x,x>\notin R)\\\\
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;对称矩阵:\forall x\forall y(x\in X\wedge y\in Y\wedge
-&lt;x,y&gt;\in R\rightarrow &lt;y,x&gt;\in R)\\\\
-&amp;在R的关系图中,任意两个不同顶点之间:或者无弧,或者有两条方向相反的弧\\\\
-&amp;关系矩阵为对称矩阵\\\\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+&对称矩阵:\forall x\forall y(x\in X\wedge y\in Y\wedge <x,y>\in R\rightarrow <y,x>\in R)\\\\
+&在R的关系图中,任意两个不同顶点之间:或者无弧,或者有两条方向相反的弧\\\\
+&关系矩阵为对称矩阵\\\\
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;R是反对称的\Leftrightarrow \forall x\forall y(x\in X\wedge y\in
-Y\wedge &lt;x,y&gt;\in R\wedge &lt;y,x&gt;\in R\rightarrow x=y)\\\\
-&amp;\Leftrightarrow\forall x\forall y(x\in X\wedge y\in Y\wedge
-&lt;x,y&gt;\in R\rightarrow &lt;y,x&gt;\notin R)\\\\
-&amp;在R的关系图中,任意不同顶点之间至多有一条弧\\\\
-&amp;R矩阵中,若i\neq j且iRj,则j\bar{R}i
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+&R是反对称的\Leftrightarrow \forall x\forall y(x\in X\wedge y\in Y\wedge <x,y>\in R\wedge <y,x>\in R\rightarrow x=y)\\\\
+&\Leftrightarrow\forall x\forall y(x\in X\wedge y\in Y\wedge <x,y>\in R\rightarrow <y,x>\notin R)\\\\
+&在R的关系图中,任意不同顶点之间至多有一条弧\\\\
+&R矩阵中,若i\neq j且iRj,则j\bar{R}i
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;R是传递的 \Leftrightarrow \forall x\forall y\forall z\\\\&amp;(x\in
-X\wedge y\in X\wedge z\in X\wedge &lt;x,y&gt;\in R\wedge &lt;y,z&gt;\in
-R\rightarrow &lt;x,z&gt;\in R)
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+&R是传递的 \Leftrightarrow \forall x\forall y\forall z\\\\&(x\in X\wedge y\in X\wedge z\in X\wedge <x,y>\in R\wedge <y,z>\in R\rightarrow <x,z>\in R)
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;A有n个元素\\\\
-&amp;自反关系:2^{n^2-n}\\\\
-&amp;反自反关系:2^{n^2-1}\\\\
-&amp;对称关系:2^{\frac{n(n+1)}{2}}\\\\
-&amp;反对称关系:2^n\times
+&A有n个元素\\\\
+&自反关系:2^{n^2-n}\\\\
+&反自反关系:2^{n^2-1}\\\\
+&对称关系:2^{\frac{n(n+1)}{2}}\\\\
+&反对称关系:2^n\times
 3^{\frac{n(n-1)}{2}}
-\end{align}
-\]</span></p>
-<h2 id="习题2.1.9">习题2.1.9</h2>
-<h3 id="a">a)</h3>
-<blockquote>
-<p><span class="math inline">\(dom(U\mathscr A)=\cup\{domR|R\in \mathscr
-A\}\)</span></p>
+\end{align}</script><h2 id="习题2-1-9"><a href="#习题2-1-9" class="headerlink" title="习题2.1.9"></a>习题2.1.9</h2><h3 id="a"><a href="#a" class="headerlink" title="a)"></a>a)</h3><blockquote>
+<p>$dom(U\mathscr A)=\cup\{domR|R\in \mathscr A\}$</p>
 </blockquote>
-<h3 id="b">b)</h3>
-<blockquote>
-<p><span class="math inline">\(ran(U\mathscr A)=\cup\{ranR|R\in \mathscr
-A\}\)</span></p>
+<h3 id="b"><a href="#b" class="headerlink" title="b)"></a>b)</h3><blockquote>
+<p>$ran(U\mathscr A)=\cup\{ranR|R\in \mathscr A\}$</p>
 </blockquote>
-<h2 id="三序偶的理解">三序偶的理解</h2>
-<p><span class="math display">\[
+<h2 id="三序偶的理解"><a href="#三序偶的理解" class="headerlink" title="三序偶的理解"></a>三序偶的理解</h2><script type="math/tex; mode=display">
 \begin{align}
-&lt;a,b,c&gt;=&amp;&lt;&lt;a,b&gt;,c&gt;\\\\
-=&amp;&lt;\{\{a\},\{a,b\}\},c&gt;\\\\
-=&amp;\{\{\{\{a\},\{a,b\}\}\},\{\{\{a\},\{a,b\}\},c\}\} \\\\
-\neq&amp; \{\{a\},\{a,b\},\{a,b,c\}\}
-\end{align}
-\]</span></p>
-
+<a,b,c>=&<<a,b>,c>\\\\
+=&<\{\{a\},\{a,b\}\},c>\\\\
+=&\{\{\{\{a\},\{a,b\}\}\},\{\{\{a\},\{a,b\}\},c\}\} \\\\
+\neq& \{\{a\},\{a,b\},\{a,b,c\}\}
+\end{align}</script>
                 
               </div>
             
@@ -492,7 +433,7 @@ A\}\)</span></p>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/discrete-mathmatics/" class="print-no-link">#discrete mathmatics</a>
+        <a href="/tags/discrete-mathematics/" class="print-no-link">#discrete mathematics</a>
       
     </div>
   
