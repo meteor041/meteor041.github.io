@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="12git config --global user.name &quot;&quot;git config --global user.email  123git initgit add *.cgit commit -m &quot;message&quot; 1git clone https:&#x2F;&#x2F;github.com&#x2F;libgit2&#x2F;libgit2 mylibgit 1git status 1">
+    <meta name="description" content="12git config --global user.name &quot;&quot;git config --global user.email  123git initgit add *.cgit commit -m &quot;message&quot; 1git clone https:&#x2F;&#x2F;github.com&#x2F;libgit2&#x2F;libgit2 mylibgit 1git statu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git指令">
 <meta property="og:url" content="https://meteor041.git.io/2024/09/22/Git%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="12git config --global user.name &quot;&quot;git config --global user.email  123git initgit add *.cgit commit -m &quot;message&quot; 1git clone https:&#x2F;&#x2F;github.com&#x2F;libgit2&#x2F;libgit2 mylibgit 1git status 1">
+<meta property="og:description" content="12git config --global user.name &quot;&quot;git config --global user.email  123git initgit add *.cgit commit -m &quot;message&quot; 1git clone https:&#x2F;&#x2F;github.com&#x2F;libgit2&#x2F;libgit2 mylibgit 1git statu">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/09/22/Git%E6%8C%87%E4%BB%A4/image-20240919142734429.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/09/22/Git%E6%8C%87%E4%BB%A4/image-20240919142743629.png">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          271 字
+          273 字
         
       </span>
     
@@ -315,9 +315,15 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">git fetch<br><span class="hljs-comment"># 从服务器上抓取本地没有的数据</span><br>git pull<br><span class="hljs-comment"># 含义是git fetch + git merge</span><br></code></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git push origin --delete serverfix<br><span class="hljs-comment"># 删除远程分支</span><br></code></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git rebase master<br><span class="hljs-comment"># 将当前分支变基到master分支上</span><br></code></pre></td></tr></table></figure>
-<p><img src="image-20240919142734429.png" srcset="/img/loading.gif" lazyload alt="image-20240919142734429"></p>
+<figure>
+<img src="image-20240919142734429.png" srcset="/img/loading.gif" lazyload alt="image-20240919142734429">
+<figcaption aria-hidden="true">image-20240919142734429</figcaption>
+</figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git checkout feature<br>git rebase master<br></code></pre></td></tr></table></figure>
-<p><img src="image-20240919142743629.png" srcset="/img/loading.gif" lazyload alt="image-20240919142743629"></p>
+<figure>
+<img src="image-20240919142743629.png" srcset="/img/loading.gif" lazyload alt="image-20240919142743629">
+<figcaption aria-hidden="true">image-20240919142743629</figcaption>
+</figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> /opt/git/project.git<br>git <span class="hljs-built_in">clone</span> file:///opt/git/project.git<br>git remote add local_proj /opt/git/project.git<br><span class="hljs-comment"># 增加本地版本库到现有的Git项目</span><br></code></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">scp -r test.git meteor041@github.com:meteor041/test.git<br><br></code></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~./ssh<br><span class="hljs-built_in">ls</span><br><span class="hljs-comment"># 查看密钥</span><br>ssh-keygen<br><span class="hljs-comment"># chuang&#x27;jian</span><br></code></pre></td></tr></table></figure>

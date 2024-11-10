@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="$monitor监视被测试模块的所有感兴趣的信号. $monitor(p1,p2,…pn)按照格式字符串打印信号 1$monitor($time, ,&quot;rxd&#x3D;%b txd&#x3D;%b&quot;,rxd,txd); $monitor on&#x2F; monitor off启动&#x2F;关闭监控任务 $time返回一个64位的整数来表示当前的仿真时刻值(总是输出整数) $realtime和$time作用相似,">
+    <meta name="description" content="$monitor 监视被测试模块的所有感兴趣的信号. $monitor(p1,p2,...pn) 按照格式字符串打印信号 1$monitor($time, ,&quot;rxd&#x3D;%b txd&#x3D;%b&quot;,rxd,txd); $monitor on&#x2F; monitor off 启动&#x2F;关闭监控任务 $time 返回一个64位的整数来表示当前的仿真时刻值(总是输出整数) $real">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Verilog调试系统任务和编译预处理语句">
 <meta property="og:url" content="https://meteor041.git.io/2024/10/05/Verilog%E8%B0%83%E8%AF%95%E7%B3%BB%E7%BB%9F%E4%BB%BB%E5%8A%A1%E5%92%8C%E7%BC%96%E8%AF%91%E9%A2%84%E5%A4%84%E7%90%86%E8%AF%AD%E5%8F%A5/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="$monitor监视被测试模块的所有感兴趣的信号. $monitor(p1,p2,…pn)按照格式字符串打印信号 1$monitor($time, ,&quot;rxd&#x3D;%b txd&#x3D;%b&quot;,rxd,txd); $monitor on&#x2F; monitor off启动&#x2F;关闭监控任务 $time返回一个64位的整数来表示当前的仿真时刻值(总是输出整数) $realtime和$time作用相似,">
+<meta property="og:description" content="$monitor 监视被测试模块的所有感兴趣的信号. $monitor(p1,p2,...pn) 按照格式字符串打印信号 1$monitor($time, ,&quot;rxd&#x3D;%b txd&#x3D;%b&quot;,rxd,txd); $monitor on&#x2F; monitor off 启动&#x2F;关闭监控任务 $time 返回一个64位的整数来表示当前的仿真时刻值(总是输出整数) $real">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-05T03:47:11.000Z">
 <meta property="article:modified_time" content="2024-10-05T03:47:23.494Z">
@@ -295,23 +295,35 @@
             
               <div class="markdown-body">
                 
-                <h2 id="monitor"><a href="#monitor" class="headerlink" title="$monitor"></a>$monitor</h2><p>监视被测试模块的所有感兴趣的信号.</p>
-<h2 id="monitor-p1-p2-…pn"><a href="#monitor-p1-p2-…pn" class="headerlink" title="$monitor(p1,p2,…pn)"></a>$monitor(p1,p2,…pn)</h2><p>按照格式字符串打印信号</p>
+                <h2 id="monitor">$monitor</h2>
+<p>监视被测试模块的所有感兴趣的信号.</p>
+<h2 id="monitorp1p2...pn">$monitor(p1,p2,...pn)</h2>
+<p>按照格式字符串打印信号</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-built_in">$monitor</span>(<span class="hljs-built_in">$time</span>, ,<span class="hljs-string">&quot;rxd=%b txd=%b&quot;</span>,rxd,txd);<br></code></pre></td></tr></table></figure>
-<h2 id="monitor-on-monitor-off"><a href="#monitor-on-monitor-off" class="headerlink" title="$monitor on/ monitor off"></a>$monitor on/ monitor off</h2><p>启动/关闭监控任务</p>
-<h2 id="time"><a href="#time" class="headerlink" title="$time"></a>$time</h2><p>返回一个64位的整数来表示当前的仿真时刻值(总是输出整数)</p>
-<h2 id="realtime"><a href="#realtime" class="headerlink" title="$realtime"></a>$realtime</h2><p>和$time作用相似,返回的是实型数</p>
-<h2 id="finish"><a href="#finish" class="headerlink" title="$finish"></a>$finish</h2><p>退出仿真器,返回主操作系统</p>
-<h2 id="stop"><a href="#stop" class="headerlink" title="$stop"></a>$stop</h2><p>将EDA工具置为暂停模式</p>
-<h2 id="readmemb"><a href="#readmemb" class="headerlink" title="$readmemb"></a>$readmemb</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-built_in">$readmemb</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;);<br><span class="hljs-built_in">$readmemb</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;);<br><span class="hljs-built_in">$readmemb</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;结束地址&gt;);<br><span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;);<br><span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;);<br><span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;结束地址&gt;);<br></code></pre></td></tr></table></figure>
+<h2 id="monitor-on-monitor-off">$monitor on/ monitor off</h2>
+<p>启动/关闭监控任务</p>
+<h2 id="time">$time</h2>
+<p>返回一个64位的整数来表示当前的仿真时刻值(总是输出整数)</p>
+<h2 id="realtime">$realtime</h2>
+<p>和$time作用相似,返回的是实型数</p>
+<h2 id="finish">$finish</h2>
+<p>退出仿真器,返回主操作系统</p>
+<h2 id="stop">$stop</h2>
+<p>将EDA工具置为暂停模式</p>
+<h2 id="readmemb">$readmemb</h2>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-built_in">$readmemb</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;);<br><span class="hljs-built_in">$readmemb</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;);<br><span class="hljs-built_in">$readmemb</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;结束地址&gt;);<br><span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;);<br><span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;);<br><span class="hljs-built_in">$readmemh</span>(<span class="hljs-string">&quot;&lt;数据文件名&gt;&quot;</span>,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;结束地址&gt;);<br></code></pre></td></tr></table></figure>
 <p>读取数据文件,其中<code>readmemb</code>读取的数字必须是二进制,<code>readmemh</code>读取的数字必须是十六进制.</p>
-<h2 id="random"><a href="#random" class="headerlink" title="$random"></a>$random</h2><p>产生随机数</p>
+<h2 id="random">$random</h2>
+<p>产生随机数</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">reg</span>[<span class="hljs-number">23</span>:<span class="hljs-number">0</span>] <span class="hljs-keyword">rand</span><br><span class="hljs-keyword">rand</span> = <span class="hljs-built_in">$random</span> % <span class="hljs-number">60</span>;<br><span class="hljs-comment">// 产生一个[-59,59]内的随机数</span><br></code></pre></td></tr></table></figure>
-<h1 id="编译预处理"><a href="#编译预处理" class="headerlink" title="编译预处理"></a>编译预处理</h1><h2 id="define"><a href="#define" class="headerlink" title="`define"></a>`define</h2><p>用一个指定的标识符(即名字)来代表一个字符串</p>
+<h1 id="编译预处理">编译预处理</h1>
+<h2 id="define">`define</h2>
+<p>用一个指定的标识符(即名字)来代表一个字符串</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-meta">`<span class="hljs-keyword">define</span> 标识符(宏名) 字符串(宏内容)</span><br></code></pre></td></tr></table></figure>
 <p>例:</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> test;<br>    <span class="hljs-keyword">reg</span> a,b,c,d,e,out;<br>	<span class="hljs-meta">`<span class="hljs-keyword">define</span> expression a + b + c + d</span><br>    <span class="hljs-keyword">assign</span> out = `expression + e;<br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
-<h2 id="timescale"><a href="#timescale" class="headerlink" title="`timescale"></a>`timescale</h2><p>说明在该命令后的模块的事件单位和时间精度</p>
+<h2 id="timescale">`timescale</h2>
+<p>说明在该命令后的模块的事件单位和时间精度</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-meta">`<span class="hljs-keyword">timescale</span> &lt;时间单位&gt;/&lt;时间精度&gt;</span><br></code></pre></td></tr></table></figure>
 
                 

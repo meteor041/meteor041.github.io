@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="从全连接层道卷积全连接层$[H]_{i,j}&#x3D;[U]_{i,j}+\mathop\sum\limits_{k}\mathop\sum\limits_l [W]_{i,j,k,l}[X]_{k,l}\\&#x3D;[U]_{i,j}+\mathop\sum\limits_{a}\mathop\sum\limits_{b} [V]_{a,b}[X]_{i+a,j+a}$ 平移不变性 检测对象在输入X中的平移,只">
+    <meta name="description" content="从全连接层道卷积 全连接层 \([H]_{i,j}&#x3D;[U]_{i,j}+\mathop\sum\limits_{k}\mathop\sum\limits_l [W]_{i,j,k,l}[X]_{k,l}\\&#x3D;[U]_{i,j}+\mathop\sum\limits_{a}\mathop\sum\limits_{b} [V]_{a,b}[X]_{i+a,j+a}\) 平移不变性  检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="卷积神经网络">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/05/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="从全连接层道卷积全连接层$[H]_{i,j}&#x3D;[U]_{i,j}+\mathop\sum\limits_{k}\mathop\sum\limits_l [W]_{i,j,k,l}[X]_{k,l}\\&#x3D;[U]_{i,j}+\mathop\sum\limits_{a}\mathop\sum\limits_{b} [V]_{a,b}[X]_{i+a,j+a}$ 平移不变性 检测对象在输入X中的平移,只">
+<meta property="og:description" content="从全连接层道卷积 全连接层 \([H]_{i,j}&#x3D;[U]_{i,j}+\mathop\sum\limits_{k}\mathop\sum\limits_l [W]_{i,j,k,l}[X]_{k,l}\\&#x3D;[U]_{i,j}+\mathop\sum\limits_{a}\mathop\sum\limits_{b} [V]_{a,b}[X]_{i+a,j+a}\) 平移不变性  检测">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-04T16:13:06.000Z">
 <meta property="article:modified_time" content="2024-11-04T17:28:31.243Z">
@@ -295,25 +295,35 @@
             
               <div class="markdown-body">
                 
-                <h1 id="从全连接层道卷积"><a href="#从全连接层道卷积" class="headerlink" title="从全连接层道卷积"></a>从全连接层道卷积</h1><h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2><p>$[H]_{i,j}=[U]_{i,j}+\mathop\sum\limits_{k}\mathop\sum\limits_l [W]_{i,j,k,l}[X]_{k,l}\\=[U]_{i,j}+\mathop\sum\limits_{a}\mathop\sum\limits_{b} [V]_{a,b}[X]_{i+a,j+a}$</p>
-<h3 id="平移不变性"><a href="#平移不变性" class="headerlink" title="平移不变性"></a>平移不变性</h3><blockquote>
+                <h1 id="从全连接层道卷积">从全连接层道卷积</h1>
+<h2 id="全连接层">全连接层</h2>
+<p><span class="math inline">\([H]_{i,j}=[U]_{i,j}+\mathop\sum\limits_{k}\mathop\sum\limits_l
+[W]_{i,j,k,l}[X]_{k,l}\\=[U]_{i,j}+\mathop\sum\limits_{a}\mathop\sum\limits_{b}
+[V]_{a,b}[X]_{i+a,j+a}\)</span></p>
+<h3 id="平移不变性">平移不变性</h3>
+<blockquote>
 <p>检测对象在输入X中的平移,只会导致隐藏层H中的平移</p>
-<p>V和U实际上不依赖于(i,j)的值,即$[V]_{i,j,a,b}=[V]_{a,b}$,且U是一个常数</p>
+<p>V和U实际上不依赖于(i,j)的值,即<span class="math inline">\([V]_{i,j,a,b}=[V]_{a,b}\)</span>,且U是一个常数</p>
 </blockquote>
-<p>$[H]_{i,j}=u+\sum\limits_a\sum\limits_b[V]_{a,b}[X]_{i+a,j+b}$</p>
-<h3 id="局部性"><a href="#局部性" class="headerlink" title="局部性"></a>局部性</h3><blockquote>
-<p>$[H]_{i,j}$不会关注距离(i,j)太远的地方</p>
+<p><span class="math inline">\([H]_{i,j}=u+\sum\limits_a\sum\limits_b[V]_{a,b}[X]_{i+a,j+b}\)</span></p>
+<h3 id="局部性">局部性</h3>
+<blockquote>
+<p><span class="math inline">\([H]_{i,j}\)</span>不会关注距离(i,j)太远的地方</p>
 </blockquote>
-<p>$[H]_{i,j}=u_d+\sum\limits^{\Delta}_{a=-\Delta}\sum\limits^{\Delta}_{b=-\Delta}[V]_{a,b}[X]_{i+a,j+b}$</p>
-<h3 id="代价"><a href="#代价" class="headerlink" title="代价"></a>代价</h3><ul>
+<p><span class="math inline">\([H]_{i,j}=u_d+\sum\limits^{\Delta}_{a=-\Delta}\sum\limits^{\Delta}_{b=-\Delta}[V]_{a,b}[X]_{i+a,j+b}\)</span></p>
+<h3 id="代价">代价</h3>
+<ul>
 <li>特征必须平移不变</li>
 <li>每一层只包含局部信息</li>
 </ul>
-<h2 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h2><blockquote>
+<h2 id="通道">通道</h2>
+<blockquote>
 <p>对于图像,一般是三维的张量</p>
 </blockquote>
-<p>$[H]_{i,j,d}=\sum\limits^{\Delta}_{a=-\Delta}\sum\limits^{\Delta}_{b=-\Delta}\sum\limits^{\Delta}_{c}[V]_{a,b,c,d}[X]_{i+a,j+b,c}$</p>
-<h1 id="图像卷积"><a href="#图像卷积" class="headerlink" title="图像卷积"></a>图像卷积</h1><p>$n_k\times n_w的输入矩阵,k_h\times k_w的卷积核,输出矩阵为(n_k-k_h+1)\times(n_w-k_w+1)$</p>
+<p><span class="math inline">\([H]_{i,j,d}=\sum\limits^{\Delta}_{a=-\Delta}\sum\limits^{\Delta}_{b=-\Delta}\sum\limits^{\Delta}_{c}[V]_{a,b,c,d}[X]_{i+a,j+b,c}\)</span></p>
+<h1 id="图像卷积">图像卷积</h1>
+<p><span class="math inline">\(n_k\times n_w的输入矩阵,k_h\times
+k_w的卷积核,输出矩阵为(n_k-k_h+1)\times(n_w-k_w+1)\)</span></p>
 
                 
               </div>
