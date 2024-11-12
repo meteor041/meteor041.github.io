@@ -1,0 +1,3251 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="meteor041">
+  <meta name="keywords" content="Computer Organization">
+  
+    <meta name="description" content="P6-CPU设计文档 流水线架构 12345678910111213141516171819202122- mips.v	- IF.v #取指阶段		- pc.v		- im.v	- IF_ID.v #IF与ID之间的寄存器	- ID.v #译码阶段		- ctrl.v #采用分布式译码		- grf.v # 寄存器堆		- ext.v # 立即数扩展		- cmp.v # 比较2个数		-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P6-CPU设计文档">
+<meta property="og:url" content="https://meteor041.git.io/2024/11/13/P6-CPU%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/index.html">
+<meta property="og:site_name" content="meteor041">
+<meta property="og:description" content="P6-CPU设计文档 流水线架构 12345678910111213141516171819202122- mips.v	- IF.v #取指阶段		- pc.v		- im.v	- IF_ID.v #IF与ID之间的寄存器	- ID.v #译码阶段		- ctrl.v #采用分布式译码		- grf.v # 寄存器堆		- ext.v # 立即数扩展		- cmp.v # 比较2个数		-">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-12T17:42:57.000Z">
+<meta property="article:modified_time" content="2024-11-12T17:43:20.352Z">
+<meta property="article:author" content="meteor041">
+<meta property="article:tag" content="CO">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>P6-CPU设计文档 - meteor041</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"meteor041.git.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P6-CPU设计文档"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-13 01:42" pubdate>
+          2024年11月13日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P6-CPU设计文档</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年11月13日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="p6-cpu设计文档">P6-CPU设计文档</h1>
+<h2 id="流水线架构">流水线架构</h2>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> mips.v<br><span class="hljs-bullet">	-</span> IF.v #取指阶段<br><span class="hljs-bullet">		-</span> pc.v<br><span class="hljs-bullet">		-</span> im.v<br><span class="hljs-bullet">	-</span> IF<span class="hljs-emphasis">_ID.v #IF与ID之间的寄存器</span><br><span class="hljs-emphasis">	- ID.v #译码阶段</span><br><span class="hljs-emphasis">		- ctrl.v #采用分布式译码</span><br><span class="hljs-emphasis">		- grf.v # 寄存器堆</span><br><span class="hljs-emphasis">		- ext.v # 立即数扩展</span><br><span class="hljs-emphasis">		- cmp.v # 比较2个数</span><br><span class="hljs-emphasis">		- npc.v # 为B类/J计算下条地址</span><br><span class="hljs-emphasis">	- ID_</span>EX.v #ID与EX之间的寄存器<br><span class="hljs-bullet">	-</span> EX.v  #执行阶段<br><span class="hljs-bullet">		-</span> ctrl.v #采用分布式译码<br><span class="hljs-bullet">		-</span> alu.v<br><span class="hljs-bullet">	-</span> EX<span class="hljs-emphasis">_MEM.v #EX与MEM之间的寄存器</span><br><span class="hljs-emphasis">	- MEM.v #存储阶段</span><br><span class="hljs-emphasis">		- ctrl.v #采用分布式译码</span><br><span class="hljs-emphasis">		- dm.v</span><br><span class="hljs-emphasis">	- MEM_</span>WB.v #MEM与WB之间的寄存器<br><span class="hljs-bullet">	-</span> HAZARD<span class="hljs-emphasis">_CTRL.v #冒险控制模块</span><br><span class="hljs-emphasis">	</span><br></code></pre></td></tr></table></figure>
+<h3 id="if">IF</h3>
+<h4 id="顶层">顶层</h4>
+<blockquote>
+<p>Instruction Fetch阶段,从指令寄存器中读取指令</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td>时钟信号</td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td>重置信号</td>
+</tr>
+<tr class="odd">
+<td>enablePC</td>
+<td>in</td>
+<td></td>
+<td>使能信号</td>
+</tr>
+<tr class="even">
+<td>NPC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>PC地址输入</td>
+</tr>
+<tr class="odd">
+<td>IF_PC</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>输出PC地址</td>
+</tr>
+</tbody>
+</table>
+<h4 id="pc部件">PC部件</h4>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td>时钟信号</td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td>重置信号</td>
+</tr>
+<tr class="odd">
+<td>enable</td>
+<td>in</td>
+<td></td>
+<td>使能信号</td>
+</tr>
+<tr class="even">
+<td>NPC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>PC地址输入</td>
+</tr>
+<tr class="odd">
+<td>PC</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>输出PC地址</td>
+</tr>
+</tbody>
+</table>
+<h3 id="if_id">IF_ID</h3>
+<blockquote>
+<p>在时钟上升沿将IF_PC,IF_instr的值传递给ID_PC,ID_instr</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>enable</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>IF_PC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>IF传入PC地址</td>
+</tr>
+<tr class="odd">
+<td>IF_instr</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>IF传入指令</td>
+</tr>
+<tr class="even">
+<td>ID_PC</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>ID接收PC地址</td>
+</tr>
+<tr class="odd">
+<td>ID_instr</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>IF接收指令</td>
+</tr>
+</tbody>
+</table>
+<h3 id="id">ID</h3>
+<blockquote>
+<p>Instruction Decode阶段</p>
+</blockquote>
+<h4 id="顶层-1">顶层</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>IF_PC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>IF区的PC,用于正常的地址+4操作</td>
+</tr>
+<tr class="even">
+<td>ID_PC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>ID区的PC</td>
+</tr>
+<tr class="odd">
+<td>ID_instr</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>ID区的指令</td>
+</tr>
+<tr class="even">
+<td>ID_RD1_forward</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>转发的Data1</td>
+</tr>
+<tr class="odd">
+<td>ID_RD2_forward</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>转发的Data2</td>
+</tr>
+<tr class="even">
+<td>WB_WD</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>写入数据,来自于WB阶段</td>
+</tr>
+<tr class="odd">
+<td>WB_A3</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>写入寄存器地址,来自于WB阶段</td>
+</tr>
+<tr class="even">
+<td>WB_PC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>写入数据对应PC地址,传递给<span class="math inline">\(display语句,作为显示,来自于WB阶段 |
+| ID_RD1         | out     | [31:0] |
+ID输出rs寄存器读出值                                        |
+| ID_RD2         | out     | [31:0] |
+ID输出rt寄存器读出值                                        |
+| ID_IMM32       | out     | [31:0] |
+ID输出经过位扩展的立即数                                    |
+| ID_A3          | out     | [4:0]  |
+ID阶段的A3,向后传递用                                       |
+| ID_WD          | out     | [31:0] |
+ID阶段的写入数据,向后传递                                   |
+| NPC            | out     | [31:0] |
+ID阶段(内部NPC模块)计算的下一个地址                         |
+| ID_A1_USE      | out     | [1:0]  |
+ID阶段rs寄存器的\)</span>T_{USE}$</td>
+</tr>
+<tr class="odd">
+<td>ID_A2_USE</td>
+<td>out</td>
+<td>[1:0]</td>
+<td>ID阶段rt寄存器的<span class="math inline">\(T_{USE}\)</span></td>
+</tr>
+<tr class="even">
+<td>ID_MD</td>
+<td>out</td>
+<td></td>
+<td>ID区当前是否在处理乘除相关指令</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ext部件">EXT部件</h4>
+<blockquote>
+<p>立即数扩展</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>imm16</td>
+<td>in</td>
+<td>[15:0]</td>
+<td>输入的16位立即数</td>
+</tr>
+<tr class="even">
+<td>ExtControl</td>
+<td>in</td>
+<td></td>
+<td>决定零扩展还是符号扩展</td>
+</tr>
+<tr class="odd">
+<td>imm32</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>输出的为扩展后的32位立即数</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cmp部件">CMP部件</h4>
+<blockquote>
+<p>判断两个输入(从寄存器取出来的两个值)是否相等,输出zero,用于处理beq信号通路</p>
+</blockquote>
+<table>
+
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>输入数据,接收的是转发的Data1(RD1_forward)</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>输入数据,接收的是转发的Data2(RD2_forward)</td>
+</tr>
+<tr class="odd">
+<td>CMPControl</td>
+<td>in</td>
+<td>[3:0]</td>
+<td>CMP部件控制信号(选择比较方式)</td>
+</tr>
+<tr class="even">
+<td>zero</td>
+<td>out</td>
+<td></td>
+<td>若相等则输出1,否则输出0</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cmpcontrol信号表">CMPControl信号表</h4>
+<table>
+<thead>
+<tr class="header">
+<th>指令</th>
+<th>CMPControl</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>beq</td>
+<td>4'b0000</td>
+</tr>
+<tr class="even">
+<td>bgez</td>
+<td>4'b0001</td>
+</tr>
+<tr class="odd">
+<td>bgtz</td>
+<td>4'b0010</td>
+</tr>
+<tr class="even">
+<td>blez</td>
+<td>4'b0011</td>
+</tr>
+<tr class="odd">
+<td>bltz</td>
+<td>4'b0100</td>
+</tr>
+<tr class="even">
+<td>bne</td>
+<td>4'b0101</td>
+</tr>
+</tbody>
+</table>
+<h4 id="npc部件">NPC部件</h4>
+<blockquote>
+<p>计算下一个PC地址</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IF_PC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>IF输出的PC</td>
+</tr>
+<tr class="even">
+<td>ID_PC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ID_imm26</td>
+<td>in</td>
+<td>[25:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Jr_Reg_Data</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>Jr指定的寄存器的值</td>
+</tr>
+<tr class="odd">
+<td>Branch</td>
+<td>in</td>
+<td></td>
+<td>Branch信号(beq激活)</td>
+</tr>
+<tr class="even">
+<td>Jal</td>
+<td>in</td>
+<td></td>
+<td>Jal信号(jal激活)</td>
+</tr>
+<tr class="odd">
+<td>Jr</td>
+<td>in</td>
+<td></td>
+<td>Jr信号(jr激活)</td>
+</tr>
+<tr class="even">
+<td>NPC</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>下一个PC地址</td>
+</tr>
+</tbody>
+</table>
+<h4 id="control部件共用">Control部件(共用)</h4>
+<blockquote>
+<p>控制信号生成部件,这里我们采用的是分布式译码,这里展示的共用Control部件在ID阶段被使用的端口</p>
+</blockquote>
+<table>
+
+<thead>
+<tr class="header">
+<th style="text-align: left;">端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">instr</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>输入的指令</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zero</td>
+<td>in</td>
+<td></td>
+<td>ID_RD1_forward与ID_RD2_forward是否相等</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Branch</td>
+<td>out</td>
+<td></td>
+<td>Branch信号(beq激活)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jal</td>
+<td>out</td>
+<td></td>
+<td>Jal信号(jal激活)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jr</td>
+<td>out</td>
+<td></td>
+<td>Jr信号(jr激活)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ExtControl</td>
+<td>out</td>
+<td></td>
+<td>控制ext部件的信号</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sel_ID_WD</td>
+<td>out</td>
+<td></td>
+<td>与jal相关,若执行jal指令则为1,该信号为1时将Write
+Data(写入寄存器)指定为ID_PC+8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ID_A3</td>
+<td>out</td>
+<td>[4:0]</td>
+<td>解码阶段输出的写入寄存器地址</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ID_A1_USE</td>
+<td>out</td>
+<td>[1:0]</td>
+<td>rs的<span class="math inline">\(T_{USE}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ID_A2_USE</td>
+<td>out</td>
+<td>[1:0]</td>
+<td>rt的<span class="math inline">\(T_{USE}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CMPControl</td>
+<td>out</td>
+<td>[3:0]</td>
+<td>CMP部件控制信号(选择比较方式)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ID_MD</td>
+<td>out</td>
+<td></td>
+<td>ID区当前是否在处理乘除相关指令</td>
+</tr>
+</tbody>
+</table>
+<h4 id="id控制信号表">ID控制信号表</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>指令/信号</th>
+<th>ExtControl</th>
+<th>Sel_ID_WD</th>
+<th>ID_A3</th>
+<th>Branch</th>
+<th>Jal</th>
+<th>Jr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ori</td>
+<td>1(立即数零扩展)</td>
+<td>0</td>
+<td>rt</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>add</td>
+<td>\</td>
+<td>0</td>
+<td>rd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>sub</td>
+<td>\</td>
+<td>0</td>
+<td>rd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>lw</td>
+<td>0(立即数符号扩展)</td>
+<td>0</td>
+<td>rt</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>sw</td>
+<td>0(立即数符号扩展)</td>
+<td>0</td>
+<td>$0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>beq</td>
+<td>0(立即数符号扩展)</td>
+<td>0</td>
+<td>$0</td>
+<td>1 if zero == 1 else 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>lui</td>
+<td>0(立即数符号扩展)(其实随意)</td>
+<td>0</td>
+<td>rt</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>jal</td>
+<td>\</td>
+<td>1(选择PC+8)</td>
+<td>$31</td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>jr</td>
+<td>\</td>
+<td>0</td>
+<td>\</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>swc</td>
+<td>\</td>
+<td>0</td>
+<td>rd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>bonall</td>
+<td>0(立即数符号扩展)</td>
+<td>1</td>
+<td>31</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>lh</td>
+<td>0</td>
+<td>0</td>
+<td>rt</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>sh</td>
+<td>0</td>
+<td>0</td>
+<td>\</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>lb</td>
+<td>0</td>
+<td>0</td>
+<td>rt</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>sb</td>
+<td>0</td>
+<td>0</td>
+<td>\</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>and</td>
+<td>\</td>
+<td>0</td>
+<td>rd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>or</td>
+<td>\</td>
+<td>0</td>
+<td>rd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>slt</td>
+<td>\</td>
+<td>0</td>
+<td>rd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>sltu</td>
+<td>\</td>
+<td>0</td>
+<td>rd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>addi</td>
+<td>0</td>
+<td>0</td>
+<td>rt</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>andi</td>
+<td>0</td>
+<td>0</td>
+<td>rt</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>mult</td>
+<td>\</td>
+<td>0</td>
+<td>$0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>multu</td>
+<td>\</td>
+<td>0</td>
+<td>$0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>div</td>
+<td>\</td>
+<td>0</td>
+<td>$0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>divu</td>
+<td>\</td>
+<td>0</td>
+<td>$0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>mflo</td>
+<td>\</td>
+<td>0</td>
+<td>rd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>mfhi</td>
+<td>\</td>
+<td>0</td>
+<td>rd</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>mtlo</td>
+<td>\</td>
+<td>0</td>
+<td>$0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>mthi</td>
+<td>\</td>
+<td>0</td>
+<td>$0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="t_use表"><span class="math inline">\(T_{USE}\)</span>表</h4>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>ID_A1_USE</th>
+<th>ID_A2_USE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>add</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>sub</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>ori</td>
+<td>1</td>
+<td>3(z)</td>
+</tr>
+<tr class="even">
+<td>lw</td>
+<td>1</td>
+<td>3(z)</td>
+</tr>
+<tr class="odd">
+<td>sw</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>beq</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>lui</td>
+<td>3(z)</td>
+<td>3(z)</td>
+</tr>
+<tr class="even">
+<td>jal</td>
+<td>3(z)</td>
+<td>3(z)</td>
+</tr>
+<tr class="odd">
+<td>jr</td>
+<td>0</td>
+<td>3(z)</td>
+</tr>
+<tr class="even">
+<td>swc</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>bonall</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>lb</td>
+<td>1</td>
+<td>3(z)</td>
+</tr>
+<tr class="odd">
+<td>sb</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>lh</td>
+<td>1</td>
+<td>3(z)</td>
+</tr>
+<tr class="odd">
+<td>sh</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>and</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>or</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>slt</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>sltu</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>addi</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>andi</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>mult</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>div</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>multu</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>divu</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>mflo</td>
+<td>3(z)</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>mfhi</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>mtlo</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>mthi</td>
+<td>1</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h4 id="grf部件">GRF部件</h4>
+<blockquote>
+<p>32个32bit寄存器组成的寄存器堆</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>A1</td>
+<td>in</td>
+<td>[4:0]</td>
+<td>A1读出寄存器地址</td>
+</tr>
+<tr class="even">
+<td>A2</td>
+<td>in</td>
+<td>[4:0]</td>
+<td>A2读出寄存器地址</td>
+</tr>
+<tr class="odd">
+<td>A3</td>
+<td>in</td>
+<td>[4:0]</td>
+<td>A3写入寄存器地址</td>
+</tr>
+<tr class="even">
+<td>WD</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>写入数据</td>
+</tr>
+<tr class="odd">
+<td>PC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>当前PC($display用)</td>
+</tr>
+<tr class="even">
+<td>RD1</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>A1寄存器读出值</td>
+</tr>
+<tr class="odd">
+<td>RD2</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>A2寄存器读出值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="id_ex">ID_EX</h3>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>enable</td>
+<td>in</td>
+<td></td>
+<td>使能信号</td>
+</tr>
+<tr class="even">
+<td>flush</td>
+<td>in</td>
+<td></td>
+<td>冲洗信号,和reset作用相同</td>
+</tr>
+<tr class="odd">
+<td>ID_PC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ID_instr</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ID_RD1</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ID_RD2</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ID_imm32</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ID_A3</td>
+<td>in</td>
+<td>[4:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ID_WD</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>EX_PC</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>EX_instr</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>EX_RD1</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>EX_RD2</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>EX_imm32</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>EX_A3</td>
+<td>out</td>
+<td>[4:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>EX_WD</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ex">EX</h3>
+<h4 id="顶层-2">顶层</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>EX_instr</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>EX阶段的指令</td>
+</tr>
+<tr class="even">
+<td>EX_imm32</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>32位扩展的立即数</td>
+</tr>
+<tr class="odd">
+<td>EX_WD</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>EX阶段接收的写入寄存器堆的数据</td>
+</tr>
+<tr class="even">
+<td>EX_RD1_forward</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>接收hazard ctrl部件向EX阶段传递的转发数据寄存器A1值</td>
+</tr>
+<tr class="odd">
+<td>EX_RD2_forward</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>接收hazard ctrl部件向EX阶段传递的转发数据寄存器A2值</td>
+</tr>
+<tr class="even">
+<td>EX_MEM_RES</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>传递ALU计算结果</td>
+</tr>
+<tr class="odd">
+<td>EX_MEM_WD</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>传递给EX_MEM流水寄存器的Write Data</td>
+</tr>
+<tr class="even">
+<td>EX_MEM_RD2</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>传递给EX_MEM流水寄存器的Read Data2</td>
+</tr>
+<tr class="odd">
+<td>EX_NEW</td>
+<td>out</td>
+<td>[1:0]</td>
+<td>EX阶段的<span class="math inline">\(T_{NEW}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4 id="mult_div部件">MULT_DIV部件</h4>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td>时钟信号</td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td>重制信号</td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>计算数A</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>计算数B</td>
+</tr>
+<tr class="odd">
+<td>start</td>
+<td>in</td>
+<td></td>
+<td>有效一个时钟周期,启动信号</td>
+</tr>
+<tr class="even">
+<td>MULT_DIV_OP</td>
+<td>in</td>
+<td>[2:0]</td>
+<td>乘除模块计算方式</td>
+</tr>
+<tr class="odd">
+<td>MFHI</td>
+<td>in</td>
+<td></td>
+<td>mfhi信号</td>
+</tr>
+<tr class="even">
+<td>MFLO</td>
+<td>in</td>
+<td></td>
+<td>mflo信号</td>
+</tr>
+<tr class="odd">
+<td>busy</td>
+<td>out</td>
+<td></td>
+<td>输出延迟信号</td>
+</tr>
+<tr class="even">
+<td>HI</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>$hi值</td>
+</tr>
+<tr class="odd">
+<td>LO</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>$lo值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="乘除槽相关信号表">乘除槽相关信号表</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>指令/信号</th>
+<th>MULT_DIV_OP</th>
+<th>MULT_DIV_START</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mult</td>
+<td><code>mult       | 1              | | multu     |</code>multu</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>div</td>
+<td><code>div        | 1              | | divu      |</code>divu</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="alu部件">ALU部件</h4>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SrcA</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>操作数A</td>
+</tr>
+<tr class="even">
+<td>SrcB</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>操作数B</td>
+</tr>
+<tr class="odd">
+<td>ALUOp</td>
+<td>in</td>
+<td>[3:0]</td>
+<td>计算方式</td>
+</tr>
+<tr class="even">
+<td>ALURes</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>ALU计算结果</td>
+</tr>
+</tbody>
+</table>
+<h4 id="control部件共用-1">Control部件(<em>共用</em>)</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>instr</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ALUOp</td>
+<td>out</td>
+<td>[3:0]</td>
+<td>选择ALU操作方式</td>
+</tr>
+<tr class="odd">
+<td>ALU_A_Sel</td>
+<td>out</td>
+<td></td>
+<td>选择</td>
+</tr>
+<tr class="even">
+<td>ALU_B_Sel</td>
+<td>out</td>
+<td></td>
+<td>选择32位立即数或者寄存器rt的值</td>
+</tr>
+<tr class="odd">
+<td>WD_Sel</td>
+<td>out</td>
+<td></td>
+<td>选择Write Data来源(1:ID阶段的PC+8,0:ALURes)</td>
+</tr>
+<tr class="even">
+<td>EX_NEW</td>
+<td>out</td>
+<td></td>
+<td>当前EX阶段<span class="math inline">\(T_{USE}\)</span></td>
+</tr>
+<tr class="odd">
+<td>MULT_DIV_OP</td>
+<td>out</td>
+<td></td>
+<td>乘除模块计算方式</td>
+</tr>
+<tr class="even">
+<td>MULT_DIV _START</td>
+<td>out</td>
+<td></td>
+<td>乘除模块开始信号</td>
+</tr>
+<tr class="odd">
+<td>MTHI</td>
+<td>out</td>
+<td></td>
+<td>mthi信号,下同理</td>
+</tr>
+<tr class="even">
+<td>MTLO</td>
+<td>out</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MFHI</td>
+<td>out</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>MFLO</td>
+<td>out</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="ex控制信号表">EX控制信号表</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>指令/信号</th>
+<th>ALUOp</th>
+<th>ALU_B_Sel</th>
+<th>WD_Sel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ori</td>
+<td><code>aluOr   | 1(选择立即数)   | 0(Write Data选择aluRes)   | | add       |</code>aluAdd</td>
+<td>0(选择rt寄存器)</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>sub</td>
+<td><code>aluSub  | 0(选择rt寄存器) | 0                         | | beq       | \        | \               | \                         | | lw        |</code>aluAdd</td>
+<td>1(选择立即数)</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>sw</td>
+<td><code>aluAdd  | 1(选择立即数)   | 0                         | | lui       |</code>aluLui</td>
+<td>1(选择立即数)</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>jal</td>
+<td>\</td>
+<td>\</td>
+<td>1(Write Data选择ID传递值)</td>
+</tr>
+<tr class="odd">
+<td>jr</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr class="even">
+<td>swc</td>
+<td><code>aluSwc  | 0               | 0                         | | bonall    | \        | \               | 1(Write Data选择ID传递值) | | and       |</code>aluAnd</td>
+<td>0(选择rt寄存器)</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>or</td>
+<td><code>aluOr   | 0(选择rt寄存器) | 0                         | | slt       |</code>aluSlt</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>sltu</td>
+<td><code>aluSltu | 0               | 0                         | | addi      |</code>aluAdd</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>andi</td>
+<td>`aluAnd</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>mult</td>
+<td>\</td>
+<td>\</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>mflo</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr class="even">
+<td>mfhi</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ext_new表">EX<span class="math inline">\(T_{NEW}\)</span>表</h4>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>EX_NEW</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>add</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>sub</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>ori</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>lw</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>sw</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>beq</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>lui</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>jal</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>jr</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>swc</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>bonall</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>lb</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>sb</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>lh</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>sh</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>and</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>or</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>slt</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>sltu</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>addi</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>andi</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>mflo</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>mfhi</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ex_mem">EX_MEM</h3>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>flush</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>EX_PC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>EX阶段PC地址</td>
+</tr>
+<tr class="odd">
+<td>EX_instr</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>EX阶段指令</td>
+</tr>
+<tr class="even">
+<td>EX_A3</td>
+<td>out</td>
+<td>[4:0]</td>
+<td>EX阶段传递的A3</td>
+</tr>
+<tr class="odd">
+<td>EX_WD</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>EX阶段Write Data</td>
+</tr>
+<tr class="even">
+<td>EX_RES</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>EX阶段ALURes</td>
+</tr>
+<tr class="odd">
+<td>EX_RD2</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>EX阶段Read Data2</td>
+</tr>
+<tr class="even">
+<td>MEM_PC</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>MEM阶段PC地址</td>
+</tr>
+<tr class="odd">
+<td>MEM_instr</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>MEM阶段指令</td>
+</tr>
+<tr class="even">
+<td>MEM_A3</td>
+<td>out</td>
+<td>[4:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MEM_WD</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>MEM_RES</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MEM_RD2</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mem">MEM</h3>
+<h4 id="顶层-3">顶层</h4>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MEM_PC</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>MEM_instr</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MEM_WD</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>MEM_RES</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MEM_RD2_forward</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>WB转发的Read Data2</td>
+</tr>
+<tr class="even">
+<td>MEM_A3</td>
+<td>in</td>
+<td>[4:0]</td>
+<td>MEM传递的A3寄存器地址</td>
+</tr>
+<tr class="odd">
+<td>RD</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>从Memory中读出的数据</td>
+</tr>
+<tr class="even">
+<td>MEM_WB_A3</td>
+<td>out</td>
+<td>[4:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MEM_WB_WD</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>MEM_A2_NEW</td>
+<td>out</td>
+<td>[1:0]</td>
+<td>MEM<span class="math inline">\(T_{NEW}\)</span></td>
+</tr>
+<tr class="odd">
+<td>MEM_BYTE_EN</td>
+<td>out</td>
+<td>[3:0]</td>
+<td>写入MEM数据的按字节使能信号</td>
+</tr>
+<tr class="even">
+<td>MEM_WRITE_DATA</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>写入MEM,按字节重新排序的数据</td>
+</tr>
+<tr class="odd">
+<td>MEM_DATA_ADDR</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>写入或读出的Memory地址</td>
+</tr>
+<tr class="even">
+<td>MEM_INST_ADDR</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>当load/store指令对应的PC地址</td>
+</tr>
+</tbody>
+</table>
+<h4 id="memcontrol部件共用">MEMControl部件(共用)</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>instr</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>MEM_WE</td>
+<td>out</td>
+<td></td>
+<td>选择是否写入Memory</td>
+</tr>
+<tr class="odd">
+<td>MEM_Sel</td>
+<td>out</td>
+<td></td>
+<td>选择是否将Memory读出值向后传递(1:yes)</td>
+</tr>
+<tr class="even">
+<td>MEM_A2_NEW</td>
+<td>out</td>
+<td></td>
+<td>MEM区<span class="math inline">\(T_{NEW}\)</span></td>
+</tr>
+<tr class="odd">
+<td>MEM_PART</td>
+<td>out</td>
+<td>[1:0]</td>
+<td>选择存入/读取Word,Half或者Byte</td>
+</tr>
+<tr class="even">
+<td>MEM_EXT_Control</td>
+<td>out</td>
+<td>[2:0]</td>
+<td>MEM_EXT部件控制信号</td>
+</tr>
+</tbody>
+</table>
+<h4 id="mem信号及t_new表">MEM信号及<span class="math inline">\(T_{NEW}\)</span>表</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>指令/信号</th>
+<th>MEM_WE</th>
+<th>MEM_Sel</th>
+<th>MEM_A2_NEW</th>
+<th>MEM_PART</th>
+<th>MEM_EXT_Control</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sw</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td><code>memWord                  | 3'bz            | | sh        | 1      | 0       | 0          |</code>memHalf</td>
+<td>3'bz</td>
+</tr>
+<tr class="even">
+<td>sb</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td><code>memByte                  | 3'bz            | | lw        | 0      | 1       | 1          |</code>memWord</td>
+<td><code>nonExt        |                 | | lh        | 0      | 1       | 1          |</code>memHalf</td>
+</tr>
+<tr class="odd">
+<td>else</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2'bz</td>
+<td>3'bz</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mem_wb">MEM_WB</h3>
+<table>
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MEM_PC</td>
+<td>in</td>
+<td>[31;0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>MEM_instr</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MEM_A3</td>
+<td>in</td>
+<td>[4:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>MEM_WD</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>WB_PC</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>WB_instr</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>WB_A3</td>
+<td>out</td>
+<td>[4:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>WB_WD</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="hazard_ctrl">HAZARD_CTRL</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th>端口</th>
+<th>In/Out?</th>
+<th>位宽</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>clk</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>reset</td>
+<td>in</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>ID阶段</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ID_A1</td>
+<td>in</td>
+<td>[4:0]</td>
+<td>ID阶段正在使用的A1寄存器</td>
+</tr>
+<tr class="odd">
+<td>ID_A2</td>
+<td>in</td>
+<td>[4:0]</td>
+<td>ID阶段正在使用的A2寄存器</td>
+</tr>
+<tr class="even">
+<td>ID_RD1</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>ID阶段寄存器堆读出的A1对应值</td>
+</tr>
+<tr class="odd">
+<td>ID_RD2</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>ID阶段寄存器堆读出的A2对应值</td>
+</tr>
+<tr class="even">
+<td>ID_A1_USE</td>
+<td>in</td>
+<td>[1:0]</td>
+<td><span class="math inline">\(T_{USE}\)</span></td>
+</tr>
+<tr class="odd">
+<td>ID_A2_USE</td>
+<td>in</td>
+<td>[1:0]</td>
+<td><span class="math inline">\(T_{USE}\)</span></td>
+</tr>
+<tr class="even">
+<td>ID_MD</td>
+<td>in</td>
+<td></td>
+<td>ID区处理指令是否与乘除相关</td>
+</tr>
+<tr class="odd">
+<td><strong>EX阶段</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>EX_A1</td>
+<td>in</td>
+<td>[4:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>EX_A2</td>
+<td>in</td>
+<td>[4:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>EX_RD1</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>IE阶段A2对应值,由ID区的转发值得来</td>
+</tr>
+<tr class="odd">
+<td>EX_RD2</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>IE阶段A2对应值,由ID区的转发值得来</td>
+</tr>
+<tr class="even">
+<td>EX_A1_USE</td>
+<td>in</td>
+<td>[1:0]</td>
+<td><span class="math inline">\(T_{USE}\)</span></td>
+</tr>
+<tr class="odd">
+<td>EX_A2_USE</td>
+<td>in</td>
+<td>[1:0]</td>
+<td><span class="math inline">\(T_{USE}\)</span></td>
+</tr>
+<tr class="even">
+<td>EX_A3</td>
+<td>in</td>
+<td>[4:0]</td>
+<td>EX传递的A3寄存器(rd)</td>
+</tr>
+<tr class="odd">
+<td>EX_WD</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>EX传递的Write Data</td>
+</tr>
+<tr class="even">
+<td>MULT_DIV_BUSY</td>
+<td>in</td>
+<td></td>
+<td>乘除模块忙碌信号</td>
+</tr>
+<tr class="odd">
+<td>MULT_DIV_START</td>
+<td>in</td>
+<td></td>
+<td>乘除模块开始信号</td>
+</tr>
+<tr class="even">
+<td><strong>MEM阶段</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MEM_A2</td>
+<td>in</td>
+<td>[4:0]</td>
+<td>MEM正在使用的A2</td>
+</tr>
+<tr class="even">
+<td>MEM_RD2</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>MEM的Read Data2,由EX传递而来</td>
+</tr>
+<tr class="odd">
+<td>MEM_A2_NEW</td>
+<td>in</td>
+<td>[1:0]</td>
+<td>MEM的<span class="math inline">\(T_{NEW}\)</span></td>
+</tr>
+<tr class="even">
+<td>MEM_A3</td>
+<td>in</td>
+<td>[4:0]</td>
+<td>MEM传递A3</td>
+</tr>
+<tr class="odd">
+<td>MEM_WD</td>
+<td>in</td>
+<td>[31:0]</td>
+<td>MEM传递的Write Data</td>
+</tr>
+<tr class="even">
+<td><strong>WB</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>WB_A3</td>
+<td>in</td>
+<td>[4:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>WB_WD</td>
+<td>in</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>转发FORWARD</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ID_RD1_forward</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ID_RD2_forward</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>EX_RD1_forward</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>EX_RD2_forward</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>MEM_RD2_forward</td>
+<td>out</td>
+<td>[31:0]</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>暂停信号STALL</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Enable_PC</td>
+<td>out</td>
+<td></td>
+<td>PC使能信号</td>
+</tr>
+<tr class="odd">
+<td>Enable_IF_ID</td>
+<td>out</td>
+<td></td>
+<td>IF_ID流水寄存器使能信号</td>
+</tr>
+<tr class="even">
+<td>Enable_ID_EX</td>
+<td>out</td>
+<td></td>
+<td>ID_EX流水寄存器使能信号</td>
+</tr>
+<tr class="odd">
+<td>Flush_ID_EX</td>
+<td>out</td>
+<td></td>
+<td>ID_EX流水寄存器刷新信号</td>
+</tr>
+<tr class="even">
+<td>Flush_EX_MEM</td>
+<td>out</td>
+<td></td>
+<td>EX_MEM流水寄存器刷新信号</td>
+</tr>
+</tbody>
+</table>
+<h2 id="阻塞矩阵">阻塞矩阵</h2>
+<table>
+
+<thead>
+<tr class="header">
+<th>IF/ID当前指令</th>
+<th></th>
+<th></th>
+<th>ID/EX</th>
+<th></th>
+<th></th>
+<th>EX/MEM</th>
+<th></th>
+<th></th>
+<th>MEM/WB</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>指令类型</td>
+<td>源寄存器</td>
+<td><span class="math inline">\(T_{use}\)</span></td>
+<td>cal_r<br>1/rd)<br></td>
+<td>cal_i<br>(1/rt)<br></td>
+<td>load<br>(2/rt)<br></td>
+<td>cal_r<br>(0/rd)</td>
+<td>cal_i<br>(0/rt)</td>
+<td>load<br>(1/rt)</td>
+<td>cal_r<br>(0/rd)</td>
+<td>cal_i<br>(0/rt)</td>
+<td>load<br>(0/rt)</td>
+</tr>
+<tr class="even">
+<td>beq</td>
+<td>rs/rt</td>
+<td>0</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>cal_r</td>
+<td>rs_rt</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>cal_i</td>
+<td>rs</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>load</td>
+<td>rs(base)</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>store</td>
+<td>rs(base)</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>store</td>
+<td>rt</td>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="暂停实现">暂停实现</h2>
+<blockquote>
+<p>使用课程讲解的AT法,在流水线运行期间,ID区提供<span class="math inline">\(T_{USE}\)</span>,EX,MEM区提供<span class="math inline">\(T_{NEW}\)</span>,在冒险控制模块中采用以下判断逻辑:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> STALL =  (ID_A1 == EX_A3 &amp;&amp; ID_A1_USE &lt; EX_NEW &amp;&amp; EX_A3 != <span class="hljs-number">0</span>)  <br>              || (ID_A2 == EX_A3 &amp;&amp; ID_A2_USE &lt; EX_NEW &amp;&amp; EX_A3 != <span class="hljs-number">0</span>)<br>              || (ID_A1 == MEM_A3 &amp;&amp; ID_A1_USE &lt; MEM_A2_NEW &amp;&amp; MEM_A3 != <span class="hljs-number">0</span>)<br>              || (ID_A2 == MEM_A3 &amp;&amp; ID_A2_USE &lt; MEM_A2_NEW &amp;&amp; MEM_A3 != <span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
+<p>STALL信号会控制三个行为:</p>
+<ol type="1">
+<li>暂停IF区的PC模块</li>
+<li>暂停IF_ID间流水寄存器</li>
+<li>刷新ID_EX间流水寄存器(等同于reset)</li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> Enable_PC = !STALL;<br><span class="hljs-keyword">assign</span> Enable_IF_ID = !STALL;<br><span class="hljs-keyword">assign</span> Flush_ID_EX = STALL;<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="转发实现">转发实现</h2>
+<blockquote>
+<p>转发有五条可能的数据通路:</p>
+<ol type="1">
+<li><span class="math inline">\(EX\_MEM\rightarrow ID\)</span></li>
+<li><span class="math inline">\(MEM\_WB\rightarrow ID\)</span></li>
+<li><span class="math inline">\(EX\_MEM\rightarrow EX\)</span></li>
+<li><span class="math inline">\(MEM\_WB\rightarrow EX\)</span></li>
+<li><span class="math inline">\(MEM\_WB\rightarrow MEM\)</span></li>
+</ol>
+<p>这里以ID区的RD1转发数据逻辑为例:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> ID_RD1_forward = (ID_A1 == <span class="hljs-number">5&#x27;b0</span>) ? <span class="hljs-number">0</span> :<br>                        (ID_A1 == MEM_A3) ? MEM_WD :<br>                        (ID_A1 == WB_A3) ? WB_WD :<br>                        ID_RD1;<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="寄存器内部转发实现">寄存器内部转发实现</h2>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Verilog"><span class="hljs-comment">// 考虑寄存器内部转发</span><br><span class="hljs-keyword">assign</span> RD1 = (A1 == A3 &amp;&amp; A1 != <span class="hljs-number">0</span> &amp;&amp; !reset) ? WD : grf[A1]; <br><span class="hljs-keyword">assign</span> RD2 = (A2 == A3 &amp;&amp; A2 != <span class="hljs-number">0</span> &amp;&amp; !reset) ? WD : grf[A2];<br></code></pre></td></tr></table></figure>
+<h2 id="测试方案">测试方案</h2>
+<ol type="1">
+<li><code>Python</code>自动生成测试mips文件</li>
+<li><code>Mars</code>运行mips文件,生成正确结果和机器码</li>
+<li><code>iverilog</code>运行CPU文件,生成测试结果</li>
+<li><code>Python</code>比较两份答案</li>
+</ol>
+<h2 id="思考题">思考题</h2>
+<p>1、为什么需要有单独的乘除法部件而不是整合进 ALU？为何需要有独立的
+HI、LO 寄存器？</p>
+<blockquote>
+<p>乘除法的运算速率明显低于其他运算,需要多个时钟周期,将乘除法分离出ALU可以避免乘除指令干扰其他运算指令的进行.</p>
+<p>独立的HI,LO寄存器可以保存乘除法运算的值,若不实现该独立寄存器,要等待运算完成后再将值送回寄存器堆中,严重降低流水线CPU的性能.</p>
+</blockquote>
+<p>2、真实的流水线 CPU
+是如何使用实现乘除法的？请查阅相关资料进行简单说明。</p>
+<blockquote>
+<ol type="1">
+<li>乘法</li>
+</ol>
+<p>CPU会初始化三个通用寄存器,分别存放被乘数,乘数,部分积.部分积寄存器初始化为0.</p>
+<p>判断乘数寄存器的低位是低电平(0)还是高电平(1),如果是0则将乘数寄存器右移一位,同时将部分积寄存器也右移一位</p>
+<p>如果为1,则将部分积寄存器加上被乘数寄存器的值,再进行移位操作</p>
+<p>乘数寄存器低位溢出的一位丢弃,部分寄存器低位溢出的一位填充到乘数寄存器的高位</p>
+<p>处理完毕后,乘数寄存器即<code>$lo</code>,部分积寄存器即<code>$hi</code></p>
+<ol start="2" type="1">
+<li>除法</li>
+</ol>
+<p>首先CPU会初始化三个寄存器,分别用来存放被除数,除数,部分商.</p>
+<p>余数(被除数与除数比较的结果)放到被除数的有效高位上.</p>
+<p>首先CPU会把被除数bit位与除数bit位对齐,然后在让对齐的被除数与除数比较(双符号位判断).</p>
+<p>双符号位判断： 比如01-10=11(前面的1是符号位) 1-2=-1
+计算机通过符号位和后一位的bit位来判断大于和小于，那么01-10=11
+就说明01小于10，如果得数为01就代表大于，如果得数为00代表等于。</p>
+<p>如果得数大于或等于则将比较的结果放到被除数的有效高位上然后在商寄存器上商：1
+并向后多看一位
+(上商就是将商的最低位左移1位腾出商寄存器最低位上新的商)</p>
+<p>如果得数小于则上商：0 并向后多看一位</p>
+<p>循环做以上操作当所有的被除数都处理完后，商做结果被除数里面的值就是余数.</p>
+</blockquote>
+<p>3、请结合自己的实现分析，你是如何处理 Busy 信号带来的周期阻塞的？</p>
+<blockquote>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> STALL =  (ID_A1 == EX_A3 &amp;&amp; ID_A1_USE &lt; EX_NEW &amp;&amp; EX_A3 != <span class="hljs-number">0</span>)  <br>              || (ID_A2 == EX_A3 &amp;&amp; ID_A2_USE &lt; EX_NEW &amp;&amp; EX_A3 != <span class="hljs-number">0</span>)<br>              || (ID_A1 == MEM_A3 &amp;&amp; ID_A1_USE &lt; MEM_A2_NEW &amp;&amp; MEM_A3 != <span class="hljs-number">0</span>)<br>              || (ID_A2 == MEM_A3 &amp;&amp; ID_A2_USE &lt; MEM_A2_NEW &amp;&amp; MEM_A3 != <span class="hljs-number">0</span>)<br>              || (ID_MD &amp;&amp; (MULT_DIV_BUSY || MULT_DIV_START));<br></code></pre></td></tr></table></figure>
+<p>当<code>EX</code>区的乘除部件在计算乘除结果时,<code>MULT_DIV_BUSY</code>置1;当ID区遇到乘除相关指令(<code>ID_MD</code>=1)时,若<code>MULT_DIV_BUSY</code>或<code>MULT_DIV_START</code>为1,则周期阻塞.</p>
+</blockquote>
+<p>4、请问采用字节使能信号的方式处理写指令有什么好处？（提示：从清晰性、统一性等角度考虑）</p>
+<blockquote>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> MEM_BYTE_EN =  (WE == <span class="hljs-number">0</span>) ? <span class="hljs-number">4&#x27;b0000</span> :<br>                 (MEM_PART == `memWord) ? <span class="hljs-number">4&#x27;b1111</span> :<br>                 (MEM_PART == `memHalf &amp;&amp; half == <span class="hljs-number">0</span>) ? <span class="hljs-number">4&#x27;b0011</span> :<br>                 (MEM_PART == `memHalf &amp;&amp; half == <span class="hljs-number">1</span>) ? <span class="hljs-number">4&#x27;b1100</span> :<br>                 (MEM_PART == `memByte &amp;&amp; <span class="hljs-keyword">byte</span> == <span class="hljs-number">2&#x27;b00</span>) ? <span class="hljs-number">4&#x27;b0001</span> : <br>                 (MEM_PART == `memByte &amp;&amp; <span class="hljs-keyword">byte</span> == <span class="hljs-number">2&#x27;b01</span>) ? <span class="hljs-number">4&#x27;b0010</span> : <br>                 (MEM_PART == `memByte &amp;&amp; <span class="hljs-keyword">byte</span> == <span class="hljs-number">2&#x27;b10</span>) ? <span class="hljs-number">4&#x27;b0100</span> : <br>                 (MEM_PART == `memByte &amp;&amp; <span class="hljs-keyword">byte</span> == <span class="hljs-number">2&#x27;b11</span>) ? <span class="hljs-number">4&#x27;b1000</span> :<br>                 <span class="hljs-number">4&#x27;b0000</span>;<br></code></pre></td></tr></table></figure>
+<p>使得代码清晰易读,避免了大量的位拼接的情况,可以处理按字,半字,字节读入/写入的操作,统一性好.</p>
+</blockquote>
+<p>5、请思考，我们在按字节读和按字节写时，实际从 DM 获得的数据和向 DM
+写入的数据是否是一字节？在什么情况下我们按字节读和按字节写的效率会高于按字读和按字写呢？</p>
+<blockquote>
+<p>不是,我们从DM获得的数据和向DM写入的数据都是一字,通过处理后选择其中一个字节执行操作.</p>
+<p>当指令序列有大量涉及<code>lh,sh,lb,sb</code>的指令时.</p>
+</blockquote>
+<p>6、为了对抗复杂性你采取了哪些抽象和规范手段？这些手段在译码和处理数据冲突的时候有什么样的特点与帮助？</p>
+<blockquote>
+<p>译码:将指令进行分类,降低译码代码复杂度和书写难度</p>
+<p>处理数据冲突:将数据通路的阻塞操作和转发操作分离,各部件的选择信号均由Control部件产生,减少各部件的耦合度</p>
+</blockquote>
+<p>7、在本实验中你遇到了哪些不同指令类型组合产生的冲突？你又是如何解决的？相应的测试样例是什么样的？</p>
+<blockquote>
+<p>ID区和EX区均在执行乘除类指令:STALL</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs assembly">ori $1, $0, 0x3456<br>ori $2, $0, 0x4675<br>ori $3, $0, 0x786922<br>multu $1, $2<br>mult $2, $3<br>mflo $3<br>mfhi $4<br></code></pre></td></tr></table></figure>
+</blockquote>
+<p>8、如果你是手动构造的样例，请说明构造策略，说明你的测试程序如何保证<strong>覆盖</strong>了所有需要测试的情况；如果你是<strong>完全随机</strong>生成的测试样例，请思考完全随机的测试程序有何不足之处；如果你在生成测试样例时采用了<strong>特殊的策略</strong>，比如构造连续数据冒险序列，请你描述一下你使用的策略如何<strong>结合了随机性</strong>达到强测的效果。</p>
+<blockquote>
+<p>不足之处:可能会遗漏特殊的阻塞和转发情况</p>
+<p>策略:</p>
+<ol type="1">
+<li><p>限制使用的寄存器个数,提高数据冲突的可能性</p></li>
+<li><p>生成beq,jal等跳转类指令时打印一组语句,指定跳转的寄存器值或<code>PC+OFFSET</code>,避免跳转地址不合理</p></li>
+</ol>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CO/" class="print-no-link">#CO</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P6-CPU设计文档</div>
+      <div>https://meteor041.git.io/2024/11/13/P6-CPU设计文档/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>meteor041</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/11/cache/" title="cache">
+                        <span class="hidden-mobile">cache</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appKey":"pUUnAo42ScpxvJ9HPTKdpwLM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://dehrbdkk.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appkey":"pUUnAo42ScpxvJ9HPTKdpwLM"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

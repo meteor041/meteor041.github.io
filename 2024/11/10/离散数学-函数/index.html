@@ -1,0 +1,889 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="meteor041">
+  <meta name="keywords" content="Computer Organization">
+  
+    <meta name="description" content="部分函数  如果从集合X到Y的二元关系f是&quot;单值&quot;的,即f满足以下条件: 若\(&lt;x,y_1&gt;\in f\wedge &lt;x,y_2&gt;\in f,则y_1&#x3D;y_2\) f为X到Y的部分函数  从X到Y的函数个数:\(\#(Y^X)&#x3D;(\#Y)^{\#X}\) 定义域 \(dom(f)&#x3D;\{x\in X|y\in Y使得y&#x3D;f(x)\}\) 若\(x \">
+<meta property="og:type" content="article">
+<meta property="og:title" content="离散数学-函数">
+<meta property="og:url" content="https://meteor041.git.io/2024/11/10/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="meteor041">
+<meta property="og:description" content="部分函数  如果从集合X到Y的二元关系f是&quot;单值&quot;的,即f满足以下条件: 若\(&lt;x,y_1&gt;\in f\wedge &lt;x,y_2&gt;\in f,则y_1&#x3D;y_2\) f为X到Y的部分函数  从X到Y的函数个数:\(\#(Y^X)&#x3D;(\#Y)^{\#X}\) 定义域 \(dom(f)&#x3D;\{x\in X|y\in Y使得y&#x3D;f(x)\}\) 若\(x \">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/10/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%87%BD%E6%95%B0/image-20241106151958714.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/10/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%87%BD%E6%95%B0/image-20241106153418485.png">
+<meta property="article:published_time" content="2024-11-10T13:55:43.000Z">
+<meta property="article:modified_time" content="2024-11-11T06:46:22.333Z">
+<meta property="article:author" content="meteor041">
+<meta property="article:tag" content="discrete mathematics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/11/10/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%87%BD%E6%95%B0/image-20241106151958714.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>离散数学-函数 - meteor041</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"meteor041.git.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="离散数学-函数"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-10 21:55" pubdate>
+          2024年11月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          888 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">离散数学-函数</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年11月11日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="部分函数">部分函数</h2>
+<blockquote>
+<p>如果从集合X到Y的二元关系f是"单值"的,即f满足以下条件:</p>
+<p>若<span class="math inline">\(&lt;x,y_1&gt;\in f\wedge
+&lt;x,y_2&gt;\in f,则y_1=y_2\)</span></p>
+<p>f为X到Y的部分函数</p>
+</blockquote>
+<p>从X到Y的函数个数:<span class="math inline">\(\#(Y^X)=(\#Y)^{\#X}\)</span></p>
+<h2 id="定义域">定义域</h2>
+<p><span class="math inline">\(dom(f)=\{x\in X|y\in
+Y使得y=f(x)\}\)</span></p>
+<p>若<span class="math inline">\(x
+\in  dom(f)\)</span>,则f在x处有定义,记为<span class="math inline">\(f(x)\downarrow\)</span>,否则称f在x处无定义,<span class="math inline">\(f(x)\uparrow\)</span>,显然<span class="math inline">\(dom(f)\subseteq X\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(若\text{dom}(f)=X,则记f为X到Y的全函数,f为X到Y的函数,记作f:X\rightarrow
+Y\)</span></li>
+<li><span class="math inline">\(若\text{dom}(f)\subset
+X,则称f为X到Y的严格部分函数\)</span></li>
+<li><span class="math inline">\(若\text{ran}(f)=Y,则称f为X到Y上的部分函数\)</span></li>
+<li><span class="math inline">\(若\text{ran}(f)\subset
+Y,则称f为X到Y内的部分函数\)</span></li>
+<li>若对任意<span class="math inline">\(x_1,x_2\in
+\text{dom}(f),当x_1\neq x_2时,皆有f(x_1)\neq f(x_2)\)</span></li>
+</ol>
+<h2 id="限制">限制</h2>
+<p>设函数<span class="math inline">\(f:X\rightarrow Y,A\subseteq
+X\)</span>,则<span class="math inline">\(f\cap (A\times
+Y)\)</span>是从A到Y的函数,则称f在A上的限制,记作<span class="math inline">\(f|_A\)</span>,又称<span class="math inline">\(f\)</span>是<span class="math inline">\(f_A\)</span>到X的延拓</p>
+<p><span class="math inline">\(f|_A=\{&lt;x,y&gt;|&lt;x,y&gt;\in F\wedge
+x\in A\}\)</span></p>
+<h2 id="定理">定理</h2>
+<p><span class="math inline">\(1)f|U(A)|=U\{f[A]|A\in A\}\)</span></p>
+<p><span class="math inline">\(任取y\in f[U\mathscr A],\therefore
+\exists x\in \cup \mathscr A使得f(x)=y\\\)</span></p>
+<p><span class="math inline">\(\exists A\in\mathscr A,x\in A\therefore
+y\in f(A),\therefore y\in \cup\{f[A]|A\in\mathscr A\},\therefore
+f[\cup\mathscr A]\subseteq \cup\{f[A]|A\in\mathscr A\}\)</span></p>
+<p><span class="math inline">\(任取A\in\mathscr A,A\subseteq \cup
+\mathscr A,f[A]\subseteq f[U\mathscr A]\)</span></p>
+<p><span class="math inline">\(\cup \{f[A]|A\in A\}\subseteq
+f[\cup\mathscr A]\)</span></p>
+<p>4)<span class="math inline">\(B=\emptyset,f^{-1}[\cap \mathscr
+B]=\cap\{f^{-1}[B]|B\in\mathscr B\}\)</span></p>
+<figure>
+<img src="image-20241106151958714.png" srcset="/img/loading.gif" lazyload alt="image-20241106151958714">
+<figcaption aria-hidden="true">image-20241106151958714</figcaption>
+</figure>
+<h2 id="定理-1">定理</h2>
+<p>若f为从集合X到Y的部分函数且<span class="math inline">\(A\subseteq
+X\)</span>,则:</p>
+<p><span class="math inline">\(dom(f|_A)=A\cap dom\ f\)</span></p>
+<p><span class="math inline">\(ran(f|_A)=f[A]\)</span></p>
+<p>若<span class="math inline">\(A\subseteq dom(f)\)</span>,则<span class="math inline">\(f|_A\)</span>为全函数</p>
+<h2 id="思考题">思考题</h2>
+<figure>
+<img src="image-20241106153418485.png" srcset="/img/loading.gif" lazyload alt="image-20241106153418485">
+<figcaption aria-hidden="true">image-20241106153418485</figcaption>
+</figure>
+<h1 id="函数的复合">函数的复合</h1>
+<p><span class="math inline">\(g\cdot f\)</span>定义为:</p>
+<p><span class="math inline">\(\{&lt;x,z&gt;|x\in X\wedge z\in Z\wedge
+\exists y(y\in Y\wedge y=f(x)\wedge z=g(y))\}\)</span></p>
+<h2 id="定理1">定理1</h2>
+<p>1)<span class="math inline">\(dom(g\cdot f)=f^{-1}[dom
+g]\)</span></p>
+<p>2)<span class="math inline">\(ran(g\cdot f)=g[ranf]\)</span></p>
+<p>3)若f,g都是全函数,<span class="math inline">\(g\cdot
+f\)</span>也是全函数</p>
+<h2 id="定理2">定理2</h2>
+<p><span class="math inline">\(h\cdot(g\cdot f)=(h\cdot g)\cdot
+f\)</span></p>
+<h1 id="特殊性质的函数与逆函数">特殊性质的函数与逆函数</h1>
+<h2 id="自然映射">自然映射</h2>
+<p><span class="math inline">\(\phi=\{&lt;x,[x]_R&gt;|x\in
+A\}\)</span></p>
+<h2 id="定理-2">定理</h2>
+<p><span class="math inline">\(若g\cdot f是满射,则g是满射\)</span></p>
+<p><span class="math inline">\(1)ran\ g\subseteq Z,g[ran\ f]=g[Y]=ran\
+g\)</span></p>
+<p><span class="math inline">\(g[ran\ f]=ran(g\cdot f)\)</span></p>
+<p><span class="math inline">\(由于g\cdot\ f为满射,ran(g\cdot
+f)=Z\)</span></p>
+<p><span class="math inline">\(\therefore Z\subseteq ran\ g\)</span></p>
+<p><span class="math inline">\(\therefore Z=ran\
+g\)</span>,即g为满射</p>
+<p>2)<span class="math inline">\(g\cdot f是单射,则f是单射\)</span></p>
+<p>3)<span class="math inline">\(若g\cdot
+f是双射,则g是满射且f是单射\)</span></p>
+<p><strong>左满右单</strong></p>
+<h2 id="思考题-1">思考题</h2>
+<p>a)<strong>有多少个从A到B的函数为</strong> <strong>单射？</strong></p>
+<p><strong>① 当 m</strong> <span class="math inline">\(\leq\)</span><strong>n时，有<span class="math inline">\(p^m_n=\frac{n!}{(n-m)!}\)</span>个单射；</strong></p>
+<p><strong>② 当 m &gt; n时，有0个单射</strong></p>
+<p><strong>有多少个从A到B的函数为</strong> <strong>满射</strong>？</p>
+<p><strong>① 当 m &lt; n时，有 0 个满射；</strong></p>
+<p><strong>② 当 n = 0且m</strong> <strong>¹</strong> <strong>0
+时，0个；</strong></p>
+<p><strong>③ 当 n = 0且m = 0时， 1个；</strong></p>
+<p><strong>④ 当 m</strong> <span class="math inline">\(\geq\)</span><strong>n</strong> <span class="math inline">\(\geq\)</span>
+<strong>1时，为第二类Stirling数：</strong></p>
+<p><span class="math inline">\(F(n,m)=\mathop\Sigma\limits^m_{i=0}\frac{(-1)^{m-i}i^n}{i!(m-i)!}\)</span></p>
+<h2 id="第二类斯特林数">第二类斯特林数</h2>
+<p><span class="math inline">\(S(n,m)=S(n-1,m-1)+S(n-1,m)*m\)</span></p>
+<h2 id="逆函数">逆函数</h2>
+<p><span class="math inline">\(1)若有g:Y\rightarrow X使得g\cdot
+f=I_X,则称f为左可逆的,\\并称g为f的一个左逆函数\)</span></p>
+<p><span class="math inline">\(2)若有g:Y\rightarrow X使得f\cdot
+g=I_Y,则称f为左可逆的,\\并称g为f的一个右逆函数\)</span></p>
+<h2 id="可逆判定">可逆判定</h2>
+<p><span class="math inline">\(f:X\rightarrow Y为左可逆的\leftrightarrow
+f为单射\)</span></p>
+<p><span class="math inline">\(f:X\rightarrow Y是右可逆的\leftrightarrow
+f为满射\)</span></p>
+<h2 id="可逆性质">可逆性质</h2>
+<p>以下条件等价:</p>
+<ol type="1">
+<li>f是双射</li>
+<li>f是可逆的</li>
+<li>f的逆关系<span class="math inline">\(f^{-1}\)</span>即为f的逆函数</li>
+</ol>
+<h1 id="集合的特征函数">集合的特征函数</h1>
+<p><span class="math inline">\(设U是全集,A是U的子集,A的特征函数\Phi_A:U\rightarrow
+\{0,1\}\\\Phi_A(x)=\begin{cases}1,x\in A\\0,x\notin
+A\end{cases}\)</span></p>
+<h2 id="性质">性质</h2>
+<p><span class="math inline">\(\forall x(\Phi_A(x)=0)\Leftrightarrow
+A=\emptyset\)</span></p>
+<p><span class="math inline">\(\forall x(\Phi_A(x)=1)\Leftrightarrow
+A=U\)</span></p>
+<p><span class="math inline">\(\forall x(\Phi_A(x)\leq
+\Phi_B(x))\Leftrightarrow A\subseteq B\)</span></p>
+<p><span class="math inline">\(\forall
+x(\Phi_A(x)=\Phi_B(x))\Leftrightarrow A=B\)</span></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/discrete-mathematics/" class="print-no-link">#discrete mathematics</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>离散数学-函数</div>
+      <div>https://meteor041.git.io/2024/11/10/离散数学-函数/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>meteor041</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/11/cache/" title="cache">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">cache</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/05/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="卷积神经网络">
+                        <span class="hidden-mobile">卷积神经网络</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appKey":"pUUnAo42ScpxvJ9HPTKdpwLM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://dehrbdkk.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appkey":"pUUnAo42ScpxvJ9HPTKdpwLM"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1019 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="meteor041">
+  <meta name="keywords" content="Computer Organization">
+  
+    <meta name="description" content="P0Q4:Logisim中的FSM  通过搭建Mealy状态机来实现正则表达式的检测   首先要分清Mealy状态机和Moore状态机在Logisim电路搭建中的区别  Mealy状态机与Moore状态机 Mealy状态机   Mealy状态机基本框架(同步复位)   Mealy状态机的输出由当前状态和输入两者共同决定  Moore状态机   Moore状态机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计组P0总结">
+<meta property="og:url" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="meteor041">
+<meta property="og:description" content="P0Q4:Logisim中的FSM  通过搭建Mealy状态机来实现正则表达式的检测   首先要分清Mealy状态机和Moore状态机在Logisim电路搭建中的区别  Mealy状态机与Moore状态机 Mealy状态机   Mealy状态机基本框架(同步复位)   Mealy状态机的输出由当前状态和输入两者共同决定  Moore状态机   Moore状态机">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924155626167.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924160204641.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/55c3cda2c7b623233f71ab3df85d9dc.jpg">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924162641868.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924163022813.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924163130250.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924163249957.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924163603386.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924163830605.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924165125605.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924165228120.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924170237417.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924170627688.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924172513329.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924172631774.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924172846401.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924194642759.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924194631439.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924185937157.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924185908829.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924185924211.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924193047096.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924193237747.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924193352492.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240925081703388.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240925081714186.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240925081724381.png">
+<meta property="article:published_time" content="2024-09-24T07:51:57.000Z">
+<meta property="article:modified_time" content="2024-09-25T00:22:41.870Z">
+<meta property="article:author" content="meteor041">
+<meta property="article:tag" content="CO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/09/24/%E8%AE%A1%E7%BB%84P0%E6%80%BB%E7%BB%93/image-20240924155626167.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>计组P0总结 - meteor041</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"meteor041.git.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计组P0总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-24 15:51" pubdate>
+          2024年9月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">计组P0总结</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年9月25日 早上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="p0q4logisim中的fsm">P0Q4:Logisim中的FSM</h2>
+<blockquote>
+<p>通过搭建Mealy状态机来实现正则表达式的检测</p>
+</blockquote>
+<blockquote>
+<p>首先要分清Mealy状态机和Moore状态机在Logisim电路搭建中的区别</p>
+</blockquote>
+<h3 id="mealy状态机与moore状态机">Mealy状态机与Moore状态机</h3>
+<h4 id="mealy状态机">Mealy状态机</h4>
+<figure>
+<img src="image-20240924155626167.png" srcset="/img/loading.gif" lazyload alt="Mealy状态机基本框架(同步复位)">
+<figcaption aria-hidden="true">Mealy状态机基本框架(同步复位)</figcaption>
+</figure>
+<blockquote>
+<p>Mealy状态机的输出由当前状态和输入两者共同决定</p>
+</blockquote>
+<h4 id="moore状态机">Moore状态机</h4>
+<figure>
+<img src="image-20240924160204641.png" srcset="/img/loading.gif" lazyload alt="Moore状态机框架(异步复位)">
+<figcaption aria-hidden="true">Moore状态机框架(异步复位)</figcaption>
+</figure>
+<blockquote>
+<p>Moore状态机的输出由当前状态决定</p>
+</blockquote>
+<h3 id="解题步骤">解题步骤</h3>
+<p>对于本题Mealy状态机,我们分以下四步完成搭建.</p>
+<ol type="1">
+<li>确定状态编码,画出状态转移</li>
+<li>搭建Mealy状态机框架,确定复位方式</li>
+<li>实现状态转移的Logisim电路</li>
+<li>实现输出逻辑的Logisim电路</li>
+</ol>
+<h4 id="确定状态编码画出状态转移">确定状态编码,画出状态转移</h4>
+<table>
+<thead>
+<tr class="header">
+<th>编码</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S0</td>
+<td>IDLE(空闲,当reset置1时回到此状态)</td>
+</tr>
+<tr class="even">
+<td>S1</td>
+<td>"b"</td>
+</tr>
+<tr class="odd">
+<td>S2</td>
+<td>"bb"</td>
+</tr>
+<tr class="even">
+<td>S3</td>
+<td>"ba","bc","bba"或"bbc"</td>
+</tr>
+<tr class="odd">
+<td>S4</td>
+<td>满足正则表达式的状态</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="55c3cda2c7b623233f71ab3df85d9dc.jpg" srcset="/img/loading.gif" lazyload alt="状态转移图">
+<figcaption aria-hidden="true">状态转移图</figcaption>
+</figure>
+<h4 id="搭建mealy状态机框架确定复位方式">搭建Mealy状态机框架,确定复位方式</h4>
+<figure>
+<img src="image-20240924162641868.png" srcset="/img/loading.gif" lazyload alt="Mealy状态机+同步复位">
+<figcaption aria-hidden="true">Mealy状态机+同步复位</figcaption>
+</figure>
+<h4 id="实现状态转移的logisim电路">实现状态转移的Logisim电路</h4>
+<h5 id="确定in与state">确定In与state</h5>
+<blockquote>
+<p>通过comparator联通对应的tunnel</p>
+</blockquote>
+<figure>
+<img src="image-20240924163022813.png" srcset="/img/loading.gif" lazyload alt="确定输入In">
+<figcaption aria-hidden="true">确定输入In</figcaption>
+</figure>
+<figure>
+<img src="image-20240924163130250.png" srcset="/img/loading.gif" lazyload alt="确定上一个状态state">
+<figcaption aria-hidden="true">确定上一个状态state</figcaption>
+</figure>
+<h5 id="根据状态转移图搭建变换关系电路">根据状态转移图搭建变换关系电路</h5>
+<blockquote>
+<p>通过与非门与multiplexer,实现变换关系.这里我们以s1为例说明,若s1与b均为1,则nxt置2,反之置为0.</p>
+</blockquote>
+<figure>
+<img src="image-20240924163249957.png" srcset="/img/loading.gif" lazyload alt="S1状态可能出现的下一个状态">
+<figcaption aria-hidden="true">S1状态可能出现的下一个状态</figcaption>
+</figure>
+<h5 id="输出下一个状态">输出下一个状态</h5>
+<blockquote>
+<p>利用或门性质,对于这13个输入,只有其中一个是有效的,其余皆为0(我在这里还加入了一个实际上无效果的<span class="math inline">\(s4\rightarrow s0\)</span>,便于检查)</p>
+</blockquote>
+<figure>
+<img src="image-20240924163603386.png" srcset="/img/loading.gif" lazyload alt="输出下一个状态">
+<figcaption aria-hidden="true">输出下一个状态</figcaption>
+</figure>
+<h4 id="实现输出逻辑的logisim电路">实现输出逻辑的Logisim电路</h4>
+<blockquote>
+<p>考虑输入和当前状态两者,只有它们所决定的下一个状态为s4时,output才为1,否则为0</p>
+</blockquote>
+<figure>
+<img src="image-20240924163830605.png" srcset="/img/loading.gif" lazyload alt="输出逻辑">
+<figcaption aria-hidden="true">输出逻辑</figcaption>
+</figure>
+<h3 id="思考">思考</h3>
+<h4 id="section">1</h4>
+<p>状态存储器的复位方式包括<strong>异步复位</strong>和<strong>同步复位</strong>，二者的定义分别是什么？两种复位方式在
+Verilog 中可以通过什么语句句式实现？在 Logisim
+中又可以通过什么样的电路框架实现？</p>
+<blockquote>
+<p>同步复位:当时钟信号的上升沿到来时,若复位信号有效,对系统进行复位.</p>
+<p>异步复位:当复位信号有效时,立即对系统进行复位.这一过程与时钟信号无关.</p>
+</blockquote>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">// 同步复位</span><br><span class="hljs-keyword">module</span> synchronous_reset(<br>	<span class="hljs-keyword">input</span> a,<br>	<span class="hljs-keyword">input</span> b,<br>    <span class="hljs-keyword">input</span> clk,<br>    <span class="hljs-keyword">input</span> reset,<br>    <span class="hljs-keyword">output</span> c);<br>    <span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk)<span class="hljs-keyword">begin</span><br>        <span class="hljs-keyword">if</span> (reset)<span class="hljs-keyword">begin</span><br>            c &lt;= <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">end</span> <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>            c &lt;= a &amp; b;<br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">// 异步复位</span><br><span class="hljs-keyword">module</span> asynchronous_reset(<br>	<span class="hljs-keyword">input</span> a,<br>	<span class="hljs-keyword">input</span> b,<br>    <span class="hljs-keyword">input</span> clk,<br>    <span class="hljs-keyword">input</span> areset,<br>    <span class="hljs-keyword">output</span> c);<br>    <span class="hljs-keyword">always</span> @(<span class="hljs-keyword">posedge</span> clk <span class="hljs-keyword">or</span> <span class="hljs-keyword">posedge</span> areset)<span class="hljs-keyword">begin</span><br>        <span class="hljs-keyword">if</span> (areset)<span class="hljs-keyword">begin</span><br>            c &lt;= <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">end</span> <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>            c &lt;= a &amp; b;<br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">endmodule</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>在Logisim中,寄存器的clear端口可以很方便地实现异步复位,而同步复位需要在信号输入D端口前加上一个multplexer,由areset决定信号不变还是置0,待下一次时钟信号上升沿输入寄存器</p>
+</blockquote>
+<figure>
+<img src="image-20240924165125605.png" srcset="/img/loading.gif" lazyload alt="异步复位">
+<figcaption aria-hidden="true">异步复位</figcaption>
+</figure>
+<figure>
+<img src="image-20240924165228120.png" srcset="/img/loading.gif" lazyload alt="同步复位">
+<figcaption aria-hidden="true">同步复位</figcaption>
+</figure>
+<h4 id="section-1">2</h4>
+<p>在 Verilog
+中我们可以通过<code>initial</code>块对状态存储器的初值进行定义，在
+Logisim 中我们可以通过哪些电路框架实现赋初值的功能？</p>
+<blockquote>
+<p>要实现对于是否处于初始状态的判断,我们需要用到Counter和plexer,基本逻辑框架如下</p>
+</blockquote>
+<figure>
+<img src="image-20240924170237417.png" srcset="/img/loading.gif" lazyload alt="使用Counter实现初始赋值">
+<figcaption aria-hidden="true">使用Counter实现初始赋值</figcaption>
+</figure>
+<blockquote>
+<p>基于此,我们可以实现一个带有初始赋值功能的寄存器</p>
+</blockquote>
+<figure>
+<img src="image-20240924170627688.png" srcset="/img/loading.gif" lazyload alt="带有初始赋值功能的寄存器">
+<figcaption aria-hidden="true">带有初始赋值功能的寄存器</figcaption>
+</figure>
+<h2 id="p0q1crc-校验码计算电路的设计与测试">P0Q1:CRC
+校验码计算电路的设计与测试</h2>
+<h4 id="设计模二除法器">设计模二除法器</h4>
+<figure>
+<img src="image-20240924172513329.png" srcset="/img/loading.gif" lazyload alt="模二除法器端口">
+<figcaption aria-hidden="true">模二除法器端口</figcaption>
+</figure>
+<blockquote>
+<p>注:本题不需要用到D端口</p>
+</blockquote>
+<figure>
+<img src="image-20240924172631774.png" srcset="/img/loading.gif" lazyload alt="模二除法器">
+<figcaption aria-hidden="true">模二除法器</figcaption>
+</figure>
+<h4 id="使用四位模二除法器搭建-8-位-crc-校验码计算电路">使用四位模二除法器搭建
+8 位 CRC 校验码计算电路</h4>
+<figure>
+<img src="image-20240924172846401.png" srcset="/img/loading.gif" lazyload alt="CRC校验码计算电路">
+<figcaption aria-hidden="true">CRC校验码计算电路</figcaption>
+</figure>
+<h2 id="p0q2实现grf">P0Q2:实现GRF</h2>
+<h3 id="端口">端口</h3>
+<figure>
+<img src="image-20240924194642759.png" srcset="/img/loading.gif" lazyload alt="端口">
+<figcaption aria-hidden="true">端口</figcaption>
+</figure>
+<figure>
+<img src="image-20240924194631439.png" srcset="/img/loading.gif" lazyload alt="功能">
+<figcaption aria-hidden="true">功能</figcaption>
+</figure>
+<figure>
+<img src="image-20240924185937157.png" srcset="/img/loading.gif" lazyload alt="端口电路">
+<figcaption aria-hidden="true">端口电路</figcaption>
+</figure>
+<h3 id="主要部件">主要部件</h3>
+<figure>
+<img src="image-20240924185908829.png" srcset="/img/loading.gif" lazyload alt="32个32位寄存器">
+<figcaption aria-hidden="true">32个32位寄存器</figcaption>
+</figure>
+<figure>
+<img src="image-20240924185924211.png" srcset="/img/loading.gif" lazyload alt="选择器组件">
+<figcaption aria-hidden="true">选择器组件</figcaption>
+</figure>
+<h3 id="问题">问题</h3>
+<h4 id="三态">三态</h4>
+<blockquote>
+<p>在选择器组件中,我们必须将DMX(demultiplexer)中的three-state设置为yes</p>
+<p>启用three-state后,会控制demultiplexer的输入输出端口进入高阻态</p>
+</blockquote>
+<figure>
+<img src="image-20240924193047096.png" srcset="/img/loading.gif" lazyload alt="示例电路">
+<figcaption aria-hidden="true">示例电路</figcaption>
+</figure>
+<blockquote>
+<p>先设定DMX的three-state为no,WE为1,IN为1,SEL为0,在时钟信号上升沿:</p>
+</blockquote>
+<figure>
+<img src="image-20240924193237747.png" srcset="/img/loading.gif" lazyload alt="OUT1为高电平">
+<figcaption aria-hidden="true">OUT1为高电平</figcaption>
+</figure>
+<blockquote>
+<p>可以看到寄存器1存储值为1,OUT1为高电平</p>
+</blockquote>
+<blockquote>
+<p>接着再令SEL为1,在下一个时钟上升沿:</p>
+</blockquote>
+<figure>
+<img src="image-20240924193352492.png" srcset="/img/loading.gif" lazyload alt="OUT1恢复为低电平,OUT2变为高电平">
+<figcaption aria-hidden="true">OUT1恢复为低电平,OUT2变为高电平</figcaption>
+</figure>
+<blockquote>
+<p>可以看到OUT1恢复为低电平,OUT2变为高电平,这其实并不符合我们的本意.OUT1此刻应该保持为高电平,且寄存器1不应该改变值为0.</p>
+</blockquote>
+<blockquote>
+<p>最简便的对策就是勾选three-state,这样DMX的输出端口在未被SEL信号选中的时候会输出高阻值(X),避免对连接的寄存器和输出端口产生影响.</p>
+</blockquote>
+<p>P0附加题:ftoi</p>
+<figure>
+<img src="image-20240925081703388.png" srcset="/img/loading.gif" lazyload alt="主电路">
+<figcaption aria-hidden="true">主电路</figcaption>
+</figure>
+<figure>
+<img src="image-20240925081714186.png" srcset="/img/loading.gif" lazyload alt="normalize">
+<figcaption aria-hidden="true">normalize</figcaption>
+</figure>
+<figure>
+<img src="image-20240925081724381.png" srcset="/img/loading.gif" lazyload alt="补码器">
+<figcaption aria-hidden="true">补码器</figcaption>
+</figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CO/" class="print-no-link">#CO</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>计组P0总结</div>
+      <div>https://meteor041.git.io/2024/09/24/计组P0总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>meteor041</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/25/Java-%E6%B7%B1%E5%85%8B%E9%9A%86%E4%B8%8E%E6%B5%85%E5%85%8B%E9%9A%86/" title="Java 深克隆与浅克隆">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java 深克隆与浅克隆</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/23/%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8A%E6%9C%BA/" title="第一次上机">
+                        <span class="hidden-mobile">第一次上机</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appKey":"pUUnAo42ScpxvJ9HPTKdpwLM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://dehrbdkk.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appkey":"pUUnAo42ScpxvJ9HPTKdpwLM"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
