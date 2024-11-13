@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="P6-CPU设计文档 流水线架构 12345678910111213141516171819202122- mips.v	- IF.v #取指阶段		- pc.v		- im.v	- IF_ID.v #IF与ID之间的寄存器	- ID.v #译码阶段		- ctrl.v #采用分布式译码		- grf.v # 寄存器堆		- ext.v # 立即数扩展		- cmp.v # 比较2个数		-">
+    <meta name="description" content="P6-CPU设计文档流水线架构12345678910111213141516171819202122- mips.v	- IF.v #取指阶段		- pc.v		- im.v	- IF_ID.v #IF与ID之间的寄存器	- ID.v #译码阶段		- ctrl.v #采用分布式译码		- grf.v # 寄存器堆		- ext.v # 立即数扩展		- cmp.v # 比较2个数		- npc.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P6-CPU设计文档">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/13/P6-CPU%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="P6-CPU设计文档 流水线架构 12345678910111213141516171819202122- mips.v	- IF.v #取指阶段		- pc.v		- im.v	- IF_ID.v #IF与ID之间的寄存器	- ID.v #译码阶段		- ctrl.v #采用分布式译码		- grf.v # 寄存器堆		- ext.v # 立即数扩展		- cmp.v # 比较2个数		-">
+<meta property="og:description" content="P6-CPU设计文档流水线架构12345678910111213141516171819202122- mips.v	- IF.v #取指阶段		- pc.v		- im.v	- IF_ID.v #IF与ID之间的寄存器	- ID.v #译码阶段		- ctrl.v #采用分布式译码		- grf.v # 寄存器堆		- ext.v # 立即数扩展		- cmp.v # 比较2个数		- npc.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-12T17:42:57.000Z">
 <meta property="article:modified_time" content="2024-11-12T17:43:20.352Z">
@@ -295,17 +295,14 @@
             
               <div class="markdown-body">
                 
-                <h1 id="p6-cpu设计文档">P6-CPU设计文档</h1>
-<h2 id="流水线架构">流水线架构</h2>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> mips.v<br><span class="hljs-bullet">	-</span> IF.v #取指阶段<br><span class="hljs-bullet">		-</span> pc.v<br><span class="hljs-bullet">		-</span> im.v<br><span class="hljs-bullet">	-</span> IF<span class="hljs-emphasis">_ID.v #IF与ID之间的寄存器</span><br><span class="hljs-emphasis">	- ID.v #译码阶段</span><br><span class="hljs-emphasis">		- ctrl.v #采用分布式译码</span><br><span class="hljs-emphasis">		- grf.v # 寄存器堆</span><br><span class="hljs-emphasis">		- ext.v # 立即数扩展</span><br><span class="hljs-emphasis">		- cmp.v # 比较2个数</span><br><span class="hljs-emphasis">		- npc.v # 为B类/J计算下条地址</span><br><span class="hljs-emphasis">	- ID_</span>EX.v #ID与EX之间的寄存器<br><span class="hljs-bullet">	-</span> EX.v  #执行阶段<br><span class="hljs-bullet">		-</span> ctrl.v #采用分布式译码<br><span class="hljs-bullet">		-</span> alu.v<br><span class="hljs-bullet">	-</span> EX<span class="hljs-emphasis">_MEM.v #EX与MEM之间的寄存器</span><br><span class="hljs-emphasis">	- MEM.v #存储阶段</span><br><span class="hljs-emphasis">		- ctrl.v #采用分布式译码</span><br><span class="hljs-emphasis">		- dm.v</span><br><span class="hljs-emphasis">	- MEM_</span>WB.v #MEM与WB之间的寄存器<br><span class="hljs-bullet">	-</span> HAZARD<span class="hljs-emphasis">_CTRL.v #冒险控制模块</span><br><span class="hljs-emphasis">	</span><br></code></pre></td></tr></table></figure>
-<h3 id="if">IF</h3>
-<h4 id="顶层">顶层</h4>
-<blockquote>
+                <h1 id="P6-CPU设计文档"><a href="#P6-CPU设计文档" class="headerlink" title="P6-CPU设计文档"></a>P6-CPU设计文档</h1><h2 id="流水线架构"><a href="#流水线架构" class="headerlink" title="流水线架构"></a>流水线架构</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> mips.v<br><span class="hljs-bullet">	-</span> IF.v #取指阶段<br><span class="hljs-bullet">		-</span> pc.v<br><span class="hljs-bullet">		-</span> im.v<br><span class="hljs-bullet">	-</span> IF<span class="hljs-emphasis">_ID.v #IF与ID之间的寄存器</span><br><span class="hljs-emphasis">	- ID.v #译码阶段</span><br><span class="hljs-emphasis">		- ctrl.v #采用分布式译码</span><br><span class="hljs-emphasis">		- grf.v # 寄存器堆</span><br><span class="hljs-emphasis">		- ext.v # 立即数扩展</span><br><span class="hljs-emphasis">		- cmp.v # 比较2个数</span><br><span class="hljs-emphasis">		- npc.v # 为B类/J计算下条地址</span><br><span class="hljs-emphasis">	- ID_</span>EX.v #ID与EX之间的寄存器<br><span class="hljs-bullet">	-</span> EX.v  #执行阶段<br><span class="hljs-bullet">		-</span> ctrl.v #采用分布式译码<br><span class="hljs-bullet">		-</span> alu.v<br><span class="hljs-bullet">	-</span> EX<span class="hljs-emphasis">_MEM.v #EX与MEM之间的寄存器</span><br><span class="hljs-emphasis">	- MEM.v #存储阶段</span><br><span class="hljs-emphasis">		- ctrl.v #采用分布式译码</span><br><span class="hljs-emphasis">		- dm.v</span><br><span class="hljs-emphasis">	- MEM_</span>WB.v #MEM与WB之间的寄存器<br><span class="hljs-bullet">	-</span> HAZARD<span class="hljs-emphasis">_CTRL.v #冒险控制模块</span><br><span class="hljs-emphasis">	</span><br></code></pre></td></tr></table></figure>
+<h3 id="IF"><a href="#IF" class="headerlink" title="IF"></a>IF</h3><h4 id="顶层"><a href="#顶层" class="headerlink" title="顶层"></a>顶层</h4><blockquote>
 <p>Instruction Fetch阶段,从指令寄存器中读取指令</p>
 </blockquote>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -313,31 +310,31 @@
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td>时钟信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td>重置信号</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>enablePC</td>
 <td>in</td>
 <td></td>
 <td>使能信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NPC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>PC地址输入</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>IF_PC</td>
 <td>out</td>
 <td>[31:0]</td>
@@ -345,10 +342,11 @@
 </tr>
 </tbody>
 </table>
-<h4 id="pc部件">PC部件</h4>
+</div>
+<h4 id="PC部件"><a href="#PC部件" class="headerlink" title="PC部件"></a>PC部件</h4><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -356,31 +354,31 @@
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td>时钟信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td>重置信号</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>enable</td>
 <td>in</td>
 <td></td>
 <td>使能信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NPC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>PC地址输入</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>PC</td>
 <td>out</td>
 <td>[31:0]</td>
@@ -388,13 +386,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="if_id">IF_ID</h3>
-<blockquote>
+</div>
+<h3 id="IF-ID"><a href="#IF-ID" class="headerlink" title="IF_ID"></a>IF_ID</h3><blockquote>
 <p>在时钟上升沿将IF_PC,IF_instr的值传递给ID_PC,ID_instr</p>
 </blockquote>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -402,43 +401,43 @@
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>enable</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>IF_PC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>IF传入PC地址</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>IF_instr</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>IF传入指令</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_PC</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>ID接收PC地址</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_instr</td>
 <td>out</td>
 <td>[31:0]</td>
@@ -446,15 +445,14 @@
 </tr>
 </tbody>
 </table>
-<h3 id="id">ID</h3>
-<blockquote>
+</div>
+<h3 id="ID"><a href="#ID" class="headerlink" title="ID"></a>ID</h3><blockquote>
 <p>Instruction Decode阶段</p>
 </blockquote>
-<h4 id="顶层-1">顶层</h4>
+<h4 id="顶层-1"><a href="#顶层-1" class="headerlink" title="顶层"></a>顶层</h4><div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -462,87 +460,115 @@
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>IF_PC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>IF区的PC,用于正常的地址+4操作</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_PC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>ID区的PC</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_instr</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>ID区的指令</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_RD1_forward</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>转发的Data1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_RD2_forward</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>转发的Data2</td>
 </tr>
-<tr class="even">
+<tr>
 <td>WB_WD</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>写入数据,来自于WB阶段</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>WB_A3</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>写入寄存器地址,来自于WB阶段</td>
 </tr>
-<tr class="even">
+<tr>
 <td>WB_PC</td>
 <td>in</td>
 <td>[31:0]</td>
-<td>写入数据对应PC地址,传递给<span class="math inline">\(display语句,作为显示,来自于WB阶段 |
-| ID_RD1         | out     | [31:0] |
-ID输出rs寄存器读出值                                        |
-| ID_RD2         | out     | [31:0] |
-ID输出rt寄存器读出值                                        |
-| ID_IMM32       | out     | [31:0] |
-ID输出经过位扩展的立即数                                    |
-| ID_A3          | out     | [4:0]  |
-ID阶段的A3,向后传递用                                       |
-| ID_WD          | out     | [31:0] |
-ID阶段的写入数据,向后传递                                   |
-| NPC            | out     | [31:0] |
-ID阶段(内部NPC模块)计算的下一个地址                         |
-| ID_A1_USE      | out     | [1:0]  |
-ID阶段rs寄存器的\)</span>T_{USE}$</td>
+<td>写入数据对应PC地址,传递给$display语句,作为显示,来自于WB阶段</td>
 </tr>
-<tr class="odd">
+<tr>
+<td>ID_RD1</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>ID输出rs寄存器读出值</td>
+</tr>
+<tr>
+<td>ID_RD2</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>ID输出rt寄存器读出值</td>
+</tr>
+<tr>
+<td>ID_IMM32</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>ID输出经过位扩展的立即数</td>
+</tr>
+<tr>
+<td>ID_A3</td>
+<td>out</td>
+<td>[4:0]</td>
+<td>ID阶段的A3,向后传递用</td>
+</tr>
+<tr>
+<td>ID_WD</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>ID阶段的写入数据,向后传递</td>
+</tr>
+<tr>
+<td>NPC</td>
+<td>out</td>
+<td>[31:0]</td>
+<td>ID阶段(内部NPC模块)计算的下一个地址</td>
+</tr>
+<tr>
+<td>ID_A1_USE</td>
+<td>out</td>
+<td>[1:0]</td>
+<td>ID阶段rs寄存器的$T_{USE}$</td>
+</tr>
+<tr>
 <td>ID_A2_USE</td>
 <td>out</td>
 <td>[1:0]</td>
-<td>ID阶段rt寄存器的<span class="math inline">\(T_{USE}\)</span></td>
+<td>ID阶段rt寄存器的$T_{USE}$</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_MD</td>
 <td>out</td>
 <td></td>
@@ -550,13 +576,14 @@ ID阶段rs寄存器的\)</span>T_{USE}$</td>
 </tr>
 </tbody>
 </table>
-<h4 id="ext部件">EXT部件</h4>
-<blockquote>
+</div>
+<h4 id="EXT部件"><a href="#EXT部件" class="headerlink" title="EXT部件"></a>EXT部件</h4><blockquote>
 <p>立即数扩展</p>
 </blockquote>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -564,19 +591,19 @@ ID阶段rs寄存器的\)</span>T_{USE}$</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>imm16</td>
 <td>in</td>
 <td>[15:0]</td>
 <td>输入的16位立即数</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ExtControl</td>
 <td>in</td>
 <td></td>
 <td>决定零扩展还是符号扩展</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>imm32</td>
 <td>out</td>
 <td>[31:0]</td>
@@ -584,14 +611,14 @@ ID阶段rs寄存器的\)</span>T_{USE}$</td>
 </tr>
 </tbody>
 </table>
-<h4 id="cmp部件">CMP部件</h4>
-<blockquote>
+</div>
+<h4 id="CMP部件"><a href="#CMP部件" class="headerlink" title="CMP部件"></a>CMP部件</h4><blockquote>
 <p>判断两个输入(从寄存器取出来的两个值)是否相等,输出zero,用于处理beq信号通路</p>
 </blockquote>
+<div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -599,25 +626,25 @@ ID阶段rs寄存器的\)</span>T_{USE}$</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>A</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>输入数据,接收的是转发的Data1(RD1_forward)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>B</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>输入数据,接收的是转发的Data2(RD2_forward)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>CMPControl</td>
 <td>in</td>
 <td>[3:0]</td>
 <td>CMP部件控制信号(选择比较方式)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>zero</td>
 <td>out</td>
 <td></td>
@@ -625,48 +652,50 @@ ID阶段rs寄存器的\)</span>T_{USE}$</td>
 </tr>
 </tbody>
 </table>
-<h4 id="cmpcontrol信号表">CMPControl信号表</h4>
+</div>
+<h4 id="CMPControl信号表"><a href="#CMPControl信号表" class="headerlink" title="CMPControl信号表"></a>CMPControl信号表</h4><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>指令</th>
 <th>CMPControl</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>beq</td>
-<td>4'b0000</td>
+<td>4’b0000</td>
 </tr>
-<tr class="even">
+<tr>
 <td>bgez</td>
-<td>4'b0001</td>
+<td>4’b0001</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>bgtz</td>
-<td>4'b0010</td>
+<td>4’b0010</td>
 </tr>
-<tr class="even">
+<tr>
 <td>blez</td>
-<td>4'b0011</td>
+<td>4’b0011</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>bltz</td>
-<td>4'b0100</td>
+<td>4’b0100</td>
 </tr>
-<tr class="even">
+<tr>
 <td>bne</td>
-<td>4'b0101</td>
+<td>4’b0101</td>
 </tr>
 </tbody>
 </table>
-<h4 id="npc部件">NPC部件</h4>
-<blockquote>
+</div>
+<h4 id="NPC部件"><a href="#NPC部件" class="headerlink" title="NPC部件"></a>NPC部件</h4><blockquote>
 <p>计算下一个PC地址</p>
 </blockquote>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -674,49 +703,49 @@ ID阶段rs寄存器的\)</span>T_{USE}$</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>IF_PC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>IF输出的PC</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_PC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_imm26</td>
 <td>in</td>
 <td>[25:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Jr_Reg_Data</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>Jr指定的寄存器的值</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Branch</td>
 <td>in</td>
 <td></td>
 <td>Branch信号(beq激活)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Jal</td>
 <td>in</td>
 <td></td>
 <td>Jal信号(jal激活)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Jr</td>
 <td>in</td>
 <td></td>
 <td>Jr信号(jr激活)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NPC</td>
 <td>out</td>
 <td>[31:0]</td>
@@ -724,101 +753,100 @@ ID阶段rs寄存器的\)</span>T_{USE}$</td>
 </tr>
 </tbody>
 </table>
-<h4 id="control部件共用">Control部件(共用)</h4>
-<blockquote>
+</div>
+<h4 id="Control部件-共用"><a href="#Control部件-共用" class="headerlink" title="Control部件(共用)"></a>Control部件(共用)</h4><blockquote>
 <p>控制信号生成部件,这里我们采用的是分布式译码,这里展示的共用Control部件在ID阶段被使用的端口</p>
 </blockquote>
+<div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
-<th style="text-align: left;">端口</th>
+<tr>
+<th style="text-align:left">端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
 <th>功能</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">instr</td>
+<tr>
+<td style="text-align:left">instr</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>输入的指令</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">zero</td>
+<tr>
+<td style="text-align:left">zero</td>
 <td>in</td>
 <td></td>
 <td>ID_RD1_forward与ID_RD2_forward是否相等</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Branch</td>
+<tr>
+<td style="text-align:left">Branch</td>
 <td>out</td>
 <td></td>
 <td>Branch信号(beq激活)</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Jal</td>
+<tr>
+<td style="text-align:left">Jal</td>
 <td>out</td>
 <td></td>
 <td>Jal信号(jal激活)</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Jr</td>
+<tr>
+<td style="text-align:left">Jr</td>
 <td>out</td>
 <td></td>
 <td>Jr信号(jr激活)</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">ExtControl</td>
+<tr>
+<td style="text-align:left">ExtControl</td>
 <td>out</td>
 <td></td>
 <td>控制ext部件的信号</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Sel_ID_WD</td>
+<tr>
+<td style="text-align:left">Sel_ID_WD</td>
 <td>out</td>
 <td></td>
-<td>与jal相关,若执行jal指令则为1,该信号为1时将Write
-Data(写入寄存器)指定为ID_PC+8</td>
+<td>与jal相关,若执行jal指令则为1,该信号为1时将Write Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">ID_A3</td>
+<tr>
+<td style="text-align:left">ID_A3</td>
 <td>out</td>
 <td>[4:0]</td>
 <td>解码阶段输出的写入寄存器地址</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">ID_A1_USE</td>
+<tr>
+<td style="text-align:left">ID_A1_USE</td>
 <td>out</td>
 <td>[1:0]</td>
-<td>rs的<span class="math inline">\(T_{USE}\)</span></td>
+<td>rs的$T_{USE}$</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">ID_A2_USE</td>
+<tr>
+<td style="text-align:left">ID_A2_USE</td>
 <td>out</td>
 <td>[1:0]</td>
-<td>rt的<span class="math inline">\(T_{USE}\)</span></td>
+<td>rt的$T_{USE}$</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">CMPControl</td>
+<tr>
+<td style="text-align:left">CMPControl</td>
 <td>out</td>
 <td>[3:0]</td>
 <td>CMP部件控制信号(选择比较方式)</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">ID_MD</td>
+<tr>
+<td style="text-align:left">ID_MD</td>
 <td>out</td>
 <td></td>
 <td>ID区当前是否在处理乘除相关指令</td>
 </tr>
 </tbody>
 </table>
-<h4 id="id控制信号表">ID控制信号表</h4>
+</div>
+<h4 id="ID控制信号表"><a href="#ID控制信号表" class="headerlink" title="ID控制信号表"></a>ID控制信号表</h4><div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>指令/信号</th>
 <th>ExtControl</th>
 <th>Sel_ID_WD</th>
@@ -829,7 +857,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>ori</td>
 <td>1(立即数零扩展)</td>
 <td>0</td>
@@ -838,7 +866,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>add</td>
 <td>\</td>
 <td>0</td>
@@ -847,7 +875,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sub</td>
 <td>\</td>
 <td>0</td>
@@ -856,7 +884,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>lw</td>
 <td>0(立即数符号扩展)</td>
 <td>0</td>
@@ -865,7 +893,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sw</td>
 <td>0(立即数符号扩展)</td>
 <td>0</td>
@@ -874,7 +902,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>beq</td>
 <td>0(立即数符号扩展)</td>
 <td>0</td>
@@ -883,7 +911,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>lui</td>
 <td>0(立即数符号扩展)(其实随意)</td>
 <td>0</td>
@@ -892,7 +920,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>jal</td>
 <td>\</td>
 <td>1(选择PC+8)</td>
@@ -901,7 +929,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td>1</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>jr</td>
 <td>\</td>
 <td>0</td>
@@ -910,7 +938,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>swc</td>
 <td>\</td>
 <td>0</td>
@@ -919,7 +947,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>bonall</td>
 <td>0(立即数符号扩展)</td>
 <td>1</td>
@@ -928,7 +956,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>lh</td>
 <td>0</td>
 <td>0</td>
@@ -937,7 +965,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sh</td>
 <td>0</td>
 <td>0</td>
@@ -946,7 +974,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>lb</td>
 <td>0</td>
 <td>0</td>
@@ -955,7 +983,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sb</td>
 <td>0</td>
 <td>0</td>
@@ -964,7 +992,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>and</td>
 <td>\</td>
 <td>0</td>
@@ -973,7 +1001,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>or</td>
 <td>\</td>
 <td>0</td>
@@ -982,7 +1010,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>slt</td>
 <td>\</td>
 <td>0</td>
@@ -991,7 +1019,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sltu</td>
 <td>\</td>
 <td>0</td>
@@ -1000,7 +1028,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>addi</td>
 <td>0</td>
 <td>0</td>
@@ -1009,7 +1037,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>andi</td>
 <td>0</td>
 <td>0</td>
@@ -1018,7 +1046,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>mult</td>
 <td>\</td>
 <td>0</td>
@@ -1027,7 +1055,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>multu</td>
 <td>\</td>
 <td>0</td>
@@ -1036,7 +1064,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>div</td>
 <td>\</td>
 <td>0</td>
@@ -1045,7 +1073,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>divu</td>
 <td>\</td>
 <td>0</td>
@@ -1054,7 +1082,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>mflo</td>
 <td>\</td>
 <td>0</td>
@@ -1063,7 +1091,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>mfhi</td>
 <td>\</td>
 <td>0</td>
@@ -1072,7 +1100,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>mtlo</td>
 <td>\</td>
 <td>0</td>
@@ -1081,181 +1109,182 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>mthi</td>
 <td>\</td>
 <td>0</td>
 <td>$0</td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
-<h4 id="t_use表"><span class="math inline">\(T_{USE}\)</span>表</h4>
+</div>
+<h4 id="T-USE-表"><a href="#T-USE-表" class="headerlink" title="$T_{USE}$表"></a>$T_{USE}$表</h4><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th></th>
 <th>ID_A1_USE</th>
 <th>ID_A2_USE</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>add</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>sub</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ori</td>
 <td>1</td>
 <td>3(z)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>lw</td>
 <td>1</td>
 <td>3(z)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sw</td>
 <td>1</td>
 <td>2</td>
 </tr>
-<tr class="even">
+<tr>
 <td>beq</td>
 <td>0</td>
 <td>0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>lui</td>
 <td>3(z)</td>
 <td>3(z)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>jal</td>
 <td>3(z)</td>
 <td>3(z)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>jr</td>
 <td>0</td>
 <td>3(z)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>swc</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>bonall</td>
 <td>0</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>lb</td>
 <td>1</td>
 <td>3(z)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sb</td>
 <td>1</td>
 <td>2</td>
 </tr>
-<tr class="even">
+<tr>
 <td>lh</td>
 <td>1</td>
 <td>3(z)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sh</td>
 <td>1</td>
 <td>2</td>
 </tr>
-<tr class="even">
+<tr>
 <td>and</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>or</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>slt</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sltu</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>addi</td>
 <td>1</td>
 <td>0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>andi</td>
 <td>1</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>mult</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>div</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>multu</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>divu</td>
 <td>1</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>mflo</td>
 <td>3(z)</td>
 <td>3</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>mfhi</td>
 <td>3</td>
 <td>3</td>
 </tr>
-<tr class="even">
+<tr>
 <td>mtlo</td>
 <td>1</td>
 <td>3</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>mthi</td>
 <td>1</td>
 <td>3</td>
 </tr>
 </tbody>
 </table>
-<h4 id="grf部件">GRF部件</h4>
-<blockquote>
+</div>
+<h4 id="GRF部件"><a href="#GRF部件" class="headerlink" title="GRF部件"></a>GRF部件</h4><blockquote>
 <p>32个32bit寄存器组成的寄存器堆</p>
 </blockquote>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -1263,55 +1292,55 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>A1</td>
 <td>in</td>
 <td>[4:0]</td>
 <td>A1读出寄存器地址</td>
 </tr>
-<tr class="even">
+<tr>
 <td>A2</td>
 <td>in</td>
 <td>[4:0]</td>
 <td>A2读出寄存器地址</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>A3</td>
 <td>in</td>
 <td>[4:0]</td>
 <td>A3写入寄存器地址</td>
 </tr>
-<tr class="even">
+<tr>
 <td>WD</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>写入数据</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>PC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>当前PC($display用)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>RD1</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>A1寄存器读出值</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>RD2</td>
 <td>out</td>
 <td>[31:0]</td>
@@ -1319,10 +1348,11 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </tbody>
 </table>
-<h3 id="id_ex">ID_EX</h3>
+</div>
+<h3 id="ID-EX"><a href="#ID-EX" class="headerlink" title="ID_EX"></a>ID_EX</h3><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -1330,122 +1360,120 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>enable</td>
 <td>in</td>
 <td></td>
 <td>使能信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>flush</td>
 <td>in</td>
 <td></td>
 <td>冲洗信号,和reset作用相同</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_PC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_instr</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_RD1</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_RD2</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_imm32</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_A3</td>
 <td>in</td>
 <td>[4:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_WD</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_PC</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_instr</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_RD1</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_RD2</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_imm32</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_A3</td>
 <td>out</td>
 <td>[4:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_WD</td>
 <td>out</td>
 <td>[31:0]</td>
-<td></td>
 </tr>
 </tbody>
 </table>
-<h3 id="ex">EX</h3>
-<h4 id="顶层-2">顶层</h4>
+</div>
+<h3 id="EX"><a href="#EX" class="headerlink" title="EX"></a>EX</h3><h4 id="顶层-2"><a href="#顶层-2" class="headerlink" title="顶层"></a>顶层</h4><div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -1453,78 +1481,79 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_instr</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>EX阶段的指令</td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_imm32</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>32位扩展的立即数</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_WD</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>EX阶段接收的写入寄存器堆的数据</td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_RD1_forward</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>接收hazard ctrl部件向EX阶段传递的转发数据寄存器A1值</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_RD2_forward</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>接收hazard ctrl部件向EX阶段传递的转发数据寄存器A2值</td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_MEM_RES</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>传递ALU计算结果</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_MEM_WD</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>传递给EX_MEM流水寄存器的Write Data</td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_MEM_RD2</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>传递给EX_MEM流水寄存器的Read Data2</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_NEW</td>
 <td>out</td>
 <td>[1:0]</td>
-<td>EX阶段的<span class="math inline">\(T_{NEW}\)</span></td>
+<td>EX阶段的$T_{NEW}$</td>
 </tr>
 </tbody>
 </table>
-<h4 id="mult_div部件">MULT_DIV部件</h4>
+</div>
+<h4 id="MULT-DIV部件"><a href="#MULT-DIV部件" class="headerlink" title="MULT_DIV部件"></a>MULT_DIV部件</h4><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -1532,67 +1561,67 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td>时钟信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td>重制信号</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>A</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>计算数A</td>
 </tr>
-<tr class="even">
+<tr>
 <td>B</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>计算数B</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>start</td>
 <td>in</td>
 <td></td>
 <td>有效一个时钟周期,启动信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MULT_DIV_OP</td>
 <td>in</td>
 <td>[2:0]</td>
 <td>乘除模块计算方式</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MFHI</td>
 <td>in</td>
 <td></td>
 <td>mfhi信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MFLO</td>
 <td>in</td>
 <td></td>
 <td>mflo信号</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>busy</td>
 <td>out</td>
 <td></td>
 <td>输出延迟信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>HI</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>$hi值</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>LO</td>
 <td>out</td>
 <td>[31:0]</td>
@@ -1600,33 +1629,44 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </tbody>
 </table>
-<h4 id="乘除槽相关信号表">乘除槽相关信号表</h4>
+</div>
+<h4 id="乘除槽相关信号表"><a href="#乘除槽相关信号表" class="headerlink" title="乘除槽相关信号表"></a>乘除槽相关信号表</h4><div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>指令/信号</th>
 <th>MULT_DIV_OP</th>
 <th>MULT_DIV_START</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>mult</td>
-<td><code>mult       | 1              | | multu     |</code>multu</td>
+<td>`mult</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
+<td>multu</td>
+<td>`multu</td>
+<td>1</td>
+</tr>
+<tr>
 <td>div</td>
-<td><code>div        | 1              | | divu      |</code>divu</td>
+<td>`div</td>
+<td>1</td>
+</tr>
+<tr>
+<td>divu</td>
+<td>`divu</td>
 <td>1</td>
 </tr>
 </tbody>
 </table>
-<h4 id="alu部件">ALU部件</h4>
+</div>
+<h4 id="ALU部件"><a href="#ALU部件" class="headerlink" title="ALU部件"></a>ALU部件</h4><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -1634,25 +1674,25 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>SrcA</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>操作数A</td>
 </tr>
-<tr class="even">
+<tr>
 <td>SrcB</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>操作数B</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ALUOp</td>
 <td>in</td>
 <td>[3:0]</td>
 <td>计算方式</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ALURes</td>
 <td>out</td>
 <td>[31:0]</td>
@@ -1660,11 +1700,11 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </tbody>
 </table>
-<h4 id="control部件共用-1">Control部件(<em>共用</em>)</h4>
+</div>
+<h4 id="Control部件-共用-1"><a href="#Control部件-共用-1" class="headerlink" title="Control部件(共用)"></a>Control部件(<em>共用</em>)</h4><div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -1672,85 +1712,84 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>instr</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>ALUOp</td>
 <td>out</td>
 <td>[3:0]</td>
 <td>选择ALU操作方式</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ALU_A_Sel</td>
 <td>out</td>
 <td></td>
 <td>选择</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ALU_B_Sel</td>
 <td>out</td>
 <td></td>
 <td>选择32位立即数或者寄存器rt的值</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>WD_Sel</td>
 <td>out</td>
 <td></td>
 <td>选择Write Data来源(1:ID阶段的PC+8,0:ALURes)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_NEW</td>
 <td>out</td>
 <td></td>
-<td>当前EX阶段<span class="math inline">\(T_{USE}\)</span></td>
+<td>当前EX阶段$T_{USE}$</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MULT_DIV_OP</td>
 <td>out</td>
 <td></td>
 <td>乘除模块计算方式</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MULT_DIV _START</td>
 <td>out</td>
 <td></td>
 <td>乘除模块开始信号</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MTHI</td>
 <td>out</td>
 <td></td>
 <td>mthi信号,下同理</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MTLO</td>
 <td>out</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MFHI</td>
 <td>out</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>MFLO</td>
 <td>out</td>
-<td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h4 id="ex控制信号表">EX控制信号表</h4>
+</div>
+<h4 id="EX控制信号表"><a href="#EX控制信号表" class="headerlink" title="EX控制信号表"></a>EX控制信号表</h4><div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>指令/信号</th>
 <th>ALUOp</th>
 <th>ALU_B_Sel</th>
@@ -1758,73 +1797,121 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>ori</td>
-<td><code>aluOr   | 1(选择立即数)   | 0(Write Data选择aluRes)   | | add       |</code>aluAdd</td>
+<td>`aluOr</td>
+<td>1(选择立即数)</td>
+<td>0(Write Data选择aluRes)</td>
+</tr>
+<tr>
+<td>add</td>
+<td>`aluAdd</td>
 <td>0(选择rt寄存器)</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>sub</td>
-<td><code>aluSub  | 0(选择rt寄存器) | 0                         | | beq       | \        | \               | \                         | | lw        |</code>aluAdd</td>
+<td>`aluSub</td>
+<td>0(选择rt寄存器)</td>
+<td>0</td>
+</tr>
+<tr>
+<td>beq</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>lw</td>
+<td>`aluAdd</td>
 <td>1(选择立即数)</td>
 <td>0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sw</td>
-<td><code>aluAdd  | 1(选择立即数)   | 0                         | | lui       |</code>aluLui</td>
+<td>`aluAdd</td>
 <td>1(选择立即数)</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
+<td>lui</td>
+<td>`aluLui</td>
+<td>1(选择立即数)</td>
+<td>0</td>
+</tr>
+<tr>
 <td>jal</td>
 <td>\</td>
 <td>\</td>
 <td>1(Write Data选择ID传递值)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>jr</td>
 <td>\</td>
 <td>\</td>
 <td>\</td>
 </tr>
-<tr class="even">
+<tr>
 <td>swc</td>
-<td><code>aluSwc  | 0               | 0                         | | bonall    | \        | \               | 1(Write Data选择ID传递值) | | and       |</code>aluAnd</td>
+<td>`aluSwc</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>bonall</td>
+<td>\</td>
+<td>\</td>
+<td>1(Write Data选择ID传递值)</td>
+</tr>
+<tr>
+<td>and</td>
+<td>`aluAnd</td>
 <td>0(选择rt寄存器)</td>
 <td>0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>or</td>
-<td><code>aluOr   | 0(选择rt寄存器) | 0                         | | slt       |</code>aluSlt</td>
+<td>`aluOr</td>
+<td>0(选择rt寄存器)</td>
+<td>0</td>
+</tr>
+<tr>
+<td>slt</td>
+<td>`aluSlt</td>
 <td>0</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>sltu</td>
-<td><code>aluSltu | 0               | 0                         | | addi      |</code>aluAdd</td>
+<td>`aluSltu</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>addi</td>
+<td>`aluAdd</td>
 <td>1</td>
 <td>0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>andi</td>
 <td>`aluAnd</td>
 <td>1</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>mult</td>
 <td>\</td>
 <td>\</td>
 <td>0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>mflo</td>
 <td>\</td>
 <td>\</td>
 <td>\</td>
 </tr>
-<tr class="even">
+<tr>
 <td>mfhi</td>
 <td>\</td>
 <td>\</td>
@@ -1832,113 +1919,115 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </tbody>
 </table>
-<h4 id="ext_new表">EX<span class="math inline">\(T_{NEW}\)</span>表</h4>
+</div>
+<h4 id="EX-T-NEW-表"><a href="#EX-T-NEW-表" class="headerlink" title="EX$T_{NEW}$表"></a>EX$T_{NEW}$表</h4><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th></th>
 <th>EX_NEW</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>add</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>sub</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ori</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>lw</td>
 <td>2</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sw</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>beq</td>
 <td>0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>lui</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>jal</td>
 <td>0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>jr</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>swc</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>bonall</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>lb</td>
 <td>2</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sb</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>lh</td>
 <td>2</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sh</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>and</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>or</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>slt</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>sltu</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>addi</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>andi</td>
 <td>1</td>
 </tr>
-<tr class="even">
+<tr>
 <td>mflo</td>
 <td>1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>mfhi</td>
 <td>1</td>
 </tr>
 </tbody>
 </table>
-<h3 id="ex_mem">EX_MEM</h3>
+</div>
+<h3 id="EX-MEM"><a href="#EX-MEM" class="headerlink" title="EX_MEM"></a>EX_MEM</h3><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -1946,103 +2035,102 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>flush</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_PC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>EX阶段PC地址</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_instr</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>EX阶段指令</td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_A3</td>
 <td>out</td>
 <td>[4:0]</td>
 <td>EX阶段传递的A3</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_WD</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>EX阶段Write Data</td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_RES</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>EX阶段ALURes</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_RD2</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>EX阶段Read Data2</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_PC</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>MEM阶段PC地址</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_instr</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>MEM阶段指令</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_A3</td>
 <td>out</td>
 <td>[4:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_WD</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_RES</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_RD2</td>
 <td>out</td>
 <td>[31:0]</td>
-<td></td>
 </tr>
 </tbody>
 </table>
-<h3 id="mem">MEM</h3>
-<h4 id="顶层-3">顶层</h4>
+</div>
+<h3 id="MEM"><a href="#MEM" class="headerlink" title="MEM"></a>MEM</h3><h4 id="顶层-3"><a href="#顶层-3" class="headerlink" title="顶层"></a>顶层</h4><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -2050,97 +2138,97 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_PC</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_instr</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_WD</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_RES</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_RD2_forward</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>WB转发的Read Data2</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_A3</td>
 <td>in</td>
 <td>[4:0]</td>
 <td>MEM传递的A3寄存器地址</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>RD</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>从Memory中读出的数据</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_WB_A3</td>
 <td>out</td>
 <td>[4:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_WB_WD</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_A2_NEW</td>
 <td>out</td>
 <td>[1:0]</td>
-<td>MEM<span class="math inline">\(T_{NEW}\)</span></td>
+<td>MEM$T_{NEW}$</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_BYTE_EN</td>
 <td>out</td>
 <td>[3:0]</td>
 <td>写入MEM数据的按字节使能信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_WRITE_DATA</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>写入MEM,按字节重新排序的数据</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_DATA_ADDR</td>
 <td>out</td>
 <td>[31:0]</td>
 <td>写入或读出的Memory地址</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_INST_ADDR</td>
 <td>out</td>
 <td>[31:0]</td>
@@ -2148,11 +2236,11 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </tbody>
 </table>
-<h4 id="memcontrol部件共用">MEMControl部件(共用)</h4>
+</div>
+<h4 id="MEMControl部件-共用"><a href="#MEMControl部件-共用" class="headerlink" title="MEMControl部件(共用)"></a>MEMControl部件(共用)</h4><div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -2160,37 +2248,37 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>instr</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_WE</td>
 <td>out</td>
 <td></td>
 <td>选择是否写入Memory</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_Sel</td>
 <td>out</td>
 <td></td>
 <td>选择是否将Memory读出值向后传递(1:yes)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_A2_NEW</td>
 <td>out</td>
 <td></td>
-<td>MEM区<span class="math inline">\(T_{NEW}\)</span></td>
+<td>MEM区$T_{NEW}$</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_PART</td>
 <td>out</td>
 <td>[1:0]</td>
 <td>选择存入/读取Word,Half或者Byte</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_EXT_Control</td>
 <td>out</td>
 <td>[2:0]</td>
@@ -2198,11 +2286,11 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </tbody>
 </table>
-<h4 id="mem信号及t_new表">MEM信号及<span class="math inline">\(T_{NEW}\)</span>表</h4>
+</div>
+<h4 id="MEM信号及-T-NEW-表"><a href="#MEM信号及-T-NEW-表" class="headerlink" title="MEM信号及$T_{NEW}$表"></a>MEM信号及$T_{NEW}$表</h4><div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>指令/信号</th>
 <th>MEM_WE</th>
 <th>MEM_Sel</th>
@@ -2212,36 +2300,72 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>sw</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td><code>memWord                  | 3'bz            | | sh        | 1      | 0       | 0          |</code>memHalf</td>
-<td>3'bz</td>
+<td>`memWord</td>
+<td>3’bz</td>
 </tr>
-<tr class="even">
+<tr>
+<td>sh</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>`memHalf</td>
+<td>3’bz</td>
+</tr>
+<tr>
 <td>sb</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td><code>memByte                  | 3'bz            | | lw        | 0      | 1       | 1          |</code>memWord</td>
-<td><code>nonExt        |                 | | lh        | 0      | 1       | 1          |</code>memHalf</td>
+<td>`memByte</td>
+<td>3’bz</td>
 </tr>
-<tr class="odd">
+<tr>
+<td>lw</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>`memWord</td>
+<td>`nonExt</td>
+<td></td>
+</tr>
+<tr>
+<td>lh</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>`memHalf</td>
+<td>`signedHalfExt</td>
+<td></td>
+</tr>
+<tr>
+<td>lb</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>`memByte</td>
+<td>`signedByteExt</td>
+<td></td>
+</tr>
+<tr>
 <td>else</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
-<td>2'bz</td>
-<td>3'bz</td>
+<td>2’bz</td>
+<td>3’bz</td>
 </tr>
 </tbody>
 </table>
-<h3 id="mem_wb">MEM_WB</h3>
+</div>
+<h3 id="MEM-WB"><a href="#MEM-WB" class="headerlink" title="MEM_WB"></a>MEM_WB</h3><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -2249,73 +2373,72 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_PC</td>
 <td>in</td>
 <td>[31;0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_instr</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_A3</td>
 <td>in</td>
 <td>[4:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_WD</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>WB_PC</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>WB_instr</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>WB_A3</td>
 <td>out</td>
 <td>[4:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>WB_WD</td>
 <td>out</td>
 <td>[31:0]</td>
-<td></td>
 </tr>
 </tbody>
 </table>
-<h3 id="hazard_ctrl">HAZARD_CTRL</h3>
+</div>
+<h3 id="HAZARD-CTRL"><a href="#HAZARD-CTRL" class="headerlink" title="HAZARD_CTRL"></a>HAZARD_CTRL</h3><div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>端口</th>
 <th>In/Out?</th>
 <th>位宽</th>
@@ -2323,253 +2446,253 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>clk</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>reset</td>
 <td>in</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>ID阶段</strong></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_A1</td>
 <td>in</td>
 <td>[4:0]</td>
 <td>ID阶段正在使用的A1寄存器</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_A2</td>
 <td>in</td>
 <td>[4:0]</td>
 <td>ID阶段正在使用的A2寄存器</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_RD1</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>ID阶段寄存器堆读出的A1对应值</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_RD2</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>ID阶段寄存器堆读出的A2对应值</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_A1_USE</td>
 <td>in</td>
 <td>[1:0]</td>
-<td><span class="math inline">\(T_{USE}\)</span></td>
+<td>$T_{USE}$</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_A2_USE</td>
 <td>in</td>
 <td>[1:0]</td>
-<td><span class="math inline">\(T_{USE}\)</span></td>
+<td>$T_{USE}$</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_MD</td>
 <td>in</td>
 <td></td>
 <td>ID区处理指令是否与乘除相关</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>EX阶段</strong></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_A1</td>
 <td>in</td>
 <td>[4:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_A2</td>
 <td>in</td>
 <td>[4:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_RD1</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>IE阶段A2对应值,由ID区的转发值得来</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_RD2</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>IE阶段A2对应值,由ID区的转发值得来</td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_A1_USE</td>
 <td>in</td>
 <td>[1:0]</td>
-<td><span class="math inline">\(T_{USE}\)</span></td>
+<td>$T_{USE}$</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_A2_USE</td>
 <td>in</td>
 <td>[1:0]</td>
-<td><span class="math inline">\(T_{USE}\)</span></td>
+<td>$T_{USE}$</td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_A3</td>
 <td>in</td>
 <td>[4:0]</td>
 <td>EX传递的A3寄存器(rd)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_WD</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>EX传递的Write Data</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MULT_DIV_BUSY</td>
 <td>in</td>
 <td></td>
 <td>乘除模块忙碌信号</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MULT_DIV_START</td>
 <td>in</td>
 <td></td>
 <td>乘除模块开始信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>MEM阶段</strong></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_A2</td>
 <td>in</td>
 <td>[4:0]</td>
 <td>MEM正在使用的A2</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_RD2</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>MEM的Read Data2,由EX传递而来</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_A2_NEW</td>
 <td>in</td>
 <td>[1:0]</td>
-<td>MEM的<span class="math inline">\(T_{NEW}\)</span></td>
+<td>MEM的$T_{NEW}$</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_A3</td>
 <td>in</td>
 <td>[4:0]</td>
 <td>MEM传递A3</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MEM_WD</td>
 <td>in</td>
 <td>[31:0]</td>
 <td>MEM传递的Write Data</td>
 </tr>
-<tr class="even">
+<tr>
 <td><strong>WB</strong></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>WB_A3</td>
 <td>in</td>
 <td>[4:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>WB_WD</td>
 <td>in</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>转发FORWARD</strong></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>ID_RD1_forward</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ID_RD2_forward</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>EX_RD1_forward</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>EX_RD2_forward</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>MEM_RD2_forward</td>
 <td>out</td>
 <td>[31:0]</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><strong>暂停信号STALL</strong></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Enable_PC</td>
 <td>out</td>
 <td></td>
 <td>PC使能信号</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Enable_IF_ID</td>
 <td>out</td>
 <td></td>
 <td>IF_ID流水寄存器使能信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Enable_ID_EX</td>
 <td>out</td>
 <td></td>
 <td>ID_EX流水寄存器使能信号</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Flush_ID_EX</td>
 <td>out</td>
 <td></td>
 <td>ID_EX流水寄存器刷新信号</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Flush_EX_MEM</td>
 <td>out</td>
 <td></td>
@@ -2577,11 +2700,11 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </tbody>
 </table>
-<h2 id="阻塞矩阵">阻塞矩阵</h2>
+</div>
+<h2 id="阻塞矩阵"><a href="#阻塞矩阵" class="headerlink" title="阻塞矩阵"></a>阻塞矩阵</h2><div class="table-container">
 <table>
-
 <thead>
-<tr class="header">
+<tr>
 <th>IF/ID当前指令</th>
 <th></th>
 <th></th>
@@ -2597,10 +2720,10 @@ Data(写入寄存器)指定为ID_PC+8</td>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>指令类型</td>
 <td>源寄存器</td>
-<td><span class="math inline">\(T_{use}\)</span></td>
+<td>$T_{use}$</td>
 <td>cal_r<br>1/rd)<br></td>
 <td>cal_i<br>(1/rt)<br></td>
 <td>load<br>(2/rt)<br></td>
@@ -2611,7 +2734,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td>cal_i<br>(0/rt)</td>
 <td>load<br>(0/rt)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>beq</td>
 <td>rs/rt</td>
 <td>0</td>
@@ -2625,7 +2748,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>cal_r</td>
 <td>rs_rt</td>
 <td>1</td>
@@ -2639,7 +2762,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>cal_i</td>
 <td>rs</td>
 <td>1</td>
@@ -2653,7 +2776,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>load</td>
 <td>rs(base)</td>
 <td>1</td>
@@ -2667,7 +2790,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>store</td>
 <td>rs(base)</td>
 <td>1</td>
@@ -2681,7 +2804,7 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>store</td>
 <td>rt</td>
 <td>2</td>
@@ -2693,55 +2816,48 @@ Data(写入寄存器)指定为ID_PC+8</td>
 <td></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
-<h2 id="暂停实现">暂停实现</h2>
-<blockquote>
-<p>使用课程讲解的AT法,在流水线运行期间,ID区提供<span class="math inline">\(T_{USE}\)</span>,EX,MEM区提供<span class="math inline">\(T_{NEW}\)</span>,在冒险控制模块中采用以下判断逻辑:</p>
+</div>
+<h2 id="暂停实现"><a href="#暂停实现" class="headerlink" title="暂停实现"></a>暂停实现</h2><blockquote>
+<p>使用课程讲解的AT法,在流水线运行期间,ID区提供$T_{USE}$,EX,MEM区提供$T_{NEW}$,在冒险控制模块中采用以下判断逻辑:</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> STALL =  (ID_A1 == EX_A3 &amp;&amp; ID_A1_USE &lt; EX_NEW &amp;&amp; EX_A3 != <span class="hljs-number">0</span>)  <br>              || (ID_A2 == EX_A3 &amp;&amp; ID_A2_USE &lt; EX_NEW &amp;&amp; EX_A3 != <span class="hljs-number">0</span>)<br>              || (ID_A1 == MEM_A3 &amp;&amp; ID_A1_USE &lt; MEM_A2_NEW &amp;&amp; MEM_A3 != <span class="hljs-number">0</span>)<br>              || (ID_A2 == MEM_A3 &amp;&amp; ID_A2_USE &lt; MEM_A2_NEW &amp;&amp; MEM_A3 != <span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
 <p>STALL信号会控制三个行为:</p>
-<ol type="1">
+<ol>
 <li>暂停IF区的PC模块</li>
 <li>暂停IF_ID间流水寄存器</li>
 <li>刷新ID_EX间流水寄存器(等同于reset)</li>
 </ol>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> Enable_PC = !STALL;<br><span class="hljs-keyword">assign</span> Enable_IF_ID = !STALL;<br><span class="hljs-keyword">assign</span> Flush_ID_EX = STALL;<br></code></pre></td></tr></table></figure>
 </blockquote>
-<h2 id="转发实现">转发实现</h2>
-<blockquote>
+<h2 id="转发实现"><a href="#转发实现" class="headerlink" title="转发实现"></a>转发实现</h2><blockquote>
 <p>转发有五条可能的数据通路:</p>
-<ol type="1">
-<li><span class="math inline">\(EX\_MEM\rightarrow ID\)</span></li>
-<li><span class="math inline">\(MEM\_WB\rightarrow ID\)</span></li>
-<li><span class="math inline">\(EX\_MEM\rightarrow EX\)</span></li>
-<li><span class="math inline">\(MEM\_WB\rightarrow EX\)</span></li>
-<li><span class="math inline">\(MEM\_WB\rightarrow MEM\)</span></li>
+<ol>
+<li>$EX_MEM\rightarrow ID$</li>
+<li>$MEM_WB\rightarrow ID$</li>
+<li>$EX_MEM\rightarrow EX$</li>
+<li>$MEM_WB\rightarrow EX$</li>
+<li>$MEM_WB\rightarrow MEM$</li>
 </ol>
 <p>这里以ID区的RD1转发数据逻辑为例:</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> ID_RD1_forward = (ID_A1 == <span class="hljs-number">5&#x27;b0</span>) ? <span class="hljs-number">0</span> :<br>                        (ID_A1 == MEM_A3) ? MEM_WD :<br>                        (ID_A1 == WB_A3) ? WB_WD :<br>                        ID_RD1;<br></code></pre></td></tr></table></figure>
 </blockquote>
-<h2 id="寄存器内部转发实现">寄存器内部转发实现</h2>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Verilog"><span class="hljs-comment">// 考虑寄存器内部转发</span><br><span class="hljs-keyword">assign</span> RD1 = (A1 == A3 &amp;&amp; A1 != <span class="hljs-number">0</span> &amp;&amp; !reset) ? WD : grf[A1]; <br><span class="hljs-keyword">assign</span> RD2 = (A2 == A3 &amp;&amp; A2 != <span class="hljs-number">0</span> &amp;&amp; !reset) ? WD : grf[A2];<br></code></pre></td></tr></table></figure>
-<h2 id="测试方案">测试方案</h2>
-<ol type="1">
+<h2 id="寄存器内部转发实现"><a href="#寄存器内部转发实现" class="headerlink" title="寄存器内部转发实现"></a>寄存器内部转发实现</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Verilog"><span class="hljs-comment">// 考虑寄存器内部转发</span><br><span class="hljs-keyword">assign</span> RD1 = (A1 == A3 &amp;&amp; A1 != <span class="hljs-number">0</span> &amp;&amp; !reset) ? WD : grf[A1]; <br><span class="hljs-keyword">assign</span> RD2 = (A2 == A3 &amp;&amp; A2 != <span class="hljs-number">0</span> &amp;&amp; !reset) ? WD : grf[A2];<br></code></pre></td></tr></table></figure>
+<h2 id="测试方案"><a href="#测试方案" class="headerlink" title="测试方案"></a>测试方案</h2><ol>
 <li><code>Python</code>自动生成测试mips文件</li>
 <li><code>Mars</code>运行mips文件,生成正确结果和机器码</li>
 <li><code>iverilog</code>运行CPU文件,生成测试结果</li>
 <li><code>Python</code>比较两份答案</li>
 </ol>
-<h2 id="思考题">思考题</h2>
-<p>1、为什么需要有单独的乘除法部件而不是整合进 ALU？为何需要有独立的
-HI、LO 寄存器？</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p>1、为什么需要有单独的乘除法部件而不是整合进 ALU？为何需要有独立的 HI、LO 寄存器？</p>
 <blockquote>
 <p>乘除法的运算速率明显低于其他运算,需要多个时钟周期,将乘除法分离出ALU可以避免乘除指令干扰其他运算指令的进行.</p>
 <p>独立的HI,LO寄存器可以保存乘除法运算的值,若不实现该独立寄存器,要等待运算完成后再将值送回寄存器堆中,严重降低流水线CPU的性能.</p>
 </blockquote>
-<p>2、真实的流水线 CPU
-是如何使用实现乘除法的？请查阅相关资料进行简单说明。</p>
+<p>2、真实的流水线 CPU 是如何使用实现乘除法的？请查阅相关资料进行简单说明。</p>
 <blockquote>
-<ol type="1">
+<ol>
 <li>乘法</li>
 </ol>
 <p>CPU会初始化三个通用寄存器,分别存放被乘数,乘数,部分积.部分积寄存器初始化为0.</p>
@@ -2749,19 +2865,15 @@ HI、LO 寄存器？</p>
 <p>如果为1,则将部分积寄存器加上被乘数寄存器的值,再进行移位操作</p>
 <p>乘数寄存器低位溢出的一位丢弃,部分寄存器低位溢出的一位填充到乘数寄存器的高位</p>
 <p>处理完毕后,乘数寄存器即<code>$lo</code>,部分积寄存器即<code>$hi</code></p>
-<ol start="2" type="1">
+<ol>
 <li>除法</li>
 </ol>
 <p>首先CPU会初始化三个寄存器,分别用来存放被除数,除数,部分商.</p>
 <p>余数(被除数与除数比较的结果)放到被除数的有效高位上.</p>
 <p>首先CPU会把被除数bit位与除数bit位对齐,然后在让对齐的被除数与除数比较(双符号位判断).</p>
-<p>双符号位判断： 比如01-10=11(前面的1是符号位) 1-2=-1
-计算机通过符号位和后一位的bit位来判断大于和小于，那么01-10=11
-就说明01小于10，如果得数为01就代表大于，如果得数为00代表等于。</p>
-<p>如果得数大于或等于则将比较的结果放到被除数的有效高位上然后在商寄存器上商：1
-并向后多看一位
-(上商就是将商的最低位左移1位腾出商寄存器最低位上新的商)</p>
-<p>如果得数小于则上商：0 并向后多看一位</p>
+<p>双符号位判断： 比如01-10=11(前面的1是符号位) 1-2=-1 计算机通过符号位和后一位的bit位来判断大于和小于，那么01-10=11 就说明01小于10，如果得数为01就代表大于，如果得数为00代表等于。 </p>
+<p>如果得数大于或等于则将比较的结果放到被除数的有效高位上然后在商寄存器上商：1 并向后多看一位 (上商就是将商的最低位左移1位腾出商寄存器最低位上新的商) </p>
+<p>如果得数小于则上商：0 并向后多看一位 </p>
 <p>循环做以上操作当所有的被除数都处理完后，商做结果被除数里面的值就是余数.</p>
 </blockquote>
 <p>3、请结合自己的实现分析，你是如何处理 Busy 信号带来的周期阻塞的？</p>
@@ -2774,8 +2886,7 @@ HI、LO 寄存器？</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> MEM_BYTE_EN =  (WE == <span class="hljs-number">0</span>) ? <span class="hljs-number">4&#x27;b0000</span> :<br>                 (MEM_PART == `memWord) ? <span class="hljs-number">4&#x27;b1111</span> :<br>                 (MEM_PART == `memHalf &amp;&amp; half == <span class="hljs-number">0</span>) ? <span class="hljs-number">4&#x27;b0011</span> :<br>                 (MEM_PART == `memHalf &amp;&amp; half == <span class="hljs-number">1</span>) ? <span class="hljs-number">4&#x27;b1100</span> :<br>                 (MEM_PART == `memByte &amp;&amp; <span class="hljs-keyword">byte</span> == <span class="hljs-number">2&#x27;b00</span>) ? <span class="hljs-number">4&#x27;b0001</span> : <br>                 (MEM_PART == `memByte &amp;&amp; <span class="hljs-keyword">byte</span> == <span class="hljs-number">2&#x27;b01</span>) ? <span class="hljs-number">4&#x27;b0010</span> : <br>                 (MEM_PART == `memByte &amp;&amp; <span class="hljs-keyword">byte</span> == <span class="hljs-number">2&#x27;b10</span>) ? <span class="hljs-number">4&#x27;b0100</span> : <br>                 (MEM_PART == `memByte &amp;&amp; <span class="hljs-keyword">byte</span> == <span class="hljs-number">2&#x27;b11</span>) ? <span class="hljs-number">4&#x27;b1000</span> :<br>                 <span class="hljs-number">4&#x27;b0000</span>;<br></code></pre></td></tr></table></figure>
 <p>使得代码清晰易读,避免了大量的位拼接的情况,可以处理按字,半字,字节读入/写入的操作,统一性好.</p>
 </blockquote>
-<p>5、请思考，我们在按字节读和按字节写时，实际从 DM 获得的数据和向 DM
-写入的数据是否是一字节？在什么情况下我们按字节读和按字节写的效率会高于按字读和按字写呢？</p>
+<p>5、请思考，我们在按字节读和按字节写时，实际从 DM 获得的数据和向 DM 写入的数据是否是一字节？在什么情况下我们按字节读和按字节写的效率会高于按字读和按字写呢？</p>
 <blockquote>
 <p>不是,我们从DM获得的数据和向DM写入的数据都是一字,通过处理后选择其中一个字节执行操作.</p>
 <p>当指令序列有大量涉及<code>lh,sh,lb,sb</code>的指令时.</p>
@@ -2794,9 +2905,11 @@ HI、LO 寄存器？</p>
 <blockquote>
 <p>不足之处:可能会遗漏特殊的阻塞和转发情况</p>
 <p>策略:</p>
-<ol type="1">
-<li><p>限制使用的寄存器个数,提高数据冲突的可能性</p></li>
-<li><p>生成beq,jal等跳转类指令时打印一组语句,指定跳转的寄存器值或<code>PC+OFFSET</code>,避免跳转地址不合理</p></li>
+<ol>
+<li><p>限制使用的寄存器个数,提高数据冲突的可能性</p>
+</li>
+<li><p>生成beq,jal等跳转类指令时打印一组语句,指定跳转的寄存器值或<code>PC+OFFSET</code>,避免跳转地址不合理</p>
+</li>
 </ol>
 </blockquote>
 
