@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="CPU 设计文档整体架构 部件PC(Program Counter) 程序计数器,用于指示指令的位置. 主体为一个寄存器,用于存储指令地址,在时钟上升沿时输出到PC&#96;   IM(Insturction Memory) 指令存储器,存储指令内容. 主体为一个ROM,通过PC输入地址,将PC所对应的指令输出到Instr.   DM(Data Memory) 数据存储器,与CPU直接交换数据的内部存储器">
+    <meta name="description" content="CPU 设计文档 整体架构   整体架构  部件 PC(Program Counter)  程序计数器,用于指示指令的位置. 主体为一个寄存器,用于存储指令地址,在时钟上升沿时输出到PC&#96;    PC  IM(Insturction Memory)  指令存储器,存储指令内容. 主体为一个ROM,通过PC输入地址,将PC所对应的指令输出到Instr.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单周期CPU设计文档">
 <meta property="og:url" content="https://meteor041.git.io/2024/10/23/%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="CPU 设计文档整体架构 部件PC(Program Counter) 程序计数器,用于指示指令的位置. 主体为一个寄存器,用于存储指令地址,在时钟上升沿时输出到PC&#96;   IM(Insturction Memory) 指令存储器,存储指令内容. 主体为一个ROM,通过PC输入地址,将PC所对应的指令输出到Instr.   DM(Data Memory) 数据存储器,与CPU直接交换数据的内部存储器">
+<meta property="og:description" content="CPU 设计文档 整体架构   整体架构  部件 PC(Program Counter)  程序计数器,用于指示指令的位置. 主体为一个寄存器,用于存储指令地址,在时钟上升沿时输出到PC&#96;    PC  IM(Insturction Memory)  指令存储器,存储指令内容. 主体为一个ROM,通过PC输入地址,将PC所对应的指令输出到Instr.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/10/23/%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022231853793.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/10/23/%E5%8D%95%E5%91%A8%E6%9C%9FCPU%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/image-20241022185634323.png">
@@ -309,88 +309,131 @@
             
               <div class="markdown-body">
                 
-                <h1 id="CPU-设计文档"><a href="#CPU-设计文档" class="headerlink" title="CPU 设计文档"></a>CPU 设计文档</h1><h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p><img src="image-20241022231853793.png" srcset="/img/loading.gif" lazyload alt="整体架构"></p>
-<h2 id="部件"><a href="#部件" class="headerlink" title="部件"></a>部件</h2><h3 id="PC-Program-Counter"><a href="#PC-Program-Counter" class="headerlink" title="PC(Program Counter)"></a>PC(Program Counter)</h3><blockquote>
+                <h1 id="cpu-设计文档">CPU 设计文档</h1>
+<h2 id="整体架构">整体架构</h2>
+<figure>
+<img src="image-20241022231853793.png" srcset="/img/loading.gif" lazyload alt="整体架构">
+<figcaption aria-hidden="true">整体架构</figcaption>
+</figure>
+<h2 id="部件">部件</h2>
+<h3 id="pcprogram-counter">PC(Program Counter)</h3>
+<blockquote>
 <p>程序计数器,用于指示指令的位置.</p>
 <p>主体为一个寄存器,用于存储指令地址,在时钟上升沿时输出到PC`</p>
 </blockquote>
-<p><img src="image-20241022185634323.png" srcset="/img/loading.gif" lazyload alt="PC"></p>
-<h3 id="IM-Insturction-Memory"><a href="#IM-Insturction-Memory" class="headerlink" title="IM(Insturction Memory)"></a>IM(Insturction Memory)</h3><blockquote>
+<figure>
+<img src="image-20241022185634323.png" srcset="/img/loading.gif" lazyload alt="PC">
+<figcaption aria-hidden="true">PC</figcaption>
+</figure>
+<h3 id="iminsturction-memory">IM(Insturction Memory)</h3>
+<blockquote>
 <p>指令存储器,存储指令内容.</p>
 <p>主体为一个ROM,通过PC输入地址,将PC所对应的指令输出到Instr.</p>
 </blockquote>
-<p><img src="image-20241022190043406.png" srcset="/img/loading.gif" lazyload alt="IM"></p>
-<h3 id="DM-Data-Memory"><a href="#DM-Data-Memory" class="headerlink" title="DM(Data Memory)"></a>DM(Data Memory)</h3><blockquote>
+<figure>
+<img src="image-20241022190043406.png" srcset="/img/loading.gif" lazyload alt="IM">
+<figcaption aria-hidden="true">IM</figcaption>
+</figure>
+<h3 id="dmdata-memory">DM(Data Memory)</h3>
+<blockquote>
 <p>数据存储器,与CPU直接交换数据的内部存储器</p>
 <p>主体为一个RAM,即可读又可写,WE为1时,将WD数据写入到A地址;WE为0时,读出WD地址对应数据到RD</p>
 </blockquote>
-<p><img src="image-20241022231940141.png" srcset="/img/loading.gif" lazyload alt="DM"></p>
-<h3 id="GRF-Register-File"><a href="#GRF-Register-File" class="headerlink" title="GRF(Register File)"></a>GRF(Register File)</h3><blockquote>
+<figure>
+<img src="image-20241022231940141.png" srcset="/img/loading.gif" lazyload alt="DM">
+<figcaption aria-hidden="true">DM</figcaption>
+</figure>
+<h3 id="grfregister-file">GRF(Register File)</h3>
+<blockquote>
 <p>CPU内部的寄存器堆</p>
 <p>有32个32位寄存器,通过A1/A2选择寄存器读出到RD1/RD2,通过A3选择寄存器写入数据WD3</p>
 </blockquote>
-<p><img src="image-20241022190555004.png" srcset="/img/loading.gif" lazyload alt="GRF"></p>
-<h3 id="ALU-Arithmetic-and-Logical-Unit"><a href="#ALU-Arithmetic-and-Logical-Unit" class="headerlink" title="ALU(Arithmetic and Logical Unit)"></a>ALU(Arithmetic and Logical Unit)</h3><blockquote>
+<figure>
+<img src="image-20241022190555004.png" srcset="/img/loading.gif" lazyload alt="GRF">
+<figcaption aria-hidden="true">GRF</figcaption>
+</figure>
+<h3 id="aluarithmetic-and-logical-unit">ALU(Arithmetic and Logical
+Unit)</h3>
+<blockquote>
 <p>计算单元,支持多种计算操作</p>
 <p>由SrcA与SrcB读入两个操作数,通过ALUControl选择计算类型,输出到ALUResult</p>
 </blockquote>
-<p><img src="image-20241022232019925.png" srcset="/img/loading.gif" lazyload alt="ALU"></p>
-<h3 id="SPT-Splitter"><a href="#SPT-Splitter" class="headerlink" title="SPT(Splitter)"></a>SPT(Splitter)</h3><blockquote>
+<figure>
+<img src="image-20241022232019925.png" srcset="/img/loading.gif" lazyload alt="ALU">
+<figcaption aria-hidden="true">ALU</figcaption>
+</figure>
+<h3 id="sptsplitter">SPT(Splitter)</h3>
+<blockquote>
 <p>分线器,分割指令的不同位</p>
 </blockquote>
-<p><img src="image-20241022190810134.png" srcset="/img/loading.gif" lazyload alt="SPT"></p>
-<h3 id="EXT-Extender"><a href="#EXT-Extender" class="headerlink" title="EXT(Extender)"></a>EXT(Extender)</h3><blockquote>
+<figure>
+<img src="image-20241022190810134.png" srcset="/img/loading.gif" lazyload alt="SPT">
+<figcaption aria-hidden="true">SPT</figcaption>
+</figure>
+<h3 id="extextender">EXT(Extender)</h3>
+<blockquote>
 <p>扩位器,当ExtControl为0时,将输入的立即数由16位有符号扩展变为32位;当ExtControl为1时,将输入的立即数由16位零扩展变为32位</p>
 </blockquote>
-<p><img src="image-20241022232119130.png" srcset="/img/loading.gif" lazyload alt="EXT"></p>
-<h3 id="NXTAD-Next-Address"><a href="#NXTAD-Next-Address" class="headerlink" title="NXTAD(Next Address)"></a>NXTAD(Next Address)</h3><blockquote>
+<figure>
+<img src="image-20241022232119130.png" srcset="/img/loading.gif" lazyload alt="EXT">
+<figcaption aria-hidden="true">EXT</figcaption>
+</figure>
+<h3 id="nxtadnext-address">NXTAD(Next Address)</h3>
+<blockquote>
 <p>用于计算PC输入的下一个指令地址</p>
 </blockquote>
-<p><img src="image-20241022232220391.png" srcset="/img/loading.gif" lazyload alt="NXTAD"></p>
-<h3 id="CU-Control-Unit"><a href="#CU-Control-Unit" class="headerlink" title="CU(Control Unit)"></a>CU(Control Unit)</h3><blockquote>
+<figure>
+<img src="image-20241022232220391.png" srcset="/img/loading.gif" lazyload alt="NXTAD">
+<figcaption aria-hidden="true">NXTAD</figcaption>
+</figure>
+<h3 id="cucontrol-unit">CU(Control Unit)</h3>
+<blockquote>
 <p>控制单元,通过输入指令,决定输出信号</p>
 </blockquote>
-<p><img src="image-20241022232239176.png" srcset="/img/loading.gif" lazyload alt="CU"></p>
-<h2 id="ALU信号表"><a href="#ALU信号表" class="headerlink" title="ALU信号表"></a>ALU信号表</h2><div class="table-container">
+<figure>
+<img src="image-20241022232239176.png" srcset="/img/loading.gif" lazyload alt="CU">
+<figcaption aria-hidden="true">CU</figcaption>
+</figure>
+<h2 id="alu信号表">ALU信号表</h2>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>ALUControl信号</th>
 <th>操作</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>000</td>
 <td>与</td>
 </tr>
-<tr>
+<tr class="even">
 <td>001</td>
 <td>或</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>010</td>
 <td>加</td>
 </tr>
-<tr>
+<tr class="even">
 <td>011</td>
 <td>覆盖高位</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>110</td>
 <td>减</td>
 </tr>
-<tr>
+<tr class="even">
 <td>111</td>
 <td>移位</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="CU信号表"><a href="#CU信号表" class="headerlink" title="CU信号表"></a>CU信号表</h2><div class="table-container">
-<table>
+<h2 id="cu信号表">CU信号表</h2>
+<table style="width:100%;">
+
 <thead>
-<tr>
+<tr class="header">
 <th>指令</th>
 <th>RegWrite</th>
 <th>MemWrite</th>
@@ -404,7 +447,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>lw</td>
 <td>1</td>
 <td>0</td>
@@ -416,7 +459,7 @@
 <td>0</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="even">
 <td>sw</td>
 <td>0</td>
 <td>1</td>
@@ -428,7 +471,7 @@
 <td>0</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>beq</td>
 <td>0</td>
 <td>0</td>
@@ -440,7 +483,7 @@
 <td>0</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="even">
 <td>add</td>
 <td>1</td>
 <td>0</td>
@@ -452,7 +495,7 @@
 <td>0</td>
 <td>X</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>sub</td>
 <td>1</td>
 <td>0</td>
@@ -464,7 +507,7 @@
 <td>0</td>
 <td>X</td>
 </tr>
-<tr>
+<tr class="even">
 <td>and</td>
 <td>1</td>
 <td>0</td>
@@ -476,7 +519,7 @@
 <td>0</td>
 <td>X</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>or</td>
 <td>1</td>
 <td>0</td>
@@ -488,7 +531,7 @@
 <td>0</td>
 <td>X</td>
 </tr>
-<tr>
+<tr class="even">
 <td>slt</td>
 <td>1</td>
 <td>0</td>
@@ -500,7 +543,7 @@
 <td>0</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>addi</td>
 <td>1</td>
 <td>0</td>
@@ -512,7 +555,7 @@
 <td>0</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="even">
 <td>j</td>
 <td>0</td>
 <td>0</td>
@@ -524,7 +567,7 @@
 <td>1</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>ori</td>
 <td>1</td>
 <td>0</td>
@@ -536,7 +579,7 @@
 <td>0</td>
 <td>1</td>
 </tr>
-<tr>
+<tr class="even">
 <td>lui</td>
 <td>1</td>
 <td>0</td>
@@ -548,7 +591,7 @@
 <td>0</td>
 <td>1</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>nop</td>
 <td>X</td>
 <td>X</td>
@@ -562,64 +605,87 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="测试方案"><a href="#测试方案" class="headerlink" title="测试方案"></a>测试方案</h2><h3 id="撰写MIPS测试文件"><a href="#撰写MIPS测试文件" class="headerlink" title="撰写MIPS测试文件"></a>撰写MIPS测试文件</h3><blockquote>
+<h2 id="测试方案">测试方案</h2>
+<h3 id="撰写mips测试文件">撰写MIPS测试文件</h3>
+<blockquote>
 <p>使用<code>ori,nop,add,sub,lw,sw,</code>撰写一个测试用MIPS文件.</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs assembly">ori $0, $0, 10<br>ori $1, $0, 11<br>ori $2, $0, 22<br>ori $3, $0, 40<br>ori $4, $0, 2000<br>ori $5, $4, 12<br><br>nop<br>nop<br>nop<br><br>add $6, $5, $4<br>add $7, $6, $2<br>add $8, $7, $1<br>add $9, $8, $0<br>add $10, $0, $3<br><br>sw $0, 0($10)<br>sw $1, 4($10)<br>sw $2, 8($10)<br><br>nop<br>nop<br>nop<br><br><br>lw $11, 0($10)<br>lw $12, 0($10)<br>lw $13, 0($10)<br><br>sub $14, $10, $0<br>sub $15, $14, $1<br>sub $16, $15, $2<br><br>lui $17, 0xffff<br>lui $18, 0x4fff<br>lui $19, 0x1<br>lui $20, 0x223<br><br>ori $21, $21, 1<br>ori $22, $22, 1<br>loop:<br>sub $22, $22, $4<br>beq $21, $22, loop<br></code></pre></td></tr></table></figure>
-<h3 id="使用MARS获得机器码"><a href="#使用MARS获得机器码" class="headerlink" title="使用MARS获得机器码"></a>使用MARS获得机器码</h3><blockquote>
+<h3 id="使用mars获得机器码">使用MARS获得机器码</h3>
+<blockquote>
 <p>将MIPS代码输入MARS中,将文件机器码以十六进制格式导出,并在文件开头添加<code>v2.0 raw</code>.</p>
 </blockquote>
 <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs dns"><span class="hljs-number">3400000</span>a<br><span class="hljs-number">3401000</span>b<br><span class="hljs-number">34020016</span><br><span class="hljs-number">34030028</span><br><span class="hljs-number">340407d0</span><br><span class="hljs-number">3485000</span>c<br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00a43020</span><br><span class="hljs-number">00c23820</span><br><span class="hljs-number">00e14020</span><br><span class="hljs-number">01004820</span><br><span class="hljs-number">00035020</span><br>ad400000<br>ad410004<br>ad420008<br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">8d4b0000</span><br><span class="hljs-number">8d4c0000</span><br><span class="hljs-number">8d4d0000</span><br><span class="hljs-number">01407022</span><br><span class="hljs-number">01c17822</span><br><span class="hljs-number">01e28022</span><br><span class="hljs-number">3</span>c11ffff<br><span class="hljs-number">3</span>c124fff<br><span class="hljs-number">3c130001</span><br><span class="hljs-number">3c140223</span><br><span class="hljs-number">36b50001</span><br><span class="hljs-number">36d60001</span><br><span class="hljs-number">02c4b022</span><br><span class="hljs-number">12</span>b6fffe<br>v2.<span class="hljs-number">0</span> raw<br><span class="hljs-number">3400000</span>a<br><span class="hljs-number">3401000</span>b<br><span class="hljs-number">34020016</span><br><span class="hljs-number">34030028</span><br><span class="hljs-number">3</span>c01ffff<br><span class="hljs-number">3421</span>ffff<br><span class="hljs-number">00012025</span><br><span class="hljs-number">3485000</span>c<br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00a43020</span><br><span class="hljs-number">00c23820</span><br><span class="hljs-number">00e14020</span><br><span class="hljs-number">01004820</span><br><span class="hljs-number">00035020</span><br>ad400000<br>ad410004<br>ad420008<br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">8d4b0000</span><br><span class="hljs-number">8d4c0000</span><br><span class="hljs-number">8d4d0000</span><br><span class="hljs-number">01407022</span><br><span class="hljs-number">01c17822</span><br><span class="hljs-number">01e28022</span><br><span class="hljs-number">3</span>c11ffff<br><span class="hljs-number">3</span>c124fff<br><span class="hljs-number">3c130001</span><br><span class="hljs-number">3c140223</span><br><span class="hljs-number">36b50001</span><br><span class="hljs-number">36d60001</span><br><span class="hljs-number">02c4b022</span><br><span class="hljs-number">12</span>b6fffe<br></code></pre></td></tr></table></figure>
-<h3 id="比对MARS与Logisim模拟CPU的寄存器"><a href="#比对MARS与Logisim模拟CPU的寄存器" class="headerlink" title="比对MARS与Logisim模拟CPU的寄存器"></a>比对MARS与Logisim模拟CPU的寄存器</h3><blockquote>
+<h3 id="比对mars与logisim模拟cpu的寄存器">比对MARS与Logisim模拟CPU的寄存器</h3>
+<blockquote>
 <p>经过测试,两者结果相符</p>
 </blockquote>
-<p><img src="image-20241023000916439.png" srcset="/img/loading.gif" lazyload alt="image-20241023000916439"></p>
-<p><img src="image-20241023000930000.png" srcset="/img/loading.gif" lazyload alt="image-20241023000930000"></p>
-<h3 id="比对DM"><a href="#比对DM" class="headerlink" title="比对DM"></a>比对DM</h3><p>Logisim中DM导出结果:</p>
+<figure>
+<img src="image-20241023000916439.png" srcset="/img/loading.gif" lazyload alt="image-20241023000916439">
+<figcaption aria-hidden="true">image-20241023000916439</figcaption>
+</figure>
+<figure>
+<img src="image-20241023000930000.png" srcset="/img/loading.gif" lazyload alt="image-20241023000930000">
+<figcaption aria-hidden="true">image-20241023000930000</figcaption>
+</figure>
+<h3 id="比对dm">比对DM</h3>
+<p>Logisim中DM导出结果:</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">v2</span>.<span class="hljs-number">0</span> raw<br><span class="hljs-attribute">11</span>*<span class="hljs-number">0</span> b <span class="hljs-number">16</span><br></code></pre></td></tr></table></figure>
 <p>Mars中的结果为:</p>
-<p><img src="image-20241023000652564.png" srcset="/img/loading.gif" lazyload alt="image-20241023000652564"></p>
-<h3 id="Python自动化测试"><a href="#Python自动化测试" class="headerlink" title="Python自动化测试"></a>Python自动化测试</h3><h4 id="Mars-Memory文件导出方式"><a href="#Mars-Memory文件导出方式" class="headerlink" title="Mars Memory文件导出方式"></a>Mars Memory文件导出方式</h4><blockquote>
-<p>通过<code>File-Dump Memory to File</code>,Memory Segment选择<code>.data</code>,Dump Format选择<code>Hexadecimal Text</code></p>
+<figure>
+<img src="image-20241023000652564.png" srcset="/img/loading.gif" lazyload alt="image-20241023000652564">
+<figcaption aria-hidden="true">image-20241023000652564</figcaption>
+</figure>
+<h3 id="python自动化测试">Python自动化测试</h3>
+<h4 id="mars-memory文件导出方式">Mars Memory文件导出方式</h4>
+<blockquote>
+<p>通过<code>File-Dump Memory to File</code>,Memory
+Segment选择<code>.data</code>,Dump
+Format选择<code>Hexadecimal Text</code></p>
 </blockquote>
 <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs dns"><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">00000000</span><br><span class="hljs-number">0000000</span>b<br><span class="hljs-number">00000016</span><br><span class="hljs-number">00000000</span><br>...<br><span class="hljs-number">00000000</span><br></code></pre></td></tr></table></figure>
-<h4 id="Logisim-Memory文件导出方式"><a href="#Logisim-Memory文件导出方式" class="headerlink" title="Logisim Memory文件导出方式"></a>Logisim Memory文件导出方式</h4><blockquote>
+<h4 id="logisim-memory文件导出方式">Logisim Memory文件导出方式</h4>
+<blockquote>
 <p>右键RAM,选择<code>save image</code></p>
 </blockquote>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">v2</span>.<span class="hljs-number">0</span> raw<br><span class="hljs-attribute">11</span>*<span class="hljs-number">0</span> b <span class="hljs-number">16</span><br></code></pre></td></tr></table></figure>
-<h4 id="Python测试文件"><a href="#Python测试文件" class="headerlink" title="Python测试文件"></a>Python测试文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python">mips_path = <span class="hljs-string">&quot;mips.txt&quot;</span><br>logisim_path = <span class="hljs-string">&quot;logisim.txt&quot;</span><br><br>mips_file = <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;mips.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>)<br>logisim_file = <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;logisim.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>)<br><br>mips_mem = []<br>lines = mips_file.readlines()<br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> lines:<br>    line = line.removesuffix(<span class="hljs-string">&quot;\n&quot;</span>)<br>    mips_mem.append(<span class="hljs-built_in">int</span>(line, <span class="hljs-number">16</span>))<br><br>logisim_mem = [<span class="hljs-number">0</span>] * <span class="hljs-built_in">len</span>(mips_mem)<br>lines2 = logisim_file.readlines()<br>line = lines2[<span class="hljs-number">1</span>]<br>line = line.removesuffix(<span class="hljs-string">&quot;\n&quot;</span>)<br>index = <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> line.split(<span class="hljs-string">&quot; &quot;</span>):<br>    <span class="hljs-built_in">print</span>(s)<br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;*&quot;</span> <span class="hljs-keyword">in</span> s:<br>        <span class="hljs-comment"># cnt为10进制,value为16进制</span><br>        cnt, value = s.split(<span class="hljs-string">&quot;*&quot;</span>)<br>        cnt = <span class="hljs-built_in">int</span>(cnt)<br>        value = <span class="hljs-built_in">int</span>(value, <span class="hljs-number">16</span>)<br>        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cnt):<br>            logisim_mem[index] = value<br>            index += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">else</span>:<br>        value = <span class="hljs-built_in">int</span>(s, <span class="hljs-number">16</span>)<br>        logisim_mem[index] = value<br>        index += <span class="hljs-number">1</span><br><br>flag = <span class="hljs-literal">True</span><br><span class="hljs-keyword">for</span> x, y <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(logisim_mem, mips_mem):<br>    <span class="hljs-keyword">if</span> x != y:<br>        flag = <span class="hljs-literal">False</span><br><br><span class="hljs-built_in">print</span>(logisim_mem)<br><span class="hljs-built_in">print</span>(mips_mem)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Two documents is the same!!!&quot;</span> <span class="hljs-keyword">if</span> flag == <span class="hljs-literal">True</span> <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;Two documents is different!!!&quot;</span>)<br></code></pre></td></tr></table></figure>
-<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><ol>
-<li><p>上面我们介绍了通过 FSM 理解单周期 CPU 的基本方法。请大家指出单周期 CPU 所用到的模块中，哪些发挥状态存储功能，哪些发挥状态转移功能。</p>
+<h4 id="python测试文件">Python测试文件</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python">mips_path = <span class="hljs-string">&quot;mips.txt&quot;</span><br>logisim_path = <span class="hljs-string">&quot;logisim.txt&quot;</span><br><br>mips_file = <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;mips.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>)<br>logisim_file = <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;logisim.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>)<br><br>mips_mem = []<br>lines = mips_file.readlines()<br><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> lines:<br>    line = line.removesuffix(<span class="hljs-string">&quot;\n&quot;</span>)<br>    mips_mem.append(<span class="hljs-built_in">int</span>(line, <span class="hljs-number">16</span>))<br><br>logisim_mem = [<span class="hljs-number">0</span>] * <span class="hljs-built_in">len</span>(mips_mem)<br>lines2 = logisim_file.readlines()<br>line = lines2[<span class="hljs-number">1</span>]<br>line = line.removesuffix(<span class="hljs-string">&quot;\n&quot;</span>)<br>index = <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> line.split(<span class="hljs-string">&quot; &quot;</span>):<br>    <span class="hljs-built_in">print</span>(s)<br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;*&quot;</span> <span class="hljs-keyword">in</span> s:<br>        <span class="hljs-comment"># cnt为10进制,value为16进制</span><br>        cnt, value = s.split(<span class="hljs-string">&quot;*&quot;</span>)<br>        cnt = <span class="hljs-built_in">int</span>(cnt)<br>        value = <span class="hljs-built_in">int</span>(value, <span class="hljs-number">16</span>)<br>        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(cnt):<br>            logisim_mem[index] = value<br>            index += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">else</span>:<br>        value = <span class="hljs-built_in">int</span>(s, <span class="hljs-number">16</span>)<br>        logisim_mem[index] = value<br>        index += <span class="hljs-number">1</span><br><br>flag = <span class="hljs-literal">True</span><br><span class="hljs-keyword">for</span> x, y <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(logisim_mem, mips_mem):<br>    <span class="hljs-keyword">if</span> x != y:<br>        flag = <span class="hljs-literal">False</span><br><br><span class="hljs-built_in">print</span>(logisim_mem)<br><span class="hljs-built_in">print</span>(mips_mem)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Two documents is the same!!!&quot;</span> <span class="hljs-keyword">if</span> flag == <span class="hljs-literal">True</span> <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;Two documents is different!!!&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="思考题">思考题</h2>
+<ol type="1">
+<li><p>上面我们介绍了通过 FSM 理解单周期 CPU
+的基本方法。请大家指出单周期 CPU
+所用到的模块中，哪些发挥状态存储功能，哪些发挥状态转移功能。</p>
 <blockquote>
 <p><code>IM,GRF,DM</code>发挥状态存储功能,<code>PC</code>发挥状态,<code>EXT,NXTAD,ALU,CU</code>发挥状态转移功能</p>
-</blockquote>
-</li>
-<li><p>现在我们的模块中 IM 使用 ROM， DM 使用 RAM， GRF 使用 Register，这种做法合理吗？ 请给出分析，若有改进意见也请一并给出。</p>
+</blockquote></li>
+<li><p>现在我们的模块中 IM 使用 ROM， DM 使用 RAM， GRF 使用
+Register，这种做法合理吗？ 请给出分析，若有改进意见也请一并给出。</p>
 <blockquote>
-<p>合理,<code>IM</code>作为指令存储器,只需要在运行前导入指令集,在运行中不会修改,应当使用 <code>ROM</code>;</p>
-<p><code>DM</code>是数据存储器,在涉及<code>lw,sw</code>的指令中会发生读取和写入操作,应当使用 <code>RAM</code>;</p>
+<p>合理,<code>IM</code>作为指令存储器,只需要在运行前导入指令集,在运行中不会修改,应当使用
+<code>ROM</code>;</p>
+<p><code>DM</code>是数据存储器,在涉及<code>lw,sw</code>的指令中会发生读取和写入操作,应当使用
+<code>RAM</code>;</p>
 <p><code>GRF</code>作为<code>CPU</code>内部存储,每次只会存储一个数,并且需要实现读取和写入,应当用<code>Register</code>.</p>
 <p>改进方式:<code>IM</code>,<code>DM</code>加入片选逻辑</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>在上述提示的模块之外，你是否在实际实现时设计了其他的模块？如果是的话，请给出介绍和设计的思路。</p>
 <blockquote>
 <p><code>NXTAD</code>(Next Address Module),用于计算下一个指令的地址.</p>
 <p><code>NXTAD</code>需要处理两种情况:一种是正常的通过地址+4获得新地址;另一种是在<code>beq</code>指令中跳转到特定地址.</p>
 <p>我们使用<code>Branch</code>,<code>Zero</code>作为控制信号:输入指令为<code>beq</code>时,<code>Branch</code>置1,若指令中的两个寄存器值相等,则<code>Zero</code>置1.当<code>Branch</code>与<code>Zero</code>均为1时,<code>NXTAD</code>模块处理后一种情况,否则为前一种.</p>
-</blockquote>
-</li>
-<li><p>事实上，实现 <code>nop</code> 空指令，我们并不需要将它加入控制信号真值表，为什么？</p>
+</blockquote></li>
+<li><p>事实上，实现 <code>nop</code>
+空指令，我们并不需要将它加入控制信号真值表，为什么？</p>
 <blockquote>
 <p><code>nop</code>不改变任何寄存器或者<code>Data Memory</code>的值,不会产生任何影响,我们无需写入或读取数据</p>
-</blockquote>
-</li>
-<li><p>阅读 Pre 的 <a target="_blank" rel="noopener" href="http://cscore.buaa.edu.cn/tutorial/mips/mips-6/mips6-1/">“MIPS 指令集及汇编语言”</a> 一节中给出的测试样例，评价其强度（可从各个指令的覆盖情况，单一指令各种行为的覆盖情况等方面分析），并指出具体的不足之处。</p>
+</blockquote></li>
+<li><p>阅读 Pre 的 <a target="_blank" rel="noopener" href="http://cscore.buaa.edu.cn/tutorial/mips/mips-6/mips6-1/">“MIPS
+指令集及汇编语言”</a>
+一节中给出的测试样例，评价其强度（可从各个指令的覆盖情况，单一指令各种行为的覆盖情况等方面分析），并指出具体的不足之处。</p>
 <blockquote>
 <p>对<code>ori,lui,add</code>涉及的情况较为充分,但缺乏对<code>sub</code>的测试,<code>lw,sw</code>缺乏立即数为负数的情况,未考虑用<code>beq</code>实现循环的情况</p>
-</blockquote>
-</li>
+</blockquote></li>
 </ol>
 
                 
