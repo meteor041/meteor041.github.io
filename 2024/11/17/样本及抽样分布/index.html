@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="样本及抽样分布随机样本在相同条件下对总体X进行n次重复的,独立的观察,将n次观察结果按试验的次序记为$X_1,X_2,…,X_n$,成为来自总体$X$的一个简单随机样本,n称为这个样本的容量 $(X_1,X_2,…,X_n)$的分布函数: $F^*(x_1,x_2,…,x_n)&#x3D;\prod\limits_{i&#x3D;1}^nF(x_i)$ $(X_1,X_2,…,X_n)$的概率密度: $f^*(x_1">
+    <meta name="description" content="样本及抽样分布 随机样本 在相同条件下对总体X进行n次重复的,独立的观察,将n次观察结果按试验的次序记为\(X_1,X_2,...,X_n\),成为来自总体\(X\)的一个简单随机样本,n称为这个样本的容量 \((X_1,X_2,...,X_n)\)的分布函数: \(F^*(x_1,x_2,...,x_n)&#x3D;\prod\limits_{i&#x3D;1}^nF(x_i)\) \((X_1,X_2,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="样本及抽样分布">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/17/%E6%A0%B7%E6%9C%AC%E5%8F%8A%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="样本及抽样分布随机样本在相同条件下对总体X进行n次重复的,独立的观察,将n次观察结果按试验的次序记为$X_1,X_2,…,X_n$,成为来自总体$X$的一个简单随机样本,n称为这个样本的容量 $(X_1,X_2,…,X_n)$的分布函数: $F^*(x_1,x_2,…,x_n)&#x3D;\prod\limits_{i&#x3D;1}^nF(x_i)$ $(X_1,X_2,…,X_n)$的概率密度: $f^*(x_1">
+<meta property="og:description" content="样本及抽样分布 随机样本 在相同条件下对总体X进行n次重复的,独立的观察,将n次观察结果按试验的次序记为\(X_1,X_2,...,X_n\),成为来自总体\(X\)的一个简单随机样本,n称为这个样本的容量 \((X_1,X_2,...,X_n)\)的分布函数: \(F^*(x_1,x_2,...,x_n)&#x3D;\prod\limits_{i&#x3D;1}^nF(x_i)\) \((X_1,X_2,">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-17T07:33:28.000Z">
 <meta property="article:modified_time" content="2024-11-17T07:34:29.225Z">
@@ -295,62 +295,94 @@
             
               <div class="markdown-body">
                 
-                <h1 id="样本及抽样分布"><a href="#样本及抽样分布" class="headerlink" title="样本及抽样分布"></a>样本及抽样分布</h1><h2 id="随机样本"><a href="#随机样本" class="headerlink" title="随机样本"></a>随机样本</h2><p>在相同条件下对总体X进行n次重复的,独立的观察,将n次观察结果按试验的次序记为$X_1,X_2,…,X_n$,成为来自总体$X$的一个简单随机样本,n称为这个样本的容量</p>
-<p>$(X_1,X_2,…,X_n)$的分布函数:</p>
-<p>$F^*(x_1,x_2,…,x_n)=\prod\limits_{i=1}^nF(x_i)$</p>
-<p>$(X_1,X_2,…,X_n)$的概率密度:</p>
-<p>$f^*(x_1,x_2,…,x_n)=\prod\limits_{i=1}^nf(x_i)$</p>
-<h2 id="直方图和箱线图"><a href="#直方图和箱线图" class="headerlink" title="直方图和箱线图"></a>直方图和箱线图</h2><h3 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h3><ul>
-<li>高为$\frac{f_i}{n\Delta}$</li>
-</ul>
-<h3 id="箱线图"><a href="#箱线图" class="headerlink" title="箱线图"></a>箱线图</h3><p>样本p分位数$x_p$:</p>
-<ol>
-<li>至少有$np$个观察值小于或等于$x_p$</li>
-<li>至少有$np(1-p)$个观察值大于或等于$x_p$</li>
-</ol>
-<p>$x_p=\begin{cases}x_{[np]+1},np不是整数\\\frac{1}{2}[x_{(np)}+x_{(np+1)}],np是整数\end{cases}$</p>
-<p>$p=0.5\rightarrow$<strong>样本中位数</strong></p>
-<p>$p=0.25\rightarrow$<strong>样本第一四分位数</strong></p>
-<p>$p=0.75\rightarrow$<strong>样本第三四分位数</strong></p>
-<h3 id="疑似异常值"><a href="#疑似异常值" class="headerlink" title="疑似异常值"></a>疑似异常值</h3><p>$Q_1-Q_2\mathop =\limits^{记为}IQR$</p>
-<p>$若数据小于Q_1-1.5IQR或者大于Q_2+1.5IQR,就认为它是疑似异常值$</p>
-<h2 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h2><p>$X_1,X_2,\dots,X_n$是来自总体X的一个样本,$g(X_1,X_2,\dots,X_n)$是$X_1,X_2,\dots,X_n$的函数,若$g$中不含未知参数,则称$g(X_1,X_2,\dots,X_n)$是一<strong>统计量</strong></p>
+                <h1 id="样本及抽样分布">样本及抽样分布</h1>
+<h2 id="随机样本">随机样本</h2>
+<p>在相同条件下对总体X进行n次重复的,独立的观察,将n次观察结果按试验的次序记为<span class="math inline">\(X_1,X_2,...,X_n\)</span>,成为来自总体<span class="math inline">\(X\)</span>的一个简单随机样本,n称为这个样本的容量</p>
+<p><span class="math inline">\((X_1,X_2,...,X_n)\)</span>的分布函数:</p>
+<p><span class="math inline">\(F^*(x_1,x_2,...,x_n)=\prod\limits_{i=1}^nF(x_i)\)</span></p>
+<p><span class="math inline">\((X_1,X_2,...,X_n)\)</span>的概率密度:</p>
+<p><span class="math inline">\(f^*(x_1,x_2,...,x_n)=\prod\limits_{i=1}^nf(x_i)\)</span></p>
+<h2 id="直方图和箱线图">直方图和箱线图</h2>
+<h3 id="直方图">直方图</h3>
 <ul>
-<li>样本平均值$\bar{X}=\frac{1}{n}\sum\limits_{i=1}^nX_i$</li>
-<li>样本方差$S^2=\frac{1}{n-1}\sum\limits_{i=1}^n(X_i-\bar X)^2$</li>
-<li>样本k阶原点矩$A_k=\frac{1}{n}\sum\limits^n_{i=1}X_i^k,k=1,2,\dots$</li>
+<li>高为<span class="math inline">\(\frac{f_i}{n\Delta}\)</span></li>
 </ul>
-<h3 id="经验分布函数"><a href="#经验分布函数" class="headerlink" title="经验分布函数"></a>经验分布函数</h3><p>$S(x)表示X_1,X_2,…,X_n中不大于x的随机变量的个数$</p>
-<p>$F_n(x)=\frac{1}{n}S(x),-\infty&lt;x&lt;\infty$</p>
-<p>$F_n(x)=\begin{cases}0,x&lt;x_{(1)},\\\frac{k}{n},x_{(k)}\leq x&lt;x_{(k+1)},\\1,x\geq x_{(n)},\end{cases}$</p>
-<p>可证:$P\{\mathop\lim\limits_{n\rightarrow \infty}\sup\limits_{-\infty&lt;x&lt;\infty}|F_x(x)-F(x)|=0\}=1$</p>
-<h3 id="chi-2-分布"><a href="#chi-2-分布" class="headerlink" title="$\chi^2$分布"></a>$\chi^2$分布</h3><h4 id="分布"><a href="#分布" class="headerlink" title="分布"></a>分布</h4><p>假设$X_1,X_2,…,X_n$是来自总体$N(0,1)$的样本且都服从标准正态分布$N(0,1)$</p>
-<p>则称统计量$\chi^2=X_1^2+X_2^2+…+X^2_n\sim\chi^2(n)$</p>
-<p>$f(x)=\begin{cases}\frac{1}{ 2^{\frac{n}{2}}\Gamma(\frac{n}{2}) }e^{-\frac{x}{2}} x^{ \frac{n}{2}-1},x&gt;0\\0,x\leq 0\end{cases}$</p>
-<p>其中$\Gamma(x)=\int^{+\infty}_0t^{x-1}e^{-t}dt$</p>
-<p>在$x&gt;0$时收敛,称为$\Gamma$函数</p>
-<h4 id="分布性质"><a href="#分布性质" class="headerlink" title="分布性质"></a>分布性质</h4><ul>
-<li>$E(\chi^2(x))=n,D(\chi^2(n))=2n$</li>
-<li>$若X_1= \chi^2(n_1),X_2=\chi^2(n_2),X_1,X_2相互独立,X_1+X_2\sim \chi^2(n_1+n_2)$</li>
-<li>$\chi^2(x)$的$\alpha$分位数:$n&gt;45时,\chi^2_\alpha(n)\approx\frac{1}{2}(z_\alpha+\sqrt{2n-1})^2$</li>
+<h3 id="箱线图">箱线图</h3>
+<p>样本p分位数<span class="math inline">\(x_p\)</span>:</p>
+<ol type="1">
+<li>至少有<span class="math inline">\(np\)</span>个观察值小于或等于<span class="math inline">\(x_p\)</span></li>
+<li>至少有<span class="math inline">\(np(1-p)\)</span>个观察值大于或等于<span class="math inline">\(x_p\)</span></li>
+</ol>
+<p><span class="math inline">\(x_p=\begin{cases}x_{[np]+1},np不是整数\\\frac{1}{2}[x_{(np)}+x_{(np+1)}],np是整数\end{cases}\)</span></p>
+<p><span class="math inline">\(p=0.5\rightarrow\)</span><strong>样本中位数</strong></p>
+<p><span class="math inline">\(p=0.25\rightarrow\)</span><strong>样本第一四分位数</strong></p>
+<p><span class="math inline">\(p=0.75\rightarrow\)</span><strong>样本第三四分位数</strong></p>
+<h3 id="疑似异常值">疑似异常值</h3>
+<p><span class="math inline">\(Q_1-Q_2\mathop
+=\limits^{记为}IQR\)</span></p>
+<p><span class="math inline">\(若数据小于Q_1-1.5IQR或者大于Q_2+1.5IQR,就认为它是疑似异常值\)</span></p>
+<h2 id="抽样分布">抽样分布</h2>
+<p><span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自总体X的一个样本,<span class="math inline">\(g(X_1,X_2,\dots,X_n)\)</span>是<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>的函数,若<span class="math inline">\(g\)</span>中不含未知参数,则称<span class="math inline">\(g(X_1,X_2,\dots,X_n)\)</span>是一<strong>统计量</strong></p>
+<ul>
+<li>样本平均值<span class="math inline">\(\bar{X}=\frac{1}{n}\sum\limits_{i=1}^nX_i\)</span></li>
+<li>样本方差<span class="math inline">\(S^2=\frac{1}{n-1}\sum\limits_{i=1}^n(X_i-\bar
+X)^2\)</span></li>
+<li>样本k阶原点矩<span class="math inline">\(A_k=\frac{1}{n}\sum\limits^n_{i=1}X_i^k,k=1,2,\dots\)</span></li>
 </ul>
-<h3 id="t-分布"><a href="#t-分布" class="headerlink" title="$t$分布"></a>$t$分布</h3><h4 id="分布-1"><a href="#分布-1" class="headerlink" title="分布"></a>分布</h4><p>$X\sim N(0,1),Y\sim \chi^2(n),X,Y相互独立$</p>
-<p>$T=\frac{X}{\sqrt{Y/N}}$,则称T所服从的分布称为自由度为$n$的$T$分布</p>
+<h3 id="经验分布函数">经验分布函数</h3>
+<p><span class="math inline">\(S(x)表示X_1,X_2,...,X_n中不大于x的随机变量的个数\)</span></p>
+<p><span class="math inline">\(F_n(x)=\frac{1}{n}S(x),-\infty&lt;x&lt;\infty\)</span></p>
+<p><span class="math inline">\(F_n(x)=\begin{cases}0,x&lt;x_{(1)},\\\frac{k}{n},x_{(k)}\leq
+x&lt;x_{(k+1)},\\1,x\geq x_{(n)},\end{cases}\)</span></p>
+<p>可证:<span class="math inline">\(P\{\mathop\lim\limits_{n\rightarrow
+\infty}\sup\limits_{-\infty&lt;x&lt;\infty}|F_x(x)-F(x)|=0\}=1\)</span></p>
+<h3 id="chi2分布"><span class="math inline">\(\chi^2\)</span>分布</h3>
+<h4 id="分布">分布</h4>
+<p>假设<span class="math inline">\(X_1,X_2,...,X_n\)</span>是来自总体<span class="math inline">\(N(0,1)\)</span>的样本且都服从标准正态分布<span class="math inline">\(N(0,1)\)</span></p>
+<p>则称统计量<span class="math inline">\(\chi^2=X_1^2+X_2^2+...+X^2_n\sim\chi^2(n)\)</span></p>
+<p><span class="math inline">\(f(x)=\begin{cases}\frac{1}{
+2^{\frac{n}{2}}\Gamma(\frac{n}{2}) }e^{-\frac{x}{2}} x^{
+\frac{n}{2}-1},x&gt;0\\0,x\leq 0\end{cases}\)</span></p>
+<p>其中<span class="math inline">\(\Gamma(x)=\int^{+\infty}_0t^{x-1}e^{-t}dt\)</span></p>
+<p>在<span class="math inline">\(x&gt;0\)</span>时收敛,称为<span class="math inline">\(\Gamma\)</span>函数</p>
+<h4 id="分布性质">分布性质</h4>
+<ul>
+<li><span class="math inline">\(E(\chi^2(x))=n,D(\chi^2(n))=2n\)</span></li>
+<li><span class="math inline">\(若X_1=
+\chi^2(n_1),X_2=\chi^2(n_2),X_1,X_2相互独立,X_1+X_2\sim
+\chi^2(n_1+n_2)\)</span></li>
+<li><span class="math inline">\(\chi^2(x)\)</span>的<span class="math inline">\(\alpha\)</span>分位数:<span class="math inline">\(n&gt;45时,\chi^2_\alpha(n)\approx\frac{1}{2}(z_\alpha+\sqrt{2n-1})^2\)</span></li>
+</ul>
+<h3 id="t分布"><span class="math inline">\(t\)</span>分布</h3>
+<h4 id="分布-1">分布</h4>
+<p><span class="math inline">\(X\sim N(0,1),Y\sim
+\chi^2(n),X,Y相互独立\)</span></p>
+<p><span class="math inline">\(T=\frac{X}{\sqrt{Y/N}}\)</span>,则称T所服从的分布称为自由度为<span class="math inline">\(n\)</span>的<span class="math inline">\(T\)</span>分布</p>
 <p>其密度函数:</p>
-<p>$f(t)=\frac{\Gamma(\frac{n+1}{2})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}(1+\frac{t^2}{n})^{-\frac{n+1}{2}},-\infty&lt;t&lt;\infty$</p>
-<h4 id="分布性质-1"><a href="#分布性质-1" class="headerlink" title="分布性质"></a>分布性质</h4><ul>
-<li>$n\rightarrow \infty,f_n(t)\rightarrow \phi(t)=\frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}$</li>
-<li>$f_n(t)$是偶函数</li>
+<p><span class="math inline">\(f(t)=\frac{\Gamma(\frac{n+1}{2})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}(1+\frac{t^2}{n})^{-\frac{n+1}{2}},-\infty&lt;t&lt;\infty\)</span></p>
+<h4 id="分布性质-1">分布性质</h4>
+<ul>
+<li><span class="math inline">\(n\rightarrow \infty,f_n(t)\rightarrow
+\phi(t)=\frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}\)</span></li>
+<li><span class="math inline">\(f_n(t)\)</span>是偶函数</li>
 </ul>
-<h3 id="F-分布"><a href="#F-分布" class="headerlink" title="$F$分布"></a>$F$分布</h3><p>$f(t,n,m)=\begin{cases}\frac{\Gamma(\frac{n+m}{2})}{\Gamma(\frac{n}{2})\Gamma(\frac{m}{2})}(\frac{n}{m})^{\frac{n}{2}}t^{\frac{n}{2}-1}(1+\frac{n}{m}t)^{-\frac{n+m}{2}},t&gt;0\\0,t\leq 0\end{cases}$</p>
-<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><ul>
-<li>$P(F\leq F_\alpha(n,m))=\alpha$</li>
-<li>$\frac{1}{F}\sim F(m,n)$</li>
+<h3 id="f分布"><span class="math inline">\(F\)</span>分布</h3>
+<p><span class="math inline">\(f(t,n,m)=\begin{cases}\frac{\Gamma(\frac{n+m}{2})}{\Gamma(\frac{n}{2})\Gamma(\frac{m}{2})}(\frac{n}{m})^{\frac{n}{2}}t^{\frac{n}{2}-1}(1+\frac{n}{m}t)^{-\frac{n+m}{2}},t&gt;0\\0,t\leq
+0\end{cases}\)</span></p>
+<h4 id="性质">性质</h4>
+<ul>
+<li><span class="math inline">\(P(F\leq
+F_\alpha(n,m))=\alpha\)</span></li>
+<li><span class="math inline">\(\frac{1}{F}\sim F(m,n)\)</span></li>
 </ul>
-<p>$F_{1-\alpha}(n,m)=\frac{1}{F_\alpha(m,n)}$</p>
-<h2 id="正态总体的样本均值与样本方差的分布"><a href="#正态总体的样本均值与样本方差的分布" class="headerlink" title="正态总体的样本均值与样本方差的分布"></a>正态总体的样本均值与样本方差的分布</h2><p>$\bar X,S^2$分别为样本均值,样本方差</p>
-<p>$E(\bar X)=\mu,D(\bar X)=\frac{\sigma^2}{n}{},E(S^2)=\sigma^2$</p>
-<p>$\bar X\sim N(\mu, \frac{\sigma^2}{n})$</p>
+<p><span class="math inline">\(F_{1-\alpha}(n,m)=\frac{1}{F_\alpha(m,n)}\)</span></p>
+<h2 id="正态总体的样本均值与样本方差的分布">正态总体的样本均值与样本方差的分布</h2>
+<p><span class="math inline">\(\bar
+X,S^2\)</span>分别为样本均值,样本方差</p>
+<p><span class="math inline">\(E(\bar X)=\mu,D(\bar
+X)=\frac{\sigma^2}{n}{},E(S^2)=\sigma^2\)</span></p>
+<p><span class="math inline">\(\bar X\sim N(\mu,
+\frac{\sigma^2}{n})\)</span></p>
 
                 
               </div>
