@@ -26,16 +26,18 @@
 <meta property="og:site_name" content="meteor041">
 <meta property="og:description" content="概率论-参数估计 点估计 设总体X的分布函数F(x;\(\theta\))形式为已知,\(\theta\)是待估参数.\(X_1,X_2…X_n\)是X的一个样本,\(x_1,x_2,…x_n\),是相应的一个样本值. 点估计问题就是要构造一个适当的统计量\(\hat\theta(X_1,X_2…X_n)\),用它的观察值\(\hat\theta(x_1,x_2…x_n)\)作为未知参数\(">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124145810223.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124150852368.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/72c3c6096138257fe8417c26946a591.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124094936717.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124095021691.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124093640970.png">
 <meta property="article:published_time" content="2024-11-22T02:17:25.000Z">
-<meta property="article:modified_time" content="2024-11-24T06:44:07.556Z">
+<meta property="article:modified_time" content="2024-11-24T07:11:48.498Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="概统">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/72c3c6096138257fe8417c26946a591.png">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124145810223.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -230,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          845 字
+          1.1k 字
         
       </span>
     
@@ -241,7 +243,7 @@
         
         
         
-          8 分钟
+          10 分钟
         
       </span>
     
@@ -357,6 +359,7 @@ X+Z_{1-\alpha/2}\sqrt{\frac{\sigma^2}{n}})\)</span></p>
 \frac{\sigma}{\sqrt n})\)</span>选取枢轴量</p>
 <p><span class="math inline">\(\frac{\bar X-\mu}{\frac{\sigma}{\sqrt
 n}}\sim N(0,1)\)</span></p>
+<p>(其中Z值根据下文标准正态分布表查表得)</p>
 <p>(2)方差<span class="math inline">\(\sigma^2\)</span>未知,<span class="math inline">\(\mu\)</span>的置信区间</p>
 <p>选取枢轴量:<span class="math inline">\(T=\frac{\bar
 X-\mu}{\frac{S}{\sqrt n}}\sim T(n-1)\)</span></p>
@@ -365,10 +368,33 @@ X-\mu}{\frac{S}{\sqrt n}}\right| \geq
 t_{1-\frac{\alpha}{2}}(n-1)\right)=\alpha\)</span></p>
 <p>其中<span class="math inline">\(\frac{1}{n-1}\sum^n_{i=1}(X_i-\bar
 X)^2=S^2\)</span></p>
-<p>(3)当<span class="math inline">\(\mu\)</span>已知时,方差<span class="math inline">\(\sigma^2\)</span>的置信空间</p>
+<p><span class="math inline">\(\left(\bar
+X-t_{1-\alpha/2}(n-1)\frac{S}{\sqrt n},\bar
+X+t_{1-\alpha/2}(n-1)\frac{S}{\sqrt n}\right)\)</span></p>
+<p>(其中<span class="math inline">\(t\)</span>值根据下文T分布表查表得)</p>
+<p>(3)当<span class="math inline">\(\mu\)</span>已知时,方差<span class="math inline">\(\sigma^2\)</span>的置信空间$</p>
+<p><span class="math inline">\(枢轴量Q=\sum\limits_{i=1}^n\left(\frac{X_i-\mu}{\sigma}\right)^2\sim
+\chi^2(n)\)</span></p>
+<p>由概率<span class="math inline">\(P\left(\chi_{\alpha/2}^2(n)&lt;\frac{\sum^n_{i=1}(X_i-\mu)^2}{\sigma^2}&lt;\chi_{1-\alpha/2}^2(n)\right)=1-\alpha\)</span></p>
+<p><span class="math inline">\(\sigma^2的置信度为1-\alpha置信区间为:\\\left(\frac{\sum_{i=1}^n(X_i-\mu)^2}{\chi_{1-\alpha/2}^2(n)},\frac{\sum_{i=1}^n(X_i-\mu)^2}{\chi_{\alpha/2}^2(n)}\right)\)</span></p>
+<p><span class="math inline">\(\chi_{\alpha/2}^2(n)从下文卡方分布表中得到\)</span></p>
+<p>(4)由<span class="math inline">\(\mu\)</span>未知时,方差<span class="math inline">\(\sigma^2\)</span>的置信区间</p>
+<p><span class="math inline">\(\frac{(n-1)S^2}{\sigma^2}\sim
+\chi^2(n-1)\)</span></p>
+<p><span class="math inline">\(P(\chi_{\alpha/2}^2&lt;\frac{(n-1)s^2}{\sigma^2}&lt;\chi_{1-\alpha/2}^2)=1-\alpha\)</span></p>
+<p><span class="math inline">\(\sigma^2的置信度为1-\alpha置信区间为:\\\left(\frac{(n-1)S^2}{\chi_{1-\alpha/2}^2(n-1)},\frac{(n-1)S^2}{\chi_{\alpha/2}^2(n-1)}\right)\)</span></p>
 <h3 id="单侧置信空间">单侧置信空间</h3>
 <p><span class="math inline">\(P(\theta&gt;\theta)=1-\alpha/P(\theta&lt;\theta)=1-\alpha\)</span></p>
 <p>为置信度<span class="math inline">\(1-\alpha\)</span>的单侧置信空间</p>
+<h2 id="分布表">分布表</h2>
+<figure>
+<img src="image-20241124145810223.png" srcset="/img/loading.gif" lazyload alt="标准正态分布表">
+<figcaption aria-hidden="true">标准正态分布表</figcaption>
+</figure>
+<figure>
+<img src="image-20241124150852368.png" srcset="/img/loading.gif" lazyload alt="卡方分布表">
+<figcaption aria-hidden="true">卡方分布表</figcaption>
+</figure>
 <figure>
 <img src="72c3c6096138257fe8417c26946a591.png" srcset="/img/loading.gif" lazyload alt="F检验临界值表alpha=0.05">
 <figcaption aria-hidden="true">F检验临界值表alpha=0.05</figcaption>
