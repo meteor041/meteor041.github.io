@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://meteor041.git.io/2024/11/11/cache/image-20241113092832343.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/11/cache/image-20241113105108759.png">
 <meta property="article:published_time" content="2024-11-11T06:32:46.000Z">
-<meta property="article:modified_time" content="2024-11-13T02:52:55.483Z">
+<meta property="article:modified_time" content="2024-11-21T18:12:04.519Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="CO">
 <meta property="article:tag" content="CPU">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          805 字
+          1.7k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          7 分钟
+          14 分钟
         
       </span>
     
@@ -296,7 +296,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月13日 上午
+                    本文最后更新于 2024年11月22日 凌晨
                   
                 
               </p>
@@ -411,7 +411,138 @@
 <p>2路组相连映射—2块为1组,分4组</p>
 <h2 id="缺失处理"><a href="#缺失处理" class="headerlink" title="缺失处理"></a>缺失处理</h2><p><img src="image-20241113092733659.png" srcset="/img/loading.gif" lazyload alt="image-20241113092733659"></p>
 <h2 id="替换处理"><a href="#替换处理" class="headerlink" title="替换处理"></a>替换处理</h2><p><img src="image-20241113092832343.png" srcset="/img/loading.gif" lazyload alt="image-20241113092832343"></p>
-<h3 id="替换策略"><a href="#替换策略" class="headerlink" title="替换策略"></a>替换策略</h3><h4 id="LRU"><a href="#LRU" class="headerlink" title="LRU"></a>LRU</h4><h4 id="FIFO"><a href="#FIFO" class="headerlink" title="FIFO"></a>FIFO</h4><h4 id="LFU"><a href="#LFU" class="headerlink" title="LFU"></a>LFU</h4><h4 id="RAND"><a href="#RAND" class="headerlink" title="RAND"></a>RAND</h4><p><img src="image-20241113105108759.png" srcset="/img/loading.gif" lazyload alt="image-20241113105108759"></p>
+<h3 id="替换策略"><a href="#替换策略" class="headerlink" title="替换策略"></a>替换策略</h3><h4 id="LRU-近期最少使用算法"><a href="#LRU-近期最少使用算法" class="headerlink" title="LRU(近期最少使用算法)"></a>LRU(近期最少使用算法)</h4><ul>
+<li>LRU算法对每个位设置一个计数器(LRU替换位)</li>
+<li>计数器位数与组大小相关,二路时有1位LRU位(要区分组内的计数器大小,有0,1两个数即可),四路时有2位LRU位(可以有0,1,2,3四个计数)</li>
+<li>命中时,所命中的行的计数器清零,比其低的计数器加1,其余不变</li>
+<li>未命中且有空闲行时,新装入的行的计数器置0,其余全加1</li>
+<li>未命中且无空闲行时,计数值为$2^{组数}-1$(就是计数最大)的行的信息块被替换,新装入的行的计数器置0,其余全加1</li>
+<li>这种计数方式保证了所有的行的计数在0到$2^{组数}-1$之间,并各不相同</li>
+</ul>
+<h4 id="FIFO-先进先出算法"><a href="#FIFO-先进先出算法" class="headerlink" title="FIFO(先进先出算法)"></a>FIFO(先进先出算法)</h4><p>容易实现,但未遵循程序访问的局部性原理,最早进入的主存块可能是目前经常要用的</p>
+<h4 id="LFU-最不经常使用算法"><a href="#LFU-最不经常使用算法" class="headerlink" title="LFU(最不经常使用算法)"></a>LFU(最不经常使用算法)</h4><p>将一段时间内被访问次数最少的Cache行换出,每行也设置一个计数器,新行装入后从0开始计数,每访问1次,被访问的行计数器加1,需要替换时比较各特定行的计数值,将计数值最小的行换出</p>
+<h4 id="RAND-随机算法"><a href="#RAND-随机算法" class="headerlink" title="RAND(随机算法)"></a>RAND(随机算法)</h4><p>随机的确定替换的Cache行,实现简单</p>
+<p><img src="image-20241113105108759.png" srcset="/img/loading.gif" lazyload alt="image-20241113105108759"></p>
+<h1 id="相关计算问题"><a href="#相关计算问题" class="headerlink" title="相关计算问题"></a>相关计算问题</h1><h2 id="直接映射-1"><a href="#直接映射-1" class="headerlink" title="直接映射"></a>直接映射</h2><ul>
+<li>主存地址空间大小,Cache地址空间大小,块大小一般为已知条件</li>
+<li>$主存块数=\frac{主存地址空间大小}{块大小}=2^m$</li>
+<li>$Cache行数=\frac{Cache地址空间大小}{块大小}=2^c$</li>
+<li>主存地址结构为:</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>Cache行号</th>
+<th>块内地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m-c$位</td>
+<td>$c$位</td>
+<td>$k$位</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="全相联映射-1"><a href="#全相联映射-1" class="headerlink" title="全相联映射"></a>全相联映射</h2><ul>
+<li>主存地址空间大小,Cache地址空间大小,块大小一般为已知条件</li>
+<li>$主存块数=\frac{主存地址空间大小}{块大小}=2^m$</li>
+<li>$Cache行数=\frac{Cache地址空间大小}{块大小}=2^c$</li>
+<li>主存地址结构为:</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>块内地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m-k$位</td>
+<td>$k$位</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="组相联映射"><a href="#组相联映射" class="headerlink" title="组相联映射"></a>组相联映射</h2><ul>
+<li>主存地址空间大小,Cache地址空间大小,组数,块大小一般为已知条件</li>
+<li>$主存块数=\frac{主存地址空间大小}{块大小}=2^m$</li>
+<li>$Cache行数=\frac{Cache地址空间大小}{块大小}=2^c$</li>
+<li>$组数=2^r$</li>
+<li>$主存组内块数=2^{m-r}$</li>
+<li>主存地址结构为:</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>组号</th>
+<th>块内地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m-r$位</td>
+<td>$r$位</td>
+<td>$k$位</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Cache总容量计算"><a href="#Cache总容量计算" class="headerlink" title="Cache总容量计算"></a>Cache总容量计算</h2><blockquote>
+<p>假设某个计算机的主存地址空间大小为256MB,按字节编址,其数据Cache有8个Cache行,行长为64B</p>
+<p>(1)若不考虑用于Cache的一致维护性位(脏位)和替换算法控制位,并且采用直接映射方式,则该数据Cache的总容量为多少?</p>
+<p>[!IMPORTANT]<br>每个Cache行对应一个标记项(包括有效位,脏位,替换算法位,标记位)</p>
+</blockquote>
+<p>由于按字节寻址:</p>
+<p>$块内地址位数=\log_2(64)=6$</p>
+<p>$Cache行号位数=\log_2(8)=3$</p>
+<p>$标记位数=\log_2(256\times 10^{20})-6-3=19$</p>
+<p>主存地址空间结构为</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>标记</th>
+<th>Cache行号</th>
+<th>块内地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>19位</td>
+<td>3位</td>
+<td>6位</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>本题每行(总共8行)的存储器容量为:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>有效位</th>
+<th>标记</th>
+<th>每行存储的数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1bit</td>
+<td>19bit</td>
+<td>64B=512bit</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>因此:总容量为$(1+19+512)\times 8=4256$位</p>
 
                 
               </div>
