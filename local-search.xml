@@ -4,6 +4,106 @@
   
   
   <entry>
+    <title>数学建模-灰色关联分析</title>
+    <link href="/2024/11/28/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E7%81%B0%E8%89%B2%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90/"/>
+    <url>/2024/11/28/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E7%81%B0%E8%89%B2%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90/</url>
+    
+    <content type="html"><![CDATA[<h1 id="灰色关联分析">灰色关联分析</h1><h2 id="确定分析数列">确定分析数列</h2><p>参考数列(母序列):能反映系统行为特征的数据序列,记作<span class="math inline">\(x_0\)</span></p><p>比较数列(子序列):能反映系统行为的因素组成的数据序列,记作<span class="math inline">\(x _i(i=1,2\dots)\)</span></p><h2 id="确定灰色关联系数">确定灰色关联系数</h2><p>两级最小差<span class="math inline">\(a=\min\limits_s\min\limits_t\left|x_0(t)-x_s(t)\right|\)</span></p><p>两级最大差<span class="math inline">\(b=\max\limits_s\max\limits_t\left|x_0(t)-x_s(t)\right|\)</span></p><p><span class="math inline">\(\gamma(x_0(k),x_i(k))=\frac{a+\rhob}{\left|x_o(k)-x_i(k)\right|+\rho b}\)</span></p><p><span class="math inline">\(\rho\)</span>为分辨系数,一般取值0.5</p><p>灰色关联度<span class="math inline">\(\gamma(x_0,x_i)=\frac{1}{n}\sum_{k=1}^n\gamma(x_0(k),x_i(k))\)</span></p><h2 id="作用">作用</h2><p>确定系统中哪些是主要因素,哪些是次要因素</p><h2 id="步骤">步骤</h2><ol type="1"><li>预处理,正向化,标准化</li><li>确定母序列和子序列</li><li>将母序列和子序列两两相减</li><li>将每个元素计算灰色关联系数<span class="math inline">\(\gamma\)</span></li><li>将各指标的灰色关联系数求平均值作为灰色关联度</li><li>根据灰色关联度大小下结论</li></ol><figure><img src="image-20241128163650433.png" alt="image-20241128163650433"><figcaption aria-hidden="true">image-20241128163650433</figcaption></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数学建模</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学建模</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数学建模-Topsis</title>
+    <link href="/2024/11/28/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-Topsis/"/>
+    <url>/2024/11/28/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-Topsis/</url>
+    
+    <content type="html"><![CDATA[<h1 id="TOPSIS优劣解距离法"><a href="#TOPSIS优劣解距离法" class="headerlink" title="TOPSIS优劣解距离法"></a>TOPSIS优劣解距离法</h1><h2 id="正向化处理"><a href="#正向化处理" class="headerlink" title="正向化处理"></a>正向化处理</h2><p>将所有指标转换为极大型:转换公式$max-x$</p><h2 id="标准化处理"><a href="#标准化处理" class="headerlink" title="标准化处理"></a>标准化处理</h2><p>目的:消除量纲影响<br>$z_{ij}=\frac{x_{ij}}{\sqrt{ {\sum^n_{i=1}x_{ij}^2} }}$<br>进行距离法打分,评分:$\frac{x-\text{min}}{\text{max} -\text{min}}$,然后归一化</p><h2 id="用优劣解打分"><a href="#用优劣解打分" class="headerlink" title="用优劣解打分"></a>用优劣解打分</h2><script type="math/tex; mode=display">Z=\begin{vmatrix}z_{11}&z_{12}&\dots&z_{1m}\\z_{21}&z_{22}&\dots&z_{2m}\\\vdots&\vdots&\ddots&\vdots\\z_{n1}&z_{n2}&\dots&z_{nm}\end{vmatrix}(n个评价对象,m个评价指标)</script><p>在每个指标里挑出最大值和最小值,构成最大向量$Z^+$和最小向量$Z^-$</p><p>即$Z^+=(Z_1^+,Z_2^+,\dots,Z^+_m)=(\max\{ z_{11},z_{21},\dots z_{n1} \},\dots)$</p><p>$Z^-=(Z_1^-,Z_2^-,\dots,Z^-_m)=(\min\{ z_{11},z_{21},\dots z_{n1} \},\dots)$</p><p>对于第i个对象,计算它每个指标相对最大值的距离$D^+=\sqrt{ \sum^m_{j=1}(Z_j^+-z_{ij})^2w_j },i=1,2,\dots,n$</p><p>得分:$S_i=\frac{D_i^-}{D_i^++D_i^-}$(还没有归一化)</p><h1 id="评价类模型分类"><a href="#评价类模型分类" class="headerlink" title="评价类模型分类"></a>评价类模型分类</h1><ul><li>主观赋值法<ul><li>层次分析法</li><li>模糊综合评价</li></ul></li><li>客观赋值法<ul><li>TOPSIS</li><li>主成分分析法</li><li>灰色综合评价</li><li>聚类分析法</li><li>神经网络评价法</li></ul></li></ul><h1 id="MATLAB代码"><a href="#MATLAB代码" class="headerlink" title="MATLAB代码"></a>MATLAB代码</h1><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% TOPSIS优劣解-应用</span><br><span class="hljs-comment">%% 读取表格</span><br>opts = detectImportOptions(<span class="hljs-string">&#x27;univ_data.xlsx&#x27;</span>);<br>opts.VariableTypes = &#123;<span class="hljs-string">&#x27;double&#x27;</span>, <span class="hljs-string">&#x27;double&#x27;</span>, <span class="hljs-string">&#x27;double&#x27;</span>, <span class="hljs-string">&#x27;double&#x27;</span>, <span class="hljs-string">&#x27;double&#x27;</span>&#125;;<br>opts.PreserveVariableNames = <span class="hljs-built_in">true</span>;<br>data = <span class="hljs-built_in">readtable</span>(<span class="hljs-string">&#x27;univ_data.xlsx&#x27;</span>, opts);<br>data = data(:, <span class="hljs-number">2</span>:<span class="hljs-keyword">end</span>);<br>data = table2array(data);<br><br><span class="hljs-comment">%% 正向化</span><br><span class="hljs-comment">%% 人均论文发表数量介于2~4最好</span><br>data(:,<span class="hljs-number">1</span>) = int2max(data(:,<span class="hljs-number">1</span>), <span class="hljs-number">2</span>, <span class="hljs-number">4</span>);<br><br><span class="hljs-comment">%% 师生比接近0.7越好</span><br>data(:, <span class="hljs-number">2</span>) = mid2max(data(:, <span class="hljs-number">2</span>), <span class="hljs-number">0.7</span>);<br><br><span class="hljs-comment">%% 科研经费越多越好</span><br>data(:, <span class="hljs-number">3</span>) = data(:, <span class="hljs-number">3</span>);<br><br><span class="hljs-comment">%% 逾期毕业率越小越好</span><br>data(:, <span class="hljs-number">4</span>) = min2max(data(:, <span class="hljs-number">4</span>));<br><br><span class="hljs-comment">%% 标准化</span><br>[n,m] = <span class="hljs-built_in">size</span>(data);<br>s = <span class="hljs-built_in">repmat</span>(sum(data,<span class="hljs-number">1</span>), n, <span class="hljs-number">1</span>);<br>data = data ./ s;<br><br><span class="hljs-comment">%% 优劣解打分</span><br><span class="hljs-comment">% 由熵权法计算得到的权值w</span><br>w = [<span class="hljs-number">0.2241</span>;<span class="hljs-number">0.2566</span>;<span class="hljs-number">0.1891</span>;<span class="hljs-number">0.3302</span>];<br>Z_max = <span class="hljs-built_in">repmat</span>(<span class="hljs-built_in">max</span>(data), n, <span class="hljs-number">1</span>);<br>Z_min = <span class="hljs-built_in">repmat</span>(<span class="hljs-built_in">min</span>(data), n, <span class="hljs-number">1</span>);<br>D_max = sum(((data - Z_max) .^ <span class="hljs-number">2</span>) * w, <span class="hljs-number">2</span>).^<span class="hljs-number">0.5</span>;<br>D_min = sum(((data - Z_min) .^ <span class="hljs-number">2</span>) * w, <span class="hljs-number">2</span>).^<span class="hljs-number">0.5</span>;<br><br><br>S = D_min ./ (D_max + D_min);<br><br>res = S./sum(S)<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数学建模</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学建模</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数学建模-熵权法</title>
+    <link href="/2024/11/27/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E7%86%B5%E6%9D%83%E6%B3%95/"/>
+    <url>/2024/11/27/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E7%86%B5%E6%9D%83%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="熵权法">熵权法</h1><p>信息熵</p><p>本质:<strong>对信息量的期望值</strong></p><p><span class="math inline">\(H(x)=\sum^n_{i=1}\left[p(x_i)I(x_i)\right]\)</span></p><p>信息的期望值越大,已掌握的信息量越少</p><h2 id="正向化处理h">正向化处理h</h2><ul><li>极小型转换为极大型:<span class="math inline">\(\max(x)-x\)</span></li><li>越靠近特定值越好的中间型指标转最大型:<span class="math inline">\(M=\max\{|x_i-x_{best}|\},各令\tildex_i=1-\frac{|x_i-x_{best}|}{M}\)</span></li><li>落在某个区间最好的中间型指标转最大型:<span class="math inline">\(M=\max\{a-\min\{x_i\},\max\{x_i\}-b\}\)</span>,再令<span class="math inline">\(\tildex_i=\begin{cases}1-\frac{a-x_i}{M},x_i&lt;a\\1,a\leq x_i\leqb\\1-\frac{x_i-b}{M},x_i&gt;b\end{cases}\)</span></li></ul><h2 id="标准化处理">标准化处理</h2><p>n个评价对象,m个评价指标(已经正向化处理),构成矩阵:<span class="math inline">\(X=\begin{vmatrix}x_{11}&amp;x_{12}&amp;\dots&amp;x_{1m}\\x_{21}&amp;x_{22}&amp;\dots&amp;x_{2m}\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\x_{n1}&amp;x_{n2}&amp;\dots&amp;x_{nm}\end{vmatrix}\)</span></p><p>设标准化后的矩阵为Z,则Z的每一个元素:<span class="math inline">\(z_{ij}=\frac{x_{ij}}{\sqrt{\sum^n_{i=1}x_{ij}^2}}\)</span></p><h2 id="计算比重矩阵">计算比重矩阵</h2><p>比重矩阵P的每一个元素<span class="math inline">\(p_{ij}=\frac{\tildez_{ij}}{\sum\limits^n_{i=1}\tilde z_{ij}}\)</span>,容易验证:<span class="math inline">\(\sum\limits_{i=1}^np_{ij}=1\)</span></p><p>信息熵<span class="math inline">\(H(x)=\sum\limits^n_{i=1}\left[p(x_i)I(x_i)\right]=-\sum\limits^n_{i=1}\left[p(x_i)\ln(p(x_i))\right]\)</span></p><p>稍加修改,令信息熵为<span class="math inline">\(e_j=-\frac{1}{\lnn}\sum\limits^n_{i=1}p_{ij}\ln(p_{ij})\)</span></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数学建模</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学建模</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数学建模-模糊综合评价</title>
+    <link href="/2024/11/27/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E6%A8%A1%E7%B3%8A%E7%BB%BC%E5%90%88%E8%AF%84%E4%BB%B7/"/>
+    <url>/2024/11/27/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E6%A8%A1%E7%B3%8A%E7%BB%BC%E5%90%88%E8%AF%84%E4%BB%B7/</url>
+    
+    <content type="html"><![CDATA[<h1 id="模糊综合评价">模糊综合评价</h1><h2 id="背景">背景</h2><p>现实中的许多现象及关系比较模糊,如高与矮,长与短</p><h2 id="模糊集合">模糊集合</h2><h3 id="传统集合的概念">传统集合的概念</h3><ul><li>互异性</li><li>逻辑性</li><li>独立性</li><li>无序性</li><li>纯粹性</li><li>完备性</li></ul><h3 id="传统集合的特征函数">传统集合的特征函数</h3><p>U为论域,<span class="math inline">\(f_A\)</span>是A集合的特征函数,有</p><p><span class="math inline">\(f_A:U\rightarrow \{0,1\}\)</span></p><h3 id="模糊集合的隶属度">模糊集合的隶属度</h3><p>定义U为论域,<span class="math inline">\(\mu_A\)</span>为A集合的特征函数,有: <span class="math inline">\(\mu_A:U\rightarrow [0,1]\)</span></p><h3 id="模糊集合的表示方法">模糊集合的表示方法</h3><p>对于论域<span class="math inline">\(U=&lt;x_1,x_2,\dots,x_n\)</span>,模糊集合<span class="math inline">\(A\)</span>,隶属度<span class="math inline">\(A(x_i)(i=1,2\dots n)\)</span></p><p>扎德表示法:<span class="math inline">\(A=\frac{A(x_1)}{x_1}+{A(x_2)}{x_2}+\dots+\frac{A(x_n)}{x_n}\)</span></p><h3 id="模糊集合的分类">模糊集合的分类</h3><p>极小型:<span class="math inline">\(\mu_A(x)=\begin{cases}1,x&lt;a\\\frac{b-x}{b-a},a\leqx\leq b\\0,x&gt;b\end{cases}\)</span></p><p>中间型:<span class="math inline">\(\mu_A(x)=\begin{cases}0,x&lt;a\\\frac{x-a}{b-a},a\leqx&lt;b\\1,b\leq x&lt;c\\\frac{d-x}{d-c},c\leq x&lt; d\\0,x\geqd\end{cases}\)</span></p><p>极大型:<span class="math inline">\(\mu_A(x)=\begin{cases}0,x&lt;a\\\frac{b-x}{b-a},a\leqx\leq b\\1,x&gt;b\end{cases}\)</span></p><h2 id="f分布确定隶属函数">F分布确定隶属函数</h2><p>柯西分布:<span class="math inline">\(\frac{1}{\pi \gamma\left[1+\left(\frac{x-x_0}{\gamma}^2\right)\right]}\)</span></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数学建模</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学建模</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>数学建模-层次分析法</title>
     <link href="/2024/11/24/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/"/>
     <url>/2024/11/24/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/</url>
@@ -58,7 +158,7 @@
     <link href="/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/"/>
     <url>/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/</url>
     
-    <content type="html"><![CDATA[<h1 id="自然数和基数">自然数和基数</h1><p><strong>后继集合</strong>:对于任意集合A,其后继集合<span class="math inline">\(A^+\)</span>定义为:<span class="math inline">\(A^+=A\cup\{A\}\)</span></p><p><span class="math inline">\(i)\emptyset^+=\{\emptyset\}\)</span></p><p><span class="math inline">\(ii)\{\emptyset\}^+=\{\emptyset,\{\emptyset\}\}\)</span></p><p><span class="math inline">\(iii)A\in A^+\)</span></p><p><span class="math inline">\(iv)A\subseteq A^+\)</span></p><p><span class="math inline">\(v)A^+\neq \emptyset\)</span></p><h2 id="自然数系统">自然数系统</h2><h2 id="冯诺依曼方案">冯诺依曼方案</h2><p><span class="math display">\[\begin{aligned}&amp;0=\emptyset\\&amp;1=0^+=\{\emptyset\}=\{0\}\\&amp;2=1^+=\{\emptyset,\{\emptyset\}\}=\{0,1\}\\&amp;...\\&amp;n+1=n^+=...=\{0,1,...,n\}\end{aligned}\]</span></p><h3 id="自然数集合归纳定义法">自然数集合(归纳定义法)</h3><p><span class="math display">\[\begin{aligned}&amp;i)0\in N,0=\emptyset\\&amp;ii)n\in N,n^+\in N\\&amp;iii)S\subseteq N满足\\&amp;\ 1)0\in S\\&amp;\ 2)如果n\in S,则n^+\in S\\&amp;\ 则S=N\end{aligned}\]</span></p><h3 id="大小小于">大小/小于</h3><p>对每个自然数<span class="math inline">\(n\in N\)</span>,皆有<span class="math inline">\(n\in n^+\)</span>及<span class="math inline">\(n\subseteq n^+\)</span></p><p>若<span class="math inline">\(m,n\in N\)</span>使得<span class="math inline">\(m\in n\)</span>,则称m小于n,记为<span class="math inline">\(m&lt;n\)</span></p><h3 id="定理">定理</h3><p><span class="math inline">\(proof:\forall n\in N:\bigcupn^+=n\)</span> <span class="math display">\[\begin{aligned}&amp;S=\{n|n\in N且\bigcup n^+=n\}\\&amp;1)0\in S:0\in N且\bigcup\{\emptyset\}=\emptyset=0\\&amp;2)若n\in S,则\bigcup n^+=n且n\in N\\&amp;\therefore n^+\in N,\bigcup((n^+)^+)=\bigcup(n^+\cup\{n^+\})\\&amp;=(\bigcup n^+)\cup(\bigcup\{n^+\})=n\cup n^+=n^+\\&amp;\therefore n^+\in S\end{aligned}\]</span></p><h2 id="皮亚诺公理">皮亚诺公理</h2><p><span class="math display">\[\begin{aligned}&amp;1)0\in N\\&amp;2)n\in N,则有唯一的后继n^+\in N\\&amp;3)n\in N,则n^+\neq 0\\&amp;4)n,m\in N且n^+=m^+,则n=m\\&amp;5)若S\subseteq N满足i)0\in S,ii)如果n\in S,则n^+\in S\\&amp;则S=n\end{aligned}\]</span></p><h2 id="第一数学归纳法">第一数学归纳法</h2><p>P(n)是自然数集合上的性质(或<strong>谓词</strong>),如果能证明</p><p>1)<span class="math inline">\(P(0)\)</span>是真</p><p>2)对任何<span class="math inline">\(n\in N\)</span>,<span class="math inline">\(P(n)\Rightarrow P(n^+)\)</span></p><p>则对所有<span class="math inline">\(n\in N\)</span>,P(n)为真</p><p>即:</p><p><span class="math inline">\(P(0)\wedge (\forall n)(P(n)\rightarrowP(n+1))\Rightarrow (\forall n)P(n)\)</span> <span class="math display">\[\begin{aligned}&amp;S=\{n|n\in N,P(n_0+n)为真\}\\&amp;0\in  S:0\in N且P(n_0+0)为真\\&amp;若n\in S,则n\in N且P(n+n_0)为真\\&amp;因为:n_0+n^+=(n_0+n)^+\\&amp;因此:P(n^++n_0)为真,n^+\in S\end{aligned}\]</span></p><h2 id="第二数学归纳法强归纳定理">第二数学归纳法(强归纳定理)</h2><p><span class="math inline">\(\forall n\inN,令\overline{N_n}=N-N_n=\{n,n+1,n+2,...\}\)</span></p><p><span class="math inline">\((\forall n)((\forall k)(k&lt;n\rightarrowP(k))\rightarrow P(n))\Rightarrow (\forall x)P(x)\)</span> <span class="math display">\[\begin{aligned}&amp;Q(n):若k\in N且n_0\leq k\leq n,则P(k)为真\\&amp;Q(n)满足第一归纳法\\&amp;显然Q(n_0)即为真,所以Q(n_0)为真\\&amp;假设对任意n\in\overline{N_{n_0}},Q(n)为真\\&amp;若k\in N且n_0\leq k\leq n,则P(k)为真\\&amp;因此,当k\in N且n_0&lt; n^+时,P(k)也皆为真\\&amp;P(n^+)为真,表明Q(n^+)为真\\&amp;根据第一归纳法,对任意n\in \overline{N_{n_0}},P(n)为真\end{aligned}\]</span> <img src="image-20241122095313913.png" alt="强归纳定理"></p><h1 id="基数">基数</h1><h2 id="等势">等势</h2><p>从A到B的双射,则称A和B相等/等势,记为<span class="math inline">\(A\simB\)</span></p><p>无穷集合可以与它本身的真子集<strong>等势</strong></p><h3 id="鸽笼原理">鸽笼原理</h3><p>任何有限集都不能与它的真子集对等</p><p><strong>任何与自身真子集等势的集合均是无穷集合</strong></p><h2 id="集合的基数">集合的基数</h2><p><span class="math inline">\(设n\in N,A\sim n,则\#(A)=n\)</span></p><p>无限集的基数:<span class="math inline">\(\#(N)=\alef_0\)</span></p><p><strong>任意两个基数都可以比较大小</strong></p><h2 id="无穷集的等价条件">无穷集的等价条件</h2><ol type="1"><li>A为无穷集</li><li>A有可数无穷子集</li><li>A有与它对等的真子集</li></ol><h2 id="定理-1">定理</h2><p>任何无穷集合必含有<strong>可数无穷子集</strong></p><p>实数集合R是<strong>不可数的</strong></p><p>对每个集合A,皆有<span class="math inline">\(\#(A)&lt;\#(\rho(A))\)</span></p><h2 id="例">例</h2><p><span class="math inline">\(\#(R\times R)=\alef\)</span></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="自然数和基数">自然数和基数</h1><p><strong>后继集合</strong>:对于任意集合A,其后继集合<span class="math inline">\(A^+\)</span>定义为:<span class="math inline">\(A^+=A\cup\{A\}\)</span></p><p><span class="math inline">\(i)\emptyset^+=\{\emptyset\}\)</span></p><p><span class="math inline">\(ii)\{\emptyset\}^+=\{\emptyset,\{\emptyset\}\}\)</span></p><p><span class="math inline">\(iii)A\in A^+\)</span></p><p><span class="math inline">\(iv)A\subseteq A^+\)</span></p><p><span class="math inline">\(v)A^+\neq \emptyset\)</span></p><h2 id="自然数系统">自然数系统</h2><h2 id="冯诺依曼方案">冯诺依曼方案</h2><p><span class="math display">\[\begin{aligned}&amp;0=\emptyset\\&amp;1=0^+=\{\emptyset\}=\{0\}\\&amp;2=1^+=\{\emptyset,\{\emptyset\}\}=\{0,1\}\\&amp;...\\&amp;n+1=n^+=...=\{0,1,...,n\}\end{aligned}\]</span></p><h3 id="自然数集合归纳定义法">自然数集合(归纳定义法)</h3><p><span class="math display">\[\begin{aligned}&amp;i)0\in N,0=\emptyset\\&amp;ii)n\in N,n^+\in N\\&amp;iii)S\subseteq N满足\\&amp;\ 1)0\in S\\&amp;\ 2)如果n\in S,则n^+\in S\\&amp;\ 则S=N\end{aligned}\]</span></p><h3 id="大小小于">大小/小于</h3><p>对每个自然数<span class="math inline">\(n\in N\)</span>,皆有<span class="math inline">\(n\in n^+\)</span>及<span class="math inline">\(n\subseteq n^+\)</span></p><p>若<span class="math inline">\(m,n\in N\)</span>使得<span class="math inline">\(m\in n\)</span>,则称m小于n,记为<span class="math inline">\(m&lt;n\)</span></p><h3 id="定理">定理</h3><p><span class="math inline">\(proof:\forall n\in N:\bigcupn^+=n\)</span> <span class="math display">\[\begin{aligned}&amp;S=\{n|n\in N且\bigcup n^+=n\}\\&amp;1)0\in S:0\in N且\bigcup\{\emptyset\}=\emptyset=0\\&amp;2)若n\in S,则\bigcup n^+=n且n\in N\\&amp;\therefore n^+\in N,\bigcup((n^+)^+)=\bigcup(n^+\cup\{n^+\})\\&amp;=(\bigcup n^+)\cup(\bigcup\{n^+\})=n\cup n^+=n^+\\&amp;\therefore n^+\in S\end{aligned}\]</span></p><h2 id="皮亚诺公理">皮亚诺公理</h2><p><span class="math display">\[\begin{aligned}&amp;1)0\in N\\&amp;2)n\in N,则有唯一的后继n^+\in N\\&amp;3)n\in N,则n^+\neq 0\\&amp;4)n,m\in N且n^+=m^+,则n=m\\&amp;5)若S\subseteq N满足i)0\in S,ii)如果n\in S,则n^+\in S\\&amp;则S=n\end{aligned}\]</span></p><h2 id="第一数学归纳法">第一数学归纳法</h2><p>P(n)是自然数集合上的性质(或<strong>谓词</strong>),如果能证明</p><p>1)<span class="math inline">\(P(0)\)</span>是真</p><p>2)对任何<span class="math inline">\(n\in N\)</span>,<span class="math inline">\(P(n)\Rightarrow P(n^+)\)</span></p><p>则对所有<span class="math inline">\(n\in N\)</span>,P(n)为真</p><p>即:</p><p><span class="math inline">\(P(0)\wedge (\forall n)(P(n)\rightarrowP(n+1))\Rightarrow (\forall n)P(n)\)</span> <span class="math display">\[\begin{aligned}&amp;S=\{n|n\in N,P(n_0+n)为真\}\\&amp;0\in  S:0\in N且P(n_0+0)为真\\&amp;若n\in S,则n\in N且P(n+n_0)为真\\&amp;因为:n_0+n^+=(n_0+n)^+\\&amp;因此:P(n^++n_0)为真,n^+\in S\end{aligned}\]</span></p><h2 id="第二数学归纳法强归纳定理">第二数学归纳法(强归纳定理)</h2><p><span class="math inline">\(\forall n\inN,令\overline{N_n}=N-N_n=\{n,n+1,n+2,...\}\)</span></p><p><span class="math inline">\((\forall n)((\forall k)(k&lt;n\rightarrowP(k))\rightarrow P(n))\Rightarrow (\forall x)P(x)\)</span> <span class="math display">\[\begin{aligned}&amp;Q(n):若k\in N且n_0\leq k\leq n,则P(k)为真\\&amp;Q(n)满足第一归纳法\\&amp;显然Q(n_0)即为真,所以Q(n_0)为真\\&amp;假设对任意n\in\overline{N_{n_0}},Q(n)为真\\&amp;若k\in N且n_0\leq k\leq n,则P(k)为真\\&amp;因此,当k\in N且n_0&lt; n^+时,P(k)也皆为真\\&amp;P(n^+)为真,表明Q(n^+)为真\\&amp;根据第一归纳法,对任意n\in \overline{N_{n_0}},P(n)为真\end{aligned}\]</span> <img src="image-20241122095313913.png" alt="强归纳定理"></p><h1 id="基数">基数</h1><h2 id="等势">等势</h2><p>从A到B的双射,则称A和B相等/等势,记为<span class="math inline">\(A\simB\)</span></p><p>无穷集合可以与它本身的真子集<strong>等势</strong></p><h3 id="鸽笼原理">鸽笼原理</h3><p>任何有限集都不能与它的真子集对等</p><p><strong>任何与自身真子集等势的集合均是无穷集合</strong></p><h2 id="集合的基数">集合的基数</h2><p><span class="math inline">\(设n\in N,A\sim n,则\#(A)=n\)</span></p><p>无限集的基数:<span class="math inline">\(\#(N)=\aleph_0\)</span></p><p><strong>任意两个基数都可以比较大小</strong></p><h2 id="无穷集的等价条件">无穷集的等价条件</h2><ol type="1"><li>A为无穷集</li><li>A有可数无穷子集</li><li>A有与它对等的真子集</li></ol><h2 id="定理-1">定理</h2><p>任何无穷集合必含有<strong>可数无穷子集</strong></p><p>实数集合R是<strong>不可数的</strong></p><p>对每个集合A,皆有<span class="math inline">\(\#(A)&lt;\#(\rho(A))\)</span></p><h2 id="例">例</h2><p><span class="math inline">\(\#(R\times R)=\aleph\)</span></p>]]></content>
     
     
     

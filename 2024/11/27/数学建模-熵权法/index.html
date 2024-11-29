@@ -19,26 +19,24 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="自然数和基数 后继集合:对于任意集合A,其后继集合\(A^+\)定义为:\(A^+&#x3D;A\cup\{A\}\) \(i)\emptyset^+&#x3D;\{\emptyset\}\) \(ii)\{\emptyset\}^+&#x3D;\{\emptyset,\{\emptyset\}\}\) \(iii)A\in A^+\) \(iv)A\subseteq A^+\) \(v)A^+\neq \empt">
+    <meta name="description" content="熵权法 信息熵 本质:对信息量的期望值 \(H(x)&#x3D;\sum^n_{i&#x3D;1}\left[p(x_i)I(x_i)\right]\) 信息的期望值越大,已掌握的信息量越少 正向化处理h  极小型转换为极大型:\(\max(x)-x\) 越靠近特定值越好的中间型指标转最大型:\(M&#x3D;\max\{|x_i-x_{best}|\},各令\tilde x_i&#x3D;1-\frac{|x_i-x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="离散数学-自然数和基数">
-<meta property="og:url" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/index.html">
+<meta property="og:title" content="数学建模-熵权法">
+<meta property="og:url" content="https://meteor041.git.io/2024/11/27/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E7%86%B5%E6%9D%83%E6%B3%95/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="自然数和基数 后继集合:对于任意集合A,其后继集合\(A^+\)定义为:\(A^+&#x3D;A\cup\{A\}\) \(i)\emptyset^+&#x3D;\{\emptyset\}\) \(ii)\{\emptyset\}^+&#x3D;\{\emptyset,\{\emptyset\}\}\) \(iii)A\in A^+\) \(iv)A\subseteq A^+\) \(v)A^+\neq \empt">
+<meta property="og:description" content="熵权法 信息熵 本质:对信息量的期望值 \(H(x)&#x3D;\sum^n_{i&#x3D;1}\left[p(x_i)I(x_i)\right]\) 信息的期望值越大,已掌握的信息量越少 正向化处理h  极小型转换为极大型:\(\max(x)-x\) 越靠近特定值越好的中间型指标转最大型:\(M&#x3D;\max\{|x_i-x_{best}|\},各令\tilde x_i&#x3D;1-\frac{|x_i-x">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/image-20241122095313913.png">
-<meta property="article:published_time" content="2024-11-22T00:17:25.000Z">
-<meta property="article:modified_time" content="2024-11-29T01:07:04.820Z">
+<meta property="article:published_time" content="2024-11-27T15:23:01.000Z">
+<meta property="article:modified_time" content="2024-11-28T08:16:44.617Z">
 <meta property="article:author" content="meteor041">
-<meta property="article:tag" content="discrete mathematics">
+<meta property="article:tag" content="数学建模">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/image-20241122095313913.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>离散数学-自然数和基数 - meteor041</title>
+  <title>数学建模-熵权法 - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="离散数学-自然数和基数"></span>
+            <span id="subtitle" data-typed-text="数学建模-熵权法"></span>
           
         </div>
 
@@ -215,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-22 08:17" pubdate>
-          2024年11月22日 早上
+        <time datetime="2024-11-27 23:23" pubdate>
+          2024年11月27日 晚上
         </time>
       </span>
     
@@ -227,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          748 字
+          340 字
         
       </span>
     
@@ -238,7 +236,7 @@
         
         
         
-          7 分钟
+          3 分钟
         
       </span>
     
@@ -284,12 +282,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">离散数学-自然数和基数</h1>
+            <h1 id="seo-header">数学建模-熵权法</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月29日 上午
+                    本文最后更新于 2024年11月28日 下午
                   
                 
               </p>
@@ -297,117 +295,29 @@
             
               <div class="markdown-body">
                 
-                <h1 id="自然数和基数">自然数和基数</h1>
-<p><strong>后继集合</strong>:对于任意集合A,其后继集合<span class="math inline">\(A^+\)</span>定义为:<span class="math inline">\(A^+=A\cup\{A\}\)</span></p>
-<p><span class="math inline">\(i)\emptyset^+=\{\emptyset\}\)</span></p>
-<p><span class="math inline">\(ii)\{\emptyset\}^+=\{\emptyset,\{\emptyset\}\}\)</span></p>
-<p><span class="math inline">\(iii)A\in A^+\)</span></p>
-<p><span class="math inline">\(iv)A\subseteq A^+\)</span></p>
-<p><span class="math inline">\(v)A^+\neq \emptyset\)</span></p>
-<h2 id="自然数系统">自然数系统</h2>
-<h2 id="冯诺依曼方案">冯诺依曼方案</h2>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;0=\emptyset\\
-&amp;1=0^+=\{\emptyset\}=\{0\}\\
-&amp;2=1^+=\{\emptyset,\{\emptyset\}\}=\{0,1\}\\
-&amp;...\\
-&amp;n+1=n^+=...=\{0,1,...,n\}
-\end{aligned}
-\]</span></p>
-<h3 id="自然数集合归纳定义法">自然数集合(归纳定义法)</h3>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;i)0\in N,0=\emptyset\\
-&amp;ii)n\in N,n^+\in N\\
-&amp;iii)S\subseteq N满足\\
-&amp;\ 1)0\in S\\
-&amp;\ 2)如果n\in S,则n^+\in S\\
-&amp;\ 则S=N
-\end{aligned}
-\]</span></p>
-<h3 id="大小小于">大小/小于</h3>
-<p>对每个自然数<span class="math inline">\(n\in N\)</span>,皆有<span class="math inline">\(n\in n^+\)</span>及<span class="math inline">\(n\subseteq n^+\)</span></p>
-<p>若<span class="math inline">\(m,n\in N\)</span>使得<span class="math inline">\(m\in n\)</span>,则称m小于n,记为<span class="math inline">\(m&lt;n\)</span></p>
-<h3 id="定理">定理</h3>
-<p><span class="math inline">\(proof:\forall n\in N:\bigcup
-n^+=n\)</span> <span class="math display">\[
-\begin{aligned}
-&amp;S=\{n|n\in N且\bigcup n^+=n\}\\
-&amp;1)0\in S:0\in N且\bigcup\{\emptyset\}=\emptyset=0\\
-&amp;2)若n\in S,则\bigcup n^+=n且n\in N\\
-&amp;\therefore n^+\in N,\bigcup((n^+)^+)=\bigcup(n^+\cup\{n^+\})\\
-&amp;=(\bigcup n^+)\cup(\bigcup\{n^+\})=n\cup n^+=n^+\\
-&amp;\therefore n^+\in S
-\end{aligned}
-\]</span></p>
-<h2 id="皮亚诺公理">皮亚诺公理</h2>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;1)0\in N\\
-&amp;2)n\in N,则有唯一的后继n^+\in N\\
-&amp;3)n\in N,则n^+\neq 0\\
-&amp;4)n,m\in N且n^+=m^+,则n=m\\
-&amp;5)若S\subseteq N满足i)0\in S,ii)如果n\in S,则n^+\in S\\
-&amp;则S=n
-\end{aligned}
-\]</span></p>
-<h2 id="第一数学归纳法">第一数学归纳法</h2>
-<p>P(n)是自然数集合上的性质(或<strong>谓词</strong>),如果能证明</p>
-<p>1)<span class="math inline">\(P(0)\)</span>是真</p>
-<p>2)对任何<span class="math inline">\(n\in N\)</span>,<span class="math inline">\(P(n)\Rightarrow P(n^+)\)</span></p>
-<p>则对所有<span class="math inline">\(n\in N\)</span>,P(n)为真</p>
-<p>即:</p>
-<p><span class="math inline">\(P(0)\wedge (\forall n)(P(n)\rightarrow
-P(n+1))\Rightarrow (\forall n)P(n)\)</span> <span class="math display">\[
-\begin{aligned}
-&amp;S=\{n|n\in N,P(n_0+n)为真\}\\
-&amp;0\in  S:0\in N且P(n_0+0)为真\\
-&amp;若n\in S,则n\in N且P(n+n_0)为真\\
-&amp;因为:n_0+n^+=(n_0+n)^+\\
-&amp;因此:P(n^++n_0)为真,n^+\in S
-\end{aligned}
-\]</span></p>
-<h2 id="第二数学归纳法强归纳定理">第二数学归纳法(强归纳定理)</h2>
-<p><span class="math inline">\(\forall n\in
-N,令\overline{N_n}=N-N_n=\{n,n+1,n+2,...\}\)</span></p>
-<p><span class="math inline">\((\forall n)((\forall k)(k&lt;n\rightarrow
-P(k))\rightarrow P(n))\Rightarrow (\forall x)P(x)\)</span> <span class="math display">\[
-\begin{aligned}
-&amp;Q(n):若k\in N且n_0\leq k\leq n,则P(k)为真\\
-&amp;Q(n)满足第一归纳法\\
-&amp;显然Q(n_0)即为真,所以Q(n_0)为真\\
-&amp;假设对任意n\in\overline{N_{n_0}},Q(n)为真\\
-&amp;若k\in N且n_0\leq k\leq n,则P(k)为真\\
-&amp;因此,当k\in N且n_0&lt; n^+时,P(k)也皆为真\\
-&amp;P(n^+)为真,表明Q(n^+)为真\\
-&amp;根据第一归纳法,对任意n\in \overline{N_{n_0}},P(n)为真
-\end{aligned}
-\]</span> <img src="image-20241122095313913.png" srcset="/img/loading.gif" lazyload alt="强归纳定理"></p>
-<h1 id="基数">基数</h1>
-<h2 id="等势">等势</h2>
-<p>从A到B的双射,则称A和B相等/等势,记为<span class="math inline">\(A\sim
-B\)</span></p>
-<p>无穷集合可以与它本身的真子集<strong>等势</strong></p>
-<h3 id="鸽笼原理">鸽笼原理</h3>
-<p>任何有限集都不能与它的真子集对等</p>
-<p><strong>任何与自身真子集等势的集合均是无穷集合</strong></p>
-<h2 id="集合的基数">集合的基数</h2>
-<p><span class="math inline">\(设n\in N,A\sim n,则\#(A)=n\)</span></p>
-<p>无限集的基数:<span class="math inline">\(\#(N)=\aleph_0\)</span></p>
-<p><strong>任意两个基数都可以比较大小</strong></p>
-<h2 id="无穷集的等价条件">无穷集的等价条件</h2>
-<ol type="1">
-<li>A为无穷集</li>
-<li>A有可数无穷子集</li>
-<li>A有与它对等的真子集</li>
-</ol>
-<h2 id="定理-1">定理</h2>
-<p>任何无穷集合必含有<strong>可数无穷子集</strong></p>
-<p>实数集合R是<strong>不可数的</strong></p>
-<p>对每个集合A,皆有<span class="math inline">\(\#(A)&lt;\#(\rho(A))\)</span></p>
-<h2 id="例">例</h2>
-<p><span class="math inline">\(\#(R\times R)=\aleph\)</span></p>
+                <h1 id="熵权法">熵权法</h1>
+<p>信息熵</p>
+<p>本质:<strong>对信息量的期望值</strong></p>
+<p><span class="math inline">\(H(x)=\sum^n_{i=1}\left[p(x_i)I(x_i)\right]\)</span></p>
+<p>信息的期望值越大,已掌握的信息量越少</p>
+<h2 id="正向化处理h">正向化处理h</h2>
+<ul>
+<li>极小型转换为极大型:<span class="math inline">\(\max(x)-x\)</span></li>
+<li>越靠近特定值越好的中间型指标转最大型:<span class="math inline">\(M=\max\{|x_i-x_{best}|\},各令\tilde
+x_i=1-\frac{|x_i-x_{best}|}{M}\)</span></li>
+<li>落在某个区间最好的中间型指标转最大型:<span class="math inline">\(M=\max\{a-\min\{x_i\},\max\{x_i\}-b\}\)</span>,再令<span class="math inline">\(\tilde
+x_i=\begin{cases}1-\frac{a-x_i}{M},x_i&lt;a\\1,a\leq x_i\leq
+b\\1-\frac{x_i-b}{M},x_i&gt;b\end{cases}\)</span></li>
+</ul>
+<h2 id="标准化处理">标准化处理</h2>
+<p>n个评价对象,m个评价指标(已经正向化处理),构成矩阵:<span class="math inline">\(X=\begin{vmatrix}x_{11}&amp;x_{12}&amp;\dots&amp;x_{1m}\\x_{21}&amp;x_{22}&amp;\dots&amp;x_{2m}\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\x_{n1}&amp;x_{n2}&amp;\dots&amp;x_{nm}\end{vmatrix}\)</span></p>
+<p>设标准化后的矩阵为Z,则Z的每一个元素:<span class="math inline">\(z_{ij}=\frac{x_{ij}}{\sqrt{\sum^n_{i=1}x_{ij}^2}}\)</span></p>
+<h2 id="计算比重矩阵">计算比重矩阵</h2>
+<p>比重矩阵P的每一个元素<span class="math inline">\(p_{ij}=\frac{\tilde
+z_{ij}}{\sum\limits^n_{i=1}\tilde z_{ij}}\)</span>,容易验证:<span class="math inline">\(\sum\limits_{i=1}^np_{ij}=1\)</span></p>
+<p>信息熵<span class="math inline">\(H(x)=\sum\limits^n_{i=1}\left[p(x_i)I(x_i)\right]=-\sum\limits^n_{i=1}\left[p(x_i)\ln(p(x_i))\right]\)</span></p>
+<p>稍加修改,令信息熵为<span class="math inline">\(e_j=-\frac{1}{\ln
+n}\sum\limits^n_{i=1}p_{ij}\ln(p_{ij})\)</span></p>
 
                 
               </div>
@@ -416,11 +326,32 @@ B\)</span></p>
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="category-chain-item">数学建模</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/discrete-mathematics/" class="print-no-link">#discrete mathematics</a>
+        <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="print-no-link">#数学建模</a>
       
     </div>
   
@@ -432,8 +363,8 @@ B\)</span></p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>离散数学-自然数和基数</div>
-      <div>https://meteor041.git.io/2024/11/22/离散数学-自然数和基数/</div>
+      <div>数学建模-熵权法</div>
+      <div>https://meteor041.git.io/2024/11/27/数学建模-熵权法/</div>
     </div>
     <div class="license-meta">
       
@@ -445,7 +376,7 @@ B\)</span></p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月22日</div>
+          <div>2024年11月27日</div>
         </div>
       
       
@@ -477,9 +408,9 @@ B\)</span></p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" title="参数估计">
+                      <a href="/2024/11/28/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-Topsis/" title="数学建模-Topsis">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">参数估计</span>
+                        <span class="hidden-mobile">数学建模-Topsis</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -487,8 +418,8 @@ B\)</span></p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/17/%E6%A0%B7%E6%9C%AC%E5%8F%8A%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" title="样本及抽样分布">
-                        <span class="hidden-mobile">样本及抽样分布</span>
+                      <a href="/2024/11/27/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E6%A8%A1%E7%B3%8A%E7%BB%BC%E5%90%88%E8%AF%84%E4%BB%B7/" title="数学建模-模糊综合评价">
+                        <span class="hidden-mobile">数学建模-模糊综合评价</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
