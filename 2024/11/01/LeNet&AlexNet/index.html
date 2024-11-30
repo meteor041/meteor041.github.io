@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="AlexNet第一层    AlexNet LeNet      image(3X224X224) image(32X32)    11X11 Conv(96), stride 4 5X5 Conv,PAD2    3X3 MaxPool, stride 2 2x2 AvrgPool     第二层    AlexNet LeNet      5X5 Conv(256),pad 2     3X3">
+    <meta name="description" content="AlexNet 第一层    AlexNet LeNet      image(3X224X224) image(32X32)    11X11 Conv(96), stride 4 5X5 Conv,PAD2    3X3 MaxPool, stride 2 2x2 AvrgPool     第二层    AlexNet LeNe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeNet&amp;AlexNet">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/01/LeNet&AlexNet/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="AlexNet第一层    AlexNet LeNet      image(3X224X224) image(32X32)    11X11 Conv(96), stride 4 5X5 Conv,PAD2    3X3 MaxPool, stride 2 2x2 AvrgPool     第二层    AlexNet LeNet      5X5 Conv(256),pad 2     3X3">
+<meta property="og:description" content="AlexNet 第一层    AlexNet LeNet      image(3X224X224) image(32X32)    11X11 Conv(96), stride 4 5X5 Conv,PAD2    3X3 MaxPool, stride 2 2x2 AvrgPool     第二层    AlexNet LeNe">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-01T01:50:00.000Z">
 <meta property="article:modified_time" content="2024-11-01T04:04:08.162Z">
@@ -295,111 +295,115 @@
             
               <div class="markdown-body">
                 
-                <h2 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h2><h3 id="第一层"><a href="#第一层" class="headerlink" title="第一层"></a>第一层</h3><div class="table-container">
+                <h2 id="alexnet">AlexNet</h2>
+<h3 id="第一层">第一层</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>AlexNet</th>
 <th>LeNet</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>image(3X224X224)</td>
 <td>image(32X32)</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>11X11 Conv(96), stride 4</td>
 <td>5X5 Conv,PAD2</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3X3 MaxPool, stride 2</td>
 <td>2x2 AvrgPool</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="第二层"><a href="#第二层" class="headerlink" title="第二层"></a>第二层</h3><div class="table-container">
+<h3 id="第二层">第二层</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>AlexNet</th>
 <th>LeNet</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>5X5 Conv(256),pad 2</td>
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>3X3 MaxPooling,stride 2</td>
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3X3 Conv, pad 1</td>
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>3X3 Conv, pad 1</td>
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3X3 Conv, pad 1</td>
 <td></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>3X3 MaxPool, stride 2</td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="第三层"><a href="#第三层" class="headerlink" title="第三层"></a>第三层</h3><div class="table-container">
+<h3 id="第三层">第三层</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>AlexNet</th>
 <th>LeNet</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Dense(4096)</td>
 <td>Dense(84)</td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Dense(4096)</td>
 <td>Dense(84)</td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Dense(1000)</td>
 <td>Dense(10)</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>更多细节</p>
 <ul>
 <li>激活函数从Sigmoid变到了ReLu(减缓梯度消失)</li>
 <li>隐藏全连接层后加入了丢弃层</li>
 <li>数据增加</li>
 </ul>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \text{out}(N_i, C_{\text{out}_j}) = \text{bias}(C_{\text{out}_j}) +
-        \sum_{k = 0}^{C_{\text{in}} - 1} \text{weight}(C_{\text{out}_j}, k) \star \text{input}(N_i, k)</script>
+        \sum_{k = 0}^{C_{\text{in}} - 1} \text{weight}(C_{\text{out}_j},
+k) \star \text{input}(N_i, k)
+\]</span></p>
+
                 
               </div>
             
