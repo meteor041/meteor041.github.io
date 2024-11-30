@@ -19,26 +19,31 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="自然数和基数 后继集合:对于任意集合A,其后继集合\(A^+\)定义为:\(A^+&#x3D;A\cup\{A\}\) \(i)\emptyset^+&#x3D;\{\emptyset\}\) \(ii)\{\emptyset\}^+&#x3D;\{\emptyset,\{\emptyset\}\}\) \(iii)A\in A^+\) \(iv)A\subseteq A^+\) \(v)A^+\neq \empt">
+    <meta name="description" content="假设检验 内容  参数检验  总体均值,均值差的检验 总体方差,方差比的检验  非参数检验  分布拟合检验 秩和检验   第一类错误-\(\alpha\):弃真错误 第二类错误-\(\beta\):取伪错误 只对犯第一类错误的概率加以控制,而不考虑犯第二类错误的概率的检验,称为显著性检验 显著性水平\(\alpha\)&#x3D;P{犯第一类错误} 通常把有把握,有经验的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="离散数学-自然数和基数">
-<meta property="og:url" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/index.html">
+<meta property="og:title" content="假设检验">
+<meta property="og:url" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="自然数和基数 后继集合:对于任意集合A,其后继集合\(A^+\)定义为:\(A^+&#x3D;A\cup\{A\}\) \(i)\emptyset^+&#x3D;\{\emptyset\}\) \(ii)\{\emptyset\}^+&#x3D;\{\emptyset,\{\emptyset\}\}\) \(iii)A\in A^+\) \(iv)A\subseteq A^+\) \(v)A^+\neq \empt">
+<meta property="og:description" content="假设检验 内容  参数检验  总体均值,均值差的检验 总体方差,方差比的检验  非参数检验  分布拟合检验 秩和检验   第一类错误-\(\alpha\):弃真错误 第二类错误-\(\beta\):取伪错误 只对犯第一类错误的概率加以控制,而不考虑犯第二类错误的概率的检验,称为显著性检验 显著性水平\(\alpha\)&#x3D;P{犯第一类错误} 通常把有把握,有经验的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/image-20241122095313913.png">
-<meta property="article:published_time" content="2024-11-22T00:17:25.000Z">
-<meta property="article:modified_time" content="2024-11-29T01:38:57.568Z">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241129112156834.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241129105315451.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241129105446429.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241129112119948.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241130110711968.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241130113514692.png">
+<meta property="article:published_time" content="2024-11-29T01:54:30.000Z">
+<meta property="article:modified_time" content="2024-11-30T04:56:33.426Z">
 <meta property="article:author" content="meteor041">
-<meta property="article:tag" content="discrete mathematics">
+<meta property="article:tag" content="概统">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/image-20241122095313913.png">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241129112156834.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>离散数学-自然数和基数 - meteor041</title>
+  <title>假设检验 - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="离散数学-自然数和基数"></span>
+            <span id="subtitle" data-typed-text="假设检验"></span>
           
         </div>
 
@@ -215,8 +220,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-22 08:17" pubdate>
-          2024年11月22日 早上
+        <time datetime="2024-11-29 09:54" pubdate>
+          2024年11月29日 上午
         </time>
       </span>
     
@@ -227,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          830 字
+          869 字
         
       </span>
     
@@ -238,7 +243,7 @@
         
         
         
-          7 分钟
+          8 分钟
         
       </span>
     
@@ -284,12 +289,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">离散数学-自然数和基数</h1>
+            <h1 id="seo-header">假设检验</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月29日 上午
+                    本文最后更新于 2024年11月30日 下午
                   
                 
               </p>
@@ -297,128 +302,100 @@
             
               <div class="markdown-body">
                 
-                <h1 id="自然数和基数">自然数和基数</h1>
-<p><strong>后继集合</strong>:对于任意集合A,其后继集合<span class="math inline">\(A^+\)</span>定义为:<span class="math inline">\(A^+=A\cup\{A\}\)</span></p>
-<p><span class="math inline">\(i)\emptyset^+=\{\emptyset\}\)</span></p>
-<p><span class="math inline">\(ii)\{\emptyset\}^+=\{\emptyset,\{\emptyset\}\}\)</span></p>
-<p><span class="math inline">\(iii)A\in A^+\)</span></p>
-<p><span class="math inline">\(iv)A\subseteq A^+\)</span></p>
-<p><span class="math inline">\(v)A^+\neq \emptyset\)</span></p>
-<h2 id="自然数系统">自然数系统</h2>
-<h2 id="冯诺依曼方案">冯诺依曼方案</h2>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;0=\emptyset\\
-&amp;1=0^+=\{\emptyset\}=\{0\}\\
-&amp;2=1^+=\{\emptyset,\{\emptyset\}\}=\{0,1\}\\
-&amp;...\\
-&amp;n+1=n^+=...=\{0,1,...,n\}
-\end{aligned}
-\]</span></p>
-<h3 id="自然数集合归纳定义法">自然数集合(归纳定义法)</h3>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;i)0\in N,0=\emptyset\\
-&amp;ii)n\in N,n^+\in N\\
-&amp;iii)S\subseteq N满足\\
-&amp;\ 1)0\in S\\
-&amp;\ 2)如果n\in S,则n^+\in S\\
-&amp;\ 则S=N
-\end{aligned}
-\]</span></p>
-<h3 id="大小小于">大小/小于</h3>
-<p>对每个自然数<span class="math inline">\(n\in N\)</span>,皆有<span class="math inline">\(n\in n^+\)</span>及<span class="math inline">\(n\subseteq n^+\)</span></p>
-<p>若<span class="math inline">\(m,n\in N\)</span>使得<span class="math inline">\(m\in n\)</span>,则称m小于n,记为<span class="math inline">\(m&lt;n\)</span></p>
-<h3 id="定理">定理</h3>
-<p><span class="math inline">\(proof:\forall n\in N:\bigcup
-n^+=n\)</span> <span class="math display">\[
-\begin{aligned}
-&amp;S=\{n|n\in N且\bigcup n^+=n\}\\
-&amp;1)0\in S:0\in N且\bigcup\{\emptyset\}=\emptyset=0\\
-&amp;2)若n\in S,则\bigcup n^+=n且n\in N\\
-&amp;\therefore n^+\in N,\bigcup((n^+)^+)=\bigcup(n^+\cup\{n^+\})\\
-&amp;=(\bigcup n^+)\cup(\bigcup\{n^+\})=n\cup n^+=n^+\\
-&amp;\therefore n^+\in S
-\end{aligned}
-\]</span></p>
-<h2 id="皮亚诺公理">皮亚诺公理</h2>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;1)0\in N\\
-&amp;2)n\in N,则有唯一的后继n^+\in N\\
-&amp;3)n\in N,则n^+\neq 0\\
-&amp;4)n,m\in N且n^+=m^+,则n=m\\
-&amp;5)若S\subseteq N满足i)0\in S,ii)如果n\in S,则n^+\in S\\
-&amp;则S=n
-\end{aligned}
-\]</span></p>
-<h2 id="第一数学归纳法">第一数学归纳法</h2>
-<p>P(n)是自然数集合上的性质(或<strong>谓词</strong>),如果能证明</p>
-<p>1)<span class="math inline">\(P(0)\)</span>是真</p>
-<p>2)对任何<span class="math inline">\(n\in N\)</span>,<span class="math inline">\(P(n)\Rightarrow P(n^+)\)</span></p>
-<p>则对所有<span class="math inline">\(n\in N\)</span>,P(n)为真</p>
-<p>即:</p>
-<p><span class="math inline">\(P(0)\wedge (\forall n)(P(n)\rightarrow
-P(n+1))\Rightarrow (\forall n)P(n)\)</span> <span class="math display">\[
-\begin{aligned}
-&amp;S=\{n|n\in N,P(n_0+n)为真\}\\
-&amp;0\in  S:0\in N且P(n_0+0)为真\\
-&amp;若n\in S,则n\in N且P(n+n_0)为真\\
-&amp;因为:n_0+n^+=(n_0+n)^+\\
-&amp;因此:P(n^++n_0)为真,n^+\in S
-\end{aligned}
-\]</span></p>
-<h2 id="第二数学归纳法强归纳定理">第二数学归纳法(强归纳定理)</h2>
-<p><span class="math inline">\(\forall n\in
-N,令\overline{N_n}=N-N_n=\{n,n+1,n+2,...\}\)</span></p>
-<p><span class="math inline">\((\forall n)((\forall k)(k&lt;n\rightarrow
-P(k))\rightarrow P(n))\Rightarrow (\forall x)P(x)\)</span> <span class="math display">\[
-\begin{aligned}
-&amp;Q(n):若k\in N且n_0\leq k\leq n,则P(k)为真\\
-&amp;Q(n)满足第一归纳法\\
-&amp;显然Q(n_0)即为真,所以Q(n_0)为真\\
-&amp;假设对任意n\in\overline{N_{n_0}},Q(n)为真\\
-&amp;若k\in N且n_0\leq k\leq n,则P(k)为真\\
-&amp;因此,当k\in N且n_0&lt; n^+时,P(k)也皆为真\\
-&amp;P(n^+)为真,表明Q(n^+)为真\\
-&amp;根据第一归纳法,对任意n\in \overline{N_{n_0}},P(n)为真
-\end{aligned}
-\]</span> <img src="image-20241122095313913.png" srcset="/img/loading.gif" lazyload alt="强归纳定理"></p>
-<h1 id="基数">基数</h1>
-<h2 id="等势">等势</h2>
-<p>从A到B的双射,则称A和B相等/等势,记为<span class="math inline">\(A\sim
-B\)</span></p>
-<p>无穷集合可以与它本身的真子集<strong>等势</strong></p>
-<h3 id="鸽笼原理">鸽笼原理</h3>
-<p>任何有限集都不能与它的真子集对等</p>
-<p><strong>任何与自身真子集等势的集合均是无穷集合</strong></p>
-<h2 id="集合的基数">集合的基数</h2>
-<p><span class="math inline">\(设n\in N,A\sim n,则\#(A)=n\)</span></p>
-<p>无限集的基数:<span class="math inline">\(\#(N)=\aleph_0\)</span></p>
-<p><strong>任意两个基数都可以比较大小</strong></p>
-<h2 id="无穷集的等价条件">无穷集的等价条件</h2>
+                <h1 id="假设检验">假设检验</h1>
+<h2 id="内容">内容</h2>
+<ul>
+<li>参数检验
+<ul>
+<li>总体均值,均值差的检验</li>
+<li>总体方差,方差比的检验</li>
+</ul></li>
+<li>非参数检验
+<ul>
+<li>分布拟合检验</li>
+<li>秩和检验</li>
+</ul></li>
+</ul>
+<p>第一类错误-<span class="math inline">\(\alpha\)</span>:弃真错误</p>
+<p>第二类错误-<span class="math inline">\(\beta\)</span>:取伪错误</p>
+<p>只对犯第一类错误的概率加以控制,而不考虑犯第二类错误的概率的检验,称为<strong>显著性检验</strong></p>
+<p>显著性水平<span class="math inline">\(\alpha\)</span>=P{犯第一类错误}</p>
+<p>通常把有把握,有经验的结论作为原假设,或者尽可能使后果严重的错误成为第一类错误</p>
+<h2 id="步骤">步骤</h2>
 <ol type="1">
-<li>A为无穷集</li>
-<li>A有可数无穷子集</li>
-<li>A有与它对等的真子集</li>
+<li>建设原假设<span class="math inline">\(H_0\)</span>与备选假设<span class="math inline">\(H_1\)</span></li>
+<li>当<span class="math inline">\(H_0\)</span>为真时,选择一个合适的检验统计量<span class="math inline">\(V\)</span>,他的分布是已知的,由<span class="math inline">\(H_1\)</span>确定拒绝域的形式</li>
+<li>给定显著性水平,对应的拒绝域
+<ol type="1">
+<li>双侧检验<span class="math inline">\((V&lt;V_{\alpha/2}\cup
+(V&gt;V_{1-\alpha/2})\)</span></li>
+<li>右边检验<span class="math inline">\((V&gt;V_{1-\alpha}\)</span></li>
+</ol></li>
 </ol>
-<h2 id="定理-1">定理</h2>
-<p>任何无穷集合必含有<strong>可数无穷子集</strong></p>
-<p>实数集合R是<strong>不可数的</strong></p>
-<p>对每个集合A,皆有<span class="math inline">\(\#(A)&lt;\#(\rho(A))\)</span></p>
-<h2 id="例">例</h2>
-<p><span class="math inline">\(\#(R\times R)=\aleph\)</span></p>
-<blockquote>
-<p>取52个整数,必有两数之和或两数之差,被100整除</p>
-</blockquote>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;在51个抽屉:\{0\},\{1,99\},\{2,98\},\dots\{49,1\},\{50\}中选取52个整数\\
-&amp;必有两个整数r_a\mod 100,r_b\mod 100正好落在同一抽屉中\\
-&amp;a)r_a=r_b,则(r_a-r_b)|\ 100\\
-&amp;b)r_a\neq r_b,则(r_a+r_b)|\ 100
-\end{aligned}
-\]</span></p>
+<h2 id="单个总体均值的检验">单个总体均值的检验</h2>
+<h3 id="sigma已知关于mu的检验u检验又称z检验"><span class="math inline">\(\sigma\)</span>已知,关于<span class="math inline">\(\mu\)</span>的检验(U检验)(又称Z检验)</h3>
+<p><span class="math inline">\(Z=\frac{\overline{X}-\mu_0}{\sigma/\sqrt
+n}\)</span></p>
+<figure>
+<img src="image-20241129112156834.png" srcset="/img/loading.gif" lazyload alt="U检验法(方差已知)">
+<figcaption aria-hidden="true">U检验法(方差已知)</figcaption>
+</figure>
+<h3 id="sigma2未知关于mu的检验t检验"><span class="math inline">\(\sigma^2\)</span>未知,关于<span class="math inline">\(\mu\)</span>的检验(T检验)</h3>
+<p><span class="math inline">\(X\sim
+N(\mu,\sigma^2),需检验:H_0=\mu=\mu_0,H_1:\mu\neq \mu_0\)</span></p>
+<p><span class="math inline">\(T=\frac{\overline{X}-\mu_0}{\frac{S}{\sqrt n}}\sim
+t(n-1)\)</span></p>
+<figure>
+<img src="image-20241129105315451.png" srcset="/img/loading.gif" lazyload alt="T检验法(方差未知)">
+<figcaption aria-hidden="true">T检验法(方差未知)</figcaption>
+</figure>
+<h2 id="例题">例题</h2>
+<figure>
+<img src="image-20241129105446429.png" srcset="/img/loading.gif" lazyload alt="image-20241129105446429">
+<figcaption aria-hidden="true">image-20241129105446429</figcaption>
+</figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs MATLAB">X = [<span class="hljs-number">159</span> <span class="hljs-number">280</span> <span class="hljs-number">101</span> <span class="hljs-number">212</span> <span class="hljs-number">224</span> <span class="hljs-number">379</span> <span class="hljs-number">179</span> <span class="hljs-number">264</span> <span class="hljs-number">222</span> <span class="hljs-number">362</span> <span class="hljs-number">168</span> <span class="hljs-number">250</span> <span class="hljs-number">149</span> <span class="hljs-number">260</span> <span class="hljs-number">485</span> <span class="hljs-number">170</span>];<br>n=<span class="hljs-built_in">length</span>(X);<br>mu_0=<span class="hljs-number">225</span>;<br>mu=<span class="hljs-built_in">mean</span>(X);<br>s=std(X);<br>t=(mu-mu_0)/(s/<span class="hljs-built_in">sqrt</span>(n));<br><span class="hljs-built_in">disp</span>([<span class="hljs-string">&#x27;t=&#x27;</span>,num2str(t)]);<br>p=<span class="hljs-number">0.95</span>;<br>z = icdf(<span class="hljs-string">&#x27;T&#x27;</span>, p, n<span class="hljs-number">-1</span>);<br><span class="hljs-keyword">if</span> t&lt;z<br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;没有落在拒绝域内&#x27;</span>);<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;落在拒绝域内&#x27;</span>);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h3 id="sigma的双边检验mu未知"><span class="math inline">\(\sigma\)</span>的双边检验(<span class="math inline">\(\mu\)</span>未知)</h3>
+<p>设<span class="math inline">\(X\sim
+N(\mu,\sigma^2),\mu未知,需检验:\)</span></p>
+<p><span class="math inline">\(H_0:\sigma^2=\sigma_0^2,H_1:\sigma^2\neq
+\sigma_0^2\)</span></p>
+<p><span class="math inline">\(\chi^2=\frac{(n-1)S^2}{\sigma_0^2}\sim
+\chi^2(n-1)\)</span></p>
+<p><span class="math inline">\(P\left\{\frac{(n-1)S^2}{\sigma_0}\leq\chi_{\alpha/2}^2(n-1)或\frac{(n-1)S^2}{\sigma_0^2}\geq
+\chi_{1-\alpha/2}^2(n-1)\right\}=\alpha\)</span></p>
+<figure>
+<img src="image-20241129112119948.png" srcset="/img/loading.gif" lazyload alt="方差的检验(均值未知)">
+<figcaption aria-hidden="true">方差的检验(均值未知)</figcaption>
+</figure>
+<h2 id="两个正态总体均值差的检验t检验">两个正态总体均值差的检验(t检验)</h2>
+<p><span class="math inline">\(t=\frac{(\overline X-\overline
+Y)-\delta}{S_\omega\sqrt{\frac 1{n_1}+\frac 1{n_2}}}\)</span></p>
+<p><span class="math inline">\(S_\omega=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2},S_\omega=\sqrt
+{S_\omega^2}\)</span></p>
+<p>拒绝域:<span class="math inline">\(\frac{(\overline X-\overline
+Y)-\delta}{S_\omega\sqrt{\frac 1{n_1}+\frac 1{n_2}}}\geq
+t_{\alpha/2}(n_1+n_2-2)\)</span></p>
+<figure>
+<img src="image-20241130110711968.png" srcset="/img/loading.gif" lazyload alt="P185例2">
+<figcaption aria-hidden="true">P185例2</figcaption>
+</figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% P185 例2</span><br>A=[<span class="hljs-number">79.98</span> <span class="hljs-number">80.04</span> <span class="hljs-number">80.02</span> <span class="hljs-number">80.04</span> <span class="hljs-number">80.03</span> <span class="hljs-number">80.03</span> <span class="hljs-number">80.04</span> <span class="hljs-number">79.97</span> <span class="hljs-number">80.05</span> <span class="hljs-number">80.03</span> <span class="hljs-number">80.02</span> <span class="hljs-number">80.00</span> <span class="hljs-number">80.02</span>];<br>B=[<span class="hljs-number">80.02</span> <span class="hljs-number">79.94</span> <span class="hljs-number">79.98</span> <span class="hljs-number">79.97</span> <span class="hljs-number">79.97</span> <span class="hljs-number">80.03</span> <span class="hljs-number">79.95</span> <span class="hljs-number">79.97</span>];<br>n1=<span class="hljs-built_in">length</span>(A);<br>n2=<span class="hljs-built_in">length</span>(B);<br>mean1=<span class="hljs-built_in">mean</span>(A);<br>mean2=<span class="hljs-built_in">mean</span>(B);<br>s1=std(A);<br>s2=std(B);<br>sw=<span class="hljs-built_in">sqrt</span>(((n1<span class="hljs-number">-1</span>)*s1^<span class="hljs-number">2</span>+(n2<span class="hljs-number">-1</span>)*s2^<span class="hljs-number">2</span>) / (n1+n2<span class="hljs-number">-2</span>));<br>t=(mean1-mean2)/(sw*<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/n1+<span class="hljs-number">1</span>/n2));<br><span class="hljs-built_in">disp</span>([<span class="hljs-string">&#x27;t=&#x27;</span>,num2str(t)]);<br>p=<span class="hljs-number">0.95</span>;<br>z=icdf(<span class="hljs-string">&#x27;T&#x27;</span>,p,n1+n2<span class="hljs-number">-2</span>);<br><span class="hljs-keyword">if</span> t &gt; z<br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;拒绝H0&#x27;</span>);<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;接受H0&#x27;</span>);<br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">%% 绘制箱线图(在不同图中)</span><br><span class="hljs-built_in">figure</span><br>subplot(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)<br>boxplot(A)<br>subplot(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)<br><br><span class="hljs-comment">%% 绘制箱线图(在同一图中)</span><br>A=A.&#x27;;<br>B=B.&#x27;;<br>group = [<span class="hljs-built_in">repmat</span>(<span class="hljs-string">&#x27;A&#x27;</span>,<span class="hljs-built_in">size</span>(A,<span class="hljs-number">1</span>),<span class="hljs-number">1</span>);<span class="hljs-built_in">repmat</span>(<span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-built_in">size</span>(B,<span class="hljs-number">1</span>),<span class="hljs-number">1</span>)];<br>boxplot([A;B],group)<br></code></pre></td></tr></table></figure>
+<h2 id="基于成对数据的检验t检验">基于成对数据的检验(t检验)</h2>
+<figure>
+<img src="image-20241130113514692.png" srcset="/img/loading.gif" lazyload alt="P186例3">
+<figcaption aria-hidden="true">P186例3</figcaption>
+</figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% P186 例3</span><br><span class="hljs-comment">% H0:\mu_D=0,\mu_D\neq 0</span><br>x=[<span class="hljs-number">0.20</span>	<span class="hljs-number">0.30</span>	<span class="hljs-number">0.40</span>	<span class="hljs-number">0.50</span>	<span class="hljs-number">0.60</span>	<span class="hljs-number">0.70</span>	<span class="hljs-number">0.80</span>	<span class="hljs-number">0.90</span> <span class="hljs-number">1.00</span>];<br>y=[<span class="hljs-number">0.10</span>	<span class="hljs-number">0.21</span>	<span class="hljs-number">0.52</span>	<span class="hljs-number">0.32</span>	<span class="hljs-number">0.78</span>	<span class="hljs-number">0.59</span>	<span class="hljs-number">0.68</span>	<span class="hljs-number">0.77</span> <span class="hljs-number">0.89</span>];<br>n=<span class="hljs-built_in">length</span>(x);<br>d=x-y;<br>alpha=<span class="hljs-number">0.01</span>;<br>z=icdf(<span class="hljs-string">&#x27;T&#x27;</span>,<span class="hljs-number">1</span>-alpha/<span class="hljs-number">2</span>,n<span class="hljs-number">-1</span>);<br>mean_d=<span class="hljs-built_in">mean</span>(d);<br>s_d=std(d);<br>t=<span class="hljs-built_in">abs</span>(mean_d/(s_d/<span class="hljs-built_in">sqrt</span>(n)));<br><span class="hljs-keyword">if</span> t&lt;z<br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;无明显差异&#x27;</span>);<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;有明显差异&#x27;</span>);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h2 id="方差比的检验f检验">方差比的检验(F检验)</h2>
+<p><span class="math inline">\(F=\frac{S_1^2}{S_2^2}\)</span></p>
+<p><span class="math inline">\(H_1:\sigma_1^2&gt;\sigma_2^2\rightarrow
+\chi^2\geq \chi_\alpha^2(n-1)\)</span></p>
+<p><span class="math inline">\(H_1:\sigma_1^2&lt;\sigma_2^2\rightarrow
+\chi^2\leq \chi_{1-\alpha}^2(n-1)\)</span></p>
+<p><span class="math inline">\(H_1:\sigma_1^2&gt;\sigma_2^2\rightarrow
+\chi^2\geq \chi_{\alpha/2}^2(n-1)或\chi^2\leq
+\chi_{1-\alpha/2}^2(n-1)\)</span></p>
 
                 
               </div>
@@ -437,7 +414,7 @@ B\)</span></p>
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" class="category-chain-item">离散数学</a>
+  <a href="/categories/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%95%B0%E7%90%86%E6%A8%A1%E5%9E%8B/" class="category-chain-item">概率与数理模型</a>
   
   
 
@@ -452,7 +429,7 @@ B\)</span></p>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/discrete-mathematics/" class="print-no-link">#discrete mathematics</a>
+        <a href="/tags/%E6%A6%82%E7%BB%9F/" class="print-no-link">#概统</a>
       
     </div>
   
@@ -464,8 +441,8 @@ B\)</span></p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>离散数学-自然数和基数</div>
-      <div>https://meteor041.git.io/2024/11/22/离散数学-自然数和基数/</div>
+      <div>假设检验</div>
+      <div>https://meteor041.git.io/2024/11/29/假设检验/</div>
     </div>
     <div class="license-meta">
       
@@ -477,7 +454,7 @@ B\)</span></p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月22日</div>
+          <div>2024年11月29日</div>
         </div>
       
       
@@ -509,18 +486,12 @@ B\)</span></p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" title="参数估计">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">参数估计</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/17/%E6%A0%B7%E6%9C%AC%E5%8F%8A%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83/" title="样本及抽样分布">
-                        <span class="hidden-mobile">样本及抽样分布</span>
+                      <a href="/2024/11/28/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E7%81%B0%E8%89%B2%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90/" title="数学建模-灰色关联分析">
+                        <span class="hidden-mobile">数学建模-灰色关联分析</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
