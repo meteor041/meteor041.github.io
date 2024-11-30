@@ -19,24 +19,27 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="熵权法信息熵 本质:对信息量的期望值 $H(x)&#x3D;\sum^n_{i&#x3D;1}\left[p(x_i)I(x_i)\right]$ 信息的期望值越大,已掌握的信息量越少 正向化处理h 极小型转换为极大型:$\max(x)-x$ 越靠近特定值越好的中间型指标转最大型:$M&#x3D;\max\{|x_i-x_{best}|\},各令\tilde x_i&#x3D;1-\frac{|x_i-x_{best}|}{M}$ 落在">
+    <meta name="description" content="多维随机变量及其分布 定义 \(\Omega\)为随机试验的样本空间, \[ \forall \omega\in \Omega\rightarrow \exist(X(\omega),Y(\omega))\in R^2\\ \] (X,Y)为二位随机变量 联合分布函数 \[ F(x,y)&#x3D;P(X\leq x,Y\leq y)\\ \] 边缘分布函数 \[ F_X(x)&#x3D;P(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数学建模-熵权法">
-<meta property="og:url" content="https://meteor041.git.io/2024/11/27/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E7%86%B5%E6%9D%83%E6%B3%95/index.html">
+<meta property="og:title" content="多维随机变量及其分布">
+<meta property="og:url" content="https://meteor041.git.io/2024/11/30/%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="熵权法信息熵 本质:对信息量的期望值 $H(x)&#x3D;\sum^n_{i&#x3D;1}\left[p(x_i)I(x_i)\right]$ 信息的期望值越大,已掌握的信息量越少 正向化处理h 极小型转换为极大型:$\max(x)-x$ 越靠近特定值越好的中间型指标转最大型:$M&#x3D;\max\{|x_i-x_{best}|\},各令\tilde x_i&#x3D;1-\frac{|x_i-x_{best}|}{M}$ 落在">
+<meta property="og:description" content="多维随机变量及其分布 定义 \(\Omega\)为随机试验的样本空间, \[ \forall \omega\in \Omega\rightarrow \exist(X(\omega),Y(\omega))\in R^2\\ \] (X,Y)为二位随机变量 联合分布函数 \[ F(x,y)&#x3D;P(X\leq x,Y\leq y)\\ \] 边缘分布函数 \[ F_X(x)&#x3D;P(">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-27T15:23:01.000Z">
-<meta property="article:modified_time" content="2024-11-28T08:16:44.617Z">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/30/%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/image-20241018112647390.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/30/%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/image-20241018114119486.png">
+<meta property="article:published_time" content="2024-11-30T08:11:04.000Z">
+<meta property="article:modified_time" content="2024-11-30T08:18:16.150Z">
 <meta property="article:author" content="meteor041">
-<meta property="article:tag" content="数学建模">
+<meta property="article:tag" content="概统">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/11/30/%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/image-20241018112647390.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>数学建模-熵权法 - meteor041</title>
+  <title>多维随机变量及其分布 - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数学建模-熵权法"></span>
+            <span id="subtitle" data-typed-text="多维随机变量及其分布"></span>
           
         </div>
 
@@ -213,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-27 23:23" pubdate>
-          2024年11月27日 晚上
+        <time datetime="2024-11-30 16:11" pubdate>
+          2024年11月30日 下午
         </time>
       </span>
     
@@ -225,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          326 字
+          393 字
         
       </span>
     
@@ -236,7 +239,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -282,12 +285,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">数学建模-熵权法</h1>
+            <h1 id="seo-header">多维随机变量及其分布</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月28日 下午
+                    本文最后更新于 2024年11月30日 下午
                   
                 
               </p>
@@ -295,20 +298,62 @@
             
               <div class="markdown-body">
                 
-                <h1 id="熵权法"><a href="#熵权法" class="headerlink" title="熵权法"></a>熵权法</h1><p>信息熵</p>
-<p>本质:<strong>对信息量的期望值</strong></p>
-<p>$H(x)=\sum^n_{i=1}\left[p(x_i)I(x_i)\right]$</p>
-<p>信息的期望值越大,已掌握的信息量越少</p>
-<h2 id="正向化处理h"><a href="#正向化处理h" class="headerlink" title="正向化处理h"></a>正向化处理h</h2><ul>
-<li>极小型转换为极大型:$\max(x)-x$</li>
-<li>越靠近特定值越好的中间型指标转最大型:$M=\max\{|x_i-x_{best}|\},各令\tilde x_i=1-\frac{|x_i-x_{best}|}{M}$</li>
-<li>落在某个区间最好的中间型指标转最大型:$M=\max\{a-\min\{x_i\},\max\{x_i\}-b\}$,再令$\tilde x_i=\begin{cases}1-\frac{a-x_i}{M},x_i<a\\1,a\leq x_i\leq b\\1-\frac{x_i-b}{m},x_i>b\end{cases}$</a\\1,a\leq></li>
-</ul>
-<h2 id="标准化处理"><a href="#标准化处理" class="headerlink" title="标准化处理"></a>标准化处理</h2><p>n个评价对象,m个评价指标(已经正向化处理),构成矩阵:$X=\begin{vmatrix}x_{11}&amp;x_{12}&amp;\dots&amp;x_{1m}\\x_{21}&amp;x_{22}&amp;\dots&amp;x_{2m}\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\x_{n1}&amp;x_{n2}&amp;\dots&amp;x_{nm}\end{vmatrix}$</p>
-<p>设标准化后的矩阵为Z,则Z的每一个元素:$z_{ij}=\frac{x_{ij}}{\sqrt{\sum^n_{i=1}x_{ij}^2}}$</p>
-<h2 id="计算比重矩阵"><a href="#计算比重矩阵" class="headerlink" title="计算比重矩阵"></a>计算比重矩阵</h2><p>比重矩阵P的每一个元素$p_{ij}=\frac{\tilde z_{ij}}{\sum\limits^n_{i=1}\tilde z_{ij}}$,容易验证:$\sum\limits_{i=1}^np_{ij}=1$</p>
-<p>信息熵$H(x)=\sum\limits^n_{i=1}\left[p(x_i)I(x_i)\right]=-\sum\limits^n_{i=1}\left[p(x_i)\ln(p(x_i))\right]$</p>
-<p>稍加修改,令信息熵为$e_j=-\frac{1}{\ln n}\sum\limits^n_{i=1}p_{ij}\ln(p_{ij})$</p>
+                <h1 id="多维随机变量及其分布">多维随机变量及其分布</h1>
+<h2 id="定义">定义</h2>
+<p><span class="math inline">\(\Omega\)</span>为随机试验的样本空间,
+<span class="math display">\[
+\forall \omega\in \Omega\rightarrow \exist(X(\omega),Y(\omega))\in R^2\\
+\]</span> (X,Y)为二位随机变量</p>
+<h2 id="联合分布函数">联合分布函数</h2>
+<p><span class="math display">\[
+F(x,y)=P(X\leq x,Y\leq y)\\
+\]</span></p>
+<h2 id="边缘分布函数">边缘分布函数</h2>
+<p><span class="math display">\[
+F_X(x)=P(X\leq x)\\
+F_Y(y)=P(Y\leq y)\\
+\]</span></p>
+<h3 id="正态分布">正态分布</h3>
+<p><span class="math display">\[
+f_X(x)=\frac{1}{ \sqrt{2\pi}\sigma_1 }e^{
+-\frac{(x-\mu_1)^2}{2\sigma_1^2} },-\infty&lt;x&lt;+\infty\\
+\]</span></p>
+<h2 id="边缘密度函数">边缘密度函数</h2>
+<p><span class="math display">\[
+f_X(x)=\int^{+\infty}_{-\infty}f(x,v)dv\\
+F_X(x)=F(x,+\infty)=\int^x_{-\infty}\int^{+\infty}_{-\infty}f(u,v)dvdu\\
+\]</span></p>
+<h2 id="随机变量的独立性">随机变量的独立性</h2>
+<p>设(X,Y)为二维随机变量,若对于任何实数x,y:</p>
+<p><span class="math inline">\(P(X\leq x,Y\leq y)=p(X\leq x)P(Y\leq
+y)\)</span></p>
+<p>则X和Y相互独立</p>
+<p><img src="image-20241018112647390.png" srcset="/img/loading.gif" lazyload alt="image-20241018112647390"> <span class="math display">\[
+P\{X=1\}=\frac{1}{3}\\
+P\{Y=0\}=\frac{1}{3}\\
+P\{X=1\wedge Y=0\}=\frac{1}{6}\neq P\{X=1\}\times P\{Y=0\}
+不独立
+\]</span></p>
+<h3 id="推论1">推论1</h3>
+<p><span class="math display">\[
+设f(x,y)是连续型二维随机变量(X,Y)的联合密度函数,r(x),g(y)为非负可积函数\\
+若f(x,y)=r(x)g(y)\\
+则X,Y相互独立,且\\
+f_X(x)=\frac{r(x)}{\int^{+\infty}_{-\infty}g(y)dy}\\
+f_Y(y)=\frac{g(y)}{\int^{+\infty}_{-\infty}g(y)dy}\\
+\]</span></p>
+<h3 id="推论2">推论2</h3>
+<p>$$
+X,Y为相互独立的随机变量,\u(x),v(y)为连续函数,\则U=u(x),V=v(Y)也相互独立,\设X与Y的概率密度函数分别为f_X(x),f_Y(y),则\</p>
+<p>f(x,y)=f_X(x)f_y(y) $$</p>
+<h3 id="公式">公式</h3>
+<p><span class="math display">\[
+f_{Y|X}(y|x)=\frac{f(x,y)}{f_X(x)}\\
+\]</span></p>
+<p><img src="image-20241018114119486.png" srcset="/img/loading.gif" lazyload alt="image-20241018114119486"> <span class="math display">\[
+\frac{1}{ 2\pi\sigma_1\sigma_2 \sqrt{1-\rho^2}
+}\exp\{\frac{-1}{2(1-\rho^2)}[\frac{(x-\mu_1)^2}{\sigma_1^2}-2\rho\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}]\}\\
+\]</span></p>
 
                 
               </div>
@@ -327,7 +372,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="category-chain-item">数学建模</a>
+  <a href="/categories/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%95%B0%E7%90%86%E6%A8%A1%E5%9E%8B/" class="category-chain-item">概率与数理模型</a>
   
   
 
@@ -342,7 +387,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="print-no-link">#数学建模</a>
+        <a href="/tags/%E6%A6%82%E7%BB%9F/" class="print-no-link">#概统</a>
       
     </div>
   
@@ -354,8 +399,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数学建模-熵权法</div>
-      <div>https://meteor041.git.io/2024/11/27/数学建模-熵权法/</div>
+      <div>多维随机变量及其分布</div>
+      <div>https://meteor041.git.io/2024/11/30/多维随机变量/</div>
     </div>
     <div class="license-meta">
       
@@ -367,7 +412,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月27日</div>
+          <div>2024年11月30日</div>
         </div>
       
       
@@ -399,9 +444,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/28/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-Topsis/" title="数学建模-Topsis">
+                      <a href="/2024/11/30/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" title="随机变量及其分布">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数学建模-Topsis</span>
+                        <span class="hidden-mobile">随机变量及其分布</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -409,8 +454,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/27/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E6%A8%A1%E7%B3%8A%E7%BB%BC%E5%90%88%E8%AF%84%E4%BB%B7/" title="数学建模-模糊综合评价">
-                        <span class="hidden-mobile">数学建模-模糊综合评价</span>
+                      <a href="/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" title="假设检验">
+                        <span class="hidden-mobile">假设检验</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

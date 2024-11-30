@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="模糊综合评价 背景 现实中的许多现象及关系比较模糊,如高与矮,长与短 模糊集合 传统集合的概念  互异性 逻辑性 独立性 无序性 纯粹性 完备性  传统集合的特征函数 U为论域,\(f_A\)是A集合的特征函数,有 \(f_A:U\rightarrow \{0,1\}\) 模糊集合的隶属度 定义U为论域,\(\mu_A\)为A集合的特征函数,有: \(\mu_A:">
+    <meta name="description" content="模糊综合评价背景现实中的许多现象及关系比较模糊,如高与矮,长与短 模糊集合传统集合的概念 互异性 逻辑性 独立性 无序性 纯粹性 完备性  传统集合的特征函数U为论域,$f_A$是A集合的特征函数,有 $f_A:U\rightarrow \{0,1\}$ 模糊集合的隶属度定义U为论域,$\mu_A$为A集合的特征函数,有:$\mu_A:U\rightarrow [0,1]$ 模糊集合的表示方法对于">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数学建模-模糊综合评价">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/27/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E6%A8%A1%E7%B3%8A%E7%BB%BC%E5%90%88%E8%AF%84%E4%BB%B7/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="模糊综合评价 背景 现实中的许多现象及关系比较模糊,如高与矮,长与短 模糊集合 传统集合的概念  互异性 逻辑性 独立性 无序性 纯粹性 完备性  传统集合的特征函数 U为论域,\(f_A\)是A集合的特征函数,有 \(f_A:U\rightarrow \{0,1\}\) 模糊集合的隶属度 定义U为论域,\(\mu_A\)为A集合的特征函数,有: \(\mu_A:">
+<meta property="og:description" content="模糊综合评价背景现实中的许多现象及关系比较模糊,如高与矮,长与短 模糊集合传统集合的概念 互异性 逻辑性 独立性 无序性 纯粹性 完备性  传统集合的特征函数U为论域,$f_A$是A集合的特征函数,有 $f_A:U\rightarrow \{0,1\}$ 模糊集合的隶属度定义U为论域,$\mu_A$为A集合的特征函数,有:$\mu_A:U\rightarrow [0,1]$ 模糊集合的表示方法对于">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-27T12:55:54.000Z">
 <meta property="article:modified_time" content="2024-11-28T06:32:24.916Z">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          292 字
+          264 字
         
       </span>
     
@@ -295,12 +295,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="模糊综合评价">模糊综合评价</h1>
-<h2 id="背景">背景</h2>
-<p>现实中的许多现象及关系比较模糊,如高与矮,长与短</p>
-<h2 id="模糊集合">模糊集合</h2>
-<h3 id="传统集合的概念">传统集合的概念</h3>
-<ul>
+                <h1 id="模糊综合评价"><a href="#模糊综合评价" class="headerlink" title="模糊综合评价"></a>模糊综合评价</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>现实中的许多现象及关系比较模糊,如高与矮,长与短</p>
+<h2 id="模糊集合"><a href="#模糊集合" class="headerlink" title="模糊集合"></a>模糊集合</h2><h3 id="传统集合的概念"><a href="#传统集合的概念" class="headerlink" title="传统集合的概念"></a>传统集合的概念</h3><ul>
 <li>互异性</li>
 <li>逻辑性</li>
 <li>独立性</li>
@@ -308,25 +304,15 @@
 <li>纯粹性</li>
 <li>完备性</li>
 </ul>
-<h3 id="传统集合的特征函数">传统集合的特征函数</h3>
-<p>U为论域,<span class="math inline">\(f_A\)</span>是A集合的特征函数,有</p>
-<p><span class="math inline">\(f_A:U\rightarrow \{0,1\}\)</span></p>
-<h3 id="模糊集合的隶属度">模糊集合的隶属度</h3>
-<p>定义U为论域,<span class="math inline">\(\mu_A\)</span>为A集合的特征函数,有: <span class="math inline">\(\mu_A:U\rightarrow [0,1]\)</span></p>
-<h3 id="模糊集合的表示方法">模糊集合的表示方法</h3>
-<p>对于论域<span class="math inline">\(U=&lt;x_1,x_2,\dots,x_n\)</span>,模糊集合<span class="math inline">\(A\)</span>,隶属度<span class="math inline">\(A(x_i)(i=1,2\dots n)\)</span></p>
-<p>扎德表示法:<span class="math inline">\(A=\frac{A(x_1)}{x_1}+{A(x_2)}{x_2}+\dots+\frac{A(x_n)}{x_n}\)</span></p>
-<h3 id="模糊集合的分类">模糊集合的分类</h3>
-<p>极小型:<span class="math inline">\(\mu_A(x)=\begin{cases}1,x&lt;a\\\frac{b-x}{b-a},a\leq
-x\leq b\\0,x&gt;b\end{cases}\)</span></p>
-<p>中间型:<span class="math inline">\(\mu_A(x)=\begin{cases}0,x&lt;a\\\frac{x-a}{b-a},a\leq
-x&lt;b\\1,b\leq x&lt;c\\\frac{d-x}{d-c},c\leq x&lt; d\\0,x\geq
-d\end{cases}\)</span></p>
-<p>极大型:<span class="math inline">\(\mu_A(x)=\begin{cases}0,x&lt;a\\\frac{b-x}{b-a},a\leq
-x\leq b\\1,x&gt;b\end{cases}\)</span></p>
-<h2 id="f分布确定隶属函数">F分布确定隶属函数</h2>
-<p>柯西分布:<span class="math inline">\(\frac{1}{\pi \gamma
-\left[1+\left(\frac{x-x_0}{\gamma}^2\right)\right]}\)</span></p>
+<h3 id="传统集合的特征函数"><a href="#传统集合的特征函数" class="headerlink" title="传统集合的特征函数"></a>传统集合的特征函数</h3><p>U为论域,$f_A$是A集合的特征函数,有</p>
+<p>$f_A:U\rightarrow \{0,1\}$</p>
+<h3 id="模糊集合的隶属度"><a href="#模糊集合的隶属度" class="headerlink" title="模糊集合的隶属度"></a>模糊集合的隶属度</h3><p>定义U为论域,$\mu_A$为A集合的特征函数,有:<br>$\mu_A:U\rightarrow [0,1]$</p>
+<h3 id="模糊集合的表示方法"><a href="#模糊集合的表示方法" class="headerlink" title="模糊集合的表示方法"></a>模糊集合的表示方法</h3><p>对于论域$U=&lt;x_1,x_2,\dots,x_n$,模糊集合$A$,隶属度$A(x_i)(i=1,2\dots n)$</p>
+<p>扎德表示法:$A=\frac{A(x_1)}{x_1}+{A(x_2)}{x_2}+\dots+\frac{A(x_n)}{x_n}$</p>
+<h3 id="模糊集合的分类"><a href="#模糊集合的分类" class="headerlink" title="模糊集合的分类"></a>模糊集合的分类</h3><p>极小型:$\mu_A(x)=\begin{cases}1,x<a\\\frac{b-x}{b-a},a\leq x\leq b\\0,x>b\end{cases}$</a\\\frac{b-x}{b-a},a\leq></p>
+<p>中间型:$\mu_A(x)=\begin{cases}0,x&lt;a\\\frac{x-a}{b-a},a\leq x&lt;b\\1,b\leq x&lt;c\\\frac{d-x}{d-c},c\leq x&lt; d\\0,x\geq d\end{cases}$</p>
+<p>极大型:$\mu_A(x)=\begin{cases}0,x<a\\\frac{b-x}{b-a},a\leq x\leq b\\1,x>b\end{cases}$</a\\\frac{b-x}{b-a},a\leq></p>
+<h2 id="F分布确定隶属函数"><a href="#F分布确定隶属函数" class="headerlink" title="F分布确定隶属函数"></a>F分布确定隶属函数</h2><p>柯西分布:$\frac{1}{\pi \gamma \left[1+\left(\frac{x-x_0}{\gamma}^2\right)\right]}$</p>
 
                 
               </div>
