@@ -27,7 +27,7 @@
 <meta property="og:description" content="样本及抽样分布 随机样本 在相同条件下对总体X进行n次重复的,独立的观察,将n次观察结果按试验的次序记为\(X_1,X_2,...,X_n\),成为来自总体\(X\)的一个简单随机样本,n称为这个样本的容量 \((X_1,X_2,...,X_n)\)的分布函数: \(F^*(x_1,x_2,...,x_n)&#x3D;\prod\limits_{i&#x3D;1}^nF(x_i)\) \((X_1,X_2,">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-17T07:33:28.000Z">
-<meta property="article:modified_time" content="2024-11-30T08:24:57.725Z">
+<meta property="article:modified_time" content="2024-11-30T10:21:00.318Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="概统">
 <meta name="twitter:card" content="summary_large_image">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          869 字
+          1k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -287,7 +287,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月30日 下午
+                    本文最后更新于 2024年11月30日 晚上
                   
                 
               </p>
@@ -331,12 +331,24 @@ X)^2\)</span></li>
 </ul>
 <p><span class="math inline">\(S^2\)</span>称为无偏估计(unbiased
 estimator)</p>
-<h3 id="经验分布函数">经验分布函数</h3>
+<p><strong>无偏估计</strong>:估计出来的参数的数学期望等于被估计的参数的真实值.</p>
+<blockquote>
+<p>样本的均值a是否为无偏估计<span class="math inline">\(\mu\)</span>?</p>
+</blockquote>
+<p><span class="math inline">\(E(a)=\frac{1}{n}E(\sum_{i=1}^n
+x_i)=\frac{1}{n}\sum^n_{i=1}E(x_i)=\frac{1}{n}\sum^n_{i=1}\mu=\mu\)</span></p>
+<blockquote>
+<p>样本的方差<span class="math inline">\(b=\frac{1}{n}\sum^n_{i=1}(X_i-\mu)^2\)</span>是否是无偏估计?</p>
+</blockquote>
+<p><span class="math inline">\(E(b)=E(\frac{1}{n}\sum^n_{i=1}(X_i-\mu)^2)=
+\frac{1}{n}\sum^n_{i=1}E(X_i)-\frac{1}{n}E([2a\cdot n\cdot
+a])+E(a^2)=E(X_i^2)-E(a^2)=E^2(X)+D(X)-[E^2(a)+D(a)]=\mu^2+\sigma^2-\mu^2-\frac{1}{n}\sigma^2=\frac{n-1}{n}\sigma^2\)</span>
+### 经验分布函数</p>
 <p><span class="math inline">\(S(x)表示X_1,X_2,...,X_n中不大于x的随机变量的个数\)</span></p>
 <p><span class="math inline">\(F_n(x)=\frac{1}{n}S(x),-\infty&lt;x&lt;\infty\)</span></p>
 <p><span class="math inline">\(F_n(x)=\begin{cases}0,x&lt;x_{(1)},\\\frac{k}{n},x_{(k)}\leq
 x&lt;x_{(k+1)},\\1,x\geq x_{(n)},\end{cases}\)</span></p>
-<p>可证:<span class="math inline">\(P\{\mathop\lim\limits_{n\rightarrow
+<p>可证:<span class="math inline">\(P\{\lim\limits_{n\rightarrow
 \infty}\sup\limits_{-\infty&lt;x&lt;\infty}|F_x(x)-F(x)|=0\}=1\)</span></p>
 <h3 id="chi2分布"><span class="math inline">\(\chi^2\)</span>分布</h3>
 <h4 id="分布">分布</h4>
