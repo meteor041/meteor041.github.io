@@ -19,13 +19,15 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="概率论-参数估计 点估计 设总体X的分布函数F(x;\(\theta\))形式为已知,\(\theta\)是待估参数.\(X_1,X_2…X_n\)是X的一个样本,\(x_1,x_2,…x_n\),是相应的一个样本值. 点估计问题就是要构造一个适当的统计量\(\hat\theta(X_1,X_2…X_n)\),用它的观察值\(\hat\theta(x_1,x_2…x_n)\)作为未知参数\(">
+    <meta name="description" content="概率论-参数估计 \[ 统计推断问题\left\{ \begin{aligned} &amp;参数估计\left\{ \begin{aligned} &amp;点估计\\\\ &amp;区间估计\\ \end{aligned} \right. \\\\ &amp;假设检验 \end{aligned} \right. \] 点估计 设总体X的分布函数F(x;\(\th">
 <meta property="og:type" content="article">
 <meta property="og:title" content="参数估计">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="概率论-参数估计 点估计 设总体X的分布函数F(x;\(\theta\))形式为已知,\(\theta\)是待估参数.\(X_1,X_2…X_n\)是X的一个样本,\(x_1,x_2,…x_n\),是相应的一个样本值. 点估计问题就是要构造一个适当的统计量\(\hat\theta(X_1,X_2…X_n)\),用它的观察值\(\hat\theta(x_1,x_2…x_n)\)作为未知参数\(">
+<meta property="og:description" content="概率论-参数估计 \[ 统计推断问题\left\{ \begin{aligned} &amp;参数估计\left\{ \begin{aligned} &amp;点估计\\\\ &amp;区间估计\\ \end{aligned} \right. \\\\ &amp;假设检验 \end{aligned} \right. \] 点估计 设总体X的分布函数F(x;\(\th">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/2f2f74dc62993ccc0ca878a66db81c2.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/F1.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124145810223.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124150852368.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/72c3c6096138257fe8417c26946a591.png">
@@ -33,11 +35,11 @@
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124095021691.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124093640970.png">
 <meta property="article:published_time" content="2024-11-22T02:17:25.000Z">
-<meta property="article:modified_time" content="2024-11-30T08:58:34.601Z">
+<meta property="article:modified_time" content="2024-11-30T15:07:09.312Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="概统">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/image-20241124145810223.png">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/2f2f74dc62993ccc0ca878a66db81c2.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -232,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.6k 字
         
       </span>
     
@@ -243,7 +245,7 @@
         
         
         
-          10 分钟
+          14 分钟
         
       </span>
     
@@ -294,7 +296,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月30日 下午
+                    本文最后更新于 2024年11月30日 晚上
                   
                 
               </p>
@@ -303,6 +305,20 @@
               <div class="markdown-body">
                 
                 <h1 id="概率论-参数估计">概率论-参数估计</h1>
+<p><span class="math display">\[
+统计推断问题\left\{
+\begin{aligned}
+&amp;参数估计\left\{
+\begin{aligned}
+&amp;点估计\\\\
+&amp;区间估计\\
+\end{aligned}
+\right.
+\\\\
+&amp;假设检验
+\end{aligned}
+\right.
+\]</span></p>
 <h2 id="点估计">点估计</h2>
 <p>设总体X的分布函数F(x;<span class="math inline">\(\theta\)</span>)形式为已知,<span class="math inline">\(\theta\)</span>是待估参数.<span class="math inline">\(X_1,X_2…X_n\)</span>是X的一个样本,<span class="math inline">\(x_1,x_2,…x_n\)</span>,是相应的一个样本值.</p>
 <p>点估计问题就是要构造一个适当的统计量<span class="math inline">\(\hat\theta(X_1,X_2…X_n)\)</span>,用它的观察值<span class="math inline">\(\hat\theta(x_1,x_2…x_n)\)</span>作为未知参数<span class="math inline">\(\theta\)</span>的近似值,</p>
@@ -340,6 +356,43 @@ x_i}(1-p)^{n-\mathop\Sigma\limits_{i=1}^n x_i}\)</span></p>
 <p><span class="math inline">\(D(\hat\theta_1)&lt;D(\hat\theta_2)\)</span></p>
 <p>则称<span class="math inline">\(\hat\theta_1\)</span>比<span class="math inline">\(\hat\theta_2\)</span>更有效</p>
 <h3 id="一致性">一致性</h3>
+<h2 id="使用到的分布">使用到的分布</h2>
+<h3 id="卡方分布chi-square-distribution">卡方分布(chi-square
+distribution)</h3>
+<p>若n个相互独立的随机变量<span class="math inline">\(X_1,X_2\dots
+X_n\)</span>均服从<strong>标准正态分布</strong>,则n个服从标准正态分布的随机变量的平方和<span class="math inline">\(Q=\sum^n_{i=1}X_i^2\)</span>构成一个新的随机变量,其分布规律称为<span class="math inline">\(\chi^2\)</span>分布,记作<span class="math inline">\(Q\sim \chi^2(v),其中v=n-k\)</span></p>
+<figure>
+<img src="2f2f74dc62993ccc0ca878a66db81c2.png" srcset="/img/loading.gif" lazyload alt="卡方分布">
+<figcaption aria-hidden="true">卡方分布</figcaption>
+</figure>
+<h3 id="t-分布t-distribution">t-分布(t-distribution)</h3>
+<ul>
+<li>根据小样本来估计呈正态分布且方差未知的总体的均值</li>
+<li>假如<span class="math inline">\(X\sim N(0,1),Y\sim
+\chi^2(n)\)</span>,则<span class="math inline">\(Z=\dfrac{X}{\sqrt{Y/N}}\)</span>称为自由度为n的分布,记为<span class="math inline">\(Z\sim t(n)\)</span></li>
+<li>分布密度函数<span class="math inline">\(f_Z(x)=\dfrac{\Gamma(\dfrac{n+1}{2})}{\sqrt{n\pi}\Gamma(\dfrac{n}{2})}(1+\dfrac{x^2}{n})^{-\dfrac{n+1}{2}}\)</span></li>
+</ul>
+<h3 id="f分布">F分布</h3>
+<ul>
+<li><p>若总体<span class="math inline">\(X\sim N(0,1)\)</span>,<span class="math inline">\((X_1,X_2,\dots,X_{n_1})\)</span>与<span class="math inline">\((Y_1,Y_2,\dots,Y_{n_2})\)</span>来自X的两个独立样本,设统计量</p>
+<p><span class="math inline">\(F=\dfrac{\sum^{n_1}_{i=1}X_i^2}{n_1}/\dfrac{\sum^n_{i=1}Y_i^2}{n_2}\)</span></p>
+<p>则称统计量<span class="math inline">\(F\)</span>服从自由度<span class="math inline">\(n_1\)</span>和<span class="math inline">\(n_2\)</span>的F分布,记作<span class="math inline">\(F\sim F(n_1,n_2)\)</span></p></li>
+</ul>
+<figure>
+<img src="F1.png" srcset="/img/loading.gif" lazyload alt="F分布">
+<figcaption aria-hidden="true">F分布</figcaption>
+</figure>
+<h3 id="辨别三种抽样分布">辨别三种抽样分布</h3>
+<blockquote>
+<p><span class="math inline">\(X和Y相互独立且都服从N(0,\sigma^2),而X_1,X_2,\dots,X_9和Y_1,Y_2,\dots,Y_9分别是来自总体X和Y的简单随机样本\)</span></p>
+</blockquote>
+<p><span class="math inline">\((1)\frac{1}{3\sigma}\sum^9_{i=1}X_i\sim
+N(0,1)\)</span></p>
+<p><span class="math inline">\((2)\frac{1}{\sigma^2}\sum^9_{i=1}Y_i^2=\sum^9_{i=1}(\dfrac{Y_i}{\sigma})^2\sim\chi^2(9)\)</span></p>
+<p><span class="math inline">\((3)U=\dfrac{\dfrac{1}{\sqrt{9\sigma}}\sum^9_{i=1}X_i}{\sqrt{\dfrac{1}{\sigma^2}\sum^9_{i=1}Y_i^2/9}}\sim
+t(n)\)</span></p>
+<p><span class="math inline">\((4)U^2=\dfrac{\left(\dfrac{1}{\sqrt{9\sigma}}\sum^9_{i=1}X_i\right)^2/1}{\left(\sqrt{\dfrac{1}{\sigma^2}\sum^9_{i=1}Y_i^2}\right)^2/9}\sim
+F(1,9)\)</span></p>
 <h2 id="区间估计">区间估计</h2>
 <p><strong>置信空间</strong>是指由样本统计量所构成的总体参数的估计区间.展现的是这个参数的真实值有一定概率落在测量结果的周围的程度,其给出的是被测量参数的测量值的可信程度,即前面所要求的一个概率.</p>
 <p><span class="math inline">\((\bar
