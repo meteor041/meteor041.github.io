@@ -1,0 +1,817 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="meteor041">
+  <meta name="keywords" content="Computer Organization">
+  
+    <meta name="description" content="P7 debug总结 阻塞转发错误 上机的过程中遇到了转发错误,再三排查后,发现是mtc0产生了不应该有的转发. 在ID的控制模块CTRL中,我采用了一种过于&quot;取巧&quot;的方法,将rd写入了ID_A3(解码阶段输出的写入寄存器地址(向后传递直至WB阶段)) 123assign ID_A3 &#x3D; ... :    		  (add || sub || and_ || or_ || slt || s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P7-CPU设计文档">
+<meta property="og:url" content="https://meteor041.git.io/2024/12/02/P7%20debug%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="meteor041">
+<meta property="og:description" content="P7 debug总结 阻塞转发错误 上机的过程中遇到了转发错误,再三排查后,发现是mtc0产生了不应该有的转发. 在ID的控制模块CTRL中,我采用了一种过于&quot;取巧&quot;的方法,将rd写入了ID_A3(解码阶段输出的写入寄存器地址(向后传递直至WB阶段)) 123assign ID_A3 &#x3D; ... :    		  (add || sub || and_ || or_ || slt || s">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-02T10:09:52.000Z">
+<meta property="article:modified_time" content="2024-12-03T04:01:26.024Z">
+<meta property="article:author" content="meteor041">
+<meta property="article:tag" content="CO">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>P7-CPU设计文档 - meteor041</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"meteor041.git.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="P7-CPU设计文档"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-02 18:09" pubdate>
+          2024年12月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">P7-CPU设计文档</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年12月3日 中午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="p7-debug总结">P7 debug总结</h1>
+<h2 id="阻塞转发错误">阻塞转发错误</h2>
+<p>上机的过程中遇到了转发错误,再三排查后,发现是<code>mtc0</code>产生了不应该有的转发.</p>
+<p>在ID的控制模块<code>CTRL</code>中,我采用了一种过于"取巧"的方法,将rd写入了ID_A3(<em>解码阶段输出的写入寄存器地址(向后传递直至WB阶段)</em>)</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> ID_A3 = ... :<br>    		  (add || sub || and_ || or_ || slt || sltu || mflo || mfhi || mtc0) ? rd : <br>               <span class="hljs-number">0</span>; <br></code></pre></td></tr></table></figure>
+<p>这个<code>ID_A3</code>会随着流水线向后传递,并传递给<code>HAZARD_CTRL</code>(冒险控制模块)中用于处理阻塞和转发的问题.例如:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">// 转发逻辑</span><br><span class="hljs-keyword">assign</span> ID_RD1_forward = (ID_A1 == <span class="hljs-number">5&#x27;b0</span>) ? <span class="hljs-number">0</span> :<br>    				   (ID_A1 == MEM_A3) ? MEM_WD : <span class="hljs-comment">// 这里的MEM_A3是上一周期的EX_A3</span><br>        			   (ID_A1 == WB_A3) ? WB_WD : <span class="hljs-comment">// 这里的WB_A3是上一周期的WB_A3</span><br>                        ID_RD1;<br></code></pre></td></tr></table></figure>
+<p>那么问题来了,我的阻塞逻辑代码中,</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> STALL = ... || (ID_Eret &amp;&amp; ((EX_MTC0 &amp;&amp; EX_A3 == <span class="hljs-number">5&#x27;D14</span>) || (MEM_MTC0 &amp;&amp; MEM_A3 == <span class="hljs-number">5&#x27;d14</span>))); <br></code></pre></td></tr></table></figure>
+<p>这样看似没有问题.但其实这里<code>mtc0</code>指令导入的<code>A3</code>并不是真正用于写入寄存器堆的地址,而是<code>CP0</code>的对应地址.因此有可能产生本不应该有的转发.例如以下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs assembly">ori $1, $0, 0x1234<br>mtc0 $1, $12<br>add $13, $0, $12<br></code></pre></td></tr></table></figure>
+<p>该代码中,第二行指令<code>mtc0</code>错误地向<code>add</code>指令转发了<code>$12</code>的值,但它们指向的<code>$12</code><strong>根本不是同一个寄存器!</strong></p>
+<p>我的对应措施是取消执行<code>mtc0</code>指令时<code>rd</code>写入<code>ID_A3</code>的做法,在<code>HARZARD_CTRL</code>中,传入<code>MEM_instr</code>和<code>EX_instr</code>(<code>MEM</code>,<code>EX</code>区当前各自传递的指令)</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> STALL = ... || (ID_Eret &amp;&amp; ((EX_MTC0 &amp;&amp; EX_instr[<span class="hljs-number">15</span>:<span class="hljs-number">11</span>] == <span class="hljs-number">5&#x27;D14</span>) || (MEM_MTC0 &amp;&amp; MEM_instr[<span class="hljs-number">15</span>:<span class="hljs-number">11</span>] == <span class="hljs-number">5&#x27;d14</span>))); <br></code></pre></td></tr></table></figure>
+<h2 id="中断错误">中断错误</h2>
+<p>错误情况:</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">7163</span>: we got @<span class="hljs-number">3556</span>:$<span class="hljs-number">31</span> &lt;= <span class="hljs-number">00005</span>ec5 when we expected @<span class="hljs-number">356</span>c:$<span class="hljs-number">18</span> &lt;= <span class="hljs-number">00000000</span><br><span class="hljs-attribute">7164</span>: we got @<span class="hljs-number">3548</span>:$ <span class="hljs-number">4</span> &lt;= <span class="hljs-number">0000355</span>c when we expected @<span class="hljs-number">3510</span>:$ <span class="hljs-number">5</span> &lt;= <span class="hljs-number">00003544</span><br><span class="hljs-attribute">7165</span>: we got too much<br><span class="hljs-attribute">7170</span>: we got @<span class="hljs-number">3078</span>:$<span class="hljs-number">12</span> &lt;= <span class="hljs-number">0000240</span>c when we expected @<span class="hljs-number">3080</span>:$<span class="hljs-number">30</span> &lt;= <span class="hljs-number">0000216</span>f<br></code></pre></td></tr></table></figure>
+<p>这个bug在课上并没有发现,喜提计组"再来一次"大奖</p>
+<p>首先说错误点:</p>
+<p>**在发生阻塞时,<code>ID</code>和<code>EX</code>间的流水寄存器接收到冲洗信号,但应当保留<code>PC</code>和<code>BD</code>(branch
+delay)*两种信息的传递,也就是按正常传递的逻辑传递<code>PC</code>和<code>BD</code>**</p>
+<p>前者<code>PC</code>比较好理解,课下思考题也有问到这个问题.为了保证<code>macroscopic_pc</code>不出现诸如<code>0x0000_0000</code>这类的值.</p>
+<p>但是<code>BD</code>稍微有些理解的困难度.当外部中断信号产生时,<code>CP0</code>会根据接受到<code>BD</code>来决定<code>EPC</code>存储的值,如果<code>BD</code>有误,那么<code>PC</code>跳转错误就很有可能发生,</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (enable) <span class="hljs-keyword">begin</span><br>        <span class="hljs-keyword">if</span> (flush)<span class="hljs-keyword">begin</span><br>          EX_PC &lt;= ID_PC;<br>          EX_BD &lt;= ID_BD;<br>		 ...<br>          <span class="hljs-comment">// 其余信号全部传递0</span><br>        <span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<p>我验证了多种ID,EX间流水寄存器处理阻塞的错误方法,例如</p>
+<ol type="A">
+<li></li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs verilog">EX_PC &lt;= EX_PC; <span class="hljs-comment">// PC不变,传递上一个PC</span><br>EX_BD &lt;= <span class="hljs-number">1&#x27;b0</span>;<br></code></pre></td></tr></table></figure>
+<ol start="2" type="A">
+<li></li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs verilog">EX_PC &lt;= EX_PC;<br>EX_BD &lt;= EX_BD;<br></code></pre></td></tr></table></figure>
+<ol start="3" type="A">
+<li></li>
+</ol>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs verilog">EX_PC &lt;= ID_PC;<br>EX_BD &lt;= <span class="hljs-number">1&#x27;b0</span>;<br></code></pre></td></tr></table></figure>
+<p>我们来看官方<code>tb</code>中的中断逻辑处理代码:</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">parameter</span> target_pc = <span class="hljs-number">32&#x27;h00003010</span>;<br><br><span class="hljs-keyword">integer</span> count;<br><br><span class="hljs-keyword">initial</span> <span class="hljs-keyword">begin</span><br>    count = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">end</span><br><br><span class="hljs-keyword">always</span> @(<span class="hljs-keyword">negedge</span> clk) <span class="hljs-keyword">begin</span><br>    <span class="hljs-keyword">if</span> (reset) <span class="hljs-keyword">begin</span><br>        interrupt = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>        <span class="hljs-keyword">if</span> (interrupt) <span class="hljs-keyword">begin</span><br>            <span class="hljs-keyword">if</span> (|m_int_byteen &amp;&amp; (m_int_addr &amp; <span class="hljs-number">32&#x27;hfffffffc</span>) == <span class="hljs-number">32&#x27;h7f20</span>) <span class="hljs-keyword">begin</span><br>                interrupt = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fixed_macroscopic_pc == target_pc) <span class="hljs-keyword">begin</span><br>            <span class="hljs-keyword">if</span> (count == <span class="hljs-number">0</span>) <span class="hljs-keyword">begin</span><br>                count = <span class="hljs-number">1</span>;<br>                interrupt = <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<p>用文字简述该逻辑:当<code>macroscopic_pc</code>到达<code>tb</code>指定的<code>target_pc</code>时,<code>interupt</code>置为1,即外部产生中断信号.</p>
+<p>所以我们可以很容易的排除C:</p>
+<p>当延迟槽指令位于ID区时,与流水线后面的指令发生阻塞冲突时(这种例子确实不太好列举):
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs assembly">ori $20, 0x1001          # 3000<br>mtc0 $20, $12 // 允许中断 # 3004<br>ori $1, $0, 0x1234 # 3008<br>ori $2, $0, 0x2345 # 300c<br>mult $1, $2        # 3010<br>jal 0x3020         # 3014<br>mflo $3            # 3018(发生中断)<br>ori $5, $0, 0x5555 # 301c<br>ori $6, $0, 0x6666 # 3020<br></code></pre></td></tr></table></figure></p>
+<p>我们指定<code>target_pc</code>为<code>0x3018</code>,<code>mflo</code>会与<code>EX</code>区的<code>MDU</code>模块产生的<code>busy</code>信号发生冲突,因此在C情况下,<code>ID</code>和<code>EX</code>间的流水寄存器产生了<code>nop</code>指令,该指令携带着<code>0x3018</code>的<code>PC</code>和<code>0</code>的<code>BD</code>,传递到MEM区时,<code>PC</code>传递给<code>macroscopic_pc</code>输出到外界,触发了外界中断信号的产生,<code>CP0</code>接受到该中断信号进入中断处理逻辑,这时该模块依据接受到的<code>BD</code>处理<code>EPC</code>,但是<strong><code>BD</code>是错误的</strong>,也就最终导致了跳转错误.</p>
+<p>至于A和B,上述代码确实无法证明它的错误,我猜测是课上测试<code>tb</code>会有更复杂的中断信号产生的逻辑,总之,<code>EX_PC &lt;= ID_PC;EX_BD &lt;= ID_BD;</code>确实是最好的,因为它保证了两点:</p>
+<ol type="1">
+<li>发生阻塞的指令对应<code>PC</code>会多次出现在<code>macroscopic_pc</code>中(A,B无法做到这一点)</li>
+<li>指令传递中,<code>PC</code>一定与正确的<code>BD</code>对应</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="category-chain-item">计算机组成原理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CO/" class="print-no-link">#CO</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>P7-CPU设计文档</div>
+      <div>https://meteor041.git.io/2024/12/02/P7 debug总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>meteor041</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/02/P7-CPU%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="P7-CPU设计文档">
+                        <span class="hidden-mobile">P7-CPU设计文档</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appKey":"pUUnAo42ScpxvJ9HPTKdpwLM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://dehrbdkk.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appkey":"pUUnAo42ScpxvJ9HPTKdpwLM"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
