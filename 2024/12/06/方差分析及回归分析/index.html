@@ -19,24 +19,28 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="有序偶和笛卡尔乘积 有序偶 定义  任给两个对象 x 和 y,将它们按规定的顺序构成的序列,称之为有序偶，记为&lt;x,y &gt; 其中,x 称为有序偶的第一元,y 称为第二元  表示方法 Kuratovski提出了一种有序偶的集合表示:\(\lt a,b\gt&#x3D; \{ \{a\}, \{a,b\} \}\) 定理 \[ \begin{align} &amp;唯一性">
+    <meta name="description" content="方差分析及回归分析 单因素试验的方差分析 分组的依据称为因素,因素的不同状态称为因素的水平,只有一个因子,按因子的不同水平来分组的试验称为单因素试验 假设因素有个水平,n个对象参与了试验,假定对应于因素第j个水平的组中有\(n_j\)个试验对象,响应变量数据为\(X_{1j},X_{2j},\cdots,X_{n_jj},j&#x3D;1,2,\cdots,s\) 通常假定: \(\begin{a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="有序偶和笛卡尔乘积">
-<meta property="og:url" content="https://meteor041.git.io/2024/10/25/%E6%9C%89%E5%BA%8F%E5%81%B6%E5%92%8C%E7%AC%9B%E5%8D%A1%E5%B0%94%E4%B9%98%E7%A7%AF/index.html">
+<meta property="og:title" content="方差分析及回归分析">
+<meta property="og:url" content="https://meteor041.git.io/2024/12/06/%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="有序偶和笛卡尔乘积 有序偶 定义  任给两个对象 x 和 y,将它们按规定的顺序构成的序列,称之为有序偶，记为&lt;x,y &gt; 其中,x 称为有序偶的第一元,y 称为第二元  表示方法 Kuratovski提出了一种有序偶的集合表示:\(\lt a,b\gt&#x3D; \{ \{a\}, \{a,b\} \}\) 定理 \[ \begin{align} &amp;唯一性">
+<meta property="og:description" content="方差分析及回归分析 单因素试验的方差分析 分组的依据称为因素,因素的不同状态称为因素的水平,只有一个因子,按因子的不同水平来分组的试验称为单因素试验 假设因素有个水平,n个对象参与了试验,假定对应于因素第j个水平的组中有\(n_j\)个试验对象,响应变量数据为\(X_{1j},X_{2j},\cdots,X_{n_jj},j&#x3D;1,2,\cdots,s\) 通常假定: \(\begin{a">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-25T01:55:35.000Z">
-<meta property="article:modified_time" content="2024-12-06T13:13:16.995Z">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/06/%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/image-20241206192850305.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/06/%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/image-20241206201052720.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/06/%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/image-20241206204334603.png">
+<meta property="article:published_time" content="2024-12-06T01:50:04.000Z">
+<meta property="article:modified_time" content="2024-12-06T13:14:09.936Z">
 <meta property="article:author" content="meteor041">
-<meta property="article:tag" content="discrete mathematics">
+<meta property="article:tag" content="概统">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/12/06/%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/image-20241206192850305.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>有序偶和笛卡尔乘积 - meteor041</title>
+  <title>方差分析及回归分析 - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="有序偶和笛卡尔乘积"></span>
+            <span id="subtitle" data-typed-text="方差分析及回归分析"></span>
           
         </div>
 
@@ -213,8 +217,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-25 09:55" pubdate>
-          2024年10月25日 上午
+        <time datetime="2024-12-06 09:50" pubdate>
+          2024年12月6日 上午
         </time>
       </span>
     
@@ -225,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          1.9k 字
         
       </span>
     
@@ -236,7 +240,7 @@
         
         
         
-          9 分钟
+          16 分钟
         
       </span>
     
@@ -282,7 +286,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">有序偶和笛卡尔乘积</h1>
+            <h1 id="seo-header">方差分析及回归分析</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -295,191 +299,199 @@
             
               <div class="markdown-body">
                 
-                <h1 id="有序偶和笛卡尔乘积">有序偶和笛卡尔乘积</h1>
-<h2 id="有序偶">有序偶</h2>
-<h3 id="定义">定义</h3>
-<blockquote>
-<p>任给两个对象 x 和
-y,将它们按规定的顺序构成的序列,称之为有序偶，记为&lt;x,y &gt;</p>
-<p>其中,x 称为有序偶的第一元,y 称为第二元</p>
-</blockquote>
-<h3 id="表示方法">表示方法</h3>
-<p>Kuratovski提出了一种有序偶的集合表示:<span class="math inline">\(\lt
-a,b\gt= \{ \{a\}, \{a,b\} \}\)</span></p>
-<h3 id="定理">定理</h3>
-<p><span class="math display">\[
-\begin{align}
-&amp;唯一性定理:&lt;u,v&gt;=&lt;x,y&gt;\ \ iff\ \ u=x\wedge v = y\\\\
-&amp;证明:\\\\(充分性)
-&amp;u=x,v=y时,有\{u\}=\{x\},\{u,v\}=\{x,y\}\\\\
-&amp;因此\{\{u\},\{u,v\}\}=\{\{x\},\{x,y\}\}\\\\
-&amp;即&lt;u,v&gt;=&lt;x,y&gt;\\\\
-(必要性)&amp;分情况讨论:\\\\
-&amp;(1)设u=v\\\\
-&amp;因为&lt;u,v&gt;=\{\{u\},\{u,v\}\}={ {u} }\\\\
-&amp;&lt;u,v&gt;=&lt;x,y&gt;=\{\{x\},\{x,y\}\}\\\\
-&amp;所以u=x=y\\\\
-&amp;u=x,v=y\\\\
-&amp;(2)设u\neq v\\\\
-&amp;\because\{\{u\},\{u,v\}\}=\{\{x\},\{x,y\}\}\\\\
-&amp;\therefore\{u\}=\{x\},\{u,v\}\}=\{x,y\}\\\\
-&amp;\therefore u=x,v=y\\\\
-&amp;\end{align}
-\]</span></p>
-<h2 id="笛卡尔乘积">笛卡尔乘积</h2>
-<h3 id="定义-1">定义</h3>
-<p><span class="math display">\[ A\times B=\{&lt;x,y&gt;|x\in A\wedge
-y\in B\} \]</span></p>
-<h3 id="性质">性质</h3>
+                <h1 id="方差分析及回归分析">方差分析及回归分析</h1>
+<h2 id="单因素试验的方差分析">单因素试验的方差分析</h2>
+<p>分组的依据称为<strong>因素</strong>,因素的不同状态称为因素的<strong>水平</strong>,只有一个因子,按因子的不同水平来分组的试验称为<strong>单因素试验</strong></p>
+<p>假设因素有个水平,n个对象参与了试验,假定对应于因素第j个水平的组中有<span class="math inline">\(n_j\)</span>个试验对象,响应变量数据为<span class="math inline">\(X_{1j},X_{2j},\cdots,X_{n_jj},j=1,2,\cdots,s\)</span></p>
+<p>通常假定:</p>
+<p><span class="math inline">\(\begin{align}&amp;X_{ij}=\mu_j+\varepsilon_{ij}\\&amp;\varepsilon\sim
+N(0,\sigma^2),各\varepsilon_{ij}独立\\&amp;i=1,2,\cdots,n_j,j=1,2,\cdots,s\end{align}\)</span></p>
+<p>检验假设:</p>
+<p><span class="math inline">\(H_0:\mu_1=\mu_2=\cdots=\,\mu_s\)</span></p>
+<p><span class="math inline">\(H_1:\mu_1,\mu_2,,\cdots,\mu_s不全相等\)</span></p>
+<p><span class="math inline">\(\mu=\frac{1}{n}\sum^s_{j=1}n_j\mu_j,\sum^s_{j=1}n_j=n\)</span></p>
+<p>水平<span class="math inline">\(A_j\)</span>的<strong>效应</strong>:<span class="math inline">\(\delta_j=\mu_j-\mu,j=1,2,\cdots,s\)</span></p>
+<p>注意:<span class="math inline">\(n_1\delta_1+n_2\delta_2+\dots+n_s\delta_s=0\)</span></p>
+<p><strong>总偏差平方和</strong><span class="math inline">\(S_T=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline
+X)^2\)</span></p>
+<p><span class="math inline">\(\overline
+X=\frac{1}{n}\sum^s_{j=1}\sum^{n_j}_{i=1}X_{ij}=\frac{1}{n}\sum^s_{j=1}n_j\overline
+X_{\cdot j}\)</span></p>
+<p><strong>效应平方和</strong><span class="math inline">\(S_A=\sum^s_{j=1}n_j(\overline X_j-\overline
+X)^2=\sum^s_{j=1}n_j\overline X_j^2-n\overline X^2\)</span></p>
+<p><strong>误差平方和</strong><span class="math inline">\(S_E=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline
+X_{\cdot j})^2\)</span></p>
+<p><strong>性质1</strong>:<span class="math inline">\(S_T=S_A+S_E\)</span> <span class="math display">\[
+\begin{aligned}
+&amp;证明:\\
+S_T&amp;=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X)^2\\
+&amp;=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot
+j}+\overline X_{\cdot j}-\overline X)\\
+&amp;=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot
+j})^2+\sum^s_{j=1}\sum^{n_j}_{i=1}(\overline X_{\cdot j}-\overline
+X)^2+2\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{\cdot j-\overline
+X})(X_{ij}-\overline X_{\cdot j})\\
+&amp;=S_A+S_E\\
+补充:&amp;\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{\cdot j-\overline
+X})(X_{ij}-\overline X_{\cdot j})=\sum^s_{j=1}(X_{\cdot j-\overline
+X})\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot j})=0\\
+\end{aligned}
+\]</span> <strong>性质2</strong>:<span class="math inline">\(E(S_T)=\sum^s_{j=1}n_j\delta_j^2+(n-1)\sigma^2\)</span></p>
+<p><span class="math inline">\(E(S_A)=\sum^s_{j=1}n_j\delta_j^2+(s-1)\sigma^2\)</span></p>
+<p><span class="math inline">\(E(S_E)=(n-s)\sigma^2\)</span> <span class="math display">\[
+\begin{aligned}
+证明:\\
+E(S_T)=&amp;E\left(\sum^s_{j=1}\sum^{n_j}_{i=1}\left(X_{ij}-\overline
+X\right)^2\right)=E(\sum^s_{j=1}\sum^{n_j}_{i=1}X_{ij}^2-n\overline
+X^2)\\
+=&amp;\sum^s_{j=1}\sum^{n_j}_{i=1}E\left(X_{ij}^2\right)-nE(\overline
+X^2)\\
+=&amp;\sum^s_{j=1}\sum^{n_j}_{i=1}[\sigma^2+(\mu+\delta_j)^2]-n[\dfrac{\sigma^2}{n}+\mu^2]\\
+=&amp;n\sigma^2+n\mu^2+2\mu\sum^s_{j=1}n_j\delta_j+\sum^s_{j=1}n_j\delta_j^2-\sigma^2-n\mu^2=\sum^s_{j=1}n_j\delta^2_j+(n-1)\sigma^2\\
+补充:&amp;E(\overline X)=\mu,E(\overline
+X^2)=\mu^2+\dfrac{\sigma^2}{n}\\
+E(S_E)=&amp;\sum^s_{j=1}E\left\{\sum^{n_j}_{i=1}(X_{ij}-\overline
+X_{\cdot j})^2\right\}=\sum^s_{j=1}(n_j-1)\sigma^2=(n-s)\sigma^2\\
+E(S_A)=&amp;E(S_T-S_E)=\sum^s_{j=1}n_j\delta_j^2+(s-1)\sigma^2
+\end{aligned}
+\]</span> <strong>性质3</strong>:</p>
 <ol type="1">
-<li>不满足交换律</li>
-<li>不满足结合律</li>
-<li>当<span class="math inline">\(A=\emptyset\)</span>或<span class="math inline">\(B=\emptyset\)</span>时,<span class="math inline">\(A\times B=\emptyset\)</span></li>
-<li><span class="math inline">\(\sharp(A\times B)=\sharp A\cdot\sharp
-B\)</span></li>
+<li><span class="math inline">\(S_A,S_E\)</span>相互独立</li>
+<li><span class="math inline">\(\dfrac{x_E}{\sigma^2}\sim\chi^2(n-s)\)</span></li>
+<li>当<span class="math inline">\(H_0\)</span>为真时,<span class="math inline">\(\dfrac{S_A}{\sigma^2}\sim\chi^2(s-1)\)</span></li>
 </ol>
-<h3 id="定理-1">定理</h3>
-<p><span class="math display">\[
-\begin{align}
-&amp;A\times B=\emptyset\ \ iff\ \ A=\emptyset或 B=\emptyset\\\\
-&amp;证明:只需证明A\times B\neq \emptyset\ \ iff\ \ A\neq \emptyset
-且B\neq\emptyset\\\\
-&amp;\because A \neq \emptyset,B\neq \emptyset\\\\
-&amp;\therefore 设x\in A,y\in B\\\\
-&amp;\therefore&lt;x,y&gt;\in A\times B\\\\
-&amp;\therefore A\times B\neq \emptyset\\\\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-&amp;设A,B,C,D为任意四个非空集合,则\\\\
-&amp;A\times B\subseteq C\times D\ \ iff\ \ A\subseteq C且B\subseteq
-D\\\\
-&amp;证明:(充分性)任取x\in A,由于B\neq \emptyset,可取b\in B\\\\
-&amp;&lt;x,b&gt;\in A\times B\\\\
-&amp;因A\times B\subset C\times D\\\\
-&amp;&lt;x,b&gt;\in C\times D\\\\
-&amp;则x\in C,故A\subseteq C\\\\
-&amp;同理:B\subseteq D\\\\
-&amp;(必要性)任取&lt;a,b&gt;\in A\times B\\\\
-&amp;则a\in A且b\in B\\\\
-&amp;由A\subseteq C,B\subseteq D\\\\
-&amp;则a\in C,b\in D\\\\
-&amp;&lt;a,b&gt;\in C\times D\\\\
-&amp;A\times B\subseteq C\times D\\\\
-\end{align}
-\]</span></p>
-<h2 id="关系">关系</h2>
-<h3 id="定义-2">定义</h3>
-<p><span class="math display">\[
-\begin{align}
-&amp;关系的定义:\\\\
-&amp;R\subseteq X\times Y\\\\
-&amp;&lt;x,y&gt;\in R\Rightarrow x\ R\ y\\\\
-&amp;&lt;x,y&gt;\notin R\Rightarrow x\ \bar{R}\ y
-\end{align}
-\]</span></p>
-<p>$$ <span class="math display">\[\begin{align}
-&amp;全域关系U_x=\{&lt;x_i,x_j&gt;|x_i,x_j\in X\}=X\times X\\\\
-&amp;恒等关系I_x=\{&lt;x,x&gt;|x\in X\}
-\end{align}\]</span></p>
-<p>$$</p>
-<p><span class="math display">\[
-\begin{align}
-&amp;定义域dom(R)=\{x\in X|\exists y\in Y:&lt;x,y&gt;\in R\}\\\\
-&amp;值域ran(R)=\{y\in Y|\exists x\in X:&lt;x,y&gt;\in R\}\\\\
-&amp;dom(R)\subseteq X,ran(R)\subseteq Y\\\\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-&amp;R的关系矩阵M_R=(r_{ij})_{m\times n}\\\\
-&amp;r_{ij}=
-\begin{cases}
-0\,\,若x_i\bar{R}y_i\\\\
-1\,\,若x_iRy_i
-\end{cases}
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-&amp;R=\{&lt;x_1,y_1&gt;,&lt;x_2,y_1&gt;,&lt;x_2,y_2&gt;,&lt;x_2,y_3&gt;\}\\\\
-&amp;关系矩阵为
-\begin{bmatrix}
-1&amp;0&amp;0\\\\
-1&amp;1&amp;1\\\\
-\end{bmatrix}
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-&amp;R自反\Leftrightarrow \forall x(x\in X\rightarrow &lt;x,x&gt;\in
-R)\\\\
-&amp;在R的关系图中,每个顶点均有自环\\\\
-&amp;R的关系矩阵中,主对角线元素均为1\\\\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-&amp;反自反\Leftrightarrow \\\\&amp;
-\forall x(x\in X\rightarrow &lt;x,x&gt;\notin R)\\\\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-&amp;对称矩阵:\forall x\forall y(x\in X\wedge y\in Y\wedge
-&lt;x,y&gt;\in R\rightarrow &lt;y,x&gt;\in R)\\\\
-&amp;在R的关系图中,任意两个不同顶点之间:或者无弧,或者有两条方向相反的弧\\\\
-&amp;关系矩阵为对称矩阵\\\\
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-&amp;R是反对称的\Leftrightarrow \forall x\forall y(x\in X\wedge y\in
-Y\wedge &lt;x,y&gt;\in R\wedge &lt;y,x&gt;\in R\rightarrow x=y)\\\\
-&amp;\Leftrightarrow\forall x\forall y(x\in X\wedge y\in Y\wedge
-&lt;x,y&gt;\in R\rightarrow &lt;y,x&gt;\notin R)\\\\
-&amp;在R的关系图中,任意不同顶点之间至多有一条弧\\\\
-&amp;R矩阵中,若i\neq j且iRj,则j\bar{R}i
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-&amp;R是传递的 \Leftrightarrow \forall x\forall y\forall z\\\\&amp;(x\in
-X\wedge y\in X\wedge z\in X\wedge &lt;x,y&gt;\in R\wedge &lt;y,z&gt;\in
-R\rightarrow &lt;x,z&gt;\in R)
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
-\begin{align}
-&amp;A有n个元素\\\\
-&amp;自反关系:2^{n^2-n}\\\\
-&amp;反自反关系:2^{n^2-1}\\\\
-&amp;对称关系:2^{\frac{n(n+1)}{2}}\\\\
-&amp;反对称关系:2^n\times
-3^{\frac{n(n-1)}{2}}
-\end{align}
-\]</span></p>
-<h2 id="习题2.1.9">习题2.1.9</h2>
-<h3 id="a">a)</h3>
-<blockquote>
-<p><span class="math inline">\(dom(U\mathscr A)=\cup\{domR|R\in \mathscr
-A\}\)</span></p>
-</blockquote>
-<h3 id="b">b)</h3>
-<blockquote>
-<p><span class="math inline">\(ran(U\mathscr A)=\cup\{ranR|R\in \mathscr
-A\}\)</span></p>
-</blockquote>
-<h2 id="三序偶的理解">三序偶的理解</h2>
-<p><span class="math display">\[
-\begin{align}
-&lt;a,b,c&gt;=&amp;&lt;&lt;a,b&gt;,c&gt;\\\\
-=&amp;&lt;\{\{a\},\{a,b\}\},c&gt;\\\\
-=&amp;\{\{\{\{a\},\{a,b\}\}\},\{\{\{a\},\{a,b\}\},c\}\} \\\\
-\neq&amp; \{\{a\},\{a,b\},\{a,b,c\}\}
-\end{align}
-\]</span></p>
+<p><span class="math inline">\(\Rightarrow F=\dfrac{\dfrac{S_A}{s-1}
+}{\dfrac{S_E}{n-s} }\sim F(s-1,n-s)\)</span></p>
+<p>在给定水平<span class="math inline">\(\alpha\)</span>时,<strong>检验拒绝域</strong>为<span class="math inline">\(F=\dfrac{\dfrac{S_A}{s-1} }{\dfrac{S_E}{n-s} }\geq
+F_\alpha(s-1,n-s)\)</span></p>
+<p><strong>未知参数的估计</strong></p>
+<ol type="1">
+<li><span class="math inline">\(\hat\sigma^2=\dfrac{S_E}{n-s}\)</span></li>
+<li><span class="math inline">\(\hat\mu=\overline X\)</span></li>
+<li><span class="math inline">\(\hat\mu_j=\overline X_j\)</span></li>
+<li><span class="math inline">\(\hat\delta_j=\overline X_j-\overline
+X\)</span></li>
+</ol>
+<p>以上估计均为相应参数的无偏估计</p>
+<p><span class="math inline">\(\mu_j-\mu_k=\delta_j-\delta_k(j\neq
+k)\)</span><strong>区间估计</strong></p>
+<p><span class="math inline">\(\left(\overline X_{\cdot j}-\overline
+X_{\cdot k}\mp t_{\alpha/2}(n-s)\sqrt{\overline
+S_E(1/n_j+1/n_k)}\right)\)</span>为<span class="math inline">\(\mu_j-\mu_k\)</span>的水平为<span class="math inline">\(1-\alpha\)</span>的置信区间</p>
+<h2 id="双因素试验的方差分析">双因素试验的方差分析</h2>
+<h3 id="双因素等重复试验的方差分析">双因素等重复试验的方差分析</h3>
+<figure>
+<img src="image-20241206192850305.png" srcset="/img/loading.gif" lazyload alt="双因素等重复试验的方差分析">
+<figcaption aria-hidden="true">双因素等重复试验的方差分析</figcaption>
+</figure>
+<p><span class="math inline">\(\begin{align}&amp;X_{ijk}=\mu_{ij}+\varepsilon_{ijk}\\&amp;\varepsilon\sim
+N(0,\sigma^2),各\varepsilon_{ijk}独立\\&amp;i=1,\dots,r,j=1,\dots,s,k=1,\dots,t\\&amp;\mu_{ij},\sigma^2均为未知参数\end{align}\)</span></p>
+<p><strong>总平均</strong><span class="math inline">\(\mu=\dfrac{1}{rs}\sum^r_{i=1}\sum^s_{j=1}\mu_{ij}\)</span></p>
+<p><span class="math inline">\(\mu_{i\cdot}=\frac{1}{s}\sum^s_{j=1}\mu_{ij},i=1,\dots,r,\\\mu_{\cdot
+j}=\frac{1}{r}\sum^r_{i=1}\mu_{ij},j=1,\dots,s\)</span></p>
+<p><span class="math inline">\(水平A_i的效应\alpha_i=\mu_{i\cdot}-\mu,i=1,\dots,r\)</span></p>
+<p><span class="math inline">\(水平B_j的效应\beta_j=\mu_{\cdot
+j}-\mu,j=1,\dots,s\)</span></p>
+<p><span class="math inline">\(\sum^r_{i=1}\alpha_i=0,\sum^s_{j=1}\beta_j=0\)</span></p>
+<p><span class="math inline">\(水平A和水平B的交互效应\gamma_{ij}=\mu_{ij}-\mu_{i\cdot}-\mu_{\cdot
+j}+\mu\)</span></p>
+<p><span class="math inline">\(\sum^r_{i=1}\gamma_{ij}=0,\sum^s_{j=1}\gamma_{ij}=0\)</span></p>
+<p><strong>模型</strong>:<span class="math inline">\(\begin{cases}X_{ijk}=\mu+\alpha_i+\beta_j+\gamma_{ij}+\varepsilon_{ijk}\\\varepsilon_{ijk}\sim
+N(0,\sigma^2)\\i=1,\dots,r,j=1,\dots,s,k=1,\dots,t.\\\sum^r_{i=1}\alpha_i=0,\sum^s_{j=1}\beta_j=0,\sum^r_{i=1}\gamma_{ij}=0.\sum^s_{j=1}\gamma_{ij}=0.\\\mu,\alpha_i,\beta_i,\gamma_{ij},\sigma^2均未知\end{cases}\)</span></p>
+<p>分别校验假设</p>
+<p><span class="math inline">\(𝐻_{01}: 𝛼_1 = 𝛼_2 = ⋯ = 𝛼_𝑟 = 0, 𝐻_{11}:
+𝛼_1, . . . , 𝛼_𝑟 不全是零\\𝐻_{02}: 𝛽_1 = 𝛽_2 = ⋯ = 𝛽_𝑠 = 0, 𝐻_{12}: 𝛽_1,
+. . . , 𝛽_𝑠 不全是零\\𝐻_{03}: 𝛾_{11} = 𝛾_{12} = ⋯ = 𝛾_{𝑟𝑠} = 0, 𝐻_{13}:
+𝛾_{11}, . . . , 𝛾_{𝑟𝑠} 不全是零\)</span></p>
+<p><strong>总偏差平方和</strong><span class="math inline">\(S_T=\sum^r_{i=1}\sum^s_{j=1}\sum^t_{k=1}(X_{ijk}-\overline
+X)^2\)</span></p>
+<p><strong>误差平方和</strong><span class="math inline">\(S_E=\sum^r_{i=1}\sum^s_{j=1}\sum^t_{k=1}(X_{ijk}-\overline
+X_{ij\cdot})^2\)</span></p>
+<p><strong>因素A的效应平方和</strong>:<span class="math inline">\(S_A=st\sum^r_{i=1}(\overline
+X_{i\cdot\cdot}-\overline X_{ij\cdot})^2\)</span></p>
+<p><strong>因素B的效应平方和</strong>:<span class="math inline">\(S_B=rt\sum^s_{i=1}(\overline X_{\cdot
+j\cdot}-\overline X)\)</span></p>
+<p><strong>AB交互效应平方和</strong>:<span class="math inline">\(S_{A\times B}=t\sum^r_{i=1}\sum^s_{j=1}(\overline
+X_{ij\cdot}-\overline X_{i\cdot\cdot}-\overline X_{\cdot
+j\cdot}+\overline X)^2\)</span></p>
+<p><strong>性质1</strong>:<span class="math inline">\(S_T=S_A+S_B+S_{A\times B}+S_E\)</span></p>
+<p><strong>性质2</strong>:</p>
+<p><span class="math inline">\(E\left(\dfrac{S_E}{rs(t-1)}\right)=\sigma^2\)</span></p>
+<p><span class="math inline">\(E\left(\dfrac{S_A}{r-1}\right)=\sigma^2+\dfrac{st\sum^r_{i=1}\alpha^2_i}{r-1}\)</span></p>
+<p><span class="math inline">\(E(\dfrac{S_B}{s-1})=\sigma^2+\dfrac{rt\sum^s_{j=1}\beta_j^2}{s-1}\)</span></p>
+<p><span class="math inline">\(E\left(\dfrac{S_{A\times B}
+}{r-1}\right)=\sigma^2+\dfrac{t\sum^r_{i=1}\sum^s_{j=1}\gamma^2_{ij}
+}{(r-1)(s-1)}\)</span></p>
+<p>各个假设的<strong>拒绝域</strong></p>
+<p><span class="math inline">\(H_{01}\)</span>:<span class="math inline">\(F_A\geq F_\alpha(r-1,rs(t-1))\)</span></p>
+<p><span class="math inline">\(H_{02}:F_B\geq
+F_\alpha(s-1,rs(t-1))\)</span></p>
+<p><span class="math inline">\(H_{03}:F_{A\times
+B}=\dfrac{\dfrac{S_A}{(r-1)(s-1)} }{\dfrac{S_E}{rs(t-1)} }\sim
+F((r-1)(s-1),rs(t-1))\)</span></p>
+<p><span class="math inline">\(F_{A\times B}\geq
+F_\alpha((r-1)(s-1),rs(t-1))\)</span></p>
+<figure>
+<img src="image-20241206201052720.png" srcset="/img/loading.gif" lazyload alt="双因素试验方差分析表">
+<figcaption aria-hidden="true">双因素试验方差分析表</figcaption>
+</figure>
+<h3 id="双因素无重复试验的方差分析">双因素无重复试验的方差分析</h3>
+<figure>
+<img src="image-20241206204334603.png" srcset="/img/loading.gif" lazyload alt="双因素无重复试验的方差分析表">
+<figcaption aria-hidden="true">双因素无重复试验的方差分析表</figcaption>
+</figure>
+<h2 id="一元线性回归分析">一元线性回归分析</h2>
+<p>估计<span class="math inline">\(\mu(x)=a+bx\)</span>的问题称为求<strong>一元线性回归</strong>问题</p>
+<p>基本假设:<span class="math inline">\(\begin{cases}Y=a+bx+\varepsilon\\E(\varepsilon)=0,D(\varepsilon)=\sigma^2\end{cases}\)</span></p>
+<p>正态假设:<span class="math inline">\(\varepsilon\sim
+N(0,\sigma^2)\)</span></p>
+<p><strong>针对的问题</strong></p>
+<ol type="1">
+<li>a,b的估计</li>
+<li><span class="math inline">\(\sigma^2\)</span>的估计</li>
+<li>线性假设的显著性检验</li>
+<li>回归系数b的置信区间</li>
+<li>回归函数<span class="math inline">\(\mu(x)=a+bx\)</span>的点估计和置信区间</li>
+</ol>
+<h3 id="最小二乘估计">最小二乘估计</h3>
+<p><span class="math inline">\(Q(a,b)=\sum^n_{i=1}(y_i-a-bx_i)^2\)</span></p>
+<p><span class="math inline">\(Q(\hat a,\hat b)=\min\limits_{a,b}
+Q(a,b)\)</span></p>
+<p><span class="math inline">\(\dfrac{\delta Q}{\delta
+a}=-2\sum^n_{i=1}(y_i-a-bx_i)=0\)</span></p>
+<p><span class="math inline">\(\dfrac{\delta Q}{\delta
+b}=-2\sum^n_{i=1}(y_i-a-bx_i)x_i=0\)</span></p>
+<p>正规方程组:<span class="math inline">\(\left(\sum\limits^n_{i=1}x_i\right)a+\left(\sum\limits^n_{i=1}x_i^2\right)b=\sum\limits^n_{i=1}x_iy_i\)</span></p>
+<p>a,b的最小二乘估计:<span class="math inline">\(\hat a=\hat y-\hat
+x\hat b,\hat b=\dfrac{S_{xy} }{S_{xx} }\)</span></p>
+<p><span class="math inline">\(Q_e=\sum^n_{i=1}e^2_i=\sum^n_{i=1}(y_i-\hat
+y_i)^2=Q(\hat a,\hat b)\)</span></p>
+<p><span class="math inline">\(Q_e=S_{yy}-\hat bS_{xy}\)</span></p>
+<p><strong>误差方差的估计</strong><span class="math inline">\(\hat\sigma^2=\dfrac{Q_e}{n-2}\)</span></p>
+<h3 id="线性假设的显著性检验">线性假设的显著性检验</h3>
+<p><span class="math inline">\(H_0:b=0,H_1:b\neq 0\)</span></p>
+<p>若原假设被拒绝,则说明回归效果是显著的</p>
+<p><span class="math inline">\(\hat b\sim
+N(b,S^{-1}_{xx}\sigma^2)\)</span></p>
+<p><span class="math inline">\(\dfrac{(n-2)\hat
+\sigma^2}{\sigma}=\dfrac{Q_e}{\sigma^2}\sim \chi^2(n-2)\)</span></p>
+<p><span class="math inline">\(\hat b与Q_e独立\)</span></p>
+<p>检验拒绝域<span class="math inline">\(|t|=\dfrac{1}{\hat\sigma}\sqrt{S_{xx} }\geq
+t_{\alpha/2}(n-2)\)</span></p>
+<h3 id="回归系数b的置信区间">回归系数b的置信区间</h3>
+<p><span class="math inline">\(\dfrac{\hat b-b}{\hat\sigma}\sqrt{S_{xx}
+}\sim t(n-2)\)</span></p>
+<p><span class="math inline">\(\dfrac{|\hat b-b|}{\hat
+\sigma}\sqrt{S_{xx} }\leq t_{\alpha/2}(n-2)\)</span></p>
+<p>b的置信水平为<span class="math inline">\(1-\alpha\)</span>的置信区间:
+<span class="math inline">\(\left(\hat b\pm t_{\alpha/2}(n-2)\times
+\dfrac{\hat \sigma}{\sqrt{S_{xx} } }\right)\)</span></p>
+<h3 id="muxabx函数值的点估计和置信空间"><span class="math inline">\(\mu(x)=a+bx\)</span>函数值的点估计和置信空间</h3>
+<p><strong>点估计</strong>:<span class="math inline">\(\hat
+y_0=\hat\mu(x_0)=\hat a+\hat bx_0\)</span></p>
+<p><strong>置信空间</strong>:<span class="math inline">\(\hat Y_0\pm
+t_{\alpha/2}(n-2)\hat\sigma\sqrt{\dfrac{1}{n}+\dfrac{(x_o-\overline
+x)^2}{S_xx} }\)</span></p>
 
                 
               </div>
@@ -498,7 +510,7 @@ A\}\)</span></p>
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" class="category-chain-item">离散数学</a>
+  <a href="/categories/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%95%B0%E7%90%86%E6%A8%A1%E5%9E%8B/" class="category-chain-item">概率与数理模型</a>
   
   
 
@@ -513,7 +525,7 @@ A\}\)</span></p>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/discrete-mathematics/" class="print-no-link">#discrete mathematics</a>
+        <a href="/tags/%E6%A6%82%E7%BB%9F/" class="print-no-link">#概统</a>
       
     </div>
   
@@ -525,8 +537,8 @@ A\}\)</span></p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>有序偶和笛卡尔乘积</div>
-      <div>https://meteor041.git.io/2024/10/25/有序偶和笛卡尔乘积/</div>
+      <div>方差分析及回归分析</div>
+      <div>https://meteor041.git.io/2024/12/06/方差分析及回归分析/</div>
     </div>
     <div class="license-meta">
       
@@ -538,7 +550,7 @@ A\}\)</span></p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年10月25日</div>
+          <div>2024年12月6日</div>
         </div>
       
       
@@ -570,18 +582,12 @@ A\}\)</span></p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/25/%E6%AC%A1%E5%BA%8F%E5%85%B3%E7%B3%BB/" title="次序关系">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">次序关系</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/24/%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D/" title="递归下降">
-                        <span class="hidden-mobile">递归下降</span>
+                      <a href="/2024/12/02/P7%20debug%E6%80%BB%E7%BB%93/" title="P7-CPU设计文档">
+                        <span class="hidden-mobile">P7-CPU设计文档</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
