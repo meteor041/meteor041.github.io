@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="层次分析法 判断矩阵将各要素之间相互两两比较,并确定各准则层对目标层的权重 判断矩阵$A&#x3D;(a_{ij})_{m\times n}&#x3D;\begin{pmatrix}a_{11}&amp;a_{12}&amp;\dots&amp;a_{1n}\\\dots&amp;\dots&amp;\dots&amp;\dots\end{pmatrix}$ 其中A中的元素满足:  $a_{ij}&gt;0$ $a_">
+    <meta name="description" content="层次分析法   image-20241124170552772  判断矩阵 将各要素之间相互两两比较,并确定各准则层对目标层的权重 判断矩阵\(A&#x3D;(a_{ij})_{m\times n}&#x3D;\begin{pmatrix}a_{11}&amp;a_{12}&amp;\dots&amp;a_{1n}\\\dots&amp;\dots&amp;\dots&amp;\dots\end{pm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数学建模-层次分析法">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/24/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="层次分析法 判断矩阵将各要素之间相互两两比较,并确定各准则层对目标层的权重 判断矩阵$A&#x3D;(a_{ij})_{m\times n}&#x3D;\begin{pmatrix}a_{11}&amp;a_{12}&amp;\dots&amp;a_{1n}\\\dots&amp;\dots&amp;\dots&amp;\dots\end{pmatrix}$ 其中A中的元素满足:  $a_{ij}&gt;0$ $a_">
+<meta property="og:description" content="层次分析法   image-20241124170552772  判断矩阵 将各要素之间相互两两比较,并确定各准则层对目标层的权重 判断矩阵\(A&#x3D;(a_{ij})_{m\times n}&#x3D;\begin{pmatrix}a_{11}&amp;a_{12}&amp;\dots&amp;a_{1n}\\\dots&amp;\dots&amp;\dots&amp;\dots\end{pm">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/24/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/image-20241124170552772.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/24/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/image-20241124170637435.png">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          658 字
+          667 字
         
       </span>
     
@@ -298,28 +298,41 @@
             
               <div class="markdown-body">
                 
-                <h1 id="层次分析法"><a href="#层次分析法" class="headerlink" title="层次分析法"></a>层次分析法</h1><p><img src="image-20241124170552772.png" srcset="/img/loading.gif" lazyload alt="image-20241124170552772"></p>
-<h2 id="判断矩阵"><a href="#判断矩阵" class="headerlink" title="判断矩阵"></a>判断矩阵</h2><p>将各要素之间相互两两比较,并确定各准则层对目标层的权重</p>
-<p>判断矩阵$A=(a_{ij})_{m\times n}=\begin{pmatrix}a_{11}&amp;a_{12}&amp;\dots&amp;a_{1n}\\\dots&amp;\dots&amp;\dots&amp;\dots\end{pmatrix}$</p>
+                <h1 id="层次分析法">层次分析法</h1>
+<figure>
+<img src="image-20241124170552772.png" srcset="/img/loading.gif" lazyload alt="image-20241124170552772">
+<figcaption aria-hidden="true">image-20241124170552772</figcaption>
+</figure>
+<h2 id="判断矩阵">判断矩阵</h2>
+<p>将各要素之间相互两两比较,并确定各准则层对目标层的权重</p>
+<p>判断矩阵<span class="math inline">\(A=(a_{ij})_{m\times
+n}=\begin{pmatrix}a_{11}&amp;a_{12}&amp;\dots&amp;a_{1n}\\\dots&amp;\dots&amp;\dots&amp;\dots\end{pmatrix}\)</span></p>
 <p>其中A中的元素满足:</p>
-<ol>
-<li>$a_{ij}&gt;0$</li>
-<li>$a_{ij}=\frac{1}{a_{ji}}$</li>
-<li>$a_{ii}=1$</li>
+<ol type="1">
+<li><span class="math inline">\(a_{ij}&gt;0\)</span></li>
+<li><span class="math inline">\(a_{ij}=\frac{1}{a_{ji}}\)</span></li>
+<li><span class="math inline">\(a_{ii}=1\)</span></li>
 </ol>
-<p><img src="image-20241124170637435.png" srcset="/img/loading.gif" lazyload alt="Santy的1-9标度方法"></p>
-<h2 id="一致矩阵"><a href="#一致矩阵" class="headerlink" title="一致矩阵"></a>一致矩阵</h2><p>一致性的判断方法:</p>
-<ol>
+<figure>
+<img src="image-20241124170637435.png" srcset="/img/loading.gif" lazyload alt="Santy的1-9标度方法">
+<figcaption aria-hidden="true">Santy的1-9标度方法</figcaption>
+</figure>
+<h2 id="一致矩阵">一致矩阵</h2>
+<p>一致性的判断方法:</p>
+<ol type="1">
 <li>正互反矩阵A的秩为1,A的唯一非零特征根为n</li>
 <li>正互反矩阵A的任一列向量都是对于特征根n的特征向量</li>
-<li>当正互反矩阵A不为一致阵时,其最大特征根$\lambda_{max}&gt;n$,$\lambda$与n相差越大,其不一致程度越大</li>
+<li>当正互反矩阵A不为一致阵时,其最大特征根<span class="math inline">\(\lambda_{max}&gt;n\)</span>,<span class="math inline">\(\lambda\)</span>与n相差越大,其不一致程度越大</li>
 </ol>
-<h2 id="一致性检验"><a href="#一致性检验" class="headerlink" title="一致性检验"></a>一致性检验</h2><p><em>Consistency Index</em>:$CI=\frac{\lambda_{max}-n}{n-1}\$</p>
-<p>$CI=\begin{cases}0,完全一致性\\接近0,满意的一致性\\越大,一致性越差\end{cases}$</p>
-<p><strong>随机一致性指标RI</strong>,构造500个判断矩阵$A_1,A_2,…,A_{500}$,分别计算$\lambda_{max}$,得到其各自的一致性指标$CI_1,CI_2,…,CI_{500}$</p>
-<p>定义<strong>一致性指标RI</strong>=$\Large\frac{CI_1+CI_2+…+CI_{500}}{500}=\frac{\frac{\lambda_1+\lambda_2+…+\lambda_{500}}{500}-n}{n-1}$</p>
-<p><strong>一致性比例</strong>$CR=\frac{CI}{RI}\begin{cases}&lt;0.1,判断矩阵一致\\\geq 0.1, 判断矩阵不一致\end{cases}$</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<h2 id="一致性检验">一致性检验</h2>
+<p><em>Consistency Index</em>:<span class="math inline">\(CI=\frac{\lambda_{max}-n}{n-1}\\\)</span></p>
+<p><span class="math inline">\(CI=\begin{cases}0,完全一致性\\接近0,满意的一致性\\越大,一致性越差\end{cases}\)</span></p>
+<p><strong>随机一致性指标RI</strong>,构造500个判断矩阵<span class="math inline">\(A_1,A_2,...,A_{500}\)</span>,分别计算<span class="math inline">\(\lambda_{max}\)</span>,得到其各自的一致性指标<span class="math inline">\(CI_1,CI_2,...,CI_{500}\)</span></p>
+<p>定义<strong>一致性指标RI</strong>=<span class="math inline">\(\Large\frac{CI_1+CI_2+...+CI_{500}}{500}=\frac{\frac{\lambda_1+\lambda_2+...+\lambda_{500}}{500}-n}{n-1}\)</span></p>
+<p><strong>一致性比例</strong><span class="math inline">\(CR=\frac{CI}{RI}\begin{cases}&lt;0.1,判断矩阵一致\\\geq
+0.1, 判断矩阵不一致\end{cases}\)</span></p>
+<h2 id="总结">总结</h2>
+<ol type="1">
 <li>解决评价类问题</li>
 <li>画出层级结构图(<strong>目标层,准则层,方案层</strong>)</li>
 <li>构造<strong>判断矩阵</strong></li>
@@ -327,7 +340,8 @@
 <li>求出权重,填表,求得最后得分</li>
 <li>层次总排序一致性检验</li>
 </ol>
-<h2 id="MATLAB代码"><a href="#MATLAB代码" class="headerlink" title="MATLAB代码"></a>MATLAB代码</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% 层次分析法</span><br><span class="hljs-comment">%% 获取判断矩阵</span><br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;请输入判断矩阵A:&#x27;</span>)<br>A=input(<span class="hljs-string">&#x27;A=&#x27;</span>);<br>[n,n]=<span class="hljs-built_in">size</span>(A)<br><br><span class="hljs-comment">%% 算数平均法求权重</span><br>sum_A = sum(A);<br>SUM_A = <span class="hljs-built_in">repmat</span>(sum_A, n, <span class="hljs-number">1</span>);<br>stand_A = A ./ SUM_A;<br><br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;算数平均法求权重的结果为:&#x27;</span>);<br>w1=sum(stand_A,<span class="hljs-number">2</span>)./n;<br><span class="hljs-built_in">disp</span>(w1)<br><br><span class="hljs-comment">%% 特征值法求权重</span><br>[V,D]=eig(A); <span class="hljs-comment">% V为特征向量,D为特征值</span><br>MAX_eig = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">max</span>(D)); <span class="hljs-comment">% 最大特征值</span><br>[r,c] = <span class="hljs-built_in">find</span>(D == MAX_eig, <span class="hljs-number">1</span>); <span class="hljs-comment">% 最大特征值所在特征值矩阵中的位置(r为行,c为列)</span><br>w2 = V(:,c) ./ sum(V(:,c));<br><span class="hljs-built_in">disp</span>(w2)<br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;两种方法的平均值为:&#x27;</span>)<br><span class="hljs-built_in">disp</span>((w1+w2)/<span class="hljs-number">2</span>)<br><br><span class="hljs-comment">%% 计算一致性比例CR</span><br>CI=(MAX_eig-n) / (n<span class="hljs-number">-1</span>); <br>RI=[<span class="hljs-number">0</span> <span class="hljs-number">0.0001</span> <span class="hljs-number">0.52</span> <span class="hljs-number">0.89</span> <span class="hljs-number">1.12</span> <span class="hljs-number">1.26</span> <span class="hljs-number">1.36</span> <span class="hljs-number">1.41</span> <span class="hljs-number">1.46</span> <span class="hljs-number">1.49</span> <span class="hljs-number">1.52</span> <span class="hljs-number">1.54</span> <span class="hljs-number">1.56</span> <span class="hljs-number">1.58</span> <span class="hljs-number">1.59</span>]; <span class="hljs-comment">%常用随机一致性指标</span><br>CR=CI/RI(n);<br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;最大特征值为:&#x27;</span>)<br><span class="hljs-built_in">disp</span>(MAX_eig)<br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;一致性指标CI=&#x27;</span>);<span class="hljs-built_in">disp</span>(CI)<br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;一致性比例CR=&#x27;</span>);<span class="hljs-built_in">disp</span>(CR)<br><span class="hljs-keyword">if</span> CR &lt; <span class="hljs-number">0.10</span><br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;CR&lt;0.10,该判断矩阵A的一致性可以接受&#x27;</span>);<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;CR&gt;=0.10,该判断矩阵需要进行修改&#x27;</span>);<br><span class="hljs-keyword">end</span><br><br></code></pre></td></tr></table></figure>
+<h2 id="matlab代码">MATLAB代码</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% 层次分析法</span><br><span class="hljs-comment">%% 获取判断矩阵</span><br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;请输入判断矩阵A:&#x27;</span>)<br>A=input(<span class="hljs-string">&#x27;A=&#x27;</span>);<br>[n,n]=<span class="hljs-built_in">size</span>(A)<br><br><span class="hljs-comment">%% 算数平均法求权重</span><br>sum_A = sum(A);<br>SUM_A = <span class="hljs-built_in">repmat</span>(sum_A, n, <span class="hljs-number">1</span>);<br>stand_A = A ./ SUM_A;<br><br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;算数平均法求权重的结果为:&#x27;</span>);<br>w1=sum(stand_A,<span class="hljs-number">2</span>)./n;<br><span class="hljs-built_in">disp</span>(w1)<br><br><span class="hljs-comment">%% 特征值法求权重</span><br>[V,D]=eig(A); <span class="hljs-comment">% V为特征向量,D为特征值</span><br>MAX_eig = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">max</span>(D)); <span class="hljs-comment">% 最大特征值</span><br>[r,c] = <span class="hljs-built_in">find</span>(D == MAX_eig, <span class="hljs-number">1</span>); <span class="hljs-comment">% 最大特征值所在特征值矩阵中的位置(r为行,c为列)</span><br>w2 = V(:,c) ./ sum(V(:,c));<br><span class="hljs-built_in">disp</span>(w2)<br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;两种方法的平均值为:&#x27;</span>)<br><span class="hljs-built_in">disp</span>((w1+w2)/<span class="hljs-number">2</span>)<br><br><span class="hljs-comment">%% 计算一致性比例CR</span><br>CI=(MAX_eig-n) / (n<span class="hljs-number">-1</span>); <br>RI=[<span class="hljs-number">0</span> <span class="hljs-number">0.0001</span> <span class="hljs-number">0.52</span> <span class="hljs-number">0.89</span> <span class="hljs-number">1.12</span> <span class="hljs-number">1.26</span> <span class="hljs-number">1.36</span> <span class="hljs-number">1.41</span> <span class="hljs-number">1.46</span> <span class="hljs-number">1.49</span> <span class="hljs-number">1.52</span> <span class="hljs-number">1.54</span> <span class="hljs-number">1.56</span> <span class="hljs-number">1.58</span> <span class="hljs-number">1.59</span>]; <span class="hljs-comment">%常用随机一致性指标</span><br>CR=CI/RI(n);<br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;最大特征值为:&#x27;</span>)<br><span class="hljs-built_in">disp</span>(MAX_eig)<br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;一致性指标CI=&#x27;</span>);<span class="hljs-built_in">disp</span>(CI)<br><span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;一致性比例CR=&#x27;</span>);<span class="hljs-built_in">disp</span>(CR)<br><span class="hljs-keyword">if</span> CR &lt; <span class="hljs-number">0.10</span><br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;CR&lt;0.10,该判断矩阵A的一致性可以接受&#x27;</span>);<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;CR&gt;=0.10,该判断矩阵需要进行修改&#x27;</span>);<br><span class="hljs-keyword">end</span><br><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -428,7 +442,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" title="参数估计">
+                      <a href="/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" title="参数估计">
                         <span class="hidden-mobile">参数估计</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>

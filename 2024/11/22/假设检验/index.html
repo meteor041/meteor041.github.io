@@ -19,31 +19,33 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="假设检验 内容  参数检验  总体均值,均值差的检验 总体方差,方差比的检验  非参数检验  分布拟合检验 秩和检验   第一类错误-\(\alpha\):弃真错误 第二类错误-\(\beta\):取伪错误 只对犯第一类错误的概率加以控制,而不考虑犯第二类错误的概率的检验,称为显著性检验 显著性水平\(\alpha\)&#x3D;P{犯第一类错误} 通常把有把握,有经验的">
+    <meta name="description" content="概率论-参数估计 $$ $$ 点估计 设总体X的分布函数F(x;\(\theta\))形式为已知,\(\theta\)是待估参数.\(X_1,X_2…X_n\)是X的一个样本,\(x_1,x_2,…x_n\),是相应的一个样本值. 点估计问题就是要构造一个适当的统计量\(\hat\theta(X_1,X_2…X_n)\),用它的观察值\(\hat\theta(x_1,x_2…x_n)\)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="假设检验">
-<meta property="og:url" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/index.html">
+<meta property="og:title" content="参数估计">
+<meta property="og:url" content="https://meteor041.git.io/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="假设检验 内容  参数检验  总体均值,均值差的检验 总体方差,方差比的检验  非参数检验  分布拟合检验 秩和检验   第一类错误-\(\alpha\):弃真错误 第二类错误-\(\beta\):取伪错误 只对犯第一类错误的概率加以控制,而不考虑犯第二类错误的概率的检验,称为显著性检验 显著性水平\(\alpha\)&#x3D;P{犯第一类错误} 通常把有把握,有经验的">
+<meta property="og:description" content="概率论-参数估计 $$ $$ 点估计 设总体X的分布函数F(x;\(\theta\))形式为已知,\(\theta\)是待估参数.\(X_1,X_2…X_n\)是X的一个样本,\(x_1,x_2,…x_n\),是相应的一个样本值. 点估计问题就是要构造一个适当的统计量\(\hat\theta(X_1,X_2…X_n)\),用它的观察值\(\hat\theta(x_1,x_2…x_n)\)">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241129112156834.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241129105315451.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241129105446429.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241129112119948.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241130110711968.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241130113514692.png">
-<meta property="article:published_time" content="2024-11-29T01:54:30.000Z">
-<meta property="article:modified_time" content="2024-12-12T10:27:41.832Z">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/2f2f74dc62993ccc0ca878a66db81c2.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/F1.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241124145810223.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241124150852368.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/72c3c6096138257fe8417c26946a591.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241124094936717.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241124095021691.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241124093640970.png">
+<meta property="article:published_time" content="2024-11-22T02:17:25.000Z">
+<meta property="article:modified_time" content="2024-12-12T10:32:23.357Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="概统">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://meteor041.git.io/2024/11/29/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/image-20241129112156834.png">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/11/22/%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/2f2f74dc62993ccc0ca878a66db81c2.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>假设检验 - meteor041</title>
+  <title>参数估计 - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -209,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="假设检验"></span>
+            <span id="subtitle" data-typed-text="参数估计"></span>
           
         </div>
 
@@ -220,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-29 09:54" pubdate>
-          2024年11月29日 上午
+        <time datetime="2024-11-22 10:17" pubdate>
+          2024年11月22日 上午
         </time>
       </span>
     
@@ -232,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          869 字
+          1.5k 字
         
       </span>
     
@@ -243,7 +245,7 @@
         
         
         
-          8 分钟
+          13 分钟
         
       </span>
     
@@ -289,7 +291,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">假设检验</h1>
+            <h1 id="seo-header">参数估计</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -302,100 +304,158 @@
             
               <div class="markdown-body">
                 
-                <h1 id="假设检验">假设检验</h1>
-<h2 id="内容">内容</h2>
+                <h2 id="概率论-参数估计">概率论-参数估计</h2>
+<p>$$</p>
+<p>$$</p>
+<h2 id="点估计">点估计</h2>
+<p>设总体X的分布函数F(x;<span class="math inline">\(\theta\)</span>)形式为已知,<span class="math inline">\(\theta\)</span>是待估参数.<span class="math inline">\(X_1,X_2…X_n\)</span>是X的一个样本,<span class="math inline">\(x_1,x_2,…x_n\)</span>,是相应的一个样本值.</p>
+<p>点估计问题就是要构造一个适当的统计量<span class="math inline">\(\hat\theta(X_1,X_2…X_n)\)</span>,用它的观察值<span class="math inline">\(\hat\theta(x_1,x_2…x_n)\)</span>作为未知参数<span class="math inline">\(\theta\)</span>的近似值,</p>
+<p>我们称<span class="math inline">\(\hat\theta(X_1,X_2…X_n)\)</span>为0的估计量,称<span class="math inline">\(\hat\theta(x_1,x_2…x_n)\)</span>为0的估计值.统称为<strong>估计</strong>,并都简记为<span class="math inline">\(\hat \theta\)</span></p>
+<h2 id="常用的点估计方法矩法">常用的点估计方法:<strong>矩法</strong></h2>
 <ul>
-<li>参数检验
-<ul>
-<li>总体均值,均值差的检验</li>
-<li>总体方差,方差比的检验</li>
-</ul></li>
-<li>非参数检验
-<ul>
-<li>分布拟合检验</li>
-<li>秩和检验</li>
-</ul></li>
+<li>用样本的k阶矩作为总体的k阶矩的估计量</li>
+<li>建立含有待估计参数的方程</li>
+<li>从而可解出待估计参数</li>
 </ul>
-<p>第一类错误-<span class="math inline">\(\alpha\)</span>:弃真错误</p>
-<p>第二类错误-<span class="math inline">\(\beta\)</span>:取伪错误</p>
-<p>只对犯第一类错误的概率加以控制,而不考虑犯第二类错误的概率的检验,称为<strong>显著性检验</strong></p>
-<p>显著性水平<span class="math inline">\(\alpha\)</span>=P{犯第一类错误}</p>
-<p>通常把有把握,有经验的结论作为原假设,或者尽可能使后果严重的错误成为第一类错误</p>
-<h2 id="步骤">步骤</h2>
-<ol type="1">
-<li>建设原假设<span class="math inline">\(H_0\)</span>与备选假设<span class="math inline">\(H_1\)</span></li>
-<li>当<span class="math inline">\(H_0\)</span>为真时,选择一个合适的检验统计量<span class="math inline">\(V\)</span>,他的分布是已知的,由<span class="math inline">\(H_1\)</span>确定拒绝域的形式</li>
-<li>给定显著性水平,对应的拒绝域
-<ol type="1">
-<li>双侧检验<span class="math inline">\((V&lt;V_{\alpha/2}\cup
-(V&gt;V_{1-\alpha/2})\)</span></li>
-<li>右边检验<span class="math inline">\((V&gt;V_{1-\alpha}\)</span></li>
-</ol></li>
-</ol>
-<h2 id="单个总体均值的检验">单个总体均值的检验</h2>
-<h3 id="sigma已知关于mu的检验u检验又称z检验"><span class="math inline">\(\sigma\)</span>已知,关于<span class="math inline">\(\mu\)</span>的检验(U检验)(又称Z检验)</h3>
-<p><span class="math inline">\(Z=\frac{\overline{X}-\mu_0}{\sigma/\sqrt
-n}\)</span></p>
+<h2 id="常用的点估计方法极大似然法">常用的点估计方法:极大似然法</h2>
+<p>思想方法:一次试验就出现的事件有较大的概率</p>
+<p><span class="math inline">\(L(P)=p^{\mathop\Sigma\limits_{i=1}^n
+x_i}(1-p)^{n-\mathop\Sigma\limits_{i=1}^n x_i}\)</span></p>
+<p>选择恰当的<span class="math inline">\(\theta=\hat\theta\)</span>,使得<span class="math inline">\(L(\theta)\)</span>取最大值,即</p>
+<p><span class="math inline">\(L(x_1,x_2,...,x_n,\hat\theta)=\max\limits_{\theta\in
+\Theta}\{f(x_1,\theta)f(x_2,\theta)...f(x_n,\theta)\}\)</span></p>
+<p>则称这样的<span class="math inline">\(\hat\theta=g(x_1,x_2,...,x_n)\)</span>参数<span class="math inline">\(\theta\)</span>的极大似然估计值</p>
+<h2 id="极大似然估计值的不变性定理">极大似然估计值的不变性定理</h2>
+<p>设<span class="math inline">\(\hat\theta\)</span>是<span class="math inline">\(\theta\)</span>的极大似然估计值,<span class="math inline">\(u(\theta)(\theta\in\Theta)\)</span>是<span class="math inline">\(\theta\)</span>的函数,且具有单值的反函数<span class="math inline">\(\theta=\theta(u),u\in U\)</span>,则<span class="math inline">\(\hat u=u(\hat\theta)\)</span>是<span class="math inline">\(u(\theta)\)</span>的极大似然估计值</p>
+<h2 id="点估计的评价标准">点估计的评价标准</h2>
+<ul>
+<li>无偏性</li>
+<li>有效性</li>
+<li>一致性</li>
+</ul>
+<h3 id="无偏性">无偏性</h3>
+<p>定义:设<span class="math inline">\((X_1,X_2,...,X_n)\)</span>是总体X的样本,<span class="math inline">\(\hat\theta=\hat\theta(X_1,X_2,...,X_n)\)</span>是总体参数<span class="math inline">\(\theta\)</span>的估计量,<span class="math inline">\(E(\hat\theta)\)</span>存在,如果:</p>
+<p><span class="math inline">\(E(\hat\theta)=\theta\)</span></p>
+<p>则称<span class="math inline">\(\hat\theta\)</span>为<span class="math inline">\(\theta\)</span>的无偏估计量</p>
+<p>在估计时,以样本方差<span class="math inline">\(S^2\)</span>估计总体方差</p>
+<h3 id="有效性">有效性</h3>
+<p><span class="math inline">\(设\hat\theta_1=\theta_1(X_1,X_2,...,X_n)\\\hat\theta_2=\theta_2(X_1,X_2,...,X_n)\)</span></p>
+<p>都是总体参数<span class="math inline">\(\theta\)</span>的无偏估计量,且</p>
+<p><span class="math inline">\(D(\hat\theta_1)&lt;D(\hat\theta_2)\)</span></p>
+<p>则称<span class="math inline">\(\hat\theta_1\)</span>比<span class="math inline">\(\hat\theta_2\)</span>更有效</p>
+<h3 id="一致性">一致性</h3>
+<h2 id="使用到的分布">使用到的分布</h2>
+<p>```卡方分布(chi-square distribution)</p>
+<p>若n个相互独立的随机变量<span class="math inline">\(X_1,X_2\dots
+X_n\)</span>均服从<strong>标准正态分布</strong>,则n个服从标准正态分布的随机变量的平方和<span class="math inline">\(Q=\sum^n_{i=1}X_i^2\)</span>构成一个新的随机变量,其分布规律称为<span class="math inline">\(\chi^2\)</span>分布,记作<span class="math inline">\(Q\sim \chi^2(v),其中v=n-k\)</span></p>
 <figure>
-<img src="image-20241129112156834.png" srcset="/img/loading.gif" lazyload alt="U检验法(方差已知)">
-<figcaption aria-hidden="true">U检验法(方差已知)</figcaption>
+<img src="2f2f74dc62993ccc0ca878a66db81c2.png" srcset="/img/loading.gif" lazyload alt="卡方分布">
+<figcaption aria-hidden="true">卡方分布</figcaption>
 </figure>
-<h3 id="sigma2未知关于mu的检验t检验"><span class="math inline">\(\sigma^2\)</span>未知,关于<span class="math inline">\(\mu\)</span>的检验(T检验)</h3>
-<p><span class="math inline">\(X\sim
-N(\mu,\sigma^2),需检验:H_0=\mu=\mu_0,H_1:\mu\neq \mu_0\)</span></p>
-<p><span class="math inline">\(T=\frac{\overline{X}-\mu_0}{\frac{S}{\sqrt n}
-}\sim t(n-1)\)</span></p>
+<h3 id="t-分布t-distribution">t-分布(t-distribution)</h3>
+<ul>
+<li><p>根据小样本来估计呈正态分布且方差未知的总体的均值</p></li>
+<li><p>假如<span class="math inline">\(X\sim N(0,1),Y\sim
+\chi^2(n)\)</span>,则<span class="math inline">\(Z=\dfrac{X}{\sqrt{Y/N}
+}\)</span>称为自由度为n的分布,记为<span class="math inline">\(Z\sim
+t(n)\)</span></p></li>
+<li><p>分布密度函数<span class="math inline">\(f_Z(x)=\dfrac{\Gamma(\dfrac{n+1}{2})}{\sqrt{n\pi}\Gamma(\dfrac{n}{2})}(1+\dfrac{x^2}{n})^{-\dfrac{n+1}{2}
+}\)</span></p></li>
+</ul>
+<h3 id="f分布">F分布</h3>
+<p>```{0}若总体<span class="math inline">\(X\sim N(0,1)\)</span>,<span class="math inline">\((X_1,X_2,\dots,X_{n_1})\)</span>与<span class="math inline">\((Y_1,Y_2,\dots,Y_{n_2})\)</span>来自X的两个独立样本,设统计量</p>
+<pre><code class="hljs">  $F=\dfrac&#123;\sum^&#123;n_1&#125;_&#123;i=1&#125;X_i^2&#125;&#123;n_1&#125;/\dfrac&#123;\sum^n_&#123;i=1&#125;Y_i^2&#125;&#123;n_2&#125;$
+
+  则称统计量$F$服从自由度$n_1$和$n_2$的F分布,记作$F\sim F(n_1,n_2)$</code></pre>
 <figure>
-<img src="image-20241129105315451.png" srcset="/img/loading.gif" lazyload alt="T检验法(方差未知)">
-<figcaption aria-hidden="true">T检验法(方差未知)</figcaption>
+<img src="F1.png" srcset="/img/loading.gif" lazyload alt="F分布">
+<figcaption aria-hidden="true">F分布</figcaption>
 </figure>
-<h2 id="例题">例题</h2>
-<figure>
-<img src="image-20241129105446429.png" srcset="/img/loading.gif" lazyload alt="image-20241129105446429">
-<figcaption aria-hidden="true">image-20241129105446429</figcaption>
-</figure>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs MATLAB">X = [<span class="hljs-number">159</span> <span class="hljs-number">280</span> <span class="hljs-number">101</span> <span class="hljs-number">212</span> <span class="hljs-number">224</span> <span class="hljs-number">379</span> <span class="hljs-number">179</span> <span class="hljs-number">264</span> <span class="hljs-number">222</span> <span class="hljs-number">362</span> <span class="hljs-number">168</span> <span class="hljs-number">250</span> <span class="hljs-number">149</span> <span class="hljs-number">260</span> <span class="hljs-number">485</span> <span class="hljs-number">170</span>];<br>n=<span class="hljs-built_in">length</span>(X);<br>mu_0=<span class="hljs-number">225</span>;<br>mu=<span class="hljs-built_in">mean</span>(X);<br>s=std(X);<br>t=(mu-mu_0)/(s/<span class="hljs-built_in">sqrt</span>(n));<br><span class="hljs-built_in">disp</span>([<span class="hljs-string">&#x27;t=&#x27;</span>,num2str(t)]);<br>p=<span class="hljs-number">0.95</span>;<br>z = icdf(<span class="hljs-string">&#x27;T&#x27;</span>, p, n<span class="hljs-number">-1</span>);<br><span class="hljs-keyword">if</span> t&lt;z<br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;没有落在拒绝域内&#x27;</span>);<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;落在拒绝域内&#x27;</span>);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-<h3 id="sigma的双边检验mu未知"><span class="math inline">\(\sigma\)</span>的双边检验(<span class="math inline">\(\mu\)</span>未知)</h3>
-<p>设<span class="math inline">\(X\sim
-N(\mu,\sigma^2),\mu未知,需检验:\)</span></p>
-<p><span class="math inline">\(H_0:\sigma^2=\sigma_0^2,H_1:\sigma^2\neq
-\sigma_0^2\)</span></p>
-<p><span class="math inline">\(\chi^2=\frac{(n-1)S^2}{\sigma_0^2}\sim
+<h3 id="辨别三种抽样分布">辨别三种抽样分布</h3>
+<blockquote>
+<p><span class="math inline">\(X和Y相互独立且都服从N(0,\sigma^2),而X_1,X_2,\dots,X_9和Y_1,Y_2,\dots,Y_9分别是来自总体X和Y的简单随机样本\)</span></p>
+</blockquote>
+<p><span class="math inline">\((1)\frac{1}{3\sigma}\sum^9_{i=1}X_i\sim
+N(0,1)\)</span></p>
+<p><span class="math inline">\((2)\frac{1}{\sigma^2}\sum^9_{i=1}Y_i^2=\sum^9_{i=1}(\dfrac{Y_i}{\sigma})^2\sim\chi^2(9)\)</span></p>
+<p><span class="math inline">\((3)U=\dfrac{\dfrac{1}{\sqrt{9\sigma}
+}\sum^9_{i=1}X_i}{\sqrt{\dfrac{1}{\sigma^2}\sum^9_{i=1}Y_i^2/9} }\sim
+t(n)\)</span></p>
+<p><span class="math inline">\((4)U^2=\dfrac{\left(\dfrac{1}{\sqrt{9\sigma}
+}\sum^9_{i=1}X_i\right)^2/1}{\left(\sqrt{\dfrac{1}{\sigma^2}\sum^9_{i=1}Y_i^2}\right)^2/9}\sim
+F(1,9)\)</span></p>
+<h2 id="区间估计">区间估计</h2>
+<p><strong>置信空间</strong>是指由样本统计量所构成的总体参数的估计区间.展现的是这个参数的真实值有一定概率落在测量结果的周围的程度,其给出的是被测量参数的测量值的可信程度,即前面所要求的一个概率.</p>
+<p><span class="math inline">\((\bar
+X-Z_{1-\alpha/2}{\sqrt\frac{\sigma^2}{n} },\bar
+X+Z_{1-\alpha/2}{\sqrt\frac{\sigma^2}{n} })\)</span></p>
+<p><span class="math inline">\(\bar
+X-Z_{1-\alpha/2\sqrt{\frac{\sigma^2}{n} } }\)</span>:<span class="math inline">\(\mu\)</span>的置信下限</p>
+<p><span class="math inline">\(\bar
+X+Z_{1-\alpha/2\sqrt{\frac{\sigma^2}{n} } }\)</span>:<span class="math inline">\(\mu\)</span>的置信上限</p>
+<p><span class="math inline">\(1-\alpha\)</span>:置信度</p>
+<h3 id="常用公式">常用公式</h3>
+<h4 id="方差sigma2已知mu的置信区间">(1)方差<span class="math inline">\(\sigma^2\)</span>已知,<span class="math inline">\(\mu\)</span>的置信区间</h4>
+<p><span class="math inline">\((\bar
+X-Z_{1-\alpha/2}\sqrt{\frac{\sigma^2}{n} },\bar
+X+Z_{1-\alpha/2}\sqrt{\frac{\sigma^2}{n} })\)</span></p>
+<p>推导:由<span class="math inline">\(\bar X\sim N(\mu,
+\frac{\sigma}{\sqrt n})\)</span>选取枢轴量</p>
+<p><span class="math inline">\(\frac{\bar X-\mu}{\frac{\sigma}{\sqrt n}
+}\sim N(0,1)\)</span></p>
+<p>(其中Z值根据下文标准正态分布表查表得)</p>
+<h4 id="方差sigma2未知mu的置信区间">(2)方差<span class="math inline">\(\sigma^2\)</span>未知,<span class="math inline">\(\mu\)</span>的置信区间</h4>
+<p>选取枢轴量:<span class="math inline">\(T=\frac{\bar
+X-\mu}{\frac{S}{\sqrt n} }\sim T(n-1)\)</span></p>
+<p>由<span class="math inline">\(P\left( \left|\frac{\bar
+X-\mu}{\frac{S}{\sqrt n} }\right| \geq t_{1-\frac{\alpha}{2}
+}(n-1)\right)=\alpha\)</span></p>
+<p>其中<span class="math inline">\(\frac{1}{n-1}\sum^n_{i=1}(X_i-\bar
+X)^2=S^2\)</span></p>
+<p><span class="math inline">\(\left(\bar
+X-t_{1-\alpha/2}(n-1)\frac{S}{\sqrt n},\bar
+X+t_{1-\alpha/2}(n-1)\frac{S}{\sqrt n}\right)\)</span></p>
+<p>(其中<span class="math inline">\(t\)</span>值根据下文T分布表查表得)</p>
+<h4 id="当mu已知时方差sigma2的置信空间">(3)当<span class="math inline">\(\mu\)</span>已知时,方差<span class="math inline">\(\sigma^2\)</span>的置信空间$</h4>
+<p><span class="math inline">\(枢轴量Q=\sum\limits_{i=1}^n\left(\frac{X_i-\mu}{\sigma}\right)^2\sim
+\chi^2(n)\)</span></p>
+<p>由概率<span class="math inline">\(P\left(\chi_{\alpha/2}^2(n)&lt;\frac{\sum^n_{i=1}(X_i-\mu)^2}{\sigma^2}&lt;\chi_{1-\alpha/2}^2(n)\right)=1-\alpha\)</span></p>
+<p><span class="math inline">\(\sigma^2的置信度为1-\alpha置信区间为:\\\left(\frac{\sum_{i=1}^n(X_i-\mu)^2}{\chi_{1-\alpha/2}^2(n)},\frac{\sum_{i=1}^n(X_i-\mu)^2}{\chi_{\alpha/2}^2(n)}\right)\)</span></p>
+<p><span class="math inline">\(\chi_{\alpha/2}^2(n)从下文卡方分布表中得到\)</span></p>
+<h4 id="由mu未知时方差sigma2的置信区间">(4)由<span class="math inline">\(\mu\)</span>未知时,方差<span class="math inline">\(\sigma^2\)</span>的置信区间</h4>
+<p><span class="math inline">\(\frac{(n-1)S^2}{\sigma^2}\sim
 \chi^2(n-1)\)</span></p>
-<p><span class="math inline">\(P\left\{\frac{(n-1)S^2}{\sigma_0}\leq\chi_{\alpha/2}^2(n-1)或\frac{(n-1)S^2}{\sigma_0^2}\geq
-\chi_{1-\alpha/2}^2(n-1)\right\}=\alpha\)</span></p>
+<p><span class="math inline">\(P(\chi_{\alpha/2}^2&lt;\frac{(n-1)s^2}{\sigma^2}&lt;\chi_{1-\alpha/2}^2)=1-\alpha\)</span></p>
+<p><span class="math inline">\(\sigma^2的置信度为1-\alpha置信区间为:\\\left(\frac{(n-1)S^2}{\chi_{1-\alpha/2}^2(n-1)},\frac{(n-1)S^2}{\chi_{\alpha/2}^2(n-1)}\right)\)</span></p>
+<h3 id="单侧置信空间">单侧置信空间</h3>
+<p><span class="math inline">\(P(\theta&gt;\theta)=1-\alpha/P(\theta&lt;\theta)=1-\alpha\)</span></p>
+<p><span class="math inline">\((-\infty,\bar \theta)或者(\underline
+\theta,+\infty)\)</span>为置信度<span class="math inline">\(1-\alpha\)</span>的单侧置信空间</p>
+<h2 id="分布表">分布表</h2>
 <figure>
-<img src="image-20241129112119948.png" srcset="/img/loading.gif" lazyload alt="方差的检验(均值未知)">
-<figcaption aria-hidden="true">方差的检验(均值未知)</figcaption>
+<img src="image-20241124145810223.png" srcset="/img/loading.gif" lazyload alt="标准正态分布表">
+<figcaption aria-hidden="true">标准正态分布表</figcaption>
 </figure>
-<h2 id="两个正态总体均值差的检验t检验">两个正态总体均值差的检验(t检验)</h2>
-<p><span class="math inline">\(t=\frac{(\overline X-\overline
-Y)-\delta}{S_\omega\sqrt{\frac 1{n_1}+\frac 1{n_2} }}\)</span></p>
-<p><span class="math inline">\(S_\omega=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2},S_\omega=\sqrt
-{S_\omega^2}\)</span></p>
-<p>拒绝域:<span class="math inline">\(\frac{(\overline X-\overline
-Y)-\delta}{S_\omega\sqrt{\frac 1{n_1}+\frac 1{n_2} }}\geq
-t_{\alpha/2}(n_1+n_2-2)\)</span></p>
 <figure>
-<img src="image-20241130110711968.png" srcset="/img/loading.gif" lazyload alt="P185例2">
-<figcaption aria-hidden="true">P185例2</figcaption>
+<img src="image-20241124150852368.png" srcset="/img/loading.gif" lazyload alt="卡方分布表">
+<figcaption aria-hidden="true">卡方分布表</figcaption>
 </figure>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% P185 例2</span><br>A=[<span class="hljs-number">79.98</span> <span class="hljs-number">80.04</span> <span class="hljs-number">80.02</span> <span class="hljs-number">80.04</span> <span class="hljs-number">80.03</span> <span class="hljs-number">80.03</span> <span class="hljs-number">80.04</span> <span class="hljs-number">79.97</span> <span class="hljs-number">80.05</span> <span class="hljs-number">80.03</span> <span class="hljs-number">80.02</span> <span class="hljs-number">80.00</span> <span class="hljs-number">80.02</span>];<br>B=[<span class="hljs-number">80.02</span> <span class="hljs-number">79.94</span> <span class="hljs-number">79.98</span> <span class="hljs-number">79.97</span> <span class="hljs-number">79.97</span> <span class="hljs-number">80.03</span> <span class="hljs-number">79.95</span> <span class="hljs-number">79.97</span>];<br>n1=<span class="hljs-built_in">length</span>(A);<br>n2=<span class="hljs-built_in">length</span>(B);<br>mean1=<span class="hljs-built_in">mean</span>(A);<br>mean2=<span class="hljs-built_in">mean</span>(B);<br>s1=std(A);<br>s2=std(B);<br>sw=<span class="hljs-built_in">sqrt</span>(((n1<span class="hljs-number">-1</span>)*s1^<span class="hljs-number">2</span>+(n2<span class="hljs-number">-1</span>)*s2^<span class="hljs-number">2</span>) / (n1+n2<span class="hljs-number">-2</span>));<br>t=(mean1-mean2)/(sw*<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">1</span>/n1+<span class="hljs-number">1</span>/n2));<br><span class="hljs-built_in">disp</span>([<span class="hljs-string">&#x27;t=&#x27;</span>,num2str(t)]);<br>p=<span class="hljs-number">0.95</span>;<br>z=icdf(<span class="hljs-string">&#x27;T&#x27;</span>,p,n1+n2<span class="hljs-number">-2</span>);<br><span class="hljs-keyword">if</span> t &gt; z<br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;拒绝H0&#x27;</span>);<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;接受H0&#x27;</span>);<br><span class="hljs-keyword">end</span><br><br><span class="hljs-comment">%% 绘制箱线图(在不同图中)</span><br><span class="hljs-built_in">figure</span><br>subplot(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)<br>boxplot(A)<br>subplot(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)<br><br><span class="hljs-comment">%% 绘制箱线图(在同一图中)</span><br>A=A.&#x27;;<br>B=B.&#x27;;<br>group = [<span class="hljs-built_in">repmat</span>(<span class="hljs-string">&#x27;A&#x27;</span>,<span class="hljs-built_in">size</span>(A,<span class="hljs-number">1</span>),<span class="hljs-number">1</span>);<span class="hljs-built_in">repmat</span>(<span class="hljs-string">&#x27;B&#x27;</span>, <span class="hljs-built_in">size</span>(B,<span class="hljs-number">1</span>),<span class="hljs-number">1</span>)];<br>boxplot([A;B],group)<br></code></pre></td></tr></table></figure>
-<h2 id="基于成对数据的检验t检验">基于成对数据的检验(t检验)</h2>
 <figure>
-<img src="image-20241130113514692.png" srcset="/img/loading.gif" lazyload alt="P186例3">
-<figcaption aria-hidden="true">P186例3</figcaption>
+<img src="72c3c6096138257fe8417c26946a591.png" srcset="/img/loading.gif" lazyload alt="F检验临界值表alpha=0.05">
+<figcaption aria-hidden="true">F检验临界值表alpha=0.05</figcaption>
 </figure>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% P186 例3</span><br><span class="hljs-comment">% H0:\mu_D=0,\mu_D\neq 0</span><br>x=[<span class="hljs-number">0.20</span>	<span class="hljs-number">0.30</span>	<span class="hljs-number">0.40</span>	<span class="hljs-number">0.50</span>	<span class="hljs-number">0.60</span>	<span class="hljs-number">0.70</span>	<span class="hljs-number">0.80</span>	<span class="hljs-number">0.90</span> <span class="hljs-number">1.00</span>];<br>y=[<span class="hljs-number">0.10</span>	<span class="hljs-number">0.21</span>	<span class="hljs-number">0.52</span>	<span class="hljs-number">0.32</span>	<span class="hljs-number">0.78</span>	<span class="hljs-number">0.59</span>	<span class="hljs-number">0.68</span>	<span class="hljs-number">0.77</span> <span class="hljs-number">0.89</span>];<br>n=<span class="hljs-built_in">length</span>(x);<br>d=x-y;<br>alpha=<span class="hljs-number">0.01</span>;<br>z=icdf(<span class="hljs-string">&#x27;T&#x27;</span>,<span class="hljs-number">1</span>-alpha/<span class="hljs-number">2</span>,n<span class="hljs-number">-1</span>);<br>mean_d=<span class="hljs-built_in">mean</span>(d);<br>s_d=std(d);<br>t=<span class="hljs-built_in">abs</span>(mean_d/(s_d/<span class="hljs-built_in">sqrt</span>(n)));<br><span class="hljs-keyword">if</span> t&lt;z<br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;无明显差异&#x27;</span>);<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">disp</span>(<span class="hljs-string">&#x27;有明显差异&#x27;</span>);<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-<h2 id="方差比的检验f检验">方差比的检验(F检验)</h2>
-<p><span class="math inline">\(F=\frac{S_1^2}{S_2^2}\)</span></p>
-<p><span class="math inline">\(H_1:\sigma_1^2&gt;\sigma_2^2\rightarrow
-\chi^2\geq \chi_\alpha^2(n-1)\)</span></p>
-<p><span class="math inline">\(H_1:\sigma_1^2&lt;\sigma_2^2\rightarrow
-\chi^2\leq \chi_{1-\alpha}^2(n-1)\)</span></p>
-<p><span class="math inline">\(H_1:\sigma_1^2&gt;\sigma_2^2\rightarrow
-\chi^2\geq \chi_{\alpha/2}^2(n-1)或\chi^2\leq
-\chi_{1-\alpha/2}^2(n-1)\)</span></p>
+<figure>
+<img src="image-20241124094936717.png" srcset="/img/loading.gif" lazyload alt="F检验临界值表alpha=0.025">
+<figcaption aria-hidden="true">F检验临界值表alpha=0.025</figcaption>
+</figure>
+<figure>
+<img src="image-20241124095021691.png" srcset="/img/loading.gif" lazyload alt="F检验临界值表alpha=0.01">
+<figcaption aria-hidden="true">F检验临界值表alpha=0.01</figcaption>
+</figure>
+<figure>
+<img src="image-20241124093640970.png" srcset="/img/loading.gif" lazyload alt="T分布表">
+<figcaption aria-hidden="true">T分布表</figcaption>
+</figure>
 
                 
               </div>
@@ -441,8 +501,8 @@ t_{\alpha/2}(n_1+n_2-2)\)</span></p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>假设检验</div>
-      <div>https://meteor041.git.io/2024/11/29/假设检验/</div>
+      <div>参数估计</div>
+      <div>https://meteor041.git.io/2024/11/22/假设检验/</div>
     </div>
     <div class="license-meta">
       
@@ -454,7 +514,7 @@ t_{\alpha/2}(n_1+n_2-2)\)</span></p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月29日</div>
+          <div>2024年11月22日</div>
         </div>
       
       
@@ -486,9 +546,9 @@ t_{\alpha/2}(n_1+n_2-2)\)</span></p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/30/%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F/" title="多维随机变量及其分布">
+                      <a href="/2024/11/24/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/" title="数学建模-层次分析法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">多维随机变量及其分布</span>
+                        <span class="hidden-mobile">数学建模-层次分析法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -496,8 +556,8 @@ t_{\alpha/2}(n_1+n_2-2)\)</span></p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/28/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E7%81%B0%E8%89%B2%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90/" title="数学建模-灰色关联分析">
-                        <span class="hidden-mobile">数学建模-灰色关联分析</span>
+                      <a href="/2024/11/22/%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" title="参数估计">
+                        <span class="hidden-mobile">参数估计</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
