@@ -27,8 +27,9 @@
 <meta property="og:description" content="自然数和基数 后继集合:对于任意集合A,其后继集合\(A^+\)定义为:\(A^+&#x3D;A\cup\{A\}\) \(i)\emptyset^+&#x3D;\{\emptyset\}\) \(ii)\{\emptyset\}^+&#x3D;\{\emptyset,\{\emptyset\}\}\) \(iii)A\in A^+\) \(iv)A\subseteq A^+\) \(v)A^+\neq \empt">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/image-20241122095313913.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/v2-45abdc94da8b0be1dcffc08eb0ba8c41_1440w.png">
 <meta property="article:published_time" content="2024-11-22T00:17:25.000Z">
-<meta property="article:modified_time" content="2024-12-12T10:25:32.622Z">
+<meta property="article:modified_time" content="2024-12-14T05:22:27.395Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="discrete mathematics">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.7k 字
         
       </span>
     
@@ -238,7 +239,7 @@
         
         
         
-          11 分钟
+          14 分钟
         
       </span>
     
@@ -289,7 +290,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年12月12日 晚上
+                    本文最后更新于 2024年12月14日 下午
                   
                 
               </p>
@@ -405,14 +406,15 @@ B\)</span></p>
 <p>任何有限集都不能与它的真子集对等</p>
 <p><strong>任何与自身真子集等势的集合均是无穷集合</strong></p>
 <h2 id="集合的基数">集合的基数</h2>
-<p><span class="math inline">\(设n\in N,A\sim n,则\#(A)=n\)</span></p>
-<p>无限集的基数:<span class="math inline">\(\#(N)=\aleph_0\)</span></p>
+<p><span class="math inline">\(设n\in N,A\sim
+n,则\sharp(A)=n\)</span></p>
+<p>无限集的基数:<span class="math inline">\(\sharp(N)=\aleph_0\)</span></p>
 <p><strong>任意两个基数都可以比较大小</strong></p>
 <h2 id="相等和大小顺序">相等和大小顺序</h2>
 <ol type="1">
 <li>如果<span class="math inline">\(A\sim
-B\)</span>,就称A和B的基数相等,记作<span class="math inline">\(\#(A)=\#(B)\)</span></li>
-<li>如果存在从A到B的单射,就称A的基数小于等于B的基数,记作<span class="math inline">\(\#(A)\leq\#(B)\)</span></li>
+B\)</span>,就称A和B的基数相等,记作<span class="math inline">\(\sharp(A)=\sharp(B)\)</span></li>
+<li>如果存在从A到B的单射,就称A的基数小于等于B的基数,记作<span class="math inline">\(\sharp(A)\leq\sharp(B)\)</span></li>
 </ol>
 <h2 id="无穷集的等价条件">无穷集的等价条件</h2>
 <p>以下三个条件等价:</p>
@@ -429,7 +431,7 @@ N,若\{a_0,a_1,\dots,a_n\}\subseteq A,\\
 &amp;则必有a_{n+1}\in A且a_{n+1}\notin
 \{a_1,a_2,\dots,a_n\},因此,B=\{a_i|i\in N\}即为A的可列子集\\
 &amp;2)\rightarrow 3)\\
-&amp;A无穷,\therefore A\neq \empty\\
+&amp;A无穷,\therefore A\neq \emptyset\\
 &amp;任取a_1\in A\\
 &amp;再取a_2\in A-\{a_1\}\\
 &amp;\dots\\
@@ -444,8 +446,8 @@ N,若\{a_0,a_1,\dots,a_n\}\subseteq A,\\
 <ul>
 <li>任何无穷集合必含有<strong>可数无穷子集</strong></li>
 <li>实数集合R是<strong>不可数的</strong></li>
-<li>对每个集合A,皆有<span class="math inline">\(\#(A)&lt;\#(\rho(A))\)</span></li>
-<li><span class="math inline">\(\#(R\times R)=\aleph\)</span></li>
+<li>对每个集合A,皆有<span class="math inline">\(\sharp(A)&lt;\sharp(\rho(A))\)</span></li>
+<li><span class="math inline">\(\sharp(R\times R)=\aleph\)</span></li>
 </ul>
 <h2 id="例">例</h2>
 <blockquote>
@@ -475,26 +477,71 @@ x,其他\\
 \end{cases}\\
 \]</span></p>
 <blockquote>
-<p><span class="math inline">\(\#(R)=\aleph\)</span></p>
+<p><span class="math inline">\(\sharp(R)=\aleph\)</span></p>
 </blockquote>
 <p><span class="math display">\[
 \begin{aligned}
 &amp;f:\mathscr P(N)\rightarrow [0,1]\\
-&amp;f(A)=\sum^\infty_{i=0}\frac{\chi_A(i)}{2^{i+1}},A\subseteq N\\
-&amp;f是满射,所以\#([0,1])\leq \aleph\\
+&amp;f(A)=\sum^\infty_{i=0}\frac{\chi_A(i)}{2^{i+1} },A\subseteq N\\
+&amp;f是满射,所以\sharp([0,1])\leq \aleph\\
 &amp;g:\mathscr P(n)\rightarrow [0,1]\\
-&amp;g(A)=\sum^\infty_{i=0}\frac{\chi_A(i)}{3^{i+1}},A\subseteq N\\
+&amp;g(A)=\sum^\infty_{i=0}\frac{\chi_A(i)}{3^{i+1} },A\subseteq N\\
 &amp;若A,B\subseteq N且A\neq B,A\oplus B\neq \emptyset,i_0是A\oplus
 B的最小元素\\
-&amp;则\left|g(A)-g(B)\right|\geq
-\frac{1}{3^{i_0+1}}-\sum^{\infty}_{j=2}\frac{1}{3^{i_o+j}}&gt;0\\
+&amp;则\left|g(A)-g(B)\right|\geq \frac{1}{3^{i_0+1}
+}-\sum^{\infty}_{j=2}\frac{1}{3^{i_o+j} }&gt;0\\
 &amp;\therefore g(A)\neq g(B)\\
 &amp;因此g是内射\\
-&amp;\aleph\leq \#([0,1])\\
-&amp;所以\#([0,1])=\aleph,但\#([0,1])=\#(R)\\
-&amp;\#(R)=\aleph
+&amp;\aleph\leq \sharp([0,1])\\
+&amp;所以\sharp([0,1])=\aleph,但\sharp([0,1])=\sharp(R)\\
+&amp;\sharp(R)=\aleph
 \end{aligned}
 \]</span></p>
+<blockquote>
+<p>设集合<span class="math inline">\(S=\{x|x\in(0,1)\}\)</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;假设S可数,把S的元素排列成无穷序列S_0,S_1,\dots,S_n,\dots\\
+&amp;已知S_i是0和1之间的实数,任何小于1的正数s可以表示为:\\
+&amp;s=0.y_1y_2y_3\dots\\
+&amp;这里y_i\in\{0,1,2,\dots,9\}\\
+&amp;S_0=0.a_{11}a_{12}a_{13}\cdots\\
+&amp;S_1=0.a_{21}a_{22}a_{23}\cdots\\
+&amp;构造一个实数r=0.b_1b_2b_3\cdots b_n\cdots\\
+&amp;若a_{jj}\neq 1,则取b_j=1;若a_{jj}=1,则取b_j=2\\
+&amp;r\notin S,导致矛盾,因此S是不可数的\\
+&amp;因为R和S是等势的,R也是不可数的\\
+\end{aligned}
+\]</span></p>
+<p>与集合R等势的集合的基数,用<span class="math inline">\(\aleph\)</span>来表示,并称为连续统的势,#<span class="math inline">\(\rho(N)\)</span>记为<span class="math inline">\(\aleph\)</span></p>
+<blockquote>
+<p>#<span class="math inline">\((R\times R)=\aleph\)</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;证明:即证\text{ \sharp}([0,1)\times[0,1))= \text{ \sharp}([0,1))\\
+&amp;不妨设x=0.x_1x_2\dots\\
+&amp;y=y_1y_2\dots\\
+&amp;f(x,y)=0.x_1y_1x_2y_2\dots\\
+&amp;若存在f(x&#39;,y&#39;)=0.x_1&#39;y_1&#39;x_2&#39;y_2&#39;\dots=f(x,y),\\
+&amp;则x_1=x_1&#39;,y_1=y_1&#39;,\dots,故f为单射\\
+&amp;对于任意z=z_1z_2z_3\dots\in[0,1)\\
+&amp;存在x=z_1z_3\dots z_{2i+1}\dots,y=z_2z_4\dots z_{2i}\dots,\\
+&amp;使得f(x,y)=z\\
+&amp;因此f是满射\\
+&amp;所以\sharp([0,1)\times[0,1))=\sharp([0,1))\\
+\end{aligned}
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(Q_+\sim N_+\)</span></p>
+</blockquote>
+<figure>
+<img src="v2-45abdc94da8b0be1dcffc08eb0ba8c41_1440w.png" srcset="/img/loading.gif" lazyload alt="正有理数到正整数">
+<figcaption aria-hidden="true">正有理数到正整数</figcaption>
+</figure>
+<h2 id="小于的定义">"小于"的定义</h2>
+<p>若#A=<span class="math inline">\(\alpha\)</span>,#B=<span class="math inline">\(\beta\)</span>,且A<span class="math inline">\(\prec\)</span>B,则称<span class="math inline">\(\alpha\)</span>小于<span class="math inline">\(\beta\)</span>,记为<span class="math inline">\(\alpha&lt;\beta\)</span></p>
 
                 
               </div>

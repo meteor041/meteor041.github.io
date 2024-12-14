@@ -19,22 +19,26 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="热辐射 平衡热辐射 热平衡的物体内能不变,温度不变,物体辐射的能量&#x3D;物体吸收的能量 辐出度:单位面积上发射的所有波长的辐射总功率\([W&#x2F;m^2]\) 单色幅出度:单位表面发出波长在\(\lambda\)附近单位波长内的辐射功率\([W&#x2F;m^3]\) \(M(T)&#x3D;\int^{\infty}_0M_\lambda(T)\text d\lambda\) 黑体  理想模型 黑体无反">
+    <meta name="description" content="量子物理 一、光的量子性--光波粒二象性 二、微观粒子的波粒二象性 三、波函数和概率波及不确定性原理 四、氢原子光谱、玻尔的氢原子理论 五、薛定谔方程 六、电子的自旋和原子中电子的分布 热辐射 任一物体在任一温度下都在不断向周围空间辐射各种波长的电磁波,这种与温度有关的辐射,称为热辐射 平衡热辐射 热平衡的物体内能不变,温度不变,物体辐射的能量&#x3D;物体吸收的能量 辐出度\(M(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="量子力学基础">
 <meta property="og:url" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="热辐射 平衡热辐射 热平衡的物体内能不变,温度不变,物体辐射的能量&#x3D;物体吸收的能量 辐出度:单位面积上发射的所有波长的辐射总功率\([W&#x2F;m^2]\) 单色幅出度:单位表面发出波长在\(\lambda\)附近单位波长内的辐射功率\([W&#x2F;m^3]\) \(M(T)&#x3D;\int^{\infty}_0M_\lambda(T)\text d\lambda\) 黑体  理想模型 黑体无反">
+<meta property="og:description" content="量子物理 一、光的量子性--光波粒二象性 二、微观粒子的波粒二象性 三、波函数和概率波及不确定性原理 四、氢原子光谱、玻尔的氢原子理论 五、薛定谔方程 六、电子的自旋和原子中电子的分布 热辐射 任一物体在任一温度下都在不断向周围空间辐射各种波长的电磁波,这种与温度有关的辐射,称为热辐射 平衡热辐射 热平衡的物体内能不变,温度不变,物体辐射的能量&#x3D;物体吸收的能量 辐出度\(M(">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241205090539359.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241212224955101.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241210100617215.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241210105010128.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241213003512023.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241210111835626.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241210112333251-1733998278424-7.png">
-<meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/Users/Liu%20Xinyu/AppData/Roaming/Typora/typora-user-images/image-20241212104158210.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241213010532656.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241212104158210.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241212105058951.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241213013349225.png">
 <meta property="article:published_time" content="2024-12-12T01:50:04.000Z">
-<meta property="article:modified_time" content="2024-12-12T10:23:50.221Z">
+<meta property="article:modified_time" content="2024-12-13T08:32:26.654Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="物理">
 <meta name="twitter:card" content="summary_large_image">
@@ -233,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2.5k 字
         
       </span>
     
@@ -244,7 +248,7 @@
         
         
         
-          14 分钟
+          22 分钟
         
       </span>
     
@@ -295,7 +299,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年12月12日 晚上
+                    本文最后更新于 2024年12月13日 下午
                   
                 
               </p>
@@ -303,13 +307,23 @@
             
               <div class="markdown-body">
                 
-                <h1 id="热辐射">热辐射</h1>
+                <h1 id="量子物理">量子物理</h1>
+<p><strong>一、光的量子性--光波粒二象性</strong></p>
+<p><strong>二、微观粒子的波粒二象性</strong></p>
+<p><strong>三、波函数和概率波及不确定性原理</strong></p>
+<p><strong>四、氢原子光谱、玻尔的氢原子理论</strong></p>
+<p><strong>五、薛定谔方程</strong></p>
+<p><strong>六、电子的自旋和原子中电子的分布</strong></p>
+<h1 id="热辐射">热辐射</h1>
+<p>任一物体在任一温度下都在不断向周围空间辐射<font color="red">各种波长</font>的电磁波,这种与温度有关的辐射,称为<font color="red">热辐射</font></p>
 <h2 id="平衡热辐射">平衡热辐射</h2>
 <p>热平衡的物体内能不变,温度不变,物体辐射的能量=物体吸收的能量</p>
-<p><strong>辐出度</strong>:单位面积上发射的所有波长的辐射总功率<span class="math inline">\([W/m^2]\)</span></p>
-<p><strong>单色幅出度</strong>:单位表面发出波长在<span class="math inline">\(\lambda\)</span>附近<font color="red">单位波长</font>内的辐射功率<span class="math inline">\([W/m^3]\)</span></p>
+<p><strong>辐出度</strong><span class="math inline">\(M(T)\)</span>:单位面积上发射的所有波长的辐射总功率<span class="math inline">\([W/m^2]\)</span></p>
+<p><strong>单色幅出度</strong><span class="math inline">\(M_\lambda(T)\)</span>:单位表面发出波长在<span class="math inline">\(\lambda\)</span>附近<font color="red">单位波长</font>内的辐射功率<span class="math inline">\([W/m^3]\)</span></p>
 <p><span class="math inline">\(M(T)=\int^{\infty}_0M_\lambda(T)\text
 d\lambda\)</span></p>
+<p><span class="math inline">\(M_\lambda(T)=\dfrac{dM(T)}{d\lambda}\)</span></p>
+<p>单色吸收系数<span class="math inline">\(a_\lambda\)</span>:一定温度下,物体吸收波长在<span class="math inline">\(\lambda\sim(\lambda+d\lambda)\)</span>的电磁波能量与入射到物体上相应波长电磁波总能量之比</p>
 <h3 id="黑体">黑体</h3>
 <ul>
 <li>理想模型</li>
@@ -333,6 +347,19 @@ T^4\)</span></p>
 K^4)\)</span></p>
 <h3 id="维恩位移定律">维恩位移定律</h3>
 <p><span class="math inline">\(T\lambda_m=b\)</span></p>
+<p><span class="math inline">\(b=2.897756\times 10^{-3}m\cdot
+K\)</span></p>
+<figure>
+<img src="image-20241212224955101.png" srcset="/img/loading.gif" lazyload alt="例题">
+<figcaption aria-hidden="true">例题</figcaption>
+</figure>
+<p><span class="math inline">\(T_{太阳}=\dfrac{b}{\lambda_m}\approx5680K\)</span></p>
+<p><span class="math inline">\(T_{北极星}=\dfrac{b}{\lambda_m}=\dfrac{2.89\times
+10^{-3} }{3500\times 10^{-10} }\approx8280K\)</span></p>
+<p><span class="math inline">\(M(T)_{太阳}=\sigma T^4\approx 5.9\times
+10^{7}W/m^2\)</span></p>
+<p><span class="math inline">\(M(T)_{北极星}=\sigma T^4\approx2.7\times
+10^8W/m^2\)</span></p>
 <h2 id="经典理论">经典理论</h2>
 <h3 id="维恩经验公式">维恩经验公式</h3>
 <p><span class="math inline">\(M_0(\lambda,T)=C_1\lambda^{-5}e^{-\frac{C_2}{\lambda
@@ -341,8 +368,10 @@ T} }\)</span></p>
 <p><span class="math inline">\(M_0(\lambda,T)=C_3\lambda^{-4}k_BT\)</span></p>
 <p><strong>紫外灾难</strong>:短波极限为无限大</p>
 <h2 id="能量子假设">能量子假设</h2>
-<p>$quantum=h,振子的频率$</p>
-<p><span class="math inline">\(M_0(\lambda,T)=2\pi
+<p>对频率为<span class="math inline">\(\nu\)</span>的电磁辐射,物体不能以连续方式只能以<span class="math inline">\(h\nu\)</span>为能量单位的不连续方位进行发射或吸收它</p>
+<p><span class="math inline">\(quantum\quad\varepsilon=h\nu,振子的频率\mathsf \nu
+,h=6.62\times 10^{-34}J\cdot s普朗克常数\)</span></p>
+<p>普朗克公式:<span class="math inline">\(M_0(\lambda,T)=2\pi
 hc^2\lambda^{-5}\dfrac{1}{e^{\dfrac{hc}{\lambda k_BT} }-1}\)</span></p>
 <p>由普朗克公式推出斯特藩玻耳兹曼定律及维恩位移定律 <span class="math display">\[
 \begin{aligned}
@@ -352,6 +381,13 @@ hc^2\lambda^{-5}\dfrac{1}{e^{\dfrac{hc}{\lambda k_BT} }-1}\)</span></p>
 &amp;M_o(T)=\int^\infty_0 M_{\lambda 0}(T)\text
 d\lambda=\frac{C_1k^4T^4}{h^4c^4}\int^\infty_0 \frac{x^3}{e^x-1}\text
 dx=\frac{C_1k^4T^4}{h^4c^4}\frac{\pi^4}{15}=\sigma T^4\\
+&amp;\left.\dfrac{dM_{\lambda 0}
+}{d\lambda}\right|_{\lambda_m}=0\rightarrow
+5(1-e^{-\dfrac{hc}{\lambda_mkT}
+})=\dfrac{hc}{\lambda_mkT},令\dfrac{hc}{\lambda_mkT}=x\\
+&amp;x=5(1-e^{-x}),迭代法得到x=4.9651\\
+&amp;\lambda_m T=\dfrac{hc}{4.9651k}=b\\
+&amp;维恩位移定理b=2.8978\times 10^{-3}m\cdot K
 \end{aligned}
 \]</span></p>
 <h1 id="光电效应">光电效应</h1>
@@ -408,7 +444,7 @@ dx=\frac{C_1k^4T^4}{h^4c^4}\frac{\pi^4}{15}=\sigma T^4\\
 <p>光电效应方程:<span class="math inline">\(h\nu=\dfrac{1}{2}mv_m^2+A=eU_m+A\)</span></p>
 <p>解释:</p>
 <ol type="1">
-<li>单色光光强越强,光子数越多,释放更多光电子,饱和电流大</li>
+<li>单色光光强越强,光子数越多,释放更多光电子,饱和电流大,<span class="math inline">\(I=Nh\nu\)</span></li>
 <li>瞬时性问题:光子被整个地吸收</li>
 <li>遏止电压和照射光频率成线性关系,斜率等于<span class="math inline">\(\dfrac{h}{\nu}\)</span></li>
 <li><span class="math inline">\(\nu\leq
@@ -420,7 +456,12 @@ dx=\frac{C_1k^4T^4}{h^4c^4}\frac{\pi^4}{15}=\sigma T^4\\
 &amp;h\nu=eU_{max}+A\\
 &amp;U_{max}=\dfrac{h\dfrac{c}{\lambda}-A}{e}=3.8eV
 \end{aligned}
-\]</span> <strong>光的波粒二象性</strong></p>
+\]</span> <img src="image-20241213003512023.png" srcset="/img/loading.gif" lazyload alt="例题"></p>
+<p><span class="math inline">\(\lambda\downarrow,\nu\uparrow,
+I=nh\nu不变,则n\downarrow,E_k=h\nu-W\uparrow,I\sim
+n\downarrow\)</span></p>
+<p>因此,光电子的初动能增大,饱和光电流减小</p>
+<p><strong>光的波粒二象性</strong></p>
 <p>光电效应确立光的粒子性,光又有波动性</p>
 <p>能量<span class="math inline">\(\varepsilon=h\nu=h\omega\)</span></p>
 <p>质量<span class="math inline">\(m_p=\dfrac{\varepsilon}{c^2}=\dfrac{h\nu}{c^2}\)</span></p>
@@ -430,6 +471,15 @@ dx=\frac{C_1k^4T^4}{h^4c^4}\frac{\pi^4}{15}=\sigma T^4\\
 <img src="image-20241210111835626.png" srcset="/img/loading.gif" lazyload alt="康普顿散射实验装置">
 <figcaption aria-hidden="true">康普顿散射实验装置</figcaption>
 </figure>
+<p><span class="math inline">\(\Delta \lambda
+=\lambda_c(1-\cos\theta)=\lambda-\lambda_0,\lambda_c=0.024263\dot
+A\)</span></p>
+<p><strong>定性分析</strong></p>
+<p>康普顿的解释:</p>
+<ul>
+<li>波长变长:康氏效应时<font color="red">单个光子与物质中弱束缚电子</font>相互作用的结果</li>
+<li>光子与石墨中弱束缚的电子碰撞使电子反冲,光子把部分能量传给电子,光子能量<span class="math inline">\(\downarrow\)</span>.散射X射线的频率<span class="math inline">\(\downarrow\)</span>,波长<span class="math inline">\(\uparrow\)</span></li>
+</ul>
 <p><strong>定量分析</strong></p>
 <p><span class="math inline">\(h\nu_0+m_0c^2=h\nu+mc^2\)</span></p>
 <p>动量守恒</p>
@@ -438,6 +488,17 @@ dx=\frac{C_1k^4T^4}{h^4c^4}\frac{\pi^4}{15}=\sigma T^4\\
 <img src="image-20241210112333251-1733998278424-7.png" srcset="/img/loading.gif" lazyload alt="image-20241210112333251">
 <figcaption aria-hidden="true">image-20241210112333251</figcaption>
 </figure>
+<figure>
+<img src="image-20241213010532656.png" srcset="/img/loading.gif" lazyload alt="例题">
+<figcaption aria-hidden="true">例题</figcaption>
+</figure>
+<p><span class="math inline">\(\lambda=\lambda_0+\lambda_c(1-\cos\theta)\)</span></p>
+<p><span class="math inline">\(E_k=h\nu_0-h\nu=hc\left(\dfrac{1}{\lambda_0}-\dfrac{1}{\lambda}\right)\)</span></p>
+<h2 id="光的波粒二象性">光的波粒二象性</h2>
+<p>光的波动性:光的干涉,衍射,偏振</p>
+<p>光的粒子性:热辐射,光电效应,康普顿效应</p>
+<p><strong>普朗克-爱因斯坦关系式</strong>:<span class="math inline">\(E=mc^2=h\nu,P=mc=\dfrac{h}{\lambda}=\dfrac{E}{c}\)</span></p>
+<p><span class="math inline">\(m=\dfrac{E}{c^2}=\dfrac{h\nu}{c^2}=\dfrac{h}{c\lambda}=\dfrac{P}{c}\)</span></p>
 <h1 id="氢原子光谱">氢原子光谱</h1>
 <p>氢原子各谱线的波数<span class="math inline">\(\hat\nu\)</span>满足<strong>里德伯方程</strong>:<span class="math inline">\(\hat\nu=R(\dfrac{1}{k^2}-\dfrac{1}{n^2})\)</span></p>
 <p><span class="math inline">\(R=1.096776\times
@@ -446,8 +507,7 @@ dx=\frac{C_1k^4T^4}{h^4c^4}\frac{\pi^4}{15}=\sigma T^4\\
 <p><strong>频率条件</strong>:当原子从某一能级跃迁到另一能级时,要发射或吸收一个光子,光子频率满足条件:</p>
 <p><span class="math inline">\(h\nu_{kn}=\left|E_k-E_n\right|\)</span></p>
 <p><strong>角动量量子化条件</strong>:电子角动量是量子化的,取值为:</p>
-<p><span class="math inline">\(L=mv_nr_n=n\dfrac{h}{2\pi}=n\hat
-h\)</span></p>
+<p><span class="math inline">\(L=mv_nr_n=n\dfrac{h}{2\pi}=n\hbar\)</span></p>
 <p><span class="math inline">\(h=1.05457172\times 10^{-34}J\cdot
 s\)</span></p>
 <p><span class="math inline">\(n=1,2,\cdots\)</span><strong>量子数</strong></p>
@@ -463,7 +523,7 @@ me^2}=a_0=0.053\text{nm}\approx0.5\dot A\)</span></p>
 E=-\dfrac{e^2}{8\pi\varepsilon_0r}&lt;0\)</span></p>
 <p><span class="math inline">\(E_n=-\dfrac{e^2}{8\pi\varepsilon_0r}=-\dfrac{me^4}{8\varepsilon_0h^2n^2}=\dfrac{E_1}{n^2}\)</span></p>
 <p>基态能级<span class="math inline">\(E_1=-13.6\text{eV}\)</span></p>
-<p><img src="Users\Liu%20Xinyu\AppData\Roaming\Typora\typora-user-images\image-20241212104158210.png" srcset="/img/loading.gif" lazyload alt="image-20241212104158210"> <span class="math display">\[
+<p><img src="image-20241212104158210.png" srcset="/img/loading.gif" lazyload alt="image-20241212104158210"> <span class="math display">\[
 \begin{aligned}
 &amp;\Delta
 E=\dfrac{me^4}{8\varepsilon_0h^2}\left(\dfrac{1}{(n-1)^2}-\dfrac{1}{n^2}\right)\\
@@ -475,7 +535,7 @@ E\sim \dfrac{1}{n^3})\\
 \begin{aligned}
 &amp;\Delta E=E_n-E_1=\dfrac{E_1}{n^2}-E_1\\
 &amp;E_1=-13.6eV\\
-&amp;n=\sqrt{\dfrac{13.6}{13.6-12.5}}\approx3.5\\
+&amp;n=\sqrt{\dfrac{13.6}{13.6-12.5} }\approx3.5\\
 &amp;可能的能级跃迁:3\rightarrow 1,2\rightarrow 1,3\rightarrow 2\\
 &amp;\dfrac{1}{\lambda_1}=R(\dfrac{1}{1^2}-\dfrac{1}{3^2})=\dfrac{8}{9}R\\
 &amp;\dfrac{1}{\lambda_2}=R(\dfrac{1}{1^2}-\dfrac{1}{2^2})=\dfrac{3}{4}R\\
@@ -484,6 +544,38 @@ E\sim \dfrac{1}{n^3})\\
 10^{-7}m,\lambda_3=6.565\times 10^{-7}m
 \end{aligned}
 \]</span></p>
+<h1 id="微观例子的波粒二象性">微观例子的波粒二象性</h1>
+<p><strong>德布洛意关系</strong>:<span class="math inline">\(E=mc^2=h\nu\)</span>,<span class="math inline">\(P=mv=\dfrac{h}{\lambda}\)</span>,<span class="math inline">\(\lambda=\dfrac{h}{mv}=\dfrac{h}{mv_0}\sqrt{1-\dfrac{v^2}{c^2}
+}\)</span></p>
+<p>称对应粒子的波为<strong>德布洛意波</strong></p>
+<p><strong>驻波形成条件</strong></p>
+<p>因为电子在绕原子核做圆周运动，根据波粒二象性，电子同时也是一个波，且必须为驻波才不会因为波的相干而消失</p>
+<p>所以当<span class="math inline">\(2\pi
+r=n\lambda\)</span>时，驻波头尾的相位是相同的</p>
+<p><span class="math inline">\(mvr=n\dfrac{h}{2\pi}=n\hbar\)</span></p>
+<figure>
+<img src="image-20241213013349225.png" srcset="/img/loading.gif" lazyload alt="例题">
+<figcaption aria-hidden="true">例题</figcaption>
+</figure>
+<p><span class="math inline">\(v=\sqrt{\dfrac{2E_k}{m_e} }=8.39\times
+10^6m\cdot s^{-1}\)</span></p>
+<p><span class="math inline">\(\lambda=\dfrac{h}{m_ev}=8.67\times
+10^{-11}m\)</span></p>
+<h2 id="波函数">波函数</h2>
+<p><strong>微观粒子</strong>的<strong>物质波</strong>在空间传播,用波函数<span class="math inline">\(\Psi(r,t)=\Psi(x,y,z,t)\)</span>描述,称为<strong>德布洛意波函数</strong></p>
+<p>物质波波函数<span class="math inline">\(\Psi(x,t)=\varphi_0e^{-i(Et-Px)/\hbar}=\varphi
+e^{iEt/\hbar}\)</span></p>
+<p><span class="math inline">\(\varphi=\varphi_0\cdot
+e^{iPx/\hbar}\)</span>称为<strong>振幅函数</strong></p>
+<p><span class="math inline">\(\Psi\Psi^*=\left|\Psi\right|^2=\varphi\varphi^*=|\varphi|^2\)</span>-仅为空间位置函数</p>
+<p><strong>结论</strong>:自由粒子波函数的模方对应波强</p>
+<p><span class="math inline">\(\dfrac{dN}{dV}\propto
+N\Psi\Psi^*\Rightarrow \Psi\Psi^*\propto\dfrac{dN}{NdV}\)</span></p>
+<p><span class="math inline">\(\Psi\Psi^*\)</span>物理意义:是任一时刻t,在空间r点处单位体积中发现粒子的概率</p>
+<h2 id="不确定原理">不确定原理</h2>
+<p>微观粒子的坐标和动量是一对不能同时取确定值的物理量</p>
+<p><span class="math inline">\(\Delta x\cdot \Delta
+P_x\geq\dfrac{\hbar}{2}\)</span></p>
 
                 
               </div>
@@ -573,6 +665,12 @@ E\sim \dfrac{1}{n^3})\\
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/" title="离散数学-图论">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">离散数学-图论</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
