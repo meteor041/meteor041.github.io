@@ -19,18 +19,20 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="图论 \(设V和E是有限集合,且V\neq \emptyset\) (1)如果\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为无向图 (2)如果\(\Phi:E\rightarrow V\times V\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为有向图">
+    <meta name="description" content="图论 图 \(设V和E是有限集合,且V\neq \emptyset\) (1)如果\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为无向图 (2)如果\(\Phi:E\rightarrow V\times V\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为有向图 路">
 <meta property="og:type" content="article">
 <meta property="og:title" content="离散数学-图论">
 <meta property="og:url" content="https://meteor041.git.io/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="图论 \(设V和E是有限集合,且V\neq \emptyset\) (1)如果\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为无向图 (2)如果\(\Phi:E\rightarrow V\times V\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为有向图">
+<meta property="og:description" content="图论 图 \(设V和E是有限集合,且V\neq \emptyset\) (1)如果\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为无向图 (2)如果\(\Phi:E\rightarrow V\times V\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为有向图 路">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/image-20241215163122114.png">
 <meta property="article:published_time" content="2024-12-13T01:23:46.000Z">
-<meta property="article:modified_time" content="2024-12-13T01:46:41.613Z">
+<meta property="article:modified_time" content="2024-12-15T08:46:19.023Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="discrete mathematics">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/image-20241215163122114.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -225,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          57 字
+          1.1k 字
         
       </span>
     
@@ -236,7 +238,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -287,7 +289,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年12月13日 上午
+                    本文最后更新于 2024年12月15日 下午
                   
                 
               </p>
@@ -296,12 +298,103 @@
               <div class="markdown-body">
                 
                 <h1 id="图论">图论</h1>
+<h2 id="图">图</h2>
 <p><span class="math inline">\(设V和E是有限集合,且V\neq
 \emptyset\)</span></p>
 <p>(1)如果<span class="math inline">\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in
 V\}\)</span>,则称<span class="math inline">\(G=&lt;V,E,\Phi&gt;\)</span>为<font color="red">无向图</font></p>
 <p>(2)如果<span class="math inline">\(\Phi:E\rightarrow V\times
 V\)</span>,则称<span class="math inline">\(G=&lt;V,E,\Phi&gt;\)</span>为<font color="red">有向图</font></p>
+<h1 id="路径">路径</h1>
+<h2 id="定义"><strong>定义</strong></h2>
+<p>设 $nN，v_0, v_1…，v_n <span class="math inline">\(是图G的结点，\)</span>e_1, e_2, …,
+e_n$是图G的边，并且vi-1 和vi 分别是 $e_i <span class="math inline">\(的起点和终点 (\)</span> i=1, 2, …, n <span class="math inline">\()，则称序列\)</span>v_0 e_1 v_1 e_2 … v_{n-1} e_n
+v_n <span class="math inline">\(为图 G 中从\)</span> v_0 <span class="math inline">\(至\)</span>v_n<span class="math inline">\(的路径，\)</span>n$ 称为该路径的长度。</p>
+<p><span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span></p>
+<p><span class="math inline">\(\begin{cases}v_0,v_1,\dots,v_n\in
+V\\e_1,e_2,\dots,e_n\in
+E\\\color{red}{e_i:关联v_{i-1}和v_i}\end{cases}\)</span></p>
+<p><strong>简单路径</strong>:边不重复的路径(迹)</p>
+<p><strong>简单回路</strong>:边不重复的回路</p>
+<p><strong>基本路径</strong>:点不重复的路径(路径)</p>
+<p><strong>基本回路</strong>:点不重复的回路</p>
+<h3 id="定理3.1">定理3.1</h3>
+<p>设图<span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span>, <span class="math inline">\(v,v&#39;\in V\)</span>.如果存在从<span class="math inline">\(v\)</span>至<span class="math inline">\(v&#39;\)</span> 的路径,则存在<span class="math inline">\(v\)</span>至<span class="math inline">\(v&#39;\)</span>的基本路径(路径上的结点各不相同)</p>
+<ul>
+<li>n阶图有n个结点</li>
+<li>基本路径上的结点各不相同</li>
+<li>n阶图中的基本路径最多含有n个结点</li>
+<li>n阶图中的基本路径最多含有n-1条边</li>
+</ul>
+<h3 id="定理3.2">定理3.2</h3>
+<p>n阶图的<font color="blue">基本路径</font>的长度小于n</p>
+<h2 id="可达">可达</h2>
+<p>设图<span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span>,<span class="math inline">\(v_1,v_2\in V\)</span></p>
+<ol type="1">
+<li>若存在从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>的路径,则称在G中<span class="math inline">\(v_1\)</span>可达<span class="math inline">\(v_2\)</span>,或从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>可达</li>
+<li>否则称在G中从<span class="math inline">\(v_1\)</span>不可达<span class="math inline">\(v_2\)</span>,或从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>不可达</li>
+</ol>
+<h3 id="定理3.3">定理3.3</h3>
+<p>从 <span class="math inline">\(v_1\)</span>可达 <span class="math inline">\(v_2\)</span>当且仅当存在从 <span class="math inline">\(v_1\)</span>至 <span class="math inline">\(v_2\)</span>的基本路径</p>
+<h2 id="距离">距离</h2>
+<p><span class="math inline">\(v_1\)</span>可达<span class="math inline">\(v_2\Rightarrow\)</span>路径中长度最短者为<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>的测地线,并称该测地线的长度为从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>的距离,记作<span class="math inline">\(d(v_1,v_2)\)</span></p>
+<p><span class="math inline">\(v_1\)</span>不可达<span class="math inline">\(v_2\Rightarrow d(v_1,v_2)=\infty\)</span></p>
+<h2 id="直径">直径</h2>
+<p>图<span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span>的直径定义为<span class="math inline">\(max_{v,v&#39;\in V}d(v,v&#39;)\)</span></p>
+<h2 id="加权图">加权图</h2>
+<p><span class="math inline">\(W:E\rightarrow
+R_+,则称&lt;G,W&gt;为加权图\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(e\in E\)</span>,则称<span class="math inline">\(W(e)\)</span>为<span class="math inline">\(e\)</span>的加权长度</li>
+<li>路径中所有边的加权长度之和称为该路径的甲醛长度</li>
+<li>从结点<span class="math inline">\(v\)</span>到结点<span class="math inline">\(v&#39;\)</span>的路径中,加权长度最小的称为从<span class="math inline">\(v\)</span>到<span class="math inline">\(v&#39;\)</span>的<font color="blue">最短路径</font></li>
+<li>若从<span class="math inline">\(v\)</span>可达<span class="math inline">\(v&#39;\)</span>,从结点<span class="math inline">\(v\)</span>到结点<span class="math inline">\(v&#39;\)</span>的最短路径的加权长度为从结点<span class="math inline">\(v\)</span>到结点<span class="math inline">\(v&#39;\)</span>的<font color="blue">加权距离</font></li>
+</ol>
+<h1 id="连通性">连通性</h1>
+<h2 id="定义-1">定义</h2>
+<p>如果<font color="red">无向图</font><span class="math inline">\(G\)</span>的<font color="cornflowerblue">任意两个结点都互相可达</font>,则称<span class="math inline">\(G\)</span>是连通的,否则称<span class="math inline">\(G\)</span>是非连通的</p>
+<h2 id="连通分支与等价关系">连通分支与等价关系</h2>
+<p>设<span class="math inline">\(G&#39;\)</span>是图<span class="math inline">\(G\)</span>的具有某性质<span class="math inline">\(P\)</span>的子图,并且对于<span class="math inline">\(G\)</span>的具有该性质的任意子图<span class="math inline">\(G&#39;&#39;\)</span>,只要<span class="math inline">\(G&#39;\subseteq G&#39;&#39;\)</span>就有<span class="math inline">\(G&#39;=G&#39;&#39;\)</span>,则称<span class="math inline">\(G&#39;\)</span>相对于该性质是<span class="math inline">\(G\)</span>的<font color="red">极大子图</font></p>
+<p>无向图G的极大的连通子图称为G
+的连通分支，简称<font color="red">分支</font></p>
+<p><span class="math inline">\(R_V=\{&lt;u,v&gt;|u,v\in
+V且从u到v可达\}\)</span>,<span class="math inline">\(R_V\)</span>是<span class="math inline">\(V\)</span>上的<font color="red">等价关系</font></p>
+<p><font color="cornflowerblue">分支</font>:<span class="math inline">\(V\)</span>关于<span class="math inline">\(R_V\)</span>的等价类的导出子图</p>
+<p><span class="math inline">\(V/R=\{V_1,V_2,\dots,V_n\}\)</span></p>
+<p><span class="math inline">\(G[V_1],G[V_2],\dots,G[V_2]\)</span>为<span class="math inline">\(G\)</span>的分支</p>
+<h3 id="定理3.4">定理3.4</h3>
+<ol type="1">
+<li>连通无向图恰有一个分支</li>
+<li>非连通无向图的分支多于1个</li>
+</ol>
+<h2 id="基础图">基础图</h2>
+<p>设有向图<span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span>,如下定义:</p>
+<p><span class="math inline">\(\Psi&#39;:E\rightarrow
+\{\{v_1,v_2\}|v_1\in V\wedge v_2\in V\}\)</span></p>
+<p>使得对任意<span class="math inline">\(e\in E\)</span>和<span class="math inline">\(v_1,v_2\in V\)</span></p>
+<p>若<span class="math inline">\(\Psi(e)=&lt;v_1,v_2&gt;,则\Psi&#39;(e)=\{v_1,v_2\}\)</span></p>
+<p>则称无向图<span class="math inline">\(G=&lt;V,E,\Psi&#39;&gt;\)</span>为有向图<span class="math inline">\(G\)</span>的<font color="red">基础图</font></p>
+<figure>
+<img src="image-20241215163122114.png" srcset="/img/loading.gif" lazyload alt="有向边改为无向边,获得基础图">
+<figcaption aria-hidden="true">有向边改为无向边,获得基础图</figcaption>
+</figure>
+<h2 id="三种连通性">三种连通性</h2>
+<p>设<span class="math inline">\(G\)</span>为<font color="cornflowerblue">有向图</font></p>
+<ol type="1">
+<li><font color="cornflowerblue">强相通</font>:任意两个结点都互相可达</li>
+<li><font color="cornflowerblue">单项连通</font>:任意两结点,必有一个结点可达另一结点</li>
+<li><font color="cornflowerblue">弱相通</font>:基础图是连通的(把有向图看成是无向图是连通的)</li>
+</ol>
+<p>设<span class="math inline">\(G\)</span>为有向图</p>
+<ol type="1">
+<li><span class="math inline">\(G\)</span>的极大强连通子图称为G的<font color="red">强连通分支</font></li>
+<li><span class="math inline">\(G\)</span>的极大单向连通子图称为<span class="math inline">\(G\)</span>的<font color="red">单向分支</font></li>
+<li><span class="math inline">\(G\)</span>的极大弱连通子图称为<span class="math inline">\(G\)</span>的<font color="red">弱分支</font></li>
+</ol>
+<blockquote>
+<p>有向图的结点一定恰好处于一个强分支中,但边不一定;有向图结点与边都不一定恰好在一个单向分支中</p>
+</blockquote>
+<h1 id="回路">回路</h1>
 
                 
               </div>
