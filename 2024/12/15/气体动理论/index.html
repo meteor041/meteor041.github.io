@@ -19,26 +19,27 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="4.某页式虚拟存储系统按字节编址，虚存容量为 4GB，主存容量为 64MB，页大小为 4KB， 每个页表项需有一位有效位和一位修改位。假设所有虚页都在使用中，问 （1）虚拟地址和物理地址分别是多少位，格式如何 （2）程序虚拟空间最多可有多少页 （3）每个页表项共有多少位 （4）每个页表最多占多少内存空间 \[ \begin{aligned} (1)&amp;虚拟地址位数&#x3D;\log_">
+    <meta name="description" content="理想气体压强公式  理想气体压强公式定量推导  前提条件:N个同类气体分子处于平衡态,封闭在边长为\(l_1,l_2,l_3\)的全反射壁容器内 一个分子(质量\(\mu&#x3D;m_0\),速率\(v_i\))碰壁一次给器壁的冲量\(2\mu v_{ix}\),面光滑\(\rightarrow\)在\(y,z\)方向冲量为0 两次碰撞所需时间间隔:\(\dfrac{2l_1}{v_{ix}}">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计组期末题目">
-<meta property="og:url" content="https://meteor041.git.io/2024/12/13/%E8%AE%A1%E7%BB%84%E6%9C%9F%E6%9C%AB%E9%A2%98%E7%9B%AE/index.html">
+<meta property="og:title" content="气体动理论">
+<meta property="og:url" content="https://meteor041.git.io/2024/12/15/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="4.某页式虚拟存储系统按字节编址，虚存容量为 4GB，主存容量为 64MB，页大小为 4KB， 每个页表项需有一位有效位和一位修改位。假设所有虚页都在使用中，问 （1）虚拟地址和物理地址分别是多少位，格式如何 （2）程序虚拟空间最多可有多少页 （3）每个页表项共有多少位 （4）每个页表最多占多少内存空间 \[ \begin{aligned} (1)&amp;虚拟地址位数&#x3D;\log_">
+<meta property="og:description" content="理想气体压强公式  理想气体压强公式定量推导  前提条件:N个同类气体分子处于平衡态,封闭在边长为\(l_1,l_2,l_3\)的全反射壁容器内 一个分子(质量\(\mu&#x3D;m_0\),速率\(v_i\))碰壁一次给器壁的冲量\(2\mu v_{ix}\),面光滑\(\rightarrow\)在\(y,z\)方向冲量为0 两次碰撞所需时间间隔:\(\dfrac{2l_1}{v_{ix}}">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://meteor041.git.io/2024/12/13/%E8%AE%A1%E7%BB%84%E6%9C%9F%E6%9C%AB%E9%A2%98%E7%9B%AE/image-20241214160312632.png">
-<meta property="article:published_time" content="2024-12-13T07:23:46.000Z">
-<meta property="article:modified_time" content="2024-12-14T10:57:36.054Z">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/15/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/image-20241215201214070.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/15/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/image-20241215220756900.png">
+<meta property="article:published_time" content="2024-12-15T11:39:28.000Z">
+<meta property="article:modified_time" content="2024-12-15T14:23:55.416Z">
 <meta property="article:author" content="meteor041">
-<meta property="article:tag" content="计组">
+<meta property="article:tag" content="物理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://meteor041.git.io/2024/12/13/%E8%AE%A1%E7%BB%84%E6%9C%9F%E6%9C%AB%E9%A2%98%E7%9B%AE/image-20241214160312632.png">
+<meta name="twitter:image" content="https://meteor041.git.io/2024/12/15/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/image-20241215201214070.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>计组期末题目 - meteor041</title>
+  <title>气体动理论 - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="计组期末题目"></span>
+            <span id="subtitle" data-typed-text="气体动理论"></span>
           
         </div>
 
@@ -215,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-13 15:23" pubdate>
-          2024年12月13日 下午
+        <time datetime="2024-12-15 19:39" pubdate>
+          2024年12月15日 晚上
         </time>
       </span>
     
@@ -227,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          790 字
+          1.1k 字
         
       </span>
     
@@ -238,7 +239,7 @@
         
         
         
-          7 分钟
+          10 分钟
         
       </span>
     
@@ -284,12 +285,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">计组期末题目</h1>
+            <h1 id="seo-header">气体动理论</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年12月14日 晚上
+                    本文最后更新于 2024年12月15日 晚上
                   
                 
               </p>
@@ -297,80 +298,133 @@
             
               <div class="markdown-body">
                 
-                <p>4.某页式虚拟存储系统按字节编址，虚存容量为 4GB，主存容量为
-64MB，页大小为 4KB，</p>
-<p>每个页表项需有一位有效位和一位修改位。假设所有虚页都在使用中，问</p>
-<p>（1）虚拟地址和物理地址分别是多少位，格式如何</p>
-<p>（2）程序虚拟空间最多可有多少页</p>
-<p>（3）每个页表项共有多少位</p>
-<p>（4）每个页表最多占多少内存空间 <span class="math display">\[
+                <h1 id="理想气体压强公式">理想气体压强公式</h1>
+<hr>
+<h2 id="理想气体压强公式定量推导">理想气体压强公式定量推导</h2>
+<ul>
+<li><p>前提条件:N个同类气体分子处于平衡态,封闭在边长为<span class="math inline">\(l_1,l_2,l_3\)</span>的全反射壁容器内</p></li>
+<li><p>一个分子(质量<span class="math inline">\(\mu=m_0\)</span>,速率<span class="math inline">\(v_i\)</span>)碰壁一次给器壁的冲量<span class="math inline">\(2\mu v_{ix}\)</span>,面光滑<span class="math inline">\(\rightarrow\)</span>在<span class="math inline">\(y,z\)</span>方向冲量为0</p></li>
+<li><p>两次碰撞所需时间间隔:<span class="math inline">\(\dfrac{2l_1}{v_{ix}}\)</span>,该分子单位时间内与器壁碰撞的次数<span class="math inline">\(M=\dfrac{ v_{ix} }{2 l_1}\)</span></p></li>
+<li><p><span class="math display">\[
 \begin{aligned}
-(1)&amp;虚拟地址位数=\log_2(4\times 2^{30})=32\\
-&amp;物理地址位数=\log_2(64\times 2^{20})=26\\
-&amp;页内偏移位数=\log_2(4\times2^{10})=12\\
-&amp;虚拟地址格式:|页号(20)|页内偏移(12)|\\
-&amp;物理地址格式:|页号(14)|页内偏移(12)|\\
-(2)&amp;2^{20}页\\
-(3)&amp;页表项最多可以有1+1+14=16位\\
-(4)&amp;每个页表最多占2^{20}\times16/8=2MB\\
+&amp;I=\sum^n_{i=1}2\mu v_{ix} \cdot
+\dfrac{v_{ix}}{2l_1}=\dfrac{\mu}{l_1}\sum^N_{i=1}v_{ix}^2\\
+&amp;\therefore I=\dfrac{\mu N}{l_1}\cdot
+\dfrac{v_{ix}^2+v_{2x}^2+\cdots+v_{Nx}^2}{N}\\
+&amp;\therefore I=\dfrac{\mu N}{l_1}\cdot \overline {v_x^2}=\dfrac{\mu
+N}{l_1}\cdot \dfrac{\overline {v^2}}{3}\\
+\end{aligned}
+\]</span></p></li>
+<li><p><span class="math inline">\(P=\dfrac{F}{A_1}=\dfrac{I}{A_1}=\dfrac{\mu
+N\overline {v^2}/3l_1}{l_2 l_3}=\dfrac{N\mu\overline{v^2}}{3l_1l_2l_3}=
+\dfrac{1}{3}\rho\overline
+{v^2}(\rho=\dfrac{N\mu}{V},V=l_1l_2l_3)\)</span></p></li>
+<li><p>分子平均平动动能<span class="math inline">\(\overline{\varepsilon_{平} }=\dfrac{1}{2}\mu
+\overline {v^2}\)</span>,因此<span class="math inline">\(P=\dfrac{2}{3}n\overline {\varepsilon_{平}
+}\)</span>(<font color="red">理想气体压强公式</font>)</p></li>
+</ul>
+<p><img src="image-20241215201214070.png" srcset="/img/loading.gif" lazyload alt="例题"> <span class="math display">\[
+\begin{aligned}
+(1)&amp;I=2\mu v=1.2\times 10^{-24}N\cdot s\\
+(2)&amp;M=\dfrac{1}{\Delta t}=\dfrac{v}{2l_1}\\
+&amp;单位时间内碰A壁的分子数为K=M\times \dfrac{N}{3}=\dfrac{vN}{6l_1}\\
+&amp;N=\dfrac{K}{l_2l_3}=\dfrac{vN}{6V}=\dfrac{n}{6}v=3.33\times
+10^{27}\\
+(3)&amp;P=I\times M=4\times 10^3Pa
 \end{aligned}
 \]</span></p>
-<blockquote>
-<p>页表所占内存空间为页表项数*页表项位数,页表项</p>
-</blockquote>
-<figure>
-<img src="image-20241214160312632.png" srcset="/img/loading.gif" lazyload alt="页式虚拟存储器">
-<figcaption aria-hidden="true">页式虚拟存储器</figcaption>
-</figure>
-<ol start="5" type="1">
-<li>假设用如下的寄存器分配方案：$s1存放变量f，$s2存放变量g，$s3存放数组A的基地址。请将下列MIPS代码翻译成一行C的代码。</li>
+<h2 id="分子碰撞">分子碰撞</h2>
+<h3 id="分子模型">分子模型</h3>
+<p>无相互作用的刚性球</p>
+<h3 id="碰撞频率">碰撞频率</h3>
+<p>一个分子单位时间内所受<font color="cornflowerblue">碰撞</font>的平均次数</p>
+<p><span class="math inline">\(\overline
+v=\sqrt{\dfrac{8kT}{\pi\mu}},\overline Z=\sqrt2\pi d^2\overline
+vn=4d^2n\sqrt{\dfrac{\pi kT}{\mu}}\)</span></p>
+<h3 id="平均自由程">平均自由程</h3>
+<p><span class="math inline">\(\overline \lambda=\dfrac{\overline
+v}{\overline z}=\dfrac{1}{\sqrt{2}\pi d^2n}=\dfrac{kT}{\sqrt{2}\pi
+d^2P}\)</span></p>
+<p>对一定量气体,体积一定时,<span class="math inline">\(\lambda\)</span>与温度<span class="math inline">\(T\)</span>无关</p>
+<h2 id="温度公式">温度公式</h2>
+<ul>
+<li>宏观:<span class="math inline">\(P=nkT\)</span></li>
+<li>微观:<span class="math inline">\(P=\dfrac{2}{3}n\overline
+\varepsilon_{平}\)</span></li>
+</ul>
+<p><span class="math inline">\(\overline
+\varepsilon_{平}=\dfrac{1}{2}\mu\overline
+{v^2}=\dfrac{3}{2}kT\)</span></p>
+<p><span class="math inline">\(T=\dfrac{2}{3}\dfrac{\overline
+\varepsilon_{平}}{k}=\dfrac{1}{3}\dfrac{\mu
+\overline{v^2}}{k}\)</span></p>
+<p>方均根速率<span class="math inline">\(\sqrt{ \overline{v^2}
+}=\sqrt{\dfrac{3kT}{\mu}}\)</span></p>
+<h2 id="阿伏伽德罗定律">阿伏伽德罗定律</h2>
+<p>宏观压强公式:<span class="math inline">\(P=nkT\Rightarrow
+P,T同则n同\)</span></p>
+<p>标准状态下,<span class="math inline">\(n=\dfrac{P}{kT}=\dfrac{1.013\times
+10^5}{1.38\times 10^{-23}\times 273.15}=2.688\times
+10^{25}m^{-3}\)</span></p>
+<p><span class="math inline">\(N_A=n\cdot V_{mol}=6.02\times
+10^{23}m^{-3}\)</span></p>
+<h2 id="道尔顿分压定律">道尔顿分压定律</h2>
+<p>混合气体的压强等于组成混合气体的各组成分的分压强之和</p>
+<h1 id="能量均分定理">能量均分定理</h1>
+<h2 id="运动自由度">运动自由度</h2>
+<p>决定物体空间位置所需独立坐标的数目</p>
+<p>一般分子总自由度<span class="math inline">\(i=t+r+s\)</span></p>
+<p>其中:<span class="math inline">\(t\)</span>-平动自由度,<span class="math inline">\(r\)</span>-转动自由度,<span class="math inline">\(s\)</span>-振动自由度(一般可忽略)</p>
+<ul>
+<li>单原子分子:<span class="math inline">\(i=t=3\)</span></li>
+<li>刚性双原子分子:<span class="math inline">\(i=t+r=3+2=5\)</span></li>
+<li>刚性多原子分子:<span class="math inline">\(i=t+r=3+3=6\)</span></li>
+</ul>
+<h2 id="能量按自由度的均分定理">能量按自由度的均分定理</h2>
+<p><span class="math inline">\(\overline{\varepsilon_{平}
+}=\dfrac{3}{2}kT\)</span></p>
+<p><span class="math inline">\(\dfrac{1}{2}k\overline{v_x^2}=\dfrac{1}{2}k\overline{v_y^2}=\dfrac{1}{2}k\overline{v_z^2}=\dfrac{1}{2}k(\dfrac{1}{3}\overline{v^2})\)</span></p>
+<p><strong>能量均分定理</strong>:在温度为T的热平衡态下,物质分子的每个自由度都具有相同的平均动能<span class="math inline">\(\dfrac{kT}{2}\)</span></p>
+<p>分子平均<font color="red">总动能</font><span class="math inline">\(\overline {\varepsilon_{平}
+}=\dfrac{1}{2}kT=\dfrac{1}{2}kT(t+r+s)\)</span></p>
+<p>分子平均<font color="red">总能量</font>:<span class="math inline">\(\overline {\varepsilon_{平}
+}=\dfrac{1}{2}kT(t+r+2s)\)</span></p>
+<ul>
+<li>单原子分子:<span class="math inline">\(\overline{\varepsilon}=\dfrac{3}{2}kT\)</span></li>
+<li>刚性双原子分子:<span class="math inline">\(\overline{\varepsilon}=\dfrac{5kT}{2}\)</span></li>
+<li>刚性多原子分子:<span class="math inline">\(\overline{\varepsilon}=\dfrac{6kT}{2}\)</span></li>
+</ul>
+<h2 id="理想气体的内能">理想气体的内能</h2>
+<ol type="1">
+<li>内能包含分子热运动能量;分子间势能和分子内势能;分子内部,原子内部运动能量;电场能,磁场能</li>
+<li>气体内能:<span class="math inline">\(分子动能,分子间势能和分子内原子间的势能的总和\)</span></li>
+<li>理想气体:理想气体分子间势能=0,理想气体内能=所有分子的平动+转动+振动动能+振动势能(=分子数*每个理气分子平均总能量)</li>
 </ol>
-<p>​ lw $s1, 12($s3)</p>
-<p>​ add $s1, $s1, $s2</p>
-<p>​ addi $s1, $s1, 9</p>
-<p>​ add $s1,$s1,$s1</p>
-<p>如果g=7, A = {3, 2, 6, 4, 7, 6, 4, 8, 9, 8}，则f的值是多少？</p>
-<p><code>f=2(A[3]+g+9)</code></p>
-<p><code>f=40</code></p>
-<ol start="6" type="1">
-<li>某计算机字长32位，主存地址31位且按字节编址,四级组相联映射。Cache的数据存储空间容量为32KB，Cache数据块大小为4个字，每个cache数据块对应有1位有效位和4位修改值。问</li>
-</ol>
-<p>（1）cache分多少组</p>
-<p>（2）给出主存地址格式（地址中各字段名称及其位数）</p>
-<p>（3）cache的标记(tag)是多少位</p>
-<p>（4）cache的实际总容量是多少</p>
-<p>（5）若cache的存取时间是5ns，cache访问缺失时的存取时间是100ns，计算cache命中率为0.8的情况下，该cache的平均存取时间。
-<span class="math display">\[
+<p><span class="math inline">\(E=N\overline \varepsilon=N\cdot
+\dfrac{i}{2}kT=\nu\cdot \dfrac{i}{2}RT=\dfrac{i}{2}PV(N=\nu\cdot
+N_A)\)</span></p>
+<p><img src="image-20241215220756900.png" srcset="/img/loading.gif" lazyload alt="例题"> <span class="math display">\[
 \begin{aligned}
-(1)&amp;Cache组数=\dfrac{32KB}{4\times 32/8\times 4B}=512组\\
-(2)&amp;主存块数=\dfrac{2^{31}}{4\times 32/8}=2^{27}块\\
-&amp;Cache标记位数=29-9=18\\
-&amp;主存地址格式:
-|Cache标记(18)|Cache行号(9)|块内地址(4)|\\
-(3)&amp;Cache标记为18位\\
-(4)&amp;Cache实际容量为((19+1+4)+4\times 32)\times 512\times
-4=311296bit=38KB\\
-(5)&amp;平均存取时间\overline t=0.8\times 5+0.2\times
-(100+5)=25\text{ns}
+&amp;\overline{\varepsilon_{平(He)} }=\overline{\varepsilon_{平(H_2)
+}}=\dfrac{3}{2}kT\\
+&amp;\overline{\varepsilon_{k(He)} }=\dfrac{3}{2}kT\\
+&amp;\overline{\varepsilon_{k(H_2)} }=\dfrac{5}{2}kT\\
+&amp;E_{(He)}=\dfrac{m}{M}\cdot \dfrac{3}{2}kT=2\cdot \dfrac{3}{2}kT\\
+&amp;E_{(H_2)}=\dfrac{m}{M}\cdot \dfrac{5}{2}kT=2\cdot \dfrac{5}{2}kT\\
 \end{aligned}
 \]</span></p>
-<ol start="7" type="1">
-<li>某8位计算机的主存地址为16位，主存按字节编址，其中地址最高的16KB主存空间为只读的系统程序区。现有若干片荣俩个16K<em>8的RAM芯片和容量8K</em>8的ROM芯片。问</li>
-</ol>
-<p>（1）计算机所允许的最大主存容量是多少</p>
-<p>（2）构建计算机允许的最大容量的主存，需用上述规格的RAM和ROM各多少</p>
-<p>（3）用十六进制表示这些存储器的起止地址 <span class="math display">\[
-\begin{aligned}
-(1)&amp;允许最大容量=2^{16}\times 8=2^{19}bit=64KB\\
-(2)&amp;ROM数量=\dfrac{16KB}{8K\times 8/8B}=2\\
-&amp;RAM数量=\dfrac{48KB}{16K\times 8/8B}=3\\
-(3)&amp;RAM1:0000H\sim 3FFFH\\
-&amp;RAM2:4000H\sim 7FFFH\\
-&amp;RAM3:8000H\sim BFFFH\\
-&amp;ROM1:C000H\sim DFFFH\\
-&amp;ROM2:E000H\sim FFFFH\\
-\end{aligned}
-\]</span></p>
+<h1 id="麦克斯韦速率分布律">麦克斯韦速率分布律</h1>
+<h2 id="分布函数">分布函数</h2>
+<p>速率分布函数<span class="math inline">\(f(v)=\lim_{\Delta
+v\rightarrow 0}\dfrac{\Delta N/N}{\Delta v}=\dfrac{dN}{N\cdot dv
+}\)</span></p>
+<p>能量分布函数<span class="math inline">\(f(\varepsilon)=\dfrac{dN}{N\cdot
+d\varepsilon}\)</span></p>
+<p>速度分布函数<span class="math inline">\(f({v})=4\pi v^2f(\vec
+v)\)</span></p>
+<h2 id="麦克斯韦速度分布律">麦克斯韦速度分布律</h2>
+<p><span class="math inline">\(f(\vec v)=\left(\dfrac{\mu}{2\pi
+kT}\right)^{3/2}\cdot e^{-\dfrac{\mu v^2}{2kT}}\)</span></p>
 
                 
               </div>
@@ -389,7 +443,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="category-chain-item">计算机组成原理</a>
+  <a href="/categories/%E7%89%A9%E7%90%86/" class="category-chain-item">物理</a>
   
   
 
@@ -404,7 +458,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E8%AE%A1%E7%BB%84/" class="print-no-link">#计组</a>
+        <a href="/tags/%E7%89%A9%E7%90%86/" class="print-no-link">#物理</a>
       
     </div>
   
@@ -416,8 +470,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>计组期末题目</div>
-      <div>https://meteor041.git.io/2024/12/13/计组期末题目/</div>
+      <div>气体动理论</div>
+      <div>https://meteor041.git.io/2024/12/15/气体动理论/</div>
     </div>
     <div class="license-meta">
       
@@ -429,7 +483,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月13日</div>
+          <div>2024年12月15日</div>
         </div>
       
       
@@ -461,9 +515,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/12/15/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/" title="气体动理论">
+                      <a href="/2024/12/15/%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/" title="热力学基础">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">气体动理论</span>
+                        <span class="hidden-mobile">热力学基础</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -471,8 +525,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/" title="离散数学-图论">
-                        <span class="hidden-mobile">离散数学-图论</span>
+                      <a href="/2024/12/13/%E8%AE%A1%E7%BB%84%E6%9C%9F%E6%9C%AB%E9%A2%98%E7%9B%AE/" title="计组期末题目">
+                        <span class="hidden-mobile">计组期末题目</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

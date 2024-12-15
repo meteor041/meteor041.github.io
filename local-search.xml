@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>热力学基础</title>
+    <link href="/2024/12/15/%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/"/>
+    <url>/2024/12/15/%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/</url>
+    
+    <content type="html"><![CDATA[<h1 id="热力学基础">热力学基础</h1><h1 id="热力学第一定律">热力学第一定律</h1><p><span class="math inline">\(Q=\Delta E+A\)</span></p><p><span class="math inline">\(Q&gt;0:系统吸热;\DeltaE&gt;0:系统内能增加;A&gt;0:系统对外界作正功\)</span></p><h1 id="气体的摩尔热容量">气体的摩尔热容量</h1><h2 id="热容">热容</h2><p><span class="math inline">\(C=\lim_{\Delta T\rightarrow0}{\dfrac{\Delta Q}{\Delta T} }=\dfrac{dQ}{dT}\)</span></p><p>比热容<span class="math inline">\(C_b=\dfrac{dQ}{mdT}\)</span>:单位质量物质T升高一度所吸收的Q</p><p>摩尔热容<span class="math inline">\(C_m=\dfrac{dQ}{\nudT}\)</span>:1mol物质T升高一度所吸收的Q</p><h2 id="定容摩尔热容量c_vm">定容摩尔热容量<span class="math inline">\(C_{V,m}\)</span></h2><p><span class="math inline">\(C_{V,m}=\dfrac{(dQ)_V}{\nudT}\)</span></p><p><span class="math inline">\(dQ=dE+PdV,dV=0\RightarrowC_{V,m}=\dfrac{(dQ)_V}{dT}=\dfrac{dE}{dT}\)</span></p><p><span class="math inline">\(E=\dfrac{i}{2}RT\RightarrowC_{V,m}=\dfrac{i}{2}R\)</span></p><h2 id="定压摩尔热容量c_pm">定压摩尔热容量<span class="math inline">\(C_{P,m}\)</span></h2><p><span class="math inline">\(C_{P,m}=\dfrac{(dQ)_P}{dT}=(\dfrac{dE}{dT})_P+P(\dfrac{dV}{dT})_P=\dfrac{i}{2}R+R\)</span></p><p>单原子分子, $i = 3, C_{V,m}=3R/2, C_{P,m}=5R/2 <span class="math inline">\(,双原子分子,\)</span> i = 5, C_{V,m}=5R/2, C_{P.m}=7R/2 ,$ 多原子分子,$ i= 6, C_{V,m}=6R/2= 3R, C_{P.m}= 4R$</p><p><strong>迈耶公式</strong>:<span class="math inline">\(C_{P,m}=C_{V,m}+R\)</span></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>物理</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>物理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>气体动理论</title>
+    <link href="/2024/12/15/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/"/>
+    <url>/2024/12/15/%E6%B0%94%E4%BD%93%E5%8A%A8%E7%90%86%E8%AE%BA/</url>
+    
+    <content type="html"><![CDATA[<h1 id="理想气体压强公式">理想气体压强公式</h1><hr><h2 id="理想气体压强公式定量推导">理想气体压强公式定量推导</h2><ul><li><p>前提条件:N个同类气体分子处于平衡态,封闭在边长为<span class="math inline">\(l_1,l_2,l_3\)</span>的全反射壁容器内</p></li><li><p>一个分子(质量<span class="math inline">\(\mu=m_0\)</span>,速率<span class="math inline">\(v_i\)</span>)碰壁一次给器壁的冲量<span class="math inline">\(2\mu v_{ix}\)</span>,面光滑<span class="math inline">\(\rightarrow\)</span>在<span class="math inline">\(y,z\)</span>方向冲量为0</p></li><li><p>两次碰撞所需时间间隔:<span class="math inline">\(\dfrac{2l_1}{v_{ix}}\)</span>,该分子单位时间内与器壁碰撞的次数<span class="math inline">\(M=\dfrac{ v_{ix} }{2 l_1}\)</span></p></li><li><p><span class="math display">\[\begin{aligned}&amp;I=\sum^n_{i=1}2\mu v_{ix} \cdot\dfrac{v_{ix}}{2l_1}=\dfrac{\mu}{l_1}\sum^N_{i=1}v_{ix}^2\\&amp;\therefore I=\dfrac{\mu N}{l_1}\cdot\dfrac{v_{ix}^2+v_{2x}^2+\cdots+v_{Nx}^2}{N}\\&amp;\therefore I=\dfrac{\mu N}{l_1}\cdot \overline {v_x^2}=\dfrac{\muN}{l_1}\cdot \dfrac{\overline {v^2}}{3}\\\end{aligned}\]</span></p></li><li><p><span class="math inline">\(P=\dfrac{F}{A_1}=\dfrac{I}{A_1}=\dfrac{\muN\overline {v^2}/3l_1}{l_2 l_3}=\dfrac{N\mu\overline{v^2}}{3l_1l_2l_3}=\dfrac{1}{3}\rho\overline{v^2}(\rho=\dfrac{N\mu}{V},V=l_1l_2l_3)\)</span></p></li><li><p>分子平均平动动能<span class="math inline">\(\overline{\varepsilon_{平} }=\dfrac{1}{2}\mu\overline {v^2}\)</span>,因此<span class="math inline">\(P=\dfrac{2}{3}n\overline {\varepsilon_{平}}\)</span>(<font color="red">理想气体压强公式</font>)</p></li></ul><p><img src="image-20241215201214070.png" alt="例题"> <span class="math display">\[\begin{aligned}(1)&amp;I=2\mu v=1.2\times 10^{-24}N\cdot s\\(2)&amp;M=\dfrac{1}{\Delta t}=\dfrac{v}{2l_1}\\&amp;单位时间内碰A壁的分子数为K=M\times \dfrac{N}{3}=\dfrac{vN}{6l_1}\\&amp;N=\dfrac{K}{l_2l_3}=\dfrac{vN}{6V}=\dfrac{n}{6}v=3.33\times10^{27}\\(3)&amp;P=I\times M=4\times 10^3Pa\end{aligned}\]</span></p><h2 id="分子碰撞">分子碰撞</h2><h3 id="分子模型">分子模型</h3><p>无相互作用的刚性球</p><h3 id="碰撞频率">碰撞频率</h3><p>一个分子单位时间内所受<font color="cornflowerblue">碰撞</font>的平均次数</p><p><span class="math inline">\(\overlinev=\sqrt{\dfrac{8kT}{\pi\mu}},\overline Z=\sqrt2\pi d^2\overlinevn=4d^2n\sqrt{\dfrac{\pi kT}{\mu}}\)</span></p><h3 id="平均自由程">平均自由程</h3><p><span class="math inline">\(\overline \lambda=\dfrac{\overlinev}{\overline z}=\dfrac{1}{\sqrt{2}\pi d^2n}=\dfrac{kT}{\sqrt{2}\pid^2P}\)</span></p><p>对一定量气体,体积一定时,<span class="math inline">\(\lambda\)</span>与温度<span class="math inline">\(T\)</span>无关</p><h2 id="温度公式">温度公式</h2><ul><li>宏观:<span class="math inline">\(P=nkT\)</span></li><li>微观:<span class="math inline">\(P=\dfrac{2}{3}n\overline\varepsilon_{平}\)</span></li></ul><p><span class="math inline">\(\overline\varepsilon_{平}=\dfrac{1}{2}\mu\overline{v^2}=\dfrac{3}{2}kT\)</span></p><p><span class="math inline">\(T=\dfrac{2}{3}\dfrac{\overline\varepsilon_{平}}{k}=\dfrac{1}{3}\dfrac{\mu\overline{v^2}}{k}\)</span></p><p>方均根速率<span class="math inline">\(\sqrt{ \overline{v^2}}=\sqrt{\dfrac{3kT}{\mu}}\)</span></p><h2 id="阿伏伽德罗定律">阿伏伽德罗定律</h2><p>宏观压强公式:<span class="math inline">\(P=nkT\RightarrowP,T同则n同\)</span></p><p>标准状态下,<span class="math inline">\(n=\dfrac{P}{kT}=\dfrac{1.013\times10^5}{1.38\times 10^{-23}\times 273.15}=2.688\times10^{25}m^{-3}\)</span></p><p><span class="math inline">\(N_A=n\cdot V_{mol}=6.02\times10^{23}m^{-3}\)</span></p><h2 id="道尔顿分压定律">道尔顿分压定律</h2><p>混合气体的压强等于组成混合气体的各组成分的分压强之和</p><h1 id="能量均分定理">能量均分定理</h1><h2 id="运动自由度">运动自由度</h2><p>决定物体空间位置所需独立坐标的数目</p><p>一般分子总自由度<span class="math inline">\(i=t+r+s\)</span></p><p>其中:<span class="math inline">\(t\)</span>-平动自由度,<span class="math inline">\(r\)</span>-转动自由度,<span class="math inline">\(s\)</span>-振动自由度(一般可忽略)</p><ul><li>单原子分子:<span class="math inline">\(i=t=3\)</span></li><li>刚性双原子分子:<span class="math inline">\(i=t+r=3+2=5\)</span></li><li>刚性多原子分子:<span class="math inline">\(i=t+r=3+3=6\)</span></li></ul><h2 id="能量按自由度的均分定理">能量按自由度的均分定理</h2><p><span class="math inline">\(\overline{\varepsilon_{平}}=\dfrac{3}{2}kT\)</span></p><p><span class="math inline">\(\dfrac{1}{2}k\overline{v_x^2}=\dfrac{1}{2}k\overline{v_y^2}=\dfrac{1}{2}k\overline{v_z^2}=\dfrac{1}{2}k(\dfrac{1}{3}\overline{v^2})\)</span></p><p><strong>能量均分定理</strong>:在温度为T的热平衡态下,物质分子的每个自由度都具有相同的平均动能<span class="math inline">\(\dfrac{kT}{2}\)</span></p><p>分子平均<font color="red">总动能</font><span class="math inline">\(\overline {\varepsilon_{平}}=\dfrac{1}{2}kT=\dfrac{1}{2}kT(t+r+s)\)</span></p><p>分子平均<font color="red">总能量</font>:<span class="math inline">\(\overline {\varepsilon_{平}}=\dfrac{1}{2}kT(t+r+2s)\)</span></p><ul><li>单原子分子:<span class="math inline">\(\overline{\varepsilon}=\dfrac{3}{2}kT\)</span></li><li>刚性双原子分子:<span class="math inline">\(\overline{\varepsilon}=\dfrac{5kT}{2}\)</span></li><li>刚性多原子分子:<span class="math inline">\(\overline{\varepsilon}=\dfrac{6kT}{2}\)</span></li></ul><h2 id="理想气体的内能">理想气体的内能</h2><ol type="1"><li>内能包含分子热运动能量;分子间势能和分子内势能;分子内部,原子内部运动能量;电场能,磁场能</li><li>气体内能:<span class="math inline">\(分子动能,分子间势能和分子内原子间的势能的总和\)</span></li><li>理想气体:理想气体分子间势能=0,理想气体内能=所有分子的平动+转动+振动动能+振动势能(=分子数*每个理气分子平均总能量)</li></ol><p><span class="math inline">\(E=N\overline \varepsilon=N\cdot\dfrac{i}{2}kT=\nu\cdot \dfrac{i}{2}RT=\dfrac{i}{2}PV(N=\nu\cdotN_A)\)</span></p><p><img src="image-20241215220756900.png" alt="例题"> <span class="math display">\[\begin{aligned}&amp;\overline{\varepsilon_{平(He)} }=\overline{\varepsilon_{平(H_2)}}=\dfrac{3}{2}kT\\&amp;\overline{\varepsilon_{k(He)} }=\dfrac{3}{2}kT\\&amp;\overline{\varepsilon_{k(H_2)} }=\dfrac{5}{2}kT\\&amp;E_{(He)}=\dfrac{m}{M}\cdot \dfrac{3}{2}kT=2\cdot \dfrac{3}{2}kT\\&amp;E_{(H_2)}=\dfrac{m}{M}\cdot \dfrac{5}{2}kT=2\cdot \dfrac{5}{2}kT\\\end{aligned}\]</span></p><h1 id="麦克斯韦速率分布律">麦克斯韦速率分布律</h1><h2 id="分布函数">分布函数</h2><p>速率分布函数<span class="math inline">\(f(v)=\lim_{\Deltav\rightarrow 0}\dfrac{\Delta N/N}{\Delta v}=\dfrac{dN}{N\cdot dv}\)</span></p><p>能量分布函数<span class="math inline">\(f(\varepsilon)=\dfrac{dN}{N\cdotd\varepsilon}\)</span></p><p>速度分布函数<span class="math inline">\(f({v})=4\pi v^2f(\vecv)\)</span></p><h2 id="麦克斯韦速度分布律">麦克斯韦速度分布律</h2><p><span class="math inline">\(f(\vec v)=\left(\dfrac{\mu}{2\pikT}\right)^{3/2}\cdot e^{-\dfrac{\mu v^2}{2kT}}\)</span></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>物理</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>物理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>计组期末题目</title>
     <link href="/2024/12/13/%E8%AE%A1%E7%BB%84%E6%9C%9F%E6%9C%AB%E9%A2%98%E7%9B%AE/"/>
     <url>/2024/12/13/%E8%AE%A1%E7%BB%84%E6%9C%9F%E6%9C%AB%E9%A2%98%E7%9B%AE/</url>
