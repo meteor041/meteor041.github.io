@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/image-20241215163122114.png">
 <meta property="article:published_time" content="2024-12-13T01:23:46.000Z">
-<meta property="article:modified_time" content="2024-12-15T11:38:40.719Z">
+<meta property="article:modified_time" content="2024-12-17T07:55:47.202Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="discrete mathematics">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.9k 字
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          13 分钟
+          17 分钟
         
       </span>
     
@@ -289,7 +289,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年12月15日 晚上
+                    本文最后更新于 2024年12月17日 下午
                   
                 
               </p>
@@ -311,9 +311,9 @@ V\)</span>,则称<span class="math inline">\(G=&lt;V,E,\Phi&gt;\)</span>为<font
 e_n$是图G的边，并且vi-1 和vi 分别是 $e_i <span class="math inline">\(的起点和终点 (\)</span> i=1, 2, …, n <span class="math inline">\()，则称序列\)</span>v_0 e_1 v_1 e_2 … v_{n-1} e_n
 v_n <span class="math inline">\(为图 G 中从\)</span> v_0 <span class="math inline">\(至\)</span>v_n<span class="math inline">\(的路径，\)</span>n$ 称为该路径的长度。</p>
 <p><span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span></p>
-<p><span class="math inline">\(\begin{cases}v_0,v_1,\dots,v_n\in
-V\\e_1,e_2,\dots,e_n\in
-E\\\color{red}{e_i:关联v_{i-1}和v_i}\end{cases}\)</span></p>
+<p><span class="math inline">\(\begin{cases} v_0,v_1,\dots,v_n\in V\\
+e_1,e_2,\dots,e_n\in E\\ \color{red}{e_i:关联v_{i-1}和v_i}
+\end{cases}\)</span></p>
 <p><strong>简单路径</strong>:边不重复的路径(迹)</p>
 <p><strong>简单回路</strong>:边不重复的回路</p>
 <p><strong>基本路径</strong>:点不重复的路径(路径)</p>
@@ -425,6 +425,47 @@ v_{m-1}e_mv_m\)</span>是<span class="math inline">\(G\)</span>中的半路径,�
 <p>如果有向图G有子图G',使得对于G'的任意结点v,皆有<span class="math inline">\(d_{G&#39;}^+&gt;0\)</span>,则G有有向回路</p>
 <h3 id="非循环图的充分必要条件">非循环图的充分必要条件</h3>
 <p>图G不是非循环图当且仅当G有子图G',使得对于G'的任意结点v,皆有<span class="math inline">\(d_{G&#39;}(v)&gt;1\)</span></p>
+<h2 id="dijkstra算法">Dijkstra算法</h2>
+<p>求从结点s至t的加权距离</p>
+<ol type="1">
+<li><span class="math inline">\(\lambda(s)\leftarrow 0,\forall v\in
+V-\{s\},\lambda(v)\leftarrow \infty,\{p\leftarrow \sharp\}\)</span></li>
+<li><span class="math inline">\(T\leftarrow V\)</span></li>
+<li><span class="math inline">\(任取u\in\{u&#39;|若v&#39;\in T,
+则\lambda(u&#39;)\leq \lambda(v&#39;)\}\)</span></li>
+<li><span class="math inline">\(如果u=t,则\{p\leftarrow
+pt\sharp\}算法结束\)</span></li>
+<li><span class="math inline">\(对于以u为起点的每条边e,如果e的终点v\in
+T并且\lambda(v)&gt;\lambda(u)+W(e),则\lambda(v)\leftarrow
+\lambda(u)+W(e)\)</span></li>
+<li><span class="math inline">\(T\leftarrow T-\{u\},\{p\leftarrow
+pu\Rightarrow\}且转向3.\)</span></li>
+</ol>
+<p>当算法结束时,<font color="red"><span class="math inline">\(\lambda(t)即为s至t的加权距离,p即为从s至t的最短距离\)</span></font></p>
+<h1 id="欧拉图和哈密顿图">欧拉图和哈密顿图</h1>
+<h2 id="欧拉图定义">欧拉图定义</h2>
+<p>图中包含所有边的简单开路径称为图的<font color="red">欧拉路径</font></p>
+<p>图中包含其所有边的简单闭路径称为图的<font color="red">欧拉闭路</font></p>
+<p>每个结点都是<font color="red">偶结点</font>(度为偶数的结点)的无向图称为<font color="red">欧拉图</font></p>
+<p>每个结点的出度和入度都相等的有向图称为<font color="red">欧拉有向图</font></p>
+<h2 id="欧拉定理">欧拉定理</h2>
+<h3 id="定理1">定理1</h3>
+<p>设G为连通无向图,G是欧拉图 iff G有欧拉闭路</p>
+<h3 id="定理2">定理2</h3>
+<p><span class="math inline">\(设G=&lt;V,E,\Psi&gt;为连通无向图,v_1,v_2\in
+V且v_1\neq v_2,则G有一条从v_1到v_2的欧拉路径 iff
+G恰有两个奇结点v_1,v_2\)</span></p>
+<h3 id="定理3">定理3</h3>
+<p>设G为弱连通的有向图,G是欧拉有向图 iff G有欧拉闭路</p>
+<h3 id="定理4">定理4</h3>
+<p>设G为弱连通的有向图,<span class="math inline">\(v_1,v_2\)</span>为G的两个不同结点</p>
+<p>G有一条从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>的欧拉路径 iff <span class="math inline">\(d_{G^+}(v_1)=d_{G^-}(v_1)+1,d_{G^+}(v_2)=d_{G^-}(v_2)-1\)</span></p>
+<h3 id="定理5">定理5</h3>
+<p>如果<span class="math inline">\(G_1,G_2\)</span>为<font color="red">可运算/font&gt;(<span class="math inline">\(如果e\in E_1\wedge
+E_2,则\Psi_1(e)=\Psi_2(e)\)</span>)的欧拉图,则<span class="math inline">\(G_1\oplus G_2\)</span>是欧拉图</font></p>
+<h2 id="hamilton回路">Hamilton回路</h2>
+<p>回路C是图G的生成子图,则称C为G的<font color="red">Hamilton回路</font></p>
+<h1 id="图的矩阵表示">图的矩阵表示</h1>
 
                 
               </div>
