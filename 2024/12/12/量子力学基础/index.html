@@ -41,8 +41,10 @@
 <meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241213013349225.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241217102807615.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241217111535416.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241219092920486.png">
+<meta property="og:image" content="https://meteor041.git.io/2024/12/12/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/image-20241219101830817.png">
 <meta property="article:published_time" content="2024-12-12T01:50:04.000Z">
-<meta property="article:modified_time" content="2024-12-17T03:25:05.650Z">
+<meta property="article:modified_time" content="2024-12-19T02:44:32.777Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="物理">
 <meta name="twitter:card" content="summary_large_image">
@@ -241,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k 字
+          3.7k 字
         
       </span>
     
@@ -252,7 +254,7 @@
         
         
         
-          25 分钟
+          31 分钟
         
       </span>
     
@@ -303,7 +305,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年12月17日 上午
+                    本文最后更新于 2024年12月19日 上午
                   
                 
               </p>
@@ -597,11 +599,13 @@ a,\\\infty,x&lt;0或者x&gt;a\end{cases}\)</span></p>
 e^{iEt/\hbar}\)</span></p>
 <p><span class="math inline">\(\varphi=\varphi_0\cdot
 e^{iPx/\hbar}\)</span>称为<strong>振幅函数</strong></p>
-<p><span class="math inline">\(\Psi\Psi^*=\left|\Psi\right|^2=\varphi\varphi^*=|\varphi|^2\)</span>-仅为空间位置函数</p>
+<p>玻尔诠释:粒子出现在某处的概率密度等于该时刻,该点波函数的模的平方,<span class="math inline">\(\Psi\Psi^*=\left|\Psi\right|^2=\varphi\varphi^*=|\varphi|^2\)</span>-仅为空间位置函数</p>
 <p><strong>结论</strong>:自由粒子波函数的模方对应波强</p>
 <p><span class="math inline">\(\dfrac{dN}{dV}\propto
 N\Psi\Psi^*\Rightarrow \Psi\Psi^*\propto\dfrac{dN}{NdV}\)</span></p>
 <p><span class="math inline">\(\Psi\Psi^*\)</span>物理意义:是任一时刻t,在空间r点处单位体积中发现粒子的概率</p>
+<p>波函数满足的数学条件:<font color="blue">单值,有限,连续</font></p>
+<p>归一化条件:<span class="math inline">\(\int|\Psi(\vec{r},t)|^2dV=1\)</span></p>
 <h2 id="不确定原理">不确定原理</h2>
 <p>微观粒子的坐标和动量是一对不能同时取确定值的物理量</p>
 <p><span class="math inline">\(\Delta x\cdot \Delta
@@ -629,6 +633,7 @@ E为激发态的能级宽度,\tau为激发态的平均寿命\Leftarrow \tau\Delt
 \nu=\dfrac{\Delta p}{m}\geq \dfrac{1}{m}\dfrac{\hbar}{2\Delta
 r}\approx5.8\times 10^{5}m/s\)</span></p>
 <h1 id="薛定谔方程">薛定谔方程</h1>
+<h2 id="薛定谔方程-1">薛定谔方程</h2>
 <p><span class="math inline">\(i\hbar\dfrac{\delta}{\delta
 t}\Psi=[-\dfrac{\hbar}{2m}(\dfrac{\delta^2}{\delta^2
 x}+\dfrac{\delta^2}{\delta^2 y}+\dfrac{\delta^2}{\delta^2
@@ -636,6 +641,68 @@ z})+U(x,y,z,t)]\Psi=[-\dfrac{\hbar}{2m}\bigtriangledown^2+U(x,y,z,t)]\Psi=\hat
 H(x,y,z,t)\Psi\)</span></p>
 <p><span class="math inline">\(\bigtriangledown^2\)</span>拉普拉斯算符</p>
 <p><span class="math inline">\(\hat H\)</span>哈密顿算符</p>
+<p><strong>定态薛定谔方程</strong></p>
+<p><span class="math inline">\(\begin{cases}\triangledown^2\Psi+\dfrac{2m}{\hbar}(E-U)\Psi\\\hat
+H(R)\Psi=E\Psi\\f(t)=\exp(-\dfrac{i}{\hbar}Et)\end{cases}\)</span></p>
+<p><font color="red"><span class="math inline">\(\triangledown^2\Psi+\dfrac{2m}{\hbar^2}(E-U)\Psi=0,\dfrac{1}{L^2}=[(角波数)^2]\)</span></font></p>
+<p><strong>推导过程</strong> <span class="math display">\[
+\begin{aligned}
+&amp;E=\dfrac{p^2}{2m}\\
+&amp;\omega=\dfrac{E}{\hbar},k=\dfrac{p}{\hbar}\\
+&amp;\Psi(r,t)=(2\pi \hbar)^{-3/2}e^{i(p\cdot r -E t)/\hbar}(3)\\
+&amp;(3)式求导:i\hbar \dfrac{\delta}{\delta t}\Psi_p=E\Psi_p\\
+&amp;(3)求散度:-i\hbar \triangledown^2\Psi_p=\dfrac{p^2}{2m}\Psi_p\\
+&amp;(1),(3),(5)得到:i\hbar \dfrac{\delta}{\delta t}
+\Psi^2=-\dfrac{\hbar^2}{2m}\triangledown^2\Psi_p
+\end{aligned}
+\]</span></p>
+<h2 id="量子态叠加原理">量子态叠加原理</h2>
+<p><span class="math inline">\(Y=C_1\Psi_1+C_2\Psi_2+\cdots+C_n\Psi_n=\sum_IC_i\Psi(i)\)</span></p>
+<p>波函数叠加的概率密度<span class="math inline">\(\neq\)</span>波函数概率密度的叠加</p>
+<h2 id="一维定态薛定谔方程的应用">一维定态薛定谔方程的应用</h2>
+<p><strong>一维无限深方势阱</strong>:<span class="math inline">\(U(x)=\begin{cases}0,0\leq x\leq a\\\infty,其他
+\end{cases}\)</span>,阱宽为a</p>
+<p>阱外:<span class="math inline">\([-\dfrac{\hbar^2}{2m}\dfrac{d^2}{dx^2}+\infty]\Psi_e(x)=E\Psi_e(x)\Rightarrow
+\Psi_e(x)=0\)</span>,势阱外粒子出现的概率密度<span class="math inline">\(|\Psi_e|^2\)</span>为0</p>
+<p>阱内:<span class="math inline">\(-\dfrac{\hbar}{2m}\dfrac{d^2}{dx^2}\Psi_i(x)=E\Psi_i(x)\)</span></p>
+<p><span class="math inline">\(k^2=\dfrac{2mE}{h^2},则\dfrac{d^2\Psi}{dx^2}=-k^2\Psi_i\)</span><font color="red">一维简谐振动的特征方程</font></p>
+<p><span class="math inline">\(设\Psi_i(x)=C\sin(kx+\delta)\)</span></p>
+<p>波函数在阱壁上的连续条件:<span class="math inline">\(\begin{cases}\Psi_i(0)=\Psi_e(0)=0\Rightarrow
+C\sin\delta =0,\delta =0\\  \Psi_i(a)=\Psi_e(a)=0\Rightarrow C\sin
+ka,k=n\pi/a\end{cases}\)</span></p>
+<p>归一化C:<span class="math inline">\(\int^{+\infty}_{-\infty}|\Psi(x)|^2dx=\in^a_0C^2\sin^2
+\dfrac{n\pi x}{a}dx=1\Rightarrow C=\sqrt{\dfrac{2}{a}}\)</span></p>
+<p><font color="red"><span class="math inline">\(\Psi(x,t)=\begin{cases}\sqrt{\dfrac{2}{a}}\sin\dfrac{n\pi}{a}x\cdot
+e^{-\dfrac{i}{\hbar}Et},0\leq x\leq
+a\\0,x&lt;0,x&gt;a\end{cases}\)</span></font></p>
+<p><strong>运动特征:</strong></p>
+<ol type="1">
+<li>粒子的能量是量子化的<span class="math inline">\(k=\dfrac{n\pi}{a},k^2=\dfrac{2mE}{\hbar^2}\Rightarrow
+E_n=\dfrac{k^2\hbar^2}{2m}=\dfrac{n^2\pi^2\hbar^2}{2ma^2}=n^2E_1,E_1=\dfrac{\pi\hbar^2}{2ma^2}\)</span></li>
+<li>势阱中粒子出现的概率随着位置变化:<span class="math inline">\(\rho_n(x)=|\Psi_n(x)|^2=\dfrac{2}{a}\sin^2
+\dfrac{n\pi}{a}x\)</span></li>
+<li>粒子波函数是德布罗意波的驻波<span class="math inline">\(\Psi(x,t)=\sqrt{\dfrac{2}{a}}\sin kx\cdot
+e^{-\dfrac{i}{\hbar}Et}\)</span></li>
+</ol>
+<figure>
+<img src="image-20241219092920486.png" srcset="/img/loading.gif" lazyload alt="image-20241219092920486">
+<figcaption aria-hidden="true">image-20241219092920486</figcaption>
+</figure>
+<blockquote>
+<p>在<span class="math inline">\([-\dfrac{a}{2},\dfrac{a}{2}]的势阱中,距离x=0最近的概率密度最大位置为?\)</span></p>
+</blockquote>
+<p><span class="math inline">\(|(N+\dfrac{1}{2})\dfrac{a}{14}-\dfrac{a}{2}|=|\dfrac{2N+1-14}{28}|=|\dfrac{2N-13}{28}|\geq\dfrac{1}{28}\)</span></p>
+<p><img src="image-20241219101830817.png" srcset="/img/loading.gif" lazyload alt="image-20241219101830817"> <span class="math display">\[
+\begin{aligned}
+&amp;E_n=n^2E_1=\dfrac{n^2\pi^2\hbar^2}{2ma^2}\\
+&amp;\Delta
+E=E_n-E_{n-1}=(2n-1)E_1=(2n-1)\dfrac{\pi^2\hbar^2}{2ma^2}=(2n-1)\\
+&amp;势阱宽度为1.0\times 10^{-2}m,\Delta E=6.02\times
+10^{-34}m=(2n-1)3.37\times 10^{-15}eV\\
+&amp;势阱宽度为1.0\times 10^{-10}m,\Delta E=6.02\times
+10^{-18}m=(2n-1)\times 37.7eV
+\end{aligned}
+\]</span></p>
 
                 
               </div>

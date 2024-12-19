@@ -19,16 +19,16 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="图论 图 \(设V和E是有限集合,且V\neq \emptyset\) (1)如果\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为无向图 (2)如果\(\Phi:E\rightarrow V\times V\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为有向图 路">
+    <meta name="description" content="图论 图论的基本概念 图 \(设V和E是有限集合,且V\neq \emptyset\) (1)如果\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为无向图 (2)如果\(\Phi:E\rightarrow V\times V\),则称\(G&#x3D;&lt;V,E,\Phi&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="离散数学-图论">
 <meta property="og:url" content="https://meteor041.git.io/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="图论 图 \(设V和E是有限集合,且V\neq \emptyset\) (1)如果\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为无向图 (2)如果\(\Phi:E\rightarrow V\times V\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为有向图 路">
+<meta property="og:description" content="图论 图论的基本概念 图 \(设V和E是有限集合,且V\neq \emptyset\) (1)如果\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为无向图 (2)如果\(\Phi:E\rightarrow V\times V\),则称\(G&#x3D;&lt;V,E,\Phi&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/image-20241215163122114.png">
 <meta property="article:published_time" content="2024-12-13T01:23:46.000Z">
-<meta property="article:modified_time" content="2024-12-17T07:55:47.202Z">
+<meta property="article:modified_time" content="2024-12-18T07:40:42.745Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="discrete mathematics">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2.3k 字
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          17 分钟
+          20 分钟
         
       </span>
     
@@ -289,7 +289,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年12月17日 下午
+                    本文最后更新于 2024年12月18日 下午
                   
                 
               </p>
@@ -298,6 +298,7 @@
               <div class="markdown-body">
                 
                 <h1 id="图论">图论</h1>
+<h1 id="图论的基本概念">图论的基本概念</h1>
 <h2 id="图">图</h2>
 <p><span class="math inline">\(设V和E是有限集合,且V\neq
 \emptyset\)</span></p>
@@ -305,6 +306,39 @@
 V\}\)</span>,则称<span class="math inline">\(G=&lt;V,E,\Phi&gt;\)</span>为<font color="red">无向图</font></p>
 <p>(2)如果<span class="math inline">\(\Phi:E\rightarrow V\times
 V\)</span>,则称<span class="math inline">\(G=&lt;V,E,\Phi&gt;\)</span>为<font color="red">有向图</font></p>
+<h2 id="特殊图">特殊图</h2>
+<ol type="1">
+<li>结点都是<font color="red">孤立点</font>的图:零图</li>
+<li>一阶零图称为<font color="red">平凡图</font></li>
+<li>所有结点的度均为自然数d的无向图称为<font color="red">d度正则图</font></li>
+<li><span class="math inline">\(n\in
+I_+\)</span>,如果n阶简单无向图是n-1度正则图,则称为<font color="red">完全无向图</font></li>
+<li><span class="math inline">\(n\in
+I_+\)</span>,若n阶简单有向图的每个结点的入度和出度均为n-1,则称为<font color="red">完全有向图</font></li>
+</ol>
+<h2 id="同构">同构</h2>
+<p><span class="math inline">\(设G=&lt;V,E,\Psi&gt;,G&#39;=&lt;V&#39;,E&#39;,\Psi&#39;&gt;\)</span>,如果存在双射<span class="math inline">\(f:V\rightarrow V&#39;\)</span>,双射<span class="math inline">\(g:E\rightarrow E&#39;\)</span>,使得对于任意<span class="math inline">\(e\in E及v_1,v_2\in V\)</span></p>
+<p><span class="math inline">\(\Psi&#39;(g(e))=\begin{cases}&lt;f(v_1),f(v_2)&gt;,
+若\Psi(e)=&lt;v_1,v_2&gt;\\\{f(v_1),f(v_2)\},
+若\Psi(e)=\{v_1,v_2\}\end{cases}\)</span></p>
+<p>则称G与G'同构,记作<span class="math inline">\(G\cong
+G&#39;\)</span></p>
+<p>两个同构的图必有相同的<font color="red">结点个数和边数</font>,并且:</p>
+<ol type="1">
+<li>双射f保持结点之间的邻接关系</li>
+<li>双射g保持边之间的邻接关系</li>
+</ol>
+<h1 id="子图">子图</h1>
+<h2 id="由点集导出的子图">由点集导出的子图</h2>
+<p>设图<span class="math inline">\(G=&lt;V,E,\Psi&gt;,V&#39;\subseteq
+V且V&#39;\neq \emptyset\)</span>,以<span class="math inline">\(V&#39;\)</span>为结点集合以所有起点和终点均在<span class="math inline">\(V&#39;\)</span>中的边为边集合的G的子图称为由<span class="math inline">\(V&#39;\)</span>导出的G的子图,记作<span class="math inline">\(G[V&#39;]\)</span></p>
+<h2 id="相交可运算">相交,可运算</h2>
+<ol type="1">
+<li><span class="math inline">\(e\in E\cap
+E&#39;时均有\Psi(e)=\Psi&#39;(e)\)</span>,则称G与G'可运算</li>
+<li>如果<span class="math inline">\(V\cap V&#39;=E\cap
+E&#39;=\emptyset\)</span>,则称<span class="math inline">\(G,G&#39;\)</span>不相交</li>
+</ol>
 <h1 id="路径">路径</h1>
 <h2 id="定义"><strong>定义</strong></h2>
 <p>设 $nN，v_0, v_1…，v_n <span class="math inline">\(是图G的结点，\)</span>e_1, e_2, …,
@@ -461,8 +495,8 @@ G恰有两个奇结点v_1,v_2\)</span></p>
 <p>设G为弱连通的有向图,<span class="math inline">\(v_1,v_2\)</span>为G的两个不同结点</p>
 <p>G有一条从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>的欧拉路径 iff <span class="math inline">\(d_{G^+}(v_1)=d_{G^-}(v_1)+1,d_{G^+}(v_2)=d_{G^-}(v_2)-1\)</span></p>
 <h3 id="定理5">定理5</h3>
-<p>如果<span class="math inline">\(G_1,G_2\)</span>为<font color="red">可运算/font&gt;(<span class="math inline">\(如果e\in E_1\wedge
-E_2,则\Psi_1(e)=\Psi_2(e)\)</span>)的欧拉图,则<span class="math inline">\(G_1\oplus G_2\)</span>是欧拉图</font></p>
+<p>如果<span class="math inline">\(G_1,G_2\)</span>为<font color="red">可运算</font>(<span class="math inline">\(如果e\in E_1\wedge
+E_2,则\Psi_1(e)=\Psi_2(e)\)</span>)的欧拉图,则<span class="math inline">\(G_1\oplus G_2\)</span>是欧拉图</p>
 <h2 id="hamilton回路">Hamilton回路</h2>
 <p>回路C是图G的生成子图,则称C为G的<font color="red">Hamilton回路</font></p>
 <h1 id="图的矩阵表示">图的矩阵表示</h1>
