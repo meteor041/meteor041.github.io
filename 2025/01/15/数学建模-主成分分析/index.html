@@ -19,24 +19,24 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="\(f(v)&#x3D;4\pi\left(\dfrac{m}{2\pi kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v^2\) 最概然速率推导 \(v&#x3D;v_p时,\dfrac{df(v)}{dv}&#x3D;0\) \[ \begin{aligned} \dfrac{df(v)}{dv}|_{v&#x3D;v_p}&amp;&#x3D;\left[8\pi\left(\dfra">
+    <meta name="description" content="PCA是什么? 找新的坐标轴  去中心化 找坐标系  关键概念 协方差: \(cov(x,y)&#x3D;\dfrac{\sum^n_{i&#x3D;1}(x_i-\bar x)(y_i-\bar y)}{n-1}\) 协方差矩阵: \(\begin{aligned}C&amp;&#x3D;\begin{vmatrix}cov(x,x)&amp;cov(x,y)\\cov(x,y)&amp;cov(y,y">
 <meta property="og:type" content="article">
-<meta property="og:title" content="气体分子速率推导">
-<meta property="og:url" content="https://meteor041.git.io/2024/12/29/%E6%B0%94%E4%BD%93%E5%88%86%E5%AD%90%E9%80%9F%E7%8E%87%E6%8E%A8%E5%AF%BC/index.html">
+<meta property="og:title" content="数学建模-主成分分析(PCA)">
+<meta property="og:url" content="https://meteor041.git.io/2025/01/15/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="\(f(v)&#x3D;4\pi\left(\dfrac{m}{2\pi kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v^2\) 最概然速率推导 \(v&#x3D;v_p时,\dfrac{df(v)}{dv}&#x3D;0\) \[ \begin{aligned} \dfrac{df(v)}{dv}|_{v&#x3D;v_p}&amp;&#x3D;\left[8\pi\left(\dfra">
+<meta property="og:description" content="PCA是什么? 找新的坐标轴  去中心化 找坐标系  关键概念 协方差: \(cov(x,y)&#x3D;\dfrac{\sum^n_{i&#x3D;1}(x_i-\bar x)(y_i-\bar y)}{n-1}\) 协方差矩阵: \(\begin{aligned}C&amp;&#x3D;\begin{vmatrix}cov(x,x)&amp;cov(x,y)\\cov(x,y)&amp;cov(y,y">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-12-29T08:55:14.000Z">
-<meta property="article:modified_time" content="2024-12-31T10:19:23.481Z">
+<meta property="article:published_time" content="2025-01-15T04:15:42.000Z">
+<meta property="article:modified_time" content="2025-01-17T03:33:43.660Z">
 <meta property="article:author" content="meteor041">
-<meta property="article:tag" content="物理">
+<meta property="article:tag" content="数学建模">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>气体分子速率推导 - meteor041</title>
+  <title>数学建模-主成分分析(PCA) - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="气体分子速率推导"></span>
+            <span id="subtitle" data-typed-text="数学建模-主成分分析(PCA)"></span>
           
         </div>
 
@@ -213,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-29 16:55" pubdate>
-          2024年12月29日 下午
+        <time datetime="2025-01-15 12:15" pubdate>
+          2025年1月15日 中午
         </time>
       </span>
     
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          254 字
+          540 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          3 分钟
+          5 分钟
         
       </span>
     
@@ -282,12 +282,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">气体分子速率推导</h1>
+            <h1 id="seo-header">数学建模-主成分分析(PCA)</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年12月31日 晚上
+                    本文最后更新于 2025年1月17日 中午
                   
                 
               </p>
@@ -295,41 +295,38 @@
             
               <div class="markdown-body">
                 
-                <p><span class="math inline">\(f(v)=4\pi\left(\dfrac{m}{2\pi
-kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v^2\)</span></p>
-<h2 id="最概然速率推导">最概然速率推导</h2>
-<p><span class="math inline">\(v=v_p时,\dfrac{df(v)}{dv}=0\)</span>
+                <p>PCA是什么?</p>
+<p><strong>找新的坐标轴</strong></p>
+<ol type="1">
+<li>去中心化</li>
+<li>找坐标系</li>
+</ol>
+<h2 id="关键概念">关键概念</h2>
+<p><strong>协方差</strong>:</p>
+<p><span class="math inline">\(cov(x,y)=\dfrac{\sum^n_{i=1}(x_i-\bar
+x)(y_i-\bar y)}{n-1}\)</span></p>
+<p><strong>协方差矩阵</strong>:</p>
+<p><span class="math inline">\(\begin{aligned}C&amp;=\begin{vmatrix}cov(x,x)&amp;cov(x,y)\\cov(x,y)&amp;cov(y,y)\end{vmatrix}\\&amp;=\dfrac{1}{n-1}\begin{bmatrix}x_1&amp;x_2&amp;x_3&amp;x_4\\y_1&amp;y_2&amp;y_3&amp;y_4\end{bmatrix}\begin{bmatrix}x_1&amp;y_1\\x_2&amp;y_2\\x_3&amp;y_3\\x_4&amp;y_4\\\end{bmatrix}\\&amp;=\dfrac{1}{n-1}DD^T\end{aligned}\)</span>
 <span class="math display">\[
 \begin{aligned}
-\dfrac{df(v)}{dv}|_{v=v_p}&amp;=\left[8\pi\left(\dfrac{m}{2\pi
-kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v +
-4\pi\left(\dfrac{m}{2\pi
-kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v^2\cdot(-\dfrac{2mv}{2kT})\right]|{v=v_0}\\
-&amp;=8\pi\left(\dfrac{m}{2\pi
-kT}\right)^{\frac{3}{2}}e^{-\frac{mv_p^2}{2kT}}v_p +
-4\pi\left(\dfrac{m}{2\pi
-kT}\right)^{\frac{3}{2}}e^{-\frac{mv_p^2}{2kT}}v_p^2\cdot(-\dfrac{2mv_p}{2kT})=0\\
-&amp;\therefore v_p=\sqrt{\dfrac{2kT}{m}},其中m为单个分子的质量\\
+C&#39;&amp;=\dfrac{1}{n-1}D&#39;D&#39;^T\\
+&amp;=\dfrac{1}{n-1}RSD(RSD)^T\\
+&amp;=RS\dfrac{1}{n-1}S^TR^T\\
+&amp;=RSS^TR^T\\
+&amp;=RLR^{-1}\\
+L&amp;=SS^T=\begin{bmatrix}a^2&amp;0\\0&amp;b^2\end{bmatrix}
 \end{aligned}
 \]</span></p>
-<h2 id="平均速率">平均速率</h2>
-<p>平均速率即麦克斯韦速率分布函数的期望值 <span class="math display">\[
-\begin{aligned}
-\overline v&amp;=\int^\infty_0vf(v)dv=\int^\infty_0
-4\pi\left(\dfrac{m}{2\pi
-kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v^3dv\\
-&amp;=\sqrt{\dfrac{8kT}{\pi m}}
-\end{aligned}
-\]</span></p>
-<h2 id="方均根速率">方均根速率</h2>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;\overline{v^2}=\int^\infty_0v^2f(v)dv=\int^\infty_0
-4\pi\left(\dfrac{m}{2\pi
-kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v^4dv=\dfrac{3kT}{m}\\
-&amp;\sqrt{\overline{v^2}}=\sqrt{\dfrac{3kT}{m}}\\
-\end{aligned}
-\]</span></p>
+<h2 id="基本过程">基本过程</h2>
+<p>从二维数据入手:</p>
+<ol type="1">
+<li>求出点的中心,将中心移动至坐标原点</li>
+<li>找到一条有着最大投影点到原点距离平方和的线</li>
+<li>PC的特征值为最佳拟合线距离的平方和</li>
+<li>PC奇异值为PC的特征值的平方根</li>
+</ol>
+<h2 id="matlab代码">MATLAB代码</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[V,S,E]</span>=<span class="hljs-title">princa</span><span class="hljs-params">(X)</span></span><br>[m,n]=<span class="hljs-built_in">size</span>(X); <span class="hljs-comment">%计算矩阵的行m和列n</span><br> <br><span class="hljs-comment">%-------------第一步：标准化矩阵-----------------%</span><br>mv=<span class="hljs-built_in">mean</span>(X); <span class="hljs-comment">%计算各变量的均值</span><br>st=std(X); <span class="hljs-comment">%计算各变量的标准差</span><br>X=(X-<span class="hljs-built_in">repmat</span>(mv,m,<span class="hljs-number">1</span>))./<span class="hljs-built_in">repmat</span>(st,m,<span class="hljs-number">1</span>); <span class="hljs-comment">%标准化矩阵X</span><br> <br><span class="hljs-comment">%-------------第二步：计算相关系数矩阵-----------------%</span><br><span class="hljs-comment">% R1=X&#x27;*X/(m-1); %方法一：协方差矩阵计算公式</span><br><span class="hljs-comment">% R2=cov(X);     %方法二：协方差矩阵计算函数</span><br>R=corrcoef(X); <span class="hljs-comment">%方法三：相关系数矩阵函数</span><br> <br><span class="hljs-comment">%-------------第三步：计算特征向量和特征值-----------------%</span><br>[V,D]=eig(R);       <span class="hljs-comment">%计算矩阵R的特征向量矩阵V和特征值矩阵D,特征值由小到大</span><br>V=(<span class="hljs-built_in">rot90</span>(V))&#x27;;      <span class="hljs-comment">%将特征向量矩阵V从大到小排序</span><br>D=<span class="hljs-built_in">rot90</span>(<span class="hljs-built_in">rot90</span>(D));  <span class="hljs-comment">%将特征值矩阵由大到小排序</span><br>E=<span class="hljs-built_in">diag</span>(D);          <span class="hljs-comment">%将特征值矩阵转换为特征值向量</span><br> <br><span class="hljs-comment">%-------------第四步：计算贡献率和累计贡献率-----------------%</span><br>ratio=<span class="hljs-number">0</span>; <span class="hljs-comment">%累计贡献率</span><br><span class="hljs-keyword">for</span> k=<span class="hljs-number">1</span>:n<br>    r=E(k)/sum(E);   <span class="hljs-comment">%第k主成份贡献率</span><br>    ratio=ratio+r;  <span class="hljs-comment">%累计贡献率</span><br>    <span class="hljs-keyword">if</span>(ratio&gt;=<span class="hljs-number">0.9</span>)  <span class="hljs-comment">%取累计贡献率大于等于90%的主成分</span><br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br> <br><span class="hljs-comment">%-------------第五步：计算得分-----------------%</span><br>S=X*V;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -338,32 +335,11 @@ kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v^4dv=\dfrac{3kT}{m}\\
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%89%A9%E7%90%86/" class="category-chain-item">物理</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%89%A9%E7%90%86/" class="print-no-link">#物理</a>
+        <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="print-no-link">#数学建模</a>
       
     </div>
   
@@ -375,8 +351,8 @@ kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v^4dv=\dfrac{3kT}{m}\\
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>气体分子速率推导</div>
-      <div>https://meteor041.git.io/2024/12/29/气体分子速率推导/</div>
+      <div>数学建模-主成分分析(PCA)</div>
+      <div>https://meteor041.git.io/2025/01/15/数学建模-主成分分析/</div>
     </div>
     <div class="license-meta">
       
@@ -388,7 +364,7 @@ kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v^4dv=\dfrac{3kT}{m}\\
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月29日</div>
+          <div>2025年1月15日</div>
         </div>
       
       
@@ -420,18 +396,12 @@ kT}\right)^{\frac{3}{2}}e^{-\frac{mv^2}{2kT}}v^4dv=\dfrac{3kT}{m}\\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/15/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90/" title="数学建模-主成分分析(PCA)">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数学建模-主成分分析(PCA)</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/12/15/%E7%83%AD%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%80/" title="热力学基础">
-                        <span class="hidden-mobile">热力学基础</span>
+                      <a href="/2024/12/29/%E6%B0%94%E4%BD%93%E5%88%86%E5%AD%90%E9%80%9F%E7%8E%87%E6%8E%A8%E5%AF%BC/" title="气体分子速率推导">
+                        <span class="hidden-mobile">气体分子速率推导</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
