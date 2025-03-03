@@ -19,15 +19,15 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="结构分析 表达式 &#x3D; 项 +|- 项 +|- … 项 &#x3D; 因子  因子  … 因子有三种: 常数因子: +|- 常数 表达式因子: +|- (…)  常数 变量因子: +|- x  常数    功能实现本次代码基于训练题给出的代码框架进行增添完善,主要增加实现的功能为:  增加对变量因子和表达式因子的识别,加强对部分符号如”x”,”(“,”)”,”^”等的处理. 修改Parser的parseExp">
+    <meta name="description" content="结构分析 表达式 &#x3D; 项 +|- 项 +|- … 项 &#x3D; 因子  因子  … 因子有三种: 常数因子: +|- 常数 表达式因子: +|- (…) [“^” 常数] 变量因子: +|- x [“^” 常数]    功能实现本次代码基于训练题给出的代码框架进行增添完善,主要增加实现的功能为:  增加对变量因子和表达式因子的识别,加强对部分符号如”x”,”(“,”)”,”^”等的处理. 修改Parse">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象设计第一次作业及评测机思路">
 <meta property="og:url" content="https://meteor041.git.io/2025/03/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%9C%E4%B8%9A%E5%8F%8A%E8%AF%84%E6%B5%8B%E6%9C%BA%E6%80%9D%E8%B7%AF/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="结构分析 表达式 &#x3D; 项 +|- 项 +|- … 项 &#x3D; 因子  因子  … 因子有三种: 常数因子: +|- 常数 表达式因子: +|- (…)  常数 变量因子: +|- x  常数    功能实现本次代码基于训练题给出的代码框架进行增添完善,主要增加实现的功能为:  增加对变量因子和表达式因子的识别,加强对部分符号如”x”,”(“,”)”,”^”等的处理. 修改Parser的parseExp">
+<meta property="og:description" content="结构分析 表达式 &#x3D; 项 +|- 项 +|- … 项 &#x3D; 因子  因子  … 因子有三种: 常数因子: +|- 常数 表达式因子: +|- (…) [“^” 常数] 变量因子: +|- x [“^” 常数]    功能实现本次代码基于训练题给出的代码框架进行增添完善,主要增加实现的功能为:  增加对变量因子和表达式因子的识别,加强对部分符号如”x”,”(“,”)”,”^”等的处理. 修改Parse">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-03T06:05:40.000Z">
-<meta property="article:modified_time" content="2025-03-03T07:27:59.888Z">
+<meta property="article:modified_time" content="2025-03-03T08:08:05.986Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="OO">
 <meta name="twitter:card" content="summary_large_image">
@@ -300,8 +300,8 @@
 <li>项 = 因子 <em> 因子 </em> …</li>
 <li>因子有三种:<ul>
 <li>常数因子: +|- 常数</li>
-<li>表达式因子: +|- (…) <sup><a href="#fn_ 常数" id="reffn_ 常数"> 常数</a></sup></li>
-<li>变量因子: +|- x <sup><a href="#fn_ 常数" id="reffn_ 常数"> 常数</a></sup></li>
+<li>表达式因子: +|- (…) [“^” 常数]</li>
+<li>变量因子: +|- x [“^” 常数]</li>
 </ul>
 </li>
 </ul>
