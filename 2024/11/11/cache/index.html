@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="Cache 概念 数据块:Cache和主存被划分为大小相等的块,称为Cache块(行)  Cache块数小于主存中的块数 每块由若干字节组成  标记:每一个Cache数据块有一个标记字段 有效位:每一组Block都有一个有效位,用于指示相应数据块是否包含有效数据 命中率:CPU欲访问的信息已在Cache中的比率称为Cache的命中率,Cache的总命中次数为\(N_c\),访问主">
+    <meta name="description" content="Cache概念数据块:Cache和主存被划分为大小相等的块,称为Cache块(行)  Cache块数小于主存中的块数 每块由若干字节组成  标记:每一个Cache数据块有一个标记字段 有效位:每一组Block都有一个有效位,用于指示相应数据块是否包含有效数据 命中率:CPU欲访问的信息已在Cache中的比率称为Cache的命中率,Cache的总命中次数为$N_c$,访问主存的总次数为$N_m$,命">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cache">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/11/cache/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="Cache 概念 数据块:Cache和主存被划分为大小相等的块,称为Cache块(行)  Cache块数小于主存中的块数 每块由若干字节组成  标记:每一个Cache数据块有一个标记字段 有效位:每一组Block都有一个有效位,用于指示相应数据块是否包含有效数据 命中率:CPU欲访问的信息已在Cache中的比率称为Cache的命中率,Cache的总命中次数为\(N_c\),访问主">
+<meta property="og:description" content="Cache概念数据块:Cache和主存被划分为大小相等的块,称为Cache块(行)  Cache块数小于主存中的块数 每块由若干字节组成  标记:每一个Cache数据块有一个标记字段 有效位:每一组Block都有一个有效位,用于指示相应数据块是否包含有效数据 命中率:CPU欲访问的信息已在Cache中的比率称为Cache的命中率,Cache的总命中次数为$N_c$,访问主存的总次数为$N_m$,命">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/11/cache/image-20241113085451710.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/11/cache/image-20241113103805490.png">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.6k 字
         
       </span>
     
@@ -304,268 +304,245 @@
             
               <div class="markdown-body">
                 
-                <h1 id="cache">Cache</h1>
-<h2 id="概念">概念</h2>
-<p><strong>数据块</strong>:Cache和主存被划分为大小相等的块,称为Cache块(行)</p>
+                <h1 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><strong>数据块</strong>:Cache和主存被划分为大小相等的块,称为Cache块(行)</p>
 <ul>
 <li>Cache块数小于主存中的块数</li>
 <li>每块由若干字节组成</li>
 </ul>
 <p><strong>标记</strong>:每一个Cache数据块有一个标记字段</p>
 <p><strong>有效位</strong>:每一组Block都有一个有效位,用于指示相应数据块是否包含有效数据</p>
-<p><strong>命中率</strong>:CPU欲访问的信息已在Cache中的比率称为Cache的命中率,Cache的总命中次数为<span class="math inline">\(N_c\)</span>,访问主存的总次数为<span class="math inline">\(N_m\)</span>,命中率为<span class="math inline">\(H=\frac{N_c}{N_c+N_m}\)</span></p>
-<h2 id="映射">映射</h2>
-<h3 id="直接映射">直接映射</h3>
-<ul>
+<p><strong>命中率</strong>:CPU欲访问的信息已在Cache中的比率称为Cache的命中率,Cache的总命中次数为$N_c$,访问主存的总次数为$N_m$,命中率为$H=\frac{N_c}{N_c+N_m}$</p>
+<h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><h3 id="直接映射"><a href="#直接映射" class="headerlink" title="直接映射"></a>直接映射</h3><ul>
 <li>Cache行号=主存块号 mod Cache总行数</li>
-<li>假设Cache共有<span class="math inline">\(2^c\)</span>行,主存有<span class="math inline">\(2^m\)</span>块,在直接映射方式中,主存的第0块,第<span class="math inline">\(2^c\)</span>块,第<span class="math inline">\(2^{c+1}\)</span>块映射到Cache的第0行</li>
-<li>给每个Cache行设置一个长为<span class="math inline">\(t=m-c\)</span>的标记(tag)</li>
+<li>假设Cache共有$2^c$行,主存有$2^m$块,在直接映射方式中,主存的第0块,第$2^c$块,第$2^{c+1}$块映射到Cache的第0行</li>
+<li>给每个Cache行设置一个长为$t=m-c$的标记(tag)</li>
 </ul>
 <p>直接映射的<strong>地址结构</strong>为:</p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>标记</th>
 <th>Cache 行号</th>
 <th>块内地址</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td></td>
+</tr>
 </tbody>
 </table>
-<h4 id="访存过程">访存过程</h4>
-<ol type="1">
+</div>
+<h4 id="访存过程"><a href="#访存过程" class="headerlink" title="访存过程"></a>访存过程</h4><ol>
 <li>根据访存地址中间的c位(Cache行号)找到对应的cache行</li>
 <li>将对应Cache行中的标记和主存地址的高t位标记进行比较</li>
-<li>若相等且有效位为1,则访问Cache<strong>"命中"</strong>,此时根据主存地址中低位的块内地址,在对应的Cache行中存取信息</li>
+<li>若相等且有效位为1,则访问Cache<strong>“命中”</strong>,此时根据主存地址中低位的块内地址,在对应的Cache行中存取信息</li>
 <li>若不想等或有效位为0,则不命中,此时CPU从主存中读出该地址所在的一块信息送到对应的Cache行中,将有效位置1,并将标记设置为地址中的高t位,同时将该地址中的内容送CPU</li>
 </ol>
-<h4 id="计算">计算</h4>
-<p><span class="math inline">\(Cache块数=Cache容量/Block大小\)</span></p>
-<p><span class="math inline">\(主存块数=主存容量/Block大小\)</span></p>
-<p><span class="math inline">\(主存分区=主存块数/Cache块数\)</span></p>
-<p><span class="math inline">\(主存地址位数=主存块数对应位数+块内地址位置\)</span></p>
-<figure>
-<img src="image-20241113085451710.png" srcset="/img/loading.gif" lazyload alt="image-20241113085451710">
-<figcaption aria-hidden="true">image-20241113085451710</figcaption>
-</figure>
+<h4 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h4><p>$Cache块数=Cache容量/Block大小$</p>
+<p>$主存块数=主存容量/Block大小$</p>
+<p>$主存分区=主存块数/Cache块数$</p>
+<p>$主存地址位数=主存块数对应位数+块内地址位置$</p>
+<p><img src="image-20241113085451710.png" srcset="/img/loading.gif" lazyload alt="image-20241113085451710"></p>
 <p><strong>缺点</strong>:</p>
-<ol type="1">
+<ol>
 <li>其他地方有空闲的Cache块,但不能使用</li>
 </ol>
-<h3 id="全相联映射">全相联映射</h3>
-<ul>
+<h3 id="全相联映射"><a href="#全相联映射" class="headerlink" title="全相联映射"></a>全相联映射</h3><ul>
 <li>主存中的每一块都可以装入Cache中的任何位置</li>
 <li>同时与所有tag进行比较,需要N个比较器</li>
 <li>数据访问和标记并行执行</li>
 </ul>
-<h4 id="地址结构">地址结构</h4>
+<h4 id="地址结构"><a href="#地址结构" class="headerlink" title="地址结构"></a>地址结构</h4><div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>标记</th>
 <th>块内地址</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td></td>
+</tr>
 </tbody>
 </table>
-<h4 id="访存过程-1">访存过程</h4>
-<ol type="1">
-<li>将主存地址的高位标记(位数=<span class="math inline">\(log_2\)</span>主存块数)与Cache各行的标记进行比较</li>
+</div>
+<h4 id="访存过程-1"><a href="#访存过程-1" class="headerlink" title="访存过程"></a>访存过程</h4><ol>
+<li>将主存地址的高位标记(位数=$log_2$主存块数)与Cache各行的标记进行比较</li>
 <li>若有一个相等且对应有效位为1,则命中,此时根据块内地址从该Cache行中取出信息</li>
 <li>若都不想等,则不命中,此时CPU从主存中读出该地址所在的一块信息送到Cache的<strong>任意一个空闲行</strong>中,将有效位置1,并设置标记,同时将该地址中的内容送CPU</li>
 </ol>
-<figure>
-<img src="image-20241113103805490.png" srcset="/img/loading.gif" lazyload alt="image-20241113103805490">
-<figcaption aria-hidden="true">image-20241113103805490</figcaption>
-</figure>
-<figure>
-<img src="image-20241111151042631.png" srcset="/img/loading.gif" lazyload alt="image-20241111151042631">
-<figcaption aria-hidden="true">image-20241111151042631</figcaption>
-</figure>
+<p><img src="image-20241113103805490.png" srcset="/img/loading.gif" lazyload alt="image-20241113103805490"> </p>
+<p><img src="image-20241111151042631.png" srcset="/img/loading.gif" lazyload alt="image-20241111151042631"></p>
 <p><strong>优点</strong>:</p>
-<ol type="1">
+<ol>
 <li>存储空间充分利用,命中率高,灵活性</li>
 </ol>
 <p><strong>缺点</strong>:</p>
-<ol type="1">
+<ol>
 <li>查找标记最慢</li>
 </ol>
 <p><strong>缺点</strong>:</p>
-<ol type="1">
+<ol>
 <li>主存地址中的块地址要与Cache中所有Tag比较后,才能知晓是否不命中</li>
 </ol>
-<h3 id="组相联映射可放到特定分组">组相联映射(可放到特定分组)</h3>
-<ul>
+<h3 id="组相联映射-可放到特定分组"><a href="#组相联映射-可放到特定分组" class="headerlink" title="组相联映射(可放到特定分组)"></a>组相联映射(可放到特定分组)</h3><ul>
 <li>将Cache分为Q个大小相等的组,每个主存块可以装入固定组的任意一行,即组间采用直接映射,组内采用全相联映射的方式</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>标记</th>
 <th>组号</th>
 <th>块内地址</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td></td>
+</tr>
 </tbody>
 </table>
-<h4 id="计算-1">计算</h4>
-<figure>
-<img src="image-20241113085633270.png" srcset="/img/loading.gif" lazyload alt="image-20241113085633270">
-<figcaption aria-hidden="true">image-20241113085633270</figcaption>
-</figure>
-<p>2路组相连映射--2块为1组,分4组</p>
-<h2 id="缺失处理">缺失处理</h2>
-<figure>
-<img src="image-20241113092733659.png" srcset="/img/loading.gif" lazyload alt="image-20241113092733659">
-<figcaption aria-hidden="true">image-20241113092733659</figcaption>
-</figure>
-<h2 id="替换处理">替换处理</h2>
-<figure>
-<img src="image-20241113092832343.png" srcset="/img/loading.gif" lazyload alt="image-20241113092832343">
-<figcaption aria-hidden="true">image-20241113092832343</figcaption>
-</figure>
-<h3 id="替换策略">替换策略</h3>
-<h4 id="lru近期最少使用算法">LRU(近期最少使用算法)</h4>
-<ul>
+</div>
+<h4 id="计算-1"><a href="#计算-1" class="headerlink" title="计算"></a>计算</h4><p><img src="image-20241113085633270.png" srcset="/img/loading.gif" lazyload alt="image-20241113085633270"></p>
+<p>2路组相连映射—2块为1组,分4组</p>
+<h2 id="缺失处理"><a href="#缺失处理" class="headerlink" title="缺失处理"></a>缺失处理</h2><p><img src="image-20241113092733659.png" srcset="/img/loading.gif" lazyload alt="image-20241113092733659"></p>
+<h2 id="替换处理"><a href="#替换处理" class="headerlink" title="替换处理"></a>替换处理</h2><p><img src="image-20241113092832343.png" srcset="/img/loading.gif" lazyload alt="image-20241113092832343"></p>
+<h3 id="替换策略"><a href="#替换策略" class="headerlink" title="替换策略"></a>替换策略</h3><h4 id="LRU-近期最少使用算法"><a href="#LRU-近期最少使用算法" class="headerlink" title="LRU(近期最少使用算法)"></a>LRU(近期最少使用算法)</h4><ul>
 <li>LRU算法对每个位设置一个计数器(LRU替换位)</li>
 <li>计数器位数与组大小相关,二路时有1位LRU位(要区分组内的计数器大小,有0,1两个数即可),四路时有2位LRU位(可以有0,1,2,3四个计数)</li>
 <li>命中时,所命中的行的计数器清零,比其低的计数器加1,其余不变</li>
 <li>未命中且有空闲行时,新装入的行的计数器置0,其余全加1</li>
-<li>未命中且无空闲行时,计数值为<span class="math inline">\(2^{组数}-1\)</span>(就是计数最大)的行的信息块被替换,新装入的行的计数器置0,其余全加1</li>
-<li>这种计数方式保证了所有的行的计数在0到<span class="math inline">\(2^{组数}-1\)</span>之间,并各不相同</li>
+<li>未命中且无空闲行时,计数值为$2^{组数}-1$(就是计数最大)的行的信息块被替换,新装入的行的计数器置0,其余全加1</li>
+<li>这种计数方式保证了所有的行的计数在0到$2^{组数}-1$之间,并各不相同</li>
 </ul>
-<h4 id="fifo先进先出算法">FIFO(先进先出算法)</h4>
-<p>容易实现,但未遵循程序访问的局部性原理,最早进入的主存块可能是目前经常要用的</p>
-<h4 id="lfu最不经常使用算法">LFU(最不经常使用算法)</h4>
-<p>将一段时间内被访问次数最少的Cache行换出,每行也设置一个计数器,新行装入后从0开始计数,每访问1次,被访问的行计数器加1,需要替换时比较各特定行的计数值,将计数值最小的行换出</p>
-<h4 id="rand随机算法">RAND(随机算法)</h4>
-<p>随机的确定替换的Cache行,实现简单</p>
-<figure>
-<img src="image-20241113105108759.png" srcset="/img/loading.gif" lazyload alt="image-20241113105108759">
-<figcaption aria-hidden="true">image-20241113105108759</figcaption>
-</figure>
-<h1 id="相关计算问题">相关计算问题</h1>
-<h2 id="直接映射-1">直接映射</h2>
-<ul>
+<h4 id="FIFO-先进先出算法"><a href="#FIFO-先进先出算法" class="headerlink" title="FIFO(先进先出算法)"></a>FIFO(先进先出算法)</h4><p>容易实现,但未遵循程序访问的局部性原理,最早进入的主存块可能是目前经常要用的</p>
+<h4 id="LFU-最不经常使用算法"><a href="#LFU-最不经常使用算法" class="headerlink" title="LFU(最不经常使用算法)"></a>LFU(最不经常使用算法)</h4><p>将一段时间内被访问次数最少的Cache行换出,每行也设置一个计数器,新行装入后从0开始计数,每访问1次,被访问的行计数器加1,需要替换时比较各特定行的计数值,将计数值最小的行换出</p>
+<h4 id="RAND-随机算法"><a href="#RAND-随机算法" class="headerlink" title="RAND(随机算法)"></a>RAND(随机算法)</h4><p>随机的确定替换的Cache行,实现简单</p>
+<p><img src="image-20241113105108759.png" srcset="/img/loading.gif" lazyload alt="image-20241113105108759"></p>
+<h1 id="相关计算问题"><a href="#相关计算问题" class="headerlink" title="相关计算问题"></a>相关计算问题</h1><h2 id="直接映射-1"><a href="#直接映射-1" class="headerlink" title="直接映射"></a>直接映射</h2><ul>
 <li>主存地址空间大小,Cache地址空间大小,块大小一般为已知条件</li>
-<li><span class="math inline">\(主存块数=\frac{主存地址空间大小}{块大小}=2^m\)</span></li>
-<li><span class="math inline">\(Cache行数=\frac{Cache地址空间大小}{块大小}=2^c\)</span></li>
+<li>$主存块数=\frac{主存地址空间大小}{块大小}=2^m$</li>
+<li>$Cache行数=\frac{Cache地址空间大小}{块大小}=2^c$</li>
 <li>主存地址结构为:</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>标记</th>
 <th>Cache行号</th>
 <th>块内地址</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><span class="math inline">\(m-c\)</span>位</td>
-<td><span class="math inline">\(c\)</span>位</td>
-<td><span class="math inline">\(k\)</span>位</td>
+<tr>
+<td>$m-c$位</td>
+<td>$c$位</td>
+<td>$k$位</td>
 </tr>
 </tbody>
 </table>
-<h2 id="全相联映射-1">全相联映射</h2>
-<ul>
+</div>
+<h2 id="全相联映射-1"><a href="#全相联映射-1" class="headerlink" title="全相联映射"></a>全相联映射</h2><ul>
 <li>主存地址空间大小,Cache地址空间大小,块大小一般为已知条件</li>
-<li><span class="math inline">\(主存块数=\frac{主存地址空间大小}{块大小}=2^m\)</span></li>
-<li><span class="math inline">\(Cache行数=\frac{Cache地址空间大小}{块大小}=2^c\)</span></li>
+<li>$主存块数=\frac{主存地址空间大小}{块大小}=2^m$</li>
+<li>$Cache行数=\frac{Cache地址空间大小}{块大小}=2^c$</li>
 <li>主存地址结构为:</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>标记</th>
 <th>块内地址</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><span class="math inline">\(m-k\)</span>位</td>
-<td><span class="math inline">\(k\)</span>位</td>
+<tr>
+<td>$m-k$位</td>
+<td>$k$位</td>
 </tr>
 </tbody>
 </table>
-<h2 id="组相联映射">组相联映射</h2>
-<ul>
+</div>
+<h2 id="组相联映射"><a href="#组相联映射" class="headerlink" title="组相联映射"></a>组相联映射</h2><ul>
 <li>主存地址空间大小,Cache地址空间大小,组数,块大小一般为已知条件</li>
-<li><span class="math inline">\(主存块数=\frac{主存地址空间大小}{块大小}=2^m\)</span></li>
-<li><span class="math inline">\(Cache行数=\frac{Cache地址空间大小}{块大小}=2^c\)</span></li>
-<li><span class="math inline">\(组数=2^r\)</span></li>
-<li><span class="math inline">\(主存组内块数=2^{m-r}\)</span></li>
+<li>$主存块数=\frac{主存地址空间大小}{块大小}=2^m$</li>
+<li>$Cache行数=\frac{Cache地址空间大小}{块大小}=2^c$</li>
+<li>$组数=2^r$</li>
+<li>$主存组内块数=2^{m-r}$</li>
 <li>主存地址结构为:</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>标记</th>
 <th>组号</th>
 <th>块内地址</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><span class="math inline">\(m-r\)</span>位</td>
-<td><span class="math inline">\(r\)</span>位</td>
-<td><span class="math inline">\(k\)</span>位</td>
+<tr>
+<td>$m-r$位</td>
+<td>$r$位</td>
+<td>$k$位</td>
 </tr>
 </tbody>
 </table>
-<h2 id="cache总容量计算">Cache总容量计算</h2>
-<blockquote>
+</div>
+<h2 id="Cache总容量计算"><a href="#Cache总容量计算" class="headerlink" title="Cache总容量计算"></a>Cache总容量计算</h2><blockquote>
 <p>假设某个计算机的主存地址空间大小为256MB,按字节编址,其数据Cache有8个Cache行,行长为64B</p>
 <p>(1)若不考虑用于Cache的一致维护性位(脏位)和替换算法控制位,并且采用直接映射方式,则该数据Cache的总容量为多少?</p>
-</blockquote>
-<blockquote>
 <p>每个Cache行对应一个标记项(包括有效位,脏位,替换算法位,标记位)</p>
 </blockquote>
 <p>由于按字节寻址:</p>
-<p><span class="math inline">\(块内地址位数=\log_2(64)=6\)</span></p>
-<p><span class="math inline">\(Cache行号位数=\log_2(8)=3\)</span></p>
-<p><span class="math inline">\(标记位数=\log_2(256\times
-10^{20})-6-3=19\)</span></p>
+<p>$块内地址位数=\log_2(64)=6$</p>
+<p>$Cache行号位数=\log_2(8)=3$</p>
+<p>$标记位数=\log_2(256\times 10^{20})-6-3=19$</p>
 <p>主存地址空间结构为</p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>标记</th>
 <th>Cache行号</th>
 <th>块内地址</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>19位</td>
 <td>3位</td>
 <td>6位</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>本题每行(总共8行)的存储器容量为:</p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>有效位</th>
 <th>标记</th>
 <th>每行存储的数据</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>1bit</td>
 <td>19bit</td>
 <td>64B=512bit</td>
 </tr>
 </tbody>
 </table>
-<p>因此:总容量为<span class="math inline">\((1+19+512)\times
-8=4256\)</span>位</p>
+</div>
+<p>因此:总容量为$(1+19+512)\times 8=4256$位</p>
 
                 
               </div>

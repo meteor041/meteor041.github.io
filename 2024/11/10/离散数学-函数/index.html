@@ -19,18 +19,18 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="部分函数  如果从集合X到Y的二元关系f是&quot;单值&quot;的,即f满足以下条件: 若\(&lt;x,y_1&gt;\in f\wedge &lt;x,y_2&gt;\in f,则y_1&#x3D;y_2\) f为X到Y的部分函数  从X到Y的函数个数:\(\#(Y^X)&#x3D;(\#Y)^{\#X}\) 定义域 \(dom(f)&#x3D;\{x\in X|y\in Y使得y&#x3D;f(x)\}\) 若\(x \">
+    <meta name="description" content="部分函数 如果从集合X到Y的二元关系f是”单值”的,即f满足以下条件: 若$\in f\wedge \in f,则y_1&#x3D;y_2$ f为X到Y的部分函数  从X到Y的函数个数:$\sharp (Y^X)&#x3D;(\sharp Y)^{\sharp X}$ 定义域$dom(f)&#x3D;\{x\in X|y\in Y使得y&#x3D;f(x)\}$ 若$x \in  dom(f)$,则f在x处有定义,记为$f(x)\dow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="离散数学-函数">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/10/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="部分函数  如果从集合X到Y的二元关系f是&quot;单值&quot;的,即f满足以下条件: 若\(&lt;x,y_1&gt;\in f\wedge &lt;x,y_2&gt;\in f,则y_1&#x3D;y_2\) f为X到Y的部分函数  从X到Y的函数个数:\(\#(Y^X)&#x3D;(\#Y)^{\#X}\) 定义域 \(dom(f)&#x3D;\{x\in X|y\in Y使得y&#x3D;f(x)\}\) 若\(x \">
+<meta property="og:description" content="部分函数 如果从集合X到Y的二元关系f是”单值”的,即f满足以下条件: 若$\in f\wedge \in f,则y_1&#x3D;y_2$ f为X到Y的部分函数  从X到Y的函数个数:$\sharp (Y^X)&#x3D;(\sharp Y)^{\sharp X}$ 定义域$dom(f)&#x3D;\{x\in X|y\in Y使得y&#x3D;f(x)\}$ 若$x \in  dom(f)$,则f在x处有定义,记为$f(x)\dow">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/10/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%87%BD%E6%95%B0/image-20241106151958714.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/10/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%87%BD%E6%95%B0/image-20241106153418485.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/10/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%87%BD%E6%95%B0/image-20241115093739220.png">
 <meta property="article:published_time" content="2024-11-10T13:55:43.000Z">
-<meta property="article:modified_time" content="2024-11-30T07:27:19.361Z">
+<meta property="article:modified_time" content="2025-03-03T07:52:06.766Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="discrete mathematics">
 <meta name="twitter:card" content="summary_large_image">
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.1k 字
         
       </span>
     
@@ -240,7 +240,7 @@
         
         
         
-          13 分钟
+          10 分钟
         
       </span>
     
@@ -291,7 +291,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月30日 下午
+                    本文最后更新于 2025年3月3日 下午
                   
                 
               </p>
@@ -299,216 +299,125 @@
             
               <div class="markdown-body">
                 
-                <h2 id="部分函数">部分函数</h2>
-<blockquote>
-<p>如果从集合X到Y的二元关系f是"单值"的,即f满足以下条件:</p>
-<p>若<span class="math inline">\(&lt;x,y_1&gt;\in f\wedge
-&lt;x,y_2&gt;\in f,则y_1=y_2\)</span></p>
+                <h2 id="部分函数"><a href="#部分函数" class="headerlink" title="部分函数"></a>部分函数</h2><blockquote>
+<p>如果从集合X到Y的二元关系f是”单值”的,即f满足以下条件:</p>
+<p>若$<x,y_1>\in f\wedge <x,y_2>\in f,则y_1=y_2$</x,y_2></x,y_1></p>
 <p>f为X到Y的部分函数</p>
 </blockquote>
-<p>从X到Y的函数个数:<span class="math inline">\(\#(Y^X)=(\#Y)^{\#X}\)</span></p>
-<h2 id="定义域">定义域</h2>
-<p><span class="math inline">\(dom(f)=\{x\in X|y\in
-Y使得y=f(x)\}\)</span></p>
-<p>若<span class="math inline">\(x
-\in  dom(f)\)</span>,则f在x处有定义,记为<span class="math inline">\(f(x)\downarrow\)</span>,否则称f在x处无定义,<span class="math inline">\(f(x)\uparrow\)</span>,显然<span class="math inline">\(dom(f)\subseteq X\)</span></p>
-<ol type="1">
-<li><span class="math inline">\(若\text{dom}(f)=X,则记f为X到Y的全函数,f为X到Y的函数,记作f:X\rightarrow
-Y\)</span></li>
-<li><span class="math inline">\(若\text{dom}(f)\subset
-X,则称f为X到Y的严格部分函数\)</span></li>
-<li><span class="math inline">\(若\text{ran}(f)=Y,则称f为X到Y上的部分函数\)</span></li>
-<li><span class="math inline">\(若\text{ran}(f)\subset
-Y,则称f为X到Y内的部分函数\)</span></li>
-<li>若对任意<span class="math inline">\(x_1,x_2\in
-\text{dom}(f),当x_1\neq x_2时,皆有f(x_1)\neq f(x_2)\)</span></li>
+<p>从X到Y的函数个数:$\sharp (Y^X)=(\sharp Y)^{\sharp X}$</p>
+<h2 id="定义域"><a href="#定义域" class="headerlink" title="定义域"></a>定义域</h2><p>$dom(f)=\{x\in X|y\in Y使得y=f(x)\}$</p>
+<p>若$x \in  dom(f)$,则f在x处有定义,记为$f(x)\downarrow$,否则称f在x处无定义,$f(x)\uparrow$,显然$dom(f)\subseteq X$</p>
+<ol>
+<li>$若\text{dom}(f)=X,则记f为X到Y的全函数,f为X到Y的函数,记作f:X\rightarrow Y$</li>
+<li>$若\text{dom}(f)\subset X,则称f为X到Y的严格部分函数$</li>
+<li>$若\text{ran}(f)=Y,则称f为X到Y上的部分函数$</li>
+<li>$若\text{ran}(f)\subset Y,则称f为X到Y内的部分函数$</li>
+<li>若对任意$x_1,x_2\in \text{dom}(f),当x_1\neq x_2时,皆有f(x_1)\neq f(x_2)$</li>
 </ol>
-<h2 id="限制">限制</h2>
-<p>设函数<span class="math inline">\(f:X\rightarrow Y,A\subseteq
-X\)</span>,则<span class="math inline">\(f\cap (A\times
-Y)\)</span>是从A到Y的函数,则称f在A上的限制,记作<span class="math inline">\(f|_A\)</span>,又称<span class="math inline">\(f\)</span>是<span class="math inline">\(f_A\)</span>到X的延拓</p>
-<p><span class="math inline">\(f|_A=\{&lt;x,y&gt;|&lt;x,y&gt;\in F\wedge
-x\in A\}\)</span></p>
-<h2 id="定理">定理</h2>
-<p><span class="math inline">\(1)f|U(A)|=U\{f[A]|A\in A\}\)</span></p>
-<p><span class="math inline">\(任取y\in f[U\mathscr A],\therefore
-\exists x\in \cup \mathscr A使得f(x)=y\\\)</span></p>
-<p><span class="math inline">\(\exists A\in\mathscr A,x\in A\therefore
-y\in f(A),\therefore y\in \cup\{f[A]|A\in\mathscr A\},\therefore
-f[\cup\mathscr A]\subseteq \cup\{f[A]|A\in\mathscr A\}\)</span></p>
-<p><span class="math inline">\(任取A\in\mathscr A,A\subseteq \cup
-\mathscr A,f[A]\subseteq f[U\mathscr A]\)</span></p>
-<p><span class="math inline">\(\cup \{f[A]|A\in A\}\subseteq
-f[\cup\mathscr A]\)</span></p>
-<p>4)<span class="math inline">\(B=\emptyset,f^{-1}[\cap \mathscr
-B]=\cap\{f^{-1}[B]|B\in\mathscr B\}\)</span></p>
-<figure>
-<img src="image-20241106151958714.png" srcset="/img/loading.gif" lazyload alt="image-20241106151958714">
-<figcaption aria-hidden="true">image-20241106151958714</figcaption>
-</figure>
-<h2 id="定理-1">定理</h2>
-<p>若f为从集合X到Y的部分函数且<span class="math inline">\(A\subseteq
-X\)</span>,则:</p>
-<p><span class="math inline">\(dom(f|_A)=A\cap dom\ f\)</span></p>
-<p><span class="math inline">\(ran(f|_A)=f[A]\)</span></p>
-<p>若<span class="math inline">\(A\subseteq dom(f)\)</span>,则<span class="math inline">\(f|_A\)</span>为全函数</p>
-<h2 id="思考题">思考题</h2>
-<figure>
-<img src="image-20241106153418485.png" srcset="/img/loading.gif" lazyload alt="image-20241106153418485">
-<figcaption aria-hidden="true">image-20241106153418485</figcaption>
-</figure>
-<h1 id="函数的复合">函数的复合</h1>
-<p><span class="math inline">\(g\cdot f\)</span>定义为:</p>
-<p><span class="math inline">\(\{&lt;x,z&gt;|x\in X\wedge z\in Z\wedge
-\exists y(y\in Y\wedge y=f(x)\wedge z=g(y))\}\)</span></p>
-<h2 id="定理1">定理1</h2>
-<p>1)<span class="math inline">\(dom(g\cdot f)=f^{-1}[dom
-g]\)</span></p>
-<p>2)<span class="math inline">\(ran(g\cdot f)=g[ranf]\)</span></p>
-<p>3)若f,g都是全函数,<span class="math inline">\(g\cdot
-f\)</span>也是全函数</p>
-<h2 id="定理2">定理2</h2>
-<p><span class="math inline">\(h\cdot(g\cdot f)=(h\cdot g)\cdot
-f\)</span></p>
-<h1 id="特殊性质的函数与逆函数">特殊性质的函数与逆函数</h1>
-<h2 id="自然映射">自然映射</h2>
-<p><span class="math inline">\(\phi=\{&lt;x,[x]_R&gt;|x\in
-A\}\)</span></p>
-<h2 id="定理-2">定理</h2>
-<p><span class="math inline">\(若g\cdot f是满射,则g是满射\)</span></p>
-<p><span class="math inline">\(1)ran\ g\subseteq Z,g[ran\ f]=g[Y]=ran\
-g\)</span></p>
-<p><span class="math inline">\(g[ran\ f]=ran(g\cdot f)\)</span></p>
-<p><span class="math inline">\(由于g\cdot\ f为满射,ran(g\cdot
-f)=Z\)</span></p>
-<p><span class="math inline">\(\therefore Z\subseteq ran\ g\)</span></p>
-<p><span class="math inline">\(\therefore Z=ran\
-g\)</span>,即g为满射</p>
-<p>2)<span class="math inline">\(g\cdot f是单射,则f是单射\)</span></p>
-<p>3)<span class="math inline">\(若g\cdot
-f是双射,则g是满射且f是单射\)</span></p>
+<h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2><p>设函数$f:X\rightarrow Y,A\subseteq X$,则$f\cap (A\times Y)$是从A到Y的函数,则称f在A上的限制,记作$f|_A$,又称$f$是$f_A$到X的延拓</p>
+<p>$f|_A=\{<x,y>|<x,y>\in F\wedge x\in A\}$</x,y></x,y></p>
+<h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p>$1)f|U(A)|=U\{f[A]|A\in A\}$</p>
+<p>$任取y\in f[U\mathscr A],\therefore \exists x\in \cup \mathscr A使得f(x)=y\$</p>
+<p>$\exists A\in\mathscr A,x\in A\therefore y\in f(A),\therefore y\in \cup\{f[A]|A\in\mathscr A\},\therefore f[\cup\mathscr A]\subseteq \cup\{f[A]|A\in\mathscr A\}$</p>
+<p>$任取A\in\mathscr A,A\subseteq \cup \mathscr A,f[A]\subseteq f[U\mathscr A]$</p>
+<p>$\cup \{f[A]|A\in A\}\subseteq f[\cup\mathscr A]$</p>
+<p>4)$B=\emptyset,f^{-1}[\cap \mathscr B]=\cap\{f^{-1}[B]|B\in\mathscr B\}$</p>
+<p><img src="image-20241106151958714.png" srcset="/img/loading.gif" lazyload alt="image-20241106151958714"></p>
+<h2 id="定理-1"><a href="#定理-1" class="headerlink" title="定理"></a>定理</h2><p>若f为从集合X到Y的部分函数且$A\subseteq X$,则:</p>
+<p>$dom(f|_A)=A\cap dom\ f$</p>
+<p>$ran(f|_A)=f[A]$</p>
+<p>若$A\subseteq dom(f)$,则$f|_A$为全函数</p>
+<h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><p><img src="image-20241106153418485.png" srcset="/img/loading.gif" lazyload alt="image-20241106153418485"></p>
+<h1 id="函数的复合"><a href="#函数的复合" class="headerlink" title="函数的复合"></a>函数的复合</h1><p>$g\cdot f$定义为:</p>
+<p>$\{<x,z>|x\in X\wedge z\in Z\wedge \exists y(y\in Y\wedge y=f(x)\wedge z=g(y))\}$</x,z></p>
+<h2 id="定理1"><a href="#定理1" class="headerlink" title="定理1"></a>定理1</h2><p>1)$dom(g\cdot f)=f^{-1}[dom g]$</p>
+<p>2)$ran(g\cdot f)=g[ranf]$</p>
+<p>3)若f,g都是全函数,$g\cdot f$也是全函数</p>
+<h2 id="定理2"><a href="#定理2" class="headerlink" title="定理2"></a>定理2</h2><p>$h\cdot(g\cdot f)=(h\cdot g)\cdot f$</p>
+<h1 id="特殊性质的函数与逆函数"><a href="#特殊性质的函数与逆函数" class="headerlink" title="特殊性质的函数与逆函数"></a>特殊性质的函数与逆函数</h1><h2 id="自然映射"><a href="#自然映射" class="headerlink" title="自然映射"></a>自然映射</h2><p>$\phi=\{<x,[x]_R>|x\in A\}$</x,[x]_R></p>
+<h2 id="定理-2"><a href="#定理-2" class="headerlink" title="定理"></a>定理</h2><p>$若g\cdot f是满射,则g是满射$</p>
+<p>$1)ran\ g\subseteq Z,g[ran\ f]=g[Y]=ran\ g$</p>
+<p>$g[ran\ f]=ran(g\cdot f)$</p>
+<p>$由于g\cdot\ f为满射,ran(g\cdot f)=Z$</p>
+<p>$\therefore Z\subseteq ran\ g$</p>
+<p>$\therefore Z=ran\ g$,即g为满射</p>
+<p>2)$g\cdot f是单射,则f是单射$</p>
+<p>3)$若g\cdot f是双射,则g是满射且f是单射$</p>
 <p><strong>左满右单</strong></p>
-<h2 id="思考题-1">思考题</h2>
-<p>a)<strong>有多少个从A到B的函数为单射？</strong></p>
-<p><strong>① 当 m</strong> <span class="math inline">\(\leq\)</span><strong>n时，有<span class="math inline">\(p^m_n=\frac{n!}{(n-m)!}\)</span>个单射；</strong></p>
-<p><strong>② 当 m &gt; n时，有0个单射</strong></p>
+<h2 id="思考题-1"><a href="#思考题-1" class="headerlink" title="思考题"></a>思考题</h2><p>a)<strong>有多少个从A到B的函数为单射？</strong></p>
+<p>  <strong>① 当 m</strong> $\leq$<strong>n时，有$p^m_n=\frac{n!}{(n-m)!}$个单射；</strong></p>
+<p>  <strong>② 当 m &gt; n时，有0个单射</strong></p>
 <p><strong>有多少个从A到B的函数为</strong> <strong>满射</strong>？</p>
-<p><strong>① 当 m &lt; n时，有 0 个满射；</strong></p>
-<p><strong>② 当 n = 0且m &gt; 0 时，0个；</strong></p>
-<p><strong>③ 当 n = 0且m = 0时， 1个；</strong></p>
-<p><strong>④ 当 m</strong> <span class="math inline">\(\geq\)</span><strong>n</strong> <span class="math inline">\(\geq\)</span>
-<strong>1时，为第二类Stirling数：</strong></p>
-<p><span class="math inline">\(F(n,m)=\mathop\Sigma\limits^m_{i=0}\frac{(-1)^{m-i}i^n}{i!(m-i)!}\)</span></p>
-<h2 id="第二类斯特林数">第二类斯特林数</h2>
-<p><span class="math inline">\(S(n,m)=S(n-1,m-1)+S(n-1,m)*m\)</span></p>
-<p><span class="math display">\[
-\begin{align}&amp;G_i=i^n\\&amp;G_i=\mathop\Sigma_{j=0}^iC^i_jF_j\\&amp;F_i=\mathop\Sigma_{j=0}^i(-1)^{i-j}C^i_jG_j\\&amp;=\mathop\Sigma^i_{j=0}\frac{i!(-1)^{i-j}j^n}{j!(i-j)!}\\&amp;S(n,m)=\frac{F_m}{m!}=\mathop\Sigma_{i=o}^m\frac{(-1)^{m-i}i^n}{i!(m-i)!}\end{align}
-\]</span></p>
-<h2 id="逆函数">逆函数</h2>
-<p><span class="math inline">\(1)若有g:Y\rightarrow X使得g\cdot
-f=I_X,则称f为左可逆的,\\并称g为f的一个左逆函数\)</span></p>
-<p><span class="math inline">\(2)若有g:Y\rightarrow X使得f\cdot
-g=I_Y,则称f为左可逆的,\\并称g为f的一个右逆函数\)</span></p>
-<h2 id="可逆判定">可逆判定</h2>
-<p><span class="math inline">\(f:X\rightarrow Y为左可逆的\leftrightarrow
-f为单射\)</span></p>
-<p><span class="math inline">\(证明:(充分性)\exists g:Y\rightarrow
-X,使得g\cdot f=I_X\)</span></p>
-<p><span class="math inline">\(I_X是满射,则f是单射\)</span></p>
-<p><span class="math inline">\((必要性)由于f是单射,存在g=f^{-1}\cup
-((Y-ran\ f)\times \{a\}),使得g\cdot f=I_X\)</span></p>
-<p><span class="math inline">\(f:X\rightarrow Y是右可逆的\leftrightarrow
-f为满射\)</span></p>
-<p><span class="math inline">\(\begin{align}证明:&amp;\exists
-g:Y\rightarrow X使得 f\cdot
-g=I_Y\\&amp;由于I_A是双射,f为满射\\&amp;(必要性)设f为满射,\\&amp;i)X=\emptyset,f为满射,Y=ran\
-f=\emptyset,定理显然成立\\&amp;ii)X\neq\emptyset,对于每个有y\in
-Y,令\\&amp;S_y=\{x|x\in X\wedge f(x)=y\}\\&amp;\{S_y|y\in
-Y\}是X的一个划分,对于每个y\in
-Y,都任意取定S_y中唯一的一个元素x_y,显然f(x_y)=y,并令\\&amp;g=\{&lt;y,x_y&gt;|y\in
-Y\}\\&amp;则g显然是一个从Y到X的全函数,且f\cdot
-g=I_Y\end{align}\)</span></p>
-<h2 id="可逆性质">可逆性质</h2>
-<p>以下条件等价:</p>
-<ol type="1">
+<p>   <strong>① 当 m &lt; n时，有 0 个满射；</strong></p>
+<p>   <strong>② 当 n = 0且m &gt; 0 时，0个；</strong></p>
+<p>   <strong>③ 当 n = 0且m = 0时， 1个；</strong></p>
+<p>   <strong>④ 当 m</strong> $\geq$<strong>n</strong> $\geq$ <strong>1时，为第二类Stirling数：</strong></p>
+<p>$F(n,m)=\mathop\Sigma\limits^m_{i=0}\frac{(-1)^{m-i}i^n}{i!(m-i)!}$</p>
+<h2 id="第二类斯特林数"><a href="#第二类斯特林数" class="headerlink" title="第二类斯特林数"></a>第二类斯特林数</h2><p>$S(n,m)=S(n-1,m-1)+S(n-1,m)*m$</p>
+<script type="math/tex; mode=display">
+\begin{align}&G_i=i^n\\&G_i=\mathop\Sigma_{j=0}^iC^i_jF_j\\&F_i=\mathop\Sigma_{j=0}^i(-1)^{i-j}C^i_jG_j\\&=\mathop\Sigma^i_{j=0}\frac{i!(-1)^{i-j}j^n}{j!(i-j)!}\\&S(n,m)=\frac{F_m}{m!}=\mathop\Sigma_{i=o}^m\frac{(-1)^{m-i}i^n}{i!(m-i)!}\end{align}</script><h2 id="逆函数"><a href="#逆函数" class="headerlink" title="逆函数"></a>逆函数</h2><p>$1)若有g:Y\rightarrow X使得g\cdot f=I_X,则称f为左可逆的,\\并称g为f的一个左逆函数$</p>
+<p>$2)若有g:Y\rightarrow X使得f\cdot g=I_Y,则称f为左可逆的,\\并称g为f的一个右逆函数$</p>
+<h2 id="可逆判定"><a href="#可逆判定" class="headerlink" title="可逆判定"></a>可逆判定</h2><p>$f:X\rightarrow Y为左可逆的\leftrightarrow f为单射$</p>
+<p>$证明:(充分性)\exists g:Y\rightarrow X,使得g\cdot f=I_X$</p>
+<p>$I_X是满射,则f是单射$</p>
+<p>$(必要性)由于f是单射,存在g=f^{-1}\cup ((Y-ran\ f)\times \{a\}),使得g\cdot f=I_X$</p>
+<p>$f:X\rightarrow Y是右可逆的\leftrightarrow f为满射$</p>
+<p>$\begin{align}证明:&amp;\exists g:Y\rightarrow X使得 f\cdot g=I_Y\\&amp;由于I_A是双射,f为满射\\&amp;(必要性)设f为满射,\\&amp;i)X=\emptyset,f为满射,Y=ran\ f=\emptyset,定理显然成立\\&amp;ii)X\neq\emptyset,对于每个有y\in Y,令\\&amp;S_y=\{x|x\in X\wedge f(x)=y\}\\&amp;\{S_y|y\in Y\}是X的一个划分,对于每个y\in Y,都任意取定S_y中唯一的一个元素x_y,显然f(x_y)=y,并令\\&amp;g=\{<y,x_y>|y\in Y\}\\&amp;则g显然是一个从Y到X的全函数,且f\cdot g=I_Y\end{align}$</y,x_y></p>
+<h2 id="可逆性质"><a href="#可逆性质" class="headerlink" title="可逆性质"></a>可逆性质</h2><p>以下条件等价:</p>
+<ol>
 <li>f是双射</li>
 <li>f是可逆的</li>
-<li>f的逆关系<span class="math inline">\(f^{-1}\)</span>即为f的逆函数</li>
+<li>f的逆关系$f^{-1}$即为f的逆函数</li>
 </ol>
-<h2 id="定理-3">定理</h2>
-<p><span class="math inline">\(f:X\rightarrow Y,g:Y\rightarrow
-Z都是可逆的\)</span></p>
-<p><span class="math inline">\(则g\cdot f也是可逆的,且(g\cdot
-f)^{-1}=f^{-1}\cdot g^{-1}\)</span></p>
-<h2 id="思考题-2">思考题</h2>
-<p><img src="image-20241115093739220.png" srcset="/img/loading.gif" lazyload alt="image-20241115093739220"> <span class="math display">\[
+<h2 id="定理-3"><a href="#定理-3" class="headerlink" title="定理"></a>定理</h2><p>$f:X\rightarrow Y,g:Y\rightarrow Z都是可逆的$</p>
+<p>$则g\cdot f也是可逆的,且(g\cdot f)^{-1}=f^{-1}\cdot g^{-1}$</p>
+<h2 id="思考题-2"><a href="#思考题-2" class="headerlink" title="思考题"></a>思考题</h2><p><img src="image-20241115093739220.png" srcset="/img/loading.gif" lazyload alt="image-20241115093739220"></p>
+<script type="math/tex; mode=display">
 \begin{align}
-&amp;n=1时,f=I_A,则f为双射\\
-&amp;n&gt;1时,\\
-&amp;f^n=f\cdot f^{n-1}=I_A,故f为满射\\
-&amp;f^n=f^{n-1}\cdot f=I_A,故f为单射\\
-&amp;因此f为双射
-\end{align}
-\]</span></p>
-<p><span class="math display">\[
+&n=1时,f=I_A,则f为双射\\
+&n>1时,\\
+&f^n=f\cdot f^{n-1}=I_A,故f为满射\\
+&f^n=f^{n-1}\cdot f=I_A,故f为单射\\
+&因此f为双射
+\end{align}</script><script type="math/tex; mode=display">
 \begin{align}
-&amp;设n(A)=m,则双射最大数量为m!\\
-&amp;存在0\leq i&lt;j\leq m!,使得f^i=f^j\\
-&amp;因此f^{i}\cdot (f^i)^{-1}=f^k\cdot (f^i)^{-1}\\
-&amp;f^{k-i}=I_A\\
-\end{align}
-\]</span></p>
-<h3 id="定理-4">定理</h3>
-<p><span class="math inline">\(X,Y为二集合且X\neq
-\emptyset,若f:X\rightarrow Y,则下列条件等价:\)</span></p>
-<ol type="1">
-<li><span class="math inline">\(f\)</span>为内射</li>
-<li><span class="math inline">\(f\)</span>左可逆</li>
-<li><span class="math inline">\(f\)</span>可左消去,即对任意集合<span class="math inline">\(Z\)</span>及任意的<span class="math inline">\(g\)</span>:<span class="math inline">\(Z\rightarrow X,h:Z\rightarrow X\)</span>,当<span class="math inline">\(f\cdot g=f\cdot h\)</span>时,皆有<span class="math inline">\(g=h\)</span></li>
+&设n(A)=m,则双射最大数量为m!\\
+&存在0\leq i<j\leq m!,使得f^i=f^j\\
+&因此f^{i}\cdot (f^i)^{-1}=f^k\cdot (f^i)^{-1}\\
+&f^{k-i}=I_A\\
+\end{align}</script><h3 id="定理-4"><a href="#定理-4" class="headerlink" title="定理"></a>定理</h3><p>$X,Y为二集合且X\neq \emptyset,若f:X\rightarrow Y,则下列条件等价:$</p>
+<ol>
+<li>$f$为内射</li>
+<li>$f$左可逆</li>
+<li>$f$可左消去,即对任意集合$Z$及任意的$g$:$Z\rightarrow X,h:Z\rightarrow X$,当$f\cdot g=f\cdot h$时,皆有$g=h$</li>
 </ol>
-<h1 id="集合的特征函数">集合的特征函数</h1>
-<p><span class="math inline">\(设U是全集,A是U的子集,A的特征函数\Phi_A:U\rightarrow
-\{0,1\}\\\Phi_A(x)=\begin{cases}1,x\in A\\0,x\notin
-A\end{cases}\)</span></p>
-<h2 id="性质">性质</h2>
-<p><span class="math inline">\(\forall x(\Phi_A(x)=0)\Leftrightarrow
-A=\emptyset\)</span></p>
-<p><span class="math inline">\(\forall x(\Phi_A(x)=1)\Leftrightarrow
-A=U\)</span></p>
-<p><span class="math inline">\(\forall x(\Phi_A(x)\leq
-\Phi_B(x))\Leftrightarrow A\subseteq B\)</span></p>
-<p><span class="math inline">\(\forall
-x(\Phi_A(x)=\Phi_B(x))\Leftrightarrow A=B\)</span></p>
-<p><span class="math inline">\(\chi_A\leq \chi_B\Leftrightarrow
-A\subseteq B\)</span> <span class="math display">\[
+<h1 id="集合的特征函数"><a href="#集合的特征函数" class="headerlink" title="集合的特征函数"></a>集合的特征函数</h1><p>$设U是全集,A是U的子集,A的特征函数\Phi_A:U\rightarrow \{0,1\}\\\Phi_A(x)=\begin{cases}1,x\in A\\0,x\notin A\end{cases}$</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><p>$\forall x(\Phi_A(x)=0)\Leftrightarrow A=\emptyset$</p>
+<p>$\forall x(\Phi_A(x)=1)\Leftrightarrow A=U$</p>
+<p>$\forall x(\Phi_A(x)\leq \Phi_B(x))\Leftrightarrow A\subseteq B$</p>
+<p>$\forall x(\Phi_A(x)=\Phi_B(x))\Leftrightarrow A=B$</p>
+<p>$\chi_A\leq \chi_B\Leftrightarrow A\subseteq B$</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-(充分性)&amp;任取x\in A,\chi_A(x)=1,\\
-&amp;由于\chi_A\leq \chi_B,则\chi_B=1\\
-&amp;x\in B,\therefore A\subseteq B
-\end{aligned}
-\]</span></p>
-<p><span class="math inline">\(\chi_A=\chi_B\Leftrightarrow
-A=B\)</span></p>
-<p><span class="math inline">\(\chi_{\sim A}=1-\chi_{A}\)</span></p>
-<p><span class="math inline">\(\chi_{A\cap B}=\chi_A*\chi_B\)</span></p>
-<p><span class="math inline">\(\chi_{A\cup
-B}=\chi_A+\chi_B-\chi_A*\chi_B\)</span></p>
-<p><span class="math inline">\(\chi_{A}*\chi_B=\chi_A当且仅当A \subseteq
-B\)</span></p>
-<p><span class="math inline">\(\chi_A*\chi_A=\chi_A\)</span></p>
-<p><span class="math inline">\(证明:A\cup(B\cap C)=(A\cup B)\cap(A\cup
-C)\)</span> <span class="math display">\[
+(充分性)&任取x\in A,\chi_A(x)=1,\\
+&由于\chi_A\leq \chi_B,则\chi_B=1\\
+&x\in B,\therefore A\subseteq B
+\end{aligned}</script><p>$\chi_A=\chi_B\Leftrightarrow A=B$</p>
+<p>$\chi_{\sim A}=1-\chi_{A}$</p>
+<p>$\chi_{A\cap B}=\chi_A*\chi_B$</p>
+<p>$\chi_{A\cup B}=\chi_A+\chi_B-\chi_A*\chi_B$</p>
+<p>$\chi_{A}*\chi_B=\chi_A当且仅当A \subseteq B$</p>
+<p>$\chi_A*\chi_A=\chi_A$</p>
+<p>$证明:A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-\chi_{A\cup(B\cap C)}&amp;=\chi_A+\chi_{B\cap C}-\chi_B\cap \chi_C\\
-&amp;=\chi_A+\chi_B*\chi_C-\chi_A*\chi_B*\chi_A\\
-\chi_{(A\cup B)\cap (A\cup C)}&amp;=\chi_{A\cup B}*\chi_{A\cup C}\\
-&amp;=(\chi_A+\chi_B-\chi_A*\chi_B)*(\chi_A+\chi_C-\chi_A*\chi_C)\\
-&amp;=\chi_A+\chi_B*\chi_C-\chi_A*\chi_B*\chi_C\\
-\end{aligned}
-\]</span> 所以<span class="math inline">\(\chi_{A\cup(B\cap
-C)}=\chi_{(A\cup B)\cap(A\cup C)}\)</span>:</p>
-<p><span class="math inline">\(A\cup(B\cap C)=(A\cup B)\cap(A\cup
-C)\)</span></p>
+\chi_{A\cup(B\cap C)}&=\chi_A+\chi_{B\cap C}-\chi_B\cap \chi_C\\
+&=\chi_A+\chi_B*\chi_C-\chi_A*\chi_B*\chi_A\\
+\chi_{(A\cup B)\cap (A\cup C)}&=\chi_{A\cup B}*\chi_{A\cup C}\\
+&=(\chi_A+\chi_B-\chi_A*\chi_B)*(\chi_A+\chi_C-\chi_A*\chi_C)\\
+&=\chi_A+\chi_B*\chi_C-\chi_A*\chi_B*\chi_C\\
+\end{aligned}</script><p>所以$\chi_{A\cup(B\cap C)}=\chi_{(A\cup B)\cap(A\cup C)}$:</p>
+<p>$A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$</p>
 
                 
               </div>

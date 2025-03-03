@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="方差分析及回归分析 单因素试验的方差分析 分组的依据称为因素,因素的不同状态称为因素的水平,只有一个因子,按因子的不同水平来分组的试验称为单因素试验 假设因素有个水平,n个对象参与了试验,假定对应于因素第j个水平的组中有\(n_j\)个试验对象,响应变量数据为\(X_{1j},X_{2j},\cdots,X_{n_jj},j&#x3D;1,2,\cdots,s\) 通常假定: \(\begin{a">
+    <meta name="description" content="方差分析及回归分析单因素试验的方差分析分组的依据称为因素,因素的不同状态称为因素的水平,只有一个因子,按因子的不同水平来分组的试验称为单因素试验 假设因素有个水平,n个对象参与了试验,假定对应于因素第j个水平的组中有$n_j$个试验对象,响应变量数据为$X_{1j},X_{2j},\cdots,X_{n_jj},j&#x3D;1,2,\cdots,s$ 通常假定: $\begin{align}&amp;X_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="方差分析及回归分析">
 <meta property="og:url" content="https://meteor041.git.io/2024/12/06/%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="方差分析及回归分析 单因素试验的方差分析 分组的依据称为因素,因素的不同状态称为因素的水平,只有一个因子,按因子的不同水平来分组的试验称为单因素试验 假设因素有个水平,n个对象参与了试验,假定对应于因素第j个水平的组中有\(n_j\)个试验对象,响应变量数据为\(X_{1j},X_{2j},\cdots,X_{n_jj},j&#x3D;1,2,\cdots,s\) 通常假定: \(\begin{a">
+<meta property="og:description" content="方差分析及回归分析单因素试验的方差分析分组的依据称为因素,因素的不同状态称为因素的水平,只有一个因子,按因子的不同水平来分组的试验称为单因素试验 假设因素有个水平,n个对象参与了试验,假定对应于因素第j个水平的组中有$n_j$个试验对象,响应变量数据为$X_{1j},X_{2j},\cdots,X_{n_jj},j&#x3D;1,2,\cdots,s$ 通常假定: $\begin{align}&amp;X_">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/06/%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/image-20241206192850305.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/06/%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/image-20241206201052720.png">
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          1.8k 字
         
       </span>
     
@@ -299,199 +299,121 @@
             
               <div class="markdown-body">
                 
-                <h1 id="方差分析及回归分析">方差分析及回归分析</h1>
-<h2 id="单因素试验的方差分析">单因素试验的方差分析</h2>
-<p>分组的依据称为<strong>因素</strong>,因素的不同状态称为因素的<strong>水平</strong>,只有一个因子,按因子的不同水平来分组的试验称为<strong>单因素试验</strong></p>
-<p>假设因素有个水平,n个对象参与了试验,假定对应于因素第j个水平的组中有<span class="math inline">\(n_j\)</span>个试验对象,响应变量数据为<span class="math inline">\(X_{1j},X_{2j},\cdots,X_{n_jj},j=1,2,\cdots,s\)</span></p>
+                <h1 id="方差分析及回归分析"><a href="#方差分析及回归分析" class="headerlink" title="方差分析及回归分析"></a>方差分析及回归分析</h1><h2 id="单因素试验的方差分析"><a href="#单因素试验的方差分析" class="headerlink" title="单因素试验的方差分析"></a>单因素试验的方差分析</h2><p>分组的依据称为<strong>因素</strong>,因素的不同状态称为因素的<strong>水平</strong>,只有一个因子,按因子的不同水平来分组的试验称为<strong>单因素试验</strong></p>
+<p>假设因素有个水平,n个对象参与了试验,假定对应于因素第j个水平的组中有$n_j$个试验对象,响应变量数据为$X_{1j},X_{2j},\cdots,X_{n_jj},j=1,2,\cdots,s$</p>
 <p>通常假定:</p>
-<p><span class="math inline">\(\begin{align}&amp;X_{ij}=\mu_j+\varepsilon_{ij}\\&amp;\varepsilon\sim
-N(0,\sigma^2),各\varepsilon_{ij}独立\\&amp;i=1,2,\cdots,n_j,j=1,2,\cdots,s\end{align}\)</span></p>
+<p>$\begin{align}&amp;X_{ij}=\mu_j+\varepsilon_{ij}\\&amp;\varepsilon\sim N(0,\sigma^2),各\varepsilon_{ij}独立\\&amp;i=1,2,\cdots,n_j,j=1,2,\cdots,s\end{align}$</p>
 <p>检验假设:</p>
-<p><span class="math inline">\(H_0:\mu_1=\mu_2=\cdots=\,\mu_s\)</span></p>
-<p><span class="math inline">\(H_1:\mu_1,\mu_2,,\cdots,\mu_s不全相等\)</span></p>
-<p><span class="math inline">\(\mu=\frac{1}{n}\sum^s_{j=1}n_j\mu_j,\sum^s_{j=1}n_j=n\)</span></p>
-<p>水平<span class="math inline">\(A_j\)</span>的<strong>效应</strong>:<span class="math inline">\(\delta_j=\mu_j-\mu,j=1,2,\cdots,s\)</span></p>
-<p>注意:<span class="math inline">\(n_1\delta_1+n_2\delta_2+\dots+n_s\delta_s=0\)</span></p>
-<p><strong>总偏差平方和</strong><span class="math inline">\(S_T=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline
-X)^2\)</span></p>
-<p><span class="math inline">\(\overline
-X=\frac{1}{n}\sum^s_{j=1}\sum^{n_j}_{i=1}X_{ij}=\frac{1}{n}\sum^s_{j=1}n_j\overline
-X_{\cdot j}\)</span></p>
-<p><strong>效应平方和</strong><span class="math inline">\(S_A=\sum^s_{j=1}n_j(\overline X_j-\overline
-X)^2=\sum^s_{j=1}n_j\overline X_j^2-n\overline X^2\)</span></p>
-<p><strong>误差平方和</strong><span class="math inline">\(S_E=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline
-X_{\cdot j})^2\)</span></p>
-<p><strong>性质1</strong>:<span class="math inline">\(S_T=S_A+S_E\)</span> <span class="math display">\[
+<p>$H_0:\mu_1=\mu_2=\cdots=\,\mu_s$</p>
+<p>$H_1:\mu_1,\mu_2,,\cdots,\mu_s不全相等$</p>
+<p>$\mu=\frac{1}{n}\sum^s_{j=1}n_j\mu_j,\sum^s_{j=1}n_j=n$</p>
+<p>水平$A_j$的<strong>效应</strong>:$\delta_j=\mu_j-\mu,j=1,2,\cdots,s$</p>
+<p>注意:$n_1\delta_1+n_2\delta_2+\dots+n_s\delta_s=0$</p>
+<p><strong>总偏差平方和</strong>$S_T=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X)^2$</p>
+<p>$\overline X=\frac{1}{n}\sum^s_{j=1}\sum^{n_j}_{i=1}X_{ij}=\frac{1}{n}\sum^s_{j=1}n_j\overline X_{\cdot j}$</p>
+<p><strong>效应平方和</strong>$S_A=\sum^s_{j=1}n_j(\overline X_j-\overline X)^2=\sum^s_{j=1}n_j\overline X_j^2-n\overline X^2$</p>
+<p><strong>误差平方和</strong>$S_E=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot j})^2$</p>
+<p><strong>性质1</strong>:$S_T=S_A+S_E$</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;证明:\\
-S_T&amp;=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X)^2\\
-&amp;=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot
-j}+\overline X_{\cdot j}-\overline X)\\
-&amp;=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot
-j})^2+\sum^s_{j=1}\sum^{n_j}_{i=1}(\overline X_{\cdot j}-\overline
-X)^2+2\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{\cdot j-\overline
-X})(X_{ij}-\overline X_{\cdot j})\\
-&amp;=S_A+S_E\\
-补充:&amp;\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{\cdot j-\overline
-X})(X_{ij}-\overline X_{\cdot j})=\sum^s_{j=1}(X_{\cdot j-\overline
-X})\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot j})=0\\
-\end{aligned}
-\]</span> <strong>性质2</strong>:<span class="math inline">\(E(S_T)=\sum^s_{j=1}n_j\delta_j^2+(n-1)\sigma^2\)</span></p>
-<p><span class="math inline">\(E(S_A)=\sum^s_{j=1}n_j\delta_j^2+(s-1)\sigma^2\)</span></p>
-<p><span class="math inline">\(E(S_E)=(n-s)\sigma^2\)</span> <span class="math display">\[
+&证明:\\
+S_T&=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X)^2\\
+&=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot j}+\overline X_{\cdot j}-\overline X)\\
+&=\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot j})^2+\sum^s_{j=1}\sum^{n_j}_{i=1}(\overline X_{\cdot j}-\overline X)^2+2\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{\cdot j-\overline X})(X_{ij}-\overline X_{\cdot j})\\
+&=S_A+S_E\\
+补充:&\sum^s_{j=1}\sum^{n_j}_{i=1}(X_{\cdot j-\overline X})(X_{ij}-\overline X_{\cdot j})=\sum^s_{j=1}(X_{\cdot j-\overline X})\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot j})=0\\
+\end{aligned}</script><p><strong>性质2</strong>:$E(S_T)=\sum^s_{j=1}n_j\delta_j^2+(n-1)\sigma^2$</p>
+<p>$E(S_A)=\sum^s_{j=1}n_j\delta_j^2+(s-1)\sigma^2$</p>
+<p>$E(S_E)=(n-s)\sigma^2$</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
 证明:\\
-E(S_T)=&amp;E\left(\sum^s_{j=1}\sum^{n_j}_{i=1}\left(X_{ij}-\overline
-X\right)^2\right)=E(\sum^s_{j=1}\sum^{n_j}_{i=1}X_{ij}^2-n\overline
-X^2)\\
-=&amp;\sum^s_{j=1}\sum^{n_j}_{i=1}E\left(X_{ij}^2\right)-nE(\overline
-X^2)\\
-=&amp;\sum^s_{j=1}\sum^{n_j}_{i=1}[\sigma^2+(\mu+\delta_j)^2]-n[\dfrac{\sigma^2}{n}+\mu^2]\\
-=&amp;n\sigma^2+n\mu^2+2\mu\sum^s_{j=1}n_j\delta_j+\sum^s_{j=1}n_j\delta_j^2-\sigma^2-n\mu^2=\sum^s_{j=1}n_j\delta^2_j+(n-1)\sigma^2\\
-补充:&amp;E(\overline X)=\mu,E(\overline
-X^2)=\mu^2+\dfrac{\sigma^2}{n}\\
-E(S_E)=&amp;\sum^s_{j=1}E\left\{\sum^{n_j}_{i=1}(X_{ij}-\overline
-X_{\cdot j})^2\right\}=\sum^s_{j=1}(n_j-1)\sigma^2=(n-s)\sigma^2\\
-E(S_A)=&amp;E(S_T-S_E)=\sum^s_{j=1}n_j\delta_j^2+(s-1)\sigma^2
-\end{aligned}
-\]</span> <strong>性质3</strong>:</p>
-<ol type="1">
-<li><span class="math inline">\(S_A,S_E\)</span>相互独立</li>
-<li><span class="math inline">\(\dfrac{x_E}{\sigma^2}\sim\chi^2(n-s)\)</span></li>
-<li>当<span class="math inline">\(H_0\)</span>为真时,<span class="math inline">\(\dfrac{S_A}{\sigma^2}\sim\chi^2(s-1)\)</span></li>
+E(S_T)=&E\left(\sum^s_{j=1}\sum^{n_j}_{i=1}\left(X_{ij}-\overline X\right)^2\right)=E(\sum^s_{j=1}\sum^{n_j}_{i=1}X_{ij}^2-n\overline X^2)\\
+=&\sum^s_{j=1}\sum^{n_j}_{i=1}E\left(X_{ij}^2\right)-nE(\overline X^2)\\
+=&\sum^s_{j=1}\sum^{n_j}_{i=1}[\sigma^2+(\mu+\delta_j)^2]-n[\dfrac{\sigma^2}{n}+\mu^2]\\
+=&n\sigma^2+n\mu^2+2\mu\sum^s_{j=1}n_j\delta_j+\sum^s_{j=1}n_j\delta_j^2-\sigma^2-n\mu^2=\sum^s_{j=1}n_j\delta^2_j+(n-1)\sigma^2\\
+补充:&E(\overline X)=\mu,E(\overline X^2)=\mu^2+\dfrac{\sigma^2}{n}\\
+E(S_E)=&\sum^s_{j=1}E\left\{\sum^{n_j}_{i=1}(X_{ij}-\overline X_{\cdot j})^2\right\}=\sum^s_{j=1}(n_j-1)\sigma^2=(n-s)\sigma^2\\
+E(S_A)=&E(S_T-S_E)=\sum^s_{j=1}n_j\delta_j^2+(s-1)\sigma^2
+\end{aligned}</script><p><strong>性质3</strong>:</p>
+<ol>
+<li>$S_A,S_E$相互独立</li>
+<li>$\dfrac{x_E}{\sigma^2}\sim\chi^2(n-s)$</li>
+<li>当$H_0$为真时,$\dfrac{S_A}{\sigma^2}\sim\chi^2(s-1)$</li>
 </ol>
-<p><span class="math inline">\(\Rightarrow F=\dfrac{\dfrac{S_A}{s-1}
-}{\dfrac{S_E}{n-s} }\sim F(s-1,n-s)\)</span></p>
-<p>在给定水平<span class="math inline">\(\alpha\)</span>时,<strong>检验拒绝域</strong>为<span class="math inline">\(F=\dfrac{\dfrac{S_A}{s-1} }{\dfrac{S_E}{n-s} }\geq
-F_\alpha(s-1,n-s)\)</span></p>
+<p>$\Rightarrow F=\dfrac{\dfrac{S_A}{s-1} }{\dfrac{S_E}{n-s} }\sim F(s-1,n-s)$</p>
+<p>在给定水平$\alpha$时,<strong>检验拒绝域</strong>为$F=\dfrac{\dfrac{S_A}{s-1} }{\dfrac{S_E}{n-s} }\geq F_\alpha(s-1,n-s)$</p>
 <p><strong>未知参数的估计</strong></p>
-<ol type="1">
-<li><span class="math inline">\(\hat\sigma^2=\dfrac{S_E}{n-s}\)</span></li>
-<li><span class="math inline">\(\hat\mu=\overline X\)</span></li>
-<li><span class="math inline">\(\hat\mu_j=\overline X_j\)</span></li>
-<li><span class="math inline">\(\hat\delta_j=\overline X_j-\overline
-X\)</span></li>
+<ol>
+<li>$\hat\sigma^2=\dfrac{S_E}{n-s}$</li>
+<li>$\hat\mu=\overline X$</li>
+<li>$\hat\mu_j=\overline X_j$</li>
+<li>$\hat\delta_j=\overline X_j-\overline X$</li>
 </ol>
 <p>以上估计均为相应参数的无偏估计</p>
-<p><span class="math inline">\(\mu_j-\mu_k=\delta_j-\delta_k(j\neq
-k)\)</span><strong>区间估计</strong></p>
-<p><span class="math inline">\(\left(\overline X_{\cdot j}-\overline
-X_{\cdot k}\mp t_{\alpha/2}(n-s)\sqrt{\overline
-S_E(1/n_j+1/n_k)}\right)\)</span>为<span class="math inline">\(\mu_j-\mu_k\)</span>的水平为<span class="math inline">\(1-\alpha\)</span>的置信区间</p>
-<h2 id="双因素试验的方差分析">双因素试验的方差分析</h2>
-<h3 id="双因素等重复试验的方差分析">双因素等重复试验的方差分析</h3>
-<figure>
-<img src="image-20241206192850305.png" srcset="/img/loading.gif" lazyload alt="双因素等重复试验的方差分析">
-<figcaption aria-hidden="true">双因素等重复试验的方差分析</figcaption>
-</figure>
-<p><span class="math inline">\(\begin{align}&amp;X_{ijk}=\mu_{ij}+\varepsilon_{ijk}\\&amp;\varepsilon\sim
-N(0,\sigma^2),各\varepsilon_{ijk}独立\\&amp;i=1,\dots,r,j=1,\dots,s,k=1,\dots,t\\&amp;\mu_{ij},\sigma^2均为未知参数\end{align}\)</span></p>
-<p><strong>总平均</strong><span class="math inline">\(\mu=\dfrac{1}{rs}\sum^r_{i=1}\sum^s_{j=1}\mu_{ij}\)</span></p>
-<p><span class="math inline">\(\mu_{i\cdot}=\frac{1}{s}\sum^s_{j=1}\mu_{ij},i=1,\dots,r,\\\mu_{\cdot
-j}=\frac{1}{r}\sum^r_{i=1}\mu_{ij},j=1,\dots,s\)</span></p>
-<p><span class="math inline">\(水平A_i的效应\alpha_i=\mu_{i\cdot}-\mu,i=1,\dots,r\)</span></p>
-<p><span class="math inline">\(水平B_j的效应\beta_j=\mu_{\cdot
-j}-\mu,j=1,\dots,s\)</span></p>
-<p><span class="math inline">\(\sum^r_{i=1}\alpha_i=0,\sum^s_{j=1}\beta_j=0\)</span></p>
-<p><span class="math inline">\(水平A和水平B的交互效应\gamma_{ij}=\mu_{ij}-\mu_{i\cdot}-\mu_{\cdot
-j}+\mu\)</span></p>
-<p><span class="math inline">\(\sum^r_{i=1}\gamma_{ij}=0,\sum^s_{j=1}\gamma_{ij}=0\)</span></p>
-<p><strong>模型</strong>:<span class="math inline">\(\begin{cases}X_{ijk}=\mu+\alpha_i+\beta_j+\gamma_{ij}+\varepsilon_{ijk}\\\varepsilon_{ijk}\sim
-N(0,\sigma^2)\\i=1,\dots,r,j=1,\dots,s,k=1,\dots,t.\\\sum^r_{i=1}\alpha_i=0,\sum^s_{j=1}\beta_j=0,\sum^r_{i=1}\gamma_{ij}=0.\sum^s_{j=1}\gamma_{ij}=0.\\\mu,\alpha_i,\beta_i,\gamma_{ij},\sigma^2均未知\end{cases}\)</span></p>
+<p>$\mu_j-\mu_k=\delta_j-\delta_k(j\neq k)$<strong>区间估计</strong></p>
+<p>$\left(\overline X_{\cdot j}-\overline X_{\cdot k}\mp t_{\alpha/2}(n-s)\sqrt{\overline S_E(1/n_j+1/n_k)}\right)$为$\mu_j-\mu_k$的水平为$1-\alpha$的置信区间</p>
+<h2 id="双因素试验的方差分析"><a href="#双因素试验的方差分析" class="headerlink" title="双因素试验的方差分析"></a>双因素试验的方差分析</h2><h3 id="双因素等重复试验的方差分析"><a href="#双因素等重复试验的方差分析" class="headerlink" title="双因素等重复试验的方差分析"></a>双因素等重复试验的方差分析</h3><p><img src="image-20241206192850305.png" srcset="/img/loading.gif" lazyload alt="双因素等重复试验的方差分析"></p>
+<p>$\begin{align}&amp;X_{ijk}=\mu_{ij}+\varepsilon_{ijk}\\&amp;\varepsilon\sim N(0,\sigma^2),各\varepsilon_{ijk}独立\\&amp;i=1,\dots,r,j=1,\dots,s,k=1,\dots,t\\&amp;\mu_{ij},\sigma^2均为未知参数\end{align}$</p>
+<p><strong>总平均</strong>$\mu=\dfrac{1}{rs}\sum^r_{i=1}\sum^s_{j=1}\mu_{ij}$</p>
+<p>$\mu_{i\cdot}=\frac{1}{s}\sum^s_{j=1}\mu_{ij},i=1,\dots,r,\\\mu_{\cdot j}=\frac{1}{r}\sum^r_{i=1}\mu_{ij},j=1,\dots,s$</p>
+<p>$水平A_i的效应\alpha_i=\mu_{i\cdot}-\mu,i=1,\dots,r$</p>
+<p>$水平B_j的效应\beta_j=\mu_{\cdot j}-\mu,j=1,\dots,s$</p>
+<p>$\sum^r_{i=1}\alpha_i=0,\sum^s_{j=1}\beta_j=0$</p>
+<p>$水平A和水平B的交互效应\gamma_{ij}=\mu_{ij}-\mu_{i\cdot}-\mu_{\cdot j}+\mu$</p>
+<p>$\sum^r_{i=1}\gamma_{ij}=0,\sum^s_{j=1}\gamma_{ij}=0$</p>
+<p><strong>模型</strong>:$\begin{cases}X_{ijk}=\mu+\alpha_i+\beta_j+\gamma_{ij}+\varepsilon_{ijk}\\\varepsilon_{ijk}\sim N(0,\sigma^2)\\i=1,\dots,r,j=1,\dots,s,k=1,\dots,t.\\\sum^r_{i=1}\alpha_i=0,\sum^s_{j=1}\beta_j=0,\sum^r_{i=1}\gamma_{ij}=0.\sum^s_{j=1}\gamma_{ij}=0.\\\mu,\alpha_i,\beta_i,\gamma_{ij},\sigma^2均未知\end{cases}$</p>
 <p>分别校验假设</p>
-<p><span class="math inline">\(𝐻_{01}: 𝛼_1 = 𝛼_2 = ⋯ = 𝛼_𝑟 = 0, 𝐻_{11}:
-𝛼_1, . . . , 𝛼_𝑟 不全是零\\𝐻_{02}: 𝛽_1 = 𝛽_2 = ⋯ = 𝛽_𝑠 = 0, 𝐻_{12}: 𝛽_1,
-. . . , 𝛽_𝑠 不全是零\\𝐻_{03}: 𝛾_{11} = 𝛾_{12} = ⋯ = 𝛾_{𝑟𝑠} = 0, 𝐻_{13}:
-𝛾_{11}, . . . , 𝛾_{𝑟𝑠} 不全是零\)</span></p>
-<p><strong>总偏差平方和</strong><span class="math inline">\(S_T=\sum^r_{i=1}\sum^s_{j=1}\sum^t_{k=1}(X_{ijk}-\overline
-X)^2\)</span></p>
-<p><strong>误差平方和</strong><span class="math inline">\(S_E=\sum^r_{i=1}\sum^s_{j=1}\sum^t_{k=1}(X_{ijk}-\overline
-X_{ij\cdot})^2\)</span></p>
-<p><strong>因素A的效应平方和</strong>:<span class="math inline">\(S_A=st\sum^r_{i=1}(\overline
-X_{i\cdot\cdot}-\overline X_{ij\cdot})^2\)</span></p>
-<p><strong>因素B的效应平方和</strong>:<span class="math inline">\(S_B=rt\sum^s_{i=1}(\overline X_{\cdot
-j\cdot}-\overline X)\)</span></p>
-<p><strong>AB交互效应平方和</strong>:<span class="math inline">\(S_{A\times B}=t\sum^r_{i=1}\sum^s_{j=1}(\overline
-X_{ij\cdot}-\overline X_{i\cdot\cdot}-\overline X_{\cdot
-j\cdot}+\overline X)^2\)</span></p>
-<p><strong>性质1</strong>:<span class="math inline">\(S_T=S_A+S_B+S_{A\times B}+S_E\)</span></p>
+<p>$𝐻_{01}: 𝛼_1 = 𝛼_2 = ⋯ = 𝛼_𝑟 = 0, 𝐻_{11}: 𝛼_1, . . . , 𝛼_𝑟 不全是零\\𝐻_{02}: 𝛽_1 = 𝛽_2 = ⋯ = 𝛽_𝑠 = 0, 𝐻_{12}: 𝛽_1, . . . , 𝛽_𝑠 不全是零\\𝐻_{03}: 𝛾_{11} = 𝛾_{12} = ⋯ = 𝛾_{𝑟𝑠} = 0, 𝐻_{13}: 𝛾_{11}, . . . , 𝛾_{𝑟𝑠} 不全是零$</p>
+<p><strong>总偏差平方和</strong>$S_T=\sum^r_{i=1}\sum^s_{j=1}\sum^t_{k=1}(X_{ijk}-\overline X)^2$</p>
+<p><strong>误差平方和</strong>$S_E=\sum^r_{i=1}\sum^s_{j=1}\sum^t_{k=1}(X_{ijk}-\overline X_{ij\cdot})^2$</p>
+<p><strong>因素A的效应平方和</strong>:$S_A=st\sum^r_{i=1}(\overline X_{i\cdot\cdot}-\overline X_{ij\cdot})^2$</p>
+<p><strong>因素B的效应平方和</strong>:$S_B=rt\sum^s_{i=1}(\overline X_{\cdot j\cdot}-\overline X)$</p>
+<p><strong>AB交互效应平方和</strong>:$S_{A\times B}=t\sum^r_{i=1}\sum^s_{j=1}(\overline X_{ij\cdot}-\overline X_{i\cdot\cdot}-\overline X_{\cdot j\cdot}+\overline X)^2$</p>
+<p><strong>性质1</strong>:$S_T=S_A+S_B+S_{A\times B}+S_E$</p>
 <p><strong>性质2</strong>:</p>
-<p><span class="math inline">\(E\left(\dfrac{S_E}{rs(t-1)}\right)=\sigma^2\)</span></p>
-<p><span class="math inline">\(E\left(\dfrac{S_A}{r-1}\right)=\sigma^2+\dfrac{st\sum^r_{i=1}\alpha^2_i}{r-1}\)</span></p>
-<p><span class="math inline">\(E(\dfrac{S_B}{s-1})=\sigma^2+\dfrac{rt\sum^s_{j=1}\beta_j^2}{s-1}\)</span></p>
-<p><span class="math inline">\(E\left(\dfrac{S_{A\times B}
-}{r-1}\right)=\sigma^2+\dfrac{t\sum^r_{i=1}\sum^s_{j=1}\gamma^2_{ij}
-}{(r-1)(s-1)}\)</span></p>
+<p>$E\left(\dfrac{S_E}{rs(t-1)}\right)=\sigma^2$</p>
+<p>$E\left(\dfrac{S_A}{r-1}\right)=\sigma^2+\dfrac{st\sum^r_{i=1}\alpha^2_i}{r-1}$</p>
+<p>$E(\dfrac{S_B}{s-1})=\sigma^2+\dfrac{rt\sum^s_{j=1}\beta_j^2}{s-1}$</p>
+<p>$E\left(\dfrac{S_{A\times B} }{r-1}\right)=\sigma^2+\dfrac{t\sum^r_{i=1}\sum^s_{j=1}\gamma^2_{ij} }{(r-1)(s-1)}$</p>
 <p>各个假设的<strong>拒绝域</strong></p>
-<p><span class="math inline">\(H_{01}\)</span>:<span class="math inline">\(F_A\geq F_\alpha(r-1,rs(t-1))\)</span></p>
-<p><span class="math inline">\(H_{02}:F_B\geq
-F_\alpha(s-1,rs(t-1))\)</span></p>
-<p><span class="math inline">\(H_{03}:F_{A\times
-B}=\dfrac{\dfrac{S_A}{(r-1)(s-1)} }{\dfrac{S_E}{rs(t-1)} }\sim
-F((r-1)(s-1),rs(t-1))\)</span></p>
-<p><span class="math inline">\(F_{A\times B}\geq
-F_\alpha((r-1)(s-1),rs(t-1))\)</span></p>
-<figure>
-<img src="image-20241206201052720.png" srcset="/img/loading.gif" lazyload alt="双因素试验方差分析表">
-<figcaption aria-hidden="true">双因素试验方差分析表</figcaption>
-</figure>
-<h3 id="双因素无重复试验的方差分析">双因素无重复试验的方差分析</h3>
-<figure>
-<img src="image-20241206204334603.png" srcset="/img/loading.gif" lazyload alt="双因素无重复试验的方差分析表">
-<figcaption aria-hidden="true">双因素无重复试验的方差分析表</figcaption>
-</figure>
-<h2 id="一元线性回归分析">一元线性回归分析</h2>
-<p>估计<span class="math inline">\(\mu(x)=a+bx\)</span>的问题称为求<strong>一元线性回归</strong>问题</p>
-<p>基本假设:<span class="math inline">\(\begin{cases}Y=a+bx+\varepsilon\\E(\varepsilon)=0,D(\varepsilon)=\sigma^2\end{cases}\)</span></p>
-<p>正态假设:<span class="math inline">\(\varepsilon\sim
-N(0,\sigma^2)\)</span></p>
+<p>$H_{01}$:$F_A\geq F_\alpha(r-1,rs(t-1))$</p>
+<p>$H_{02}:F_B\geq F_\alpha(s-1,rs(t-1))$</p>
+<p>$H_{03}:F_{A\times B}=\dfrac{\dfrac{S_A}{(r-1)(s-1)} }{\dfrac{S_E}{rs(t-1)} }\sim F((r-1)(s-1),rs(t-1))$</p>
+<p>$F_{A\times B}\geq F_\alpha((r-1)(s-1),rs(t-1))$</p>
+<p><img src="image-20241206201052720.png" srcset="/img/loading.gif" lazyload alt="双因素试验方差分析表"></p>
+<h3 id="双因素无重复试验的方差分析"><a href="#双因素无重复试验的方差分析" class="headerlink" title="双因素无重复试验的方差分析"></a>双因素无重复试验的方差分析</h3><p><img src="image-20241206204334603.png" srcset="/img/loading.gif" lazyload alt="双因素无重复试验的方差分析表"></p>
+<h2 id="一元线性回归分析"><a href="#一元线性回归分析" class="headerlink" title="一元线性回归分析"></a>一元线性回归分析</h2><p>估计$\mu(x)=a+bx$的问题称为求<strong>一元线性回归</strong>问题</p>
+<p>基本假设:$\begin{cases}Y=a+bx+\varepsilon\\E(\varepsilon)=0,D(\varepsilon)=\sigma^2\end{cases}$</p>
+<p>正态假设:$\varepsilon\sim N(0,\sigma^2)$</p>
 <p><strong>针对的问题</strong></p>
-<ol type="1">
+<ol>
 <li>a,b的估计</li>
-<li><span class="math inline">\(\sigma^2\)</span>的估计</li>
+<li>$\sigma^2$的估计</li>
 <li>线性假设的显著性检验</li>
 <li>回归系数b的置信区间</li>
-<li>回归函数<span class="math inline">\(\mu(x)=a+bx\)</span>的点估计和置信区间</li>
+<li>回归函数$\mu(x)=a+bx$的点估计和置信区间</li>
 </ol>
-<h3 id="最小二乘估计">最小二乘估计</h3>
-<p><span class="math inline">\(Q(a,b)=\sum^n_{i=1}(y_i-a-bx_i)^2\)</span></p>
-<p><span class="math inline">\(Q(\hat a,\hat b)=\min\limits_{a,b}
-Q(a,b)\)</span></p>
-<p><span class="math inline">\(\dfrac{\delta Q}{\delta
-a}=-2\sum^n_{i=1}(y_i-a-bx_i)=0\)</span></p>
-<p><span class="math inline">\(\dfrac{\delta Q}{\delta
-b}=-2\sum^n_{i=1}(y_i-a-bx_i)x_i=0\)</span></p>
-<p>正规方程组:<span class="math inline">\(\left(\sum\limits^n_{i=1}x_i\right)a+\left(\sum\limits^n_{i=1}x_i^2\right)b=\sum\limits^n_{i=1}x_iy_i\)</span></p>
-<p>a,b的最小二乘估计:<span class="math inline">\(\hat a=\hat y-\hat
-x\hat b,\hat b=\dfrac{S_{xy} }{S_{xx} }\)</span></p>
-<p><span class="math inline">\(Q_e=\sum^n_{i=1}e^2_i=\sum^n_{i=1}(y_i-\hat
-y_i)^2=Q(\hat a,\hat b)\)</span></p>
-<p><span class="math inline">\(Q_e=S_{yy}-\hat bS_{xy}\)</span></p>
-<p><strong>误差方差的估计</strong><span class="math inline">\(\hat\sigma^2=\dfrac{Q_e}{n-2}\)</span></p>
-<h3 id="线性假设的显著性检验">线性假设的显著性检验</h3>
-<p><span class="math inline">\(H_0:b=0,H_1:b\neq 0\)</span></p>
+<h3 id="最小二乘估计"><a href="#最小二乘估计" class="headerlink" title="最小二乘估计"></a>最小二乘估计</h3><p>$Q(a,b)=\sum^n_{i=1}(y_i-a-bx_i)^2$</p>
+<p>$Q(\hat a,\hat b)=\min\limits_{a,b} Q(a,b)$</p>
+<p>$\dfrac{\delta Q}{\delta a}=-2\sum^n_{i=1}(y_i-a-bx_i)=0$</p>
+<p>$\dfrac{\delta Q}{\delta b}=-2\sum^n_{i=1}(y_i-a-bx_i)x_i=0$</p>
+<p>正规方程组:$\left(\sum\limits^n_{i=1}x_i\right)a+\left(\sum\limits^n_{i=1}x_i^2\right)b=\sum\limits^n_{i=1}x_iy_i$</p>
+<p>a,b的最小二乘估计:$\hat a=\hat y-\hat x\hat b,\hat b=\dfrac{S_{xy} }{S_{xx} }$</p>
+<p>$Q_e=\sum^n_{i=1}e^2_i=\sum^n_{i=1}(y_i-\hat y_i)^2=Q(\hat a,\hat b)$</p>
+<p>$Q_e=S_{yy}-\hat bS_{xy}$</p>
+<p><strong>误差方差的估计</strong>$\hat\sigma^2=\dfrac{Q_e}{n-2}$</p>
+<h3 id="线性假设的显著性检验"><a href="#线性假设的显著性检验" class="headerlink" title="线性假设的显著性检验"></a>线性假设的显著性检验</h3><p>$H_0:b=0,H_1:b\neq 0$</p>
 <p>若原假设被拒绝,则说明回归效果是显著的</p>
-<p><span class="math inline">\(\hat b\sim
-N(b,S^{-1}_{xx}\sigma^2)\)</span></p>
-<p><span class="math inline">\(\dfrac{(n-2)\hat
-\sigma^2}{\sigma}=\dfrac{Q_e}{\sigma^2}\sim \chi^2(n-2)\)</span></p>
-<p><span class="math inline">\(\hat b与Q_e独立\)</span></p>
-<p>检验拒绝域<span class="math inline">\(|t|=\dfrac{1}{\hat\sigma}\sqrt{S_{xx} }\geq
-t_{\alpha/2}(n-2)\)</span></p>
-<h3 id="回归系数b的置信区间">回归系数b的置信区间</h3>
-<p><span class="math inline">\(\dfrac{\hat b-b}{\hat\sigma}\sqrt{S_{xx}
-}\sim t(n-2)\)</span></p>
-<p><span class="math inline">\(\dfrac{|\hat b-b|}{\hat
-\sigma}\sqrt{S_{xx} }\leq t_{\alpha/2}(n-2)\)</span></p>
-<p>b的置信水平为<span class="math inline">\(1-\alpha\)</span>的置信区间:
-<span class="math inline">\(\left(\hat b\pm t_{\alpha/2}(n-2)\times
-\dfrac{\hat \sigma}{\sqrt{S_{xx} } }\right)\)</span></p>
-<h3 id="muxabx函数值的点估计和置信空间"><span class="math inline">\(\mu(x)=a+bx\)</span>函数值的点估计和置信空间</h3>
-<p><strong>点估计</strong>:<span class="math inline">\(\hat
-y_0=\hat\mu(x_0)=\hat a+\hat bx_0\)</span></p>
-<p><strong>置信空间</strong>:<span class="math inline">\(\hat Y_0\pm
-t_{\alpha/2}(n-2)\hat\sigma\sqrt{\dfrac{1}{n}+\dfrac{(x_o-\overline
-x)^2}{S_xx} }\)</span></p>
+<p>$\hat b\sim N(b,S^{-1}_{xx}\sigma^2)$</p>
+<p>$\dfrac{(n-2)\hat \sigma^2}{\sigma}=\dfrac{Q_e}{\sigma^2}\sim \chi^2(n-2)$</p>
+<p>$\hat b与Q_e独立$</p>
+<p>检验拒绝域$|t|=\dfrac{1}{\hat\sigma}\sqrt{S_{xx} }\geq t_{\alpha/2}(n-2)$</p>
+<h3 id="回归系数b的置信区间"><a href="#回归系数b的置信区间" class="headerlink" title="回归系数b的置信区间"></a>回归系数b的置信区间</h3><p>$\dfrac{\hat b-b}{\hat\sigma}\sqrt{S_{xx} }\sim t(n-2)$</p>
+<p>$\dfrac{|\hat b-b|}{\hat \sigma}\sqrt{S_{xx} }\leq t_{\alpha/2}(n-2)$</p>
+<p>b的置信水平为$1-\alpha$的置信区间:<br>$\left(\hat b\pm t_{\alpha/2}(n-2)\times \dfrac{\hat \sigma}{\sqrt{S_{xx} } }\right)$</p>
+<h3 id="mu-x-a-bx-函数值的点估计和置信空间"><a href="#mu-x-a-bx-函数值的点估计和置信空间" class="headerlink" title="$\mu(x)=a+bx$函数值的点估计和置信空间"></a>$\mu(x)=a+bx$函数值的点估计和置信空间</h3><p><strong>点估计</strong>:$\hat y_0=\hat\mu(x_0)=\hat a+\hat bx_0$</p>
+<p><strong>置信空间</strong>:$\hat Y_0\pm t_{\alpha/2}(n-2)\hat\sigma\sqrt{\dfrac{1}{n}+\dfrac{(x_o-\overline x)^2}{S_xx} }$</p>
 
                 
               </div>

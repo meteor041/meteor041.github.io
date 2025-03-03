@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="P7 debug总结 阻塞转发错误 上机的过程中遇到了转发错误,再三排查后,发现是mtc0产生了不应该有的转发. 在ID的控制模块CTRL中,我采用了一种过于&quot;取巧&quot;的方法,将rd写入了ID_A3(解码阶段输出的写入寄存器地址(向后传递直至WB阶段)) 123assign ID_A3 &#x3D; ... :    		  (add || sub || and_ || or_ || slt || s">
+    <meta name="description" content="P7 debug总结阻塞转发错误上机的过程中遇到了转发错误,再三排查后,发现是mtc0产生了不应该有的转发. 在ID的控制模块CTRL中,我采用了一种过于”取巧”的方法,将rd写入了ID_A3(解码阶段输出的写入寄存器地址(向后传递直至WB阶段)) 123assign ID_A3 &#x3D; ... :    		  (add || sub || and_ || or_ || slt || sltu ||">
 <meta property="og:type" content="article">
 <meta property="og:title" content="P7-CPU设计文档">
 <meta property="og:url" content="https://meteor041.git.io/2024/12/02/P7%20debug%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="P7 debug总结 阻塞转发错误 上机的过程中遇到了转发错误,再三排查后,发现是mtc0产生了不应该有的转发. 在ID的控制模块CTRL中,我采用了一种过于&quot;取巧&quot;的方法,将rd写入了ID_A3(解码阶段输出的写入寄存器地址(向后传递直至WB阶段)) 123assign ID_A3 &#x3D; ... :    		  (add || sub || and_ || or_ || slt || s">
+<meta property="og:description" content="P7 debug总结阻塞转发错误上机的过程中遇到了转发错误,再三排查后,发现是mtc0产生了不应该有的转发. 在ID的控制模块CTRL中,我采用了一种过于”取巧”的方法,将rd写入了ID_A3(解码阶段输出的写入寄存器地址(向后传递直至WB阶段)) 123assign ID_A3 &#x3D; ... :    		  (add || sub || and_ || or_ || slt || sltu ||">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-02T10:09:52.000Z">
 <meta property="article:modified_time" content="2024-12-03T04:01:26.024Z">
@@ -295,10 +295,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="p7-debug总结">P7 debug总结</h1>
-<h2 id="阻塞转发错误">阻塞转发错误</h2>
-<p>上机的过程中遇到了转发错误,再三排查后,发现是<code>mtc0</code>产生了不应该有的转发.</p>
-<p>在ID的控制模块<code>CTRL</code>中,我采用了一种过于"取巧"的方法,将rd写入了ID_A3(<em>解码阶段输出的写入寄存器地址(向后传递直至WB阶段)</em>)</p>
+                <h1 id="P7-debug总结"><a href="#P7-debug总结" class="headerlink" title="P7 debug总结"></a>P7 debug总结</h1><h2 id="阻塞转发错误"><a href="#阻塞转发错误" class="headerlink" title="阻塞转发错误"></a>阻塞转发错误</h2><p>上机的过程中遇到了转发错误,再三排查后,发现是<code>mtc0</code>产生了不应该有的转发.</p>
+<p>在ID的控制模块<code>CTRL</code>中,我采用了一种过于”取巧”的方法,将rd写入了ID_A3(<em>解码阶段输出的写入寄存器地址(向后传递直至WB阶段)</em>)</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> ID_A3 = ... :<br>    		  (add || sub || and_ || or_ || slt || sltu || mflo || mfhi || mtc0) ? rd : <br>               <span class="hljs-number">0</span>; <br></code></pre></td></tr></table></figure>
 <p>这个<code>ID_A3</code>会随着流水线向后传递,并传递给<code>HAZARD_CTRL</code>(冒险控制模块)中用于处理阻塞和转发的问题.例如:</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">// 转发逻辑</span><br><span class="hljs-keyword">assign</span> ID_RD1_forward = (ID_A1 == <span class="hljs-number">5&#x27;b0</span>) ? <span class="hljs-number">0</span> :<br>    				   (ID_A1 == MEM_A3) ? MEM_WD : <span class="hljs-comment">// 这里的MEM_A3是上一周期的EX_A3</span><br>        			   (ID_A1 == WB_A3) ? WB_WD : <span class="hljs-comment">// 这里的WB_A3是上一周期的WB_A3</span><br>                        ID_RD1;<br></code></pre></td></tr></table></figure>
@@ -309,38 +307,29 @@
 <p>该代码中,第二行指令<code>mtc0</code>错误地向<code>add</code>指令转发了<code>$12</code>的值,但它们指向的<code>$12</code><strong>根本不是同一个寄存器!</strong></p>
 <p>我的对应措施是取消执行<code>mtc0</code>指令时<code>rd</code>写入<code>ID_A3</code>的做法,在<code>HARZARD_CTRL</code>中,传入<code>MEM_instr</code>和<code>EX_instr</code>(<code>MEM</code>,<code>EX</code>区当前各自传递的指令)</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">assign</span> STALL = ... || (ID_Eret &amp;&amp; ((EX_MTC0 &amp;&amp; EX_instr[<span class="hljs-number">15</span>:<span class="hljs-number">11</span>] == <span class="hljs-number">5&#x27;D14</span>) || (MEM_MTC0 &amp;&amp; MEM_instr[<span class="hljs-number">15</span>:<span class="hljs-number">11</span>] == <span class="hljs-number">5&#x27;d14</span>))); <br></code></pre></td></tr></table></figure>
-<h2 id="中断错误">中断错误</h2>
-<p>错误情况:</p>
+<h2 id="中断错误"><a href="#中断错误" class="headerlink" title="中断错误"></a>中断错误</h2><p>错误情况:</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">7163</span>: we got @<span class="hljs-number">3556</span>:$<span class="hljs-number">31</span> &lt;= <span class="hljs-number">00005</span>ec5 when we expected @<span class="hljs-number">356</span>c:$<span class="hljs-number">18</span> &lt;= <span class="hljs-number">00000000</span><br><span class="hljs-attribute">7164</span>: we got @<span class="hljs-number">3548</span>:$ <span class="hljs-number">4</span> &lt;= <span class="hljs-number">0000355</span>c when we expected @<span class="hljs-number">3510</span>:$ <span class="hljs-number">5</span> &lt;= <span class="hljs-number">00003544</span><br><span class="hljs-attribute">7165</span>: we got too much<br><span class="hljs-attribute">7170</span>: we got @<span class="hljs-number">3078</span>:$<span class="hljs-number">12</span> &lt;= <span class="hljs-number">0000240</span>c when we expected @<span class="hljs-number">3080</span>:$<span class="hljs-number">30</span> &lt;= <span class="hljs-number">0000216</span>f<br></code></pre></td></tr></table></figure>
-<p>这个bug在课上并没有发现,喜提计组"再来一次"大奖</p>
+<p>这个bug在课上并没有发现,喜提计组”再来一次”大奖</p>
 <p>首先说错误点:</p>
-<p>**在发生阻塞时,<code>ID</code>和<code>EX</code>间的流水寄存器接收到冲洗信号,但应当保留<code>PC</code>和<code>BD</code>(branch
-delay)*两种信息的传递,也就是按正常传递的逻辑传递<code>PC</code>和<code>BD</code>**</p>
+<p><strong>在发生阻塞时,<code>ID</code>和<code>EX</code>间的流水寄存器接收到冲洗信号,但应当保留<code>PC</code>和<code>BD</code>(branch delay)*两种信息的传递,也就是按正常传递的逻辑传递<code>PC</code>和<code>BD</code></strong></p>
 <p>前者<code>PC</code>比较好理解,课下思考题也有问到这个问题.为了保证<code>macroscopic_pc</code>不出现诸如<code>0x0000_0000</code>这类的值.</p>
 <p>但是<code>BD</code>稍微有些理解的困难度.当外部中断信号产生时,<code>CP0</code>会根据接受到<code>BD</code>来决定<code>EPC</code>存储的值,如果<code>BD</code>有误,那么<code>PC</code>跳转错误就很有可能发生,</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (enable) <span class="hljs-keyword">begin</span><br>        <span class="hljs-keyword">if</span> (flush)<span class="hljs-keyword">begin</span><br>          EX_PC &lt;= ID_PC;<br>          EX_BD &lt;= ID_BD;<br>		 ...<br>          <span class="hljs-comment">// 其余信号全部传递0</span><br>        <span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 <p>我验证了多种ID,EX间流水寄存器处理阻塞的错误方法,例如</p>
-<ol type="A">
-<li></li>
-</ol>
+<p>A.</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs verilog">EX_PC &lt;= EX_PC; <span class="hljs-comment">// PC不变,传递上一个PC</span><br>EX_BD &lt;= <span class="hljs-number">1&#x27;b0</span>;<br></code></pre></td></tr></table></figure>
-<ol start="2" type="A">
-<li></li>
-</ol>
+<p>B.</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs verilog">EX_PC &lt;= EX_PC;<br>EX_BD &lt;= EX_BD;<br></code></pre></td></tr></table></figure>
-<ol start="3" type="A">
-<li></li>
-</ol>
+<p>C.</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs verilog">EX_PC &lt;= ID_PC;<br>EX_BD &lt;= <span class="hljs-number">1&#x27;b0</span>;<br></code></pre></td></tr></table></figure>
 <p>我们来看官方<code>tb</code>中的中断逻辑处理代码:</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">parameter</span> target_pc = <span class="hljs-number">32&#x27;h00003010</span>;<br><br><span class="hljs-keyword">integer</span> count;<br><br><span class="hljs-keyword">initial</span> <span class="hljs-keyword">begin</span><br>    count = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">end</span><br><br><span class="hljs-keyword">always</span> @(<span class="hljs-keyword">negedge</span> clk) <span class="hljs-keyword">begin</span><br>    <span class="hljs-keyword">if</span> (reset) <span class="hljs-keyword">begin</span><br>        interrupt = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>        <span class="hljs-keyword">if</span> (interrupt) <span class="hljs-keyword">begin</span><br>            <span class="hljs-keyword">if</span> (|m_int_byteen &amp;&amp; (m_int_addr &amp; <span class="hljs-number">32&#x27;hfffffffc</span>) == <span class="hljs-number">32&#x27;h7f20</span>) <span class="hljs-keyword">begin</span><br>                interrupt = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fixed_macroscopic_pc == target_pc) <span class="hljs-keyword">begin</span><br>            <span class="hljs-keyword">if</span> (count == <span class="hljs-number">0</span>) <span class="hljs-keyword">begin</span><br>                count = <span class="hljs-number">1</span>;<br>                interrupt = <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">end</span><br>        <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 <p>用文字简述该逻辑:当<code>macroscopic_pc</code>到达<code>tb</code>指定的<code>target_pc</code>时,<code>interupt</code>置为1,即外部产生中断信号.</p>
 <p>所以我们可以很容易的排除C:</p>
-<p>当延迟槽指令位于ID区时,与流水线后面的指令发生阻塞冲突时(这种例子确实不太好列举):
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs assembly">ori $20, 0x1001          # 3000<br>mtc0 $20, $12 // 允许中断 # 3004<br>ori $1, $0, 0x1234 # 3008<br>ori $2, $0, 0x2345 # 300c<br>mult $1, $2        # 3010<br>jal 0x3020         # 3014<br>mflo $3            # 3018(发生中断)<br>ori $5, $0, 0x5555 # 301c<br>ori $6, $0, 0x6666 # 3020<br></code></pre></td></tr></table></figure></p>
+<p>当延迟槽指令位于ID区时,与流水线后面的指令发生阻塞冲突时(这种例子确实不太好列举):<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs assembly">ori $20, 0x1001          # 3000<br>mtc0 $20, $12 // 允许中断 # 3004<br>ori $1, $0, 0x1234 # 3008<br>ori $2, $0, 0x2345 # 300c<br>mult $1, $2        # 3010<br>jal 0x3020         # 3014<br>mflo $3            # 3018(发生中断)<br>ori $5, $0, 0x5555 # 301c<br>ori $6, $0, 0x6666 # 3020<br></code></pre></td></tr></table></figure></p>
 <p>我们指定<code>target_pc</code>为<code>0x3018</code>,<code>mflo</code>会与<code>EX</code>区的<code>MDU</code>模块产生的<code>busy</code>信号发生冲突,因此在C情况下,<code>ID</code>和<code>EX</code>间的流水寄存器产生了<code>nop</code>指令,该指令携带着<code>0x3018</code>的<code>PC</code>和<code>0</code>的<code>BD</code>,传递到MEM区时,<code>PC</code>传递给<code>macroscopic_pc</code>输出到外界,触发了外界中断信号的产生,<code>CP0</code>接受到该中断信号进入中断处理逻辑,这时该模块依据接受到的<code>BD</code>处理<code>EPC</code>,但是<strong><code>BD</code>是错误的</strong>,也就最终导致了跳转错误.</p>
 <p>至于A和B,上述代码确实无法证明它的错误,我猜测是课上测试<code>tb</code>会有更复杂的中断信号产生的逻辑,总之,<code>EX_PC &lt;= ID_PC;EX_BD &lt;= ID_BD;</code>确实是最好的,因为它保证了两点:</p>
-<ol type="1">
+<ol>
 <li>发生阻塞的指令对应<code>PC</code>会多次出现在<code>macroscopic_pc</code>中(A,B无法做到这一点)</li>
 <li>指令传递中,<code>PC</code>一定与正确的<code>BD</code>对应</li>
 </ol>

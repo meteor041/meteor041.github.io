@@ -19,15 +19,15 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="批量归一化层 公式 \(\mu_B&#x3D;\frac{1}{|B|}\mathop\Sigma\limits_{i\in B}x_i\) \(\sigma_B^2&#x3D;\frac{1}{|B|}\mathop\Sigma\limits_{i\in B}(x_i-\mu_B)^2+\epsilon\) 再做额外调整: \(x_{i+1}&#x3D;\gamma\frac{x_i-\mu_B}{\sigma">
+    <meta name="description" content="批量归一化层公式$\mu_B&#x3D;\frac{1}{|B|} \mathop \Sigma \limits_{i\in B}x_i$ $\sigma_B^2&#x3D;\frac{1}{ |B| } \mathop \Sigma\limits_{i \in B}(x_i- \mu_B )^2+\epsilon$ 再做额外调整: $x_{ i+1 }&#x3D;\gamma\frac{x_i- \mu_B }{ \sigm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Batch Normalization">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/14/Batch%20Normalization/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="批量归一化层 公式 \(\mu_B&#x3D;\frac{1}{|B|}\mathop\Sigma\limits_{i\in B}x_i\) \(\sigma_B^2&#x3D;\frac{1}{|B|}\mathop\Sigma\limits_{i\in B}(x_i-\mu_B)^2+\epsilon\) 再做额外调整: \(x_{i+1}&#x3D;\gamma\frac{x_i-\mu_B}{\sigma">
+<meta property="og:description" content="批量归一化层公式$\mu_B&#x3D;\frac{1}{|B|} \mathop \Sigma \limits_{i\in B}x_i$ $\sigma_B^2&#x3D;\frac{1}{ |B| } \mathop \Sigma\limits_{i \in B}(x_i- \mu_B )^2+\epsilon$ 再做额外调整: $x_{ i+1 }&#x3D;\gamma\frac{x_i- \mu_B }{ \sigm">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-14T08:10:00.000Z">
-<meta property="article:modified_time" content="2024-11-14T09:50:44.910Z">
+<meta property="article:modified_time" content="2025-03-03T07:34:38.105Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -287,7 +287,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月14日 下午
+                    本文最后更新于 2025年3月3日 下午
                   
                 
               </p>
@@ -295,42 +295,32 @@
             
               <div class="markdown-body">
                 
-                <h1 id="批量归一化层">批量归一化层</h1>
-<h2 id="公式">公式</h2>
-<p><span class="math inline">\(\mu_B=\frac{1}{|B|}\mathop\Sigma\limits_{i\in
-B}x_i\)</span></p>
-<p><span class="math inline">\(\sigma_B^2=\frac{1}{|B|}\mathop\Sigma\limits_{i\in
-B}(x_i-\mu_B)^2+\epsilon\)</span></p>
+                <h1 id="批量归一化层"><a href="#批量归一化层" class="headerlink" title="批量归一化层"></a>批量归一化层</h1><h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>$\mu_B=\frac{1}{|B|} \mathop \Sigma \limits_{i\in B}x_i$</p>
+<p>$\sigma_B^2=\frac{1}{ |B| } \mathop \Sigma\limits_{i \in B}(x_i- \mu_B )^2+\epsilon$</p>
 <p>再做额外调整:</p>
-<p><span class="math inline">\(x_{i+1}=\gamma\frac{x_i-\mu_B}{\sigma_B}+\beta\)</span></p>
+<p>$x_{ i+1 }=\gamma\frac{x_i- \mu_B }{ \sigma_B}+\beta$</p>
 <ul>
-<li>可学习的参数为<span class="math inline">\(\gamma,\beta\)</span></li>
-<li>作用在:
-<ul>
+<li>可学习的参数为$\gamma,\beta$</li>
+<li>作用在:<ul>
 <li>全连接层和卷积层输出上,激活函数前</li>
 <li>全连接层和卷积层输入上</li>
-</ul></li>
+</ul>
+</li>
 <li>对全连接层,作用在特征维</li>
 <li>对卷积层,作用在通道维</li>
 </ul>
-<h2 id="code">Code</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">batchNormalization</span>(<span class="hljs-params">X, gamma, beta, moving_mean, moving_var, eps, momentum</span>):<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> torch.is_grad_enabled():<br>        X_hat = (X - moving_mean) / torch.sqrt(moving_var + eps)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(X.shape) <span class="hljs-keyword">in</span> (<span class="hljs-number">2</span>, <span class="hljs-number">4</span>)<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(X.shape) == <span class="hljs-number">2</span>:<br>            mean = X.mean(dim=<span class="hljs-number">0</span>)<br>            var = ((X - mean)**<span class="hljs-number">2</span>).mean(dim=<span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">else</span>:<br>            mean = X.mean(dim=(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>), keepdims=<span class="hljs-literal">True</span>)<br>            var = ((X - mean)**<span class="hljs-number">2</span>).mean(dim=(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>),keepdim=<span class="hljs-literal">True</span>)<br>        X_hat = (X - mean) / torch.sqrt(var + eps)<br>        moving_mean = momentum * moving_mean + (<span class="hljs-number">1</span> - momentum) * mean<br>        moving_var = momentum * moving_var + (<span class="hljs-number">1</span> - momentum) * var<br>    Y=gamma * X_hat + beta<br>    <span class="hljs-keyword">return</span> Y, moving_mean, moving_var.data<br></code></pre></td></tr></table></figure>
-<h2 id="作用">作用</h2>
-<ul>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">batchNormalization</span>(<span class="hljs-params">X, gamma, beta, moving_mean, moving_var, eps, momentum</span>):<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> torch.is_grad_enabled():<br>        X_hat = (X - moving_mean) / torch.sqrt(moving_var + eps)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(X.shape) <span class="hljs-keyword">in</span> (<span class="hljs-number">2</span>, <span class="hljs-number">4</span>)<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(X.shape) == <span class="hljs-number">2</span>:<br>            mean = X.mean(dim=<span class="hljs-number">0</span>)<br>            var = ((X - mean)**<span class="hljs-number">2</span>).mean(dim=<span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">else</span>:<br>            mean = X.mean(dim=(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>), keepdims=<span class="hljs-literal">True</span>)<br>            var = ((X - mean)**<span class="hljs-number">2</span>).mean(dim=(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>),keepdim=<span class="hljs-literal">True</span>)<br>        X_hat = (X - mean) / torch.sqrt(var + eps)<br>        moving_mean = momentum * moving_mean + (<span class="hljs-number">1</span> - momentum) * mean<br>        moving_var = momentum * moving_var + (<span class="hljs-number">1</span> - momentum) * var<br>    Y=gamma * X_hat + beta<br>    <span class="hljs-keyword">return</span> Y, moving_mean, moving_var.data<br></code></pre></td></tr></table></figure>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
 <li>起初用来减少内部变量转移</li>
 <li>后续指出可能是通过在每个小批量里加入噪音控制模型复杂度</li>
 <li>不用和丢弃法混合使用</li>
 </ul>
-<h2 id="总结">总结</h2>
-<ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>可以加速收敛速度,一般不改变模型精度</li>
 <li>使用真实数据时,第一步是标准化输入特征(使其均值为0,方差为1),这种标准化可以很好地与优化器配合使用</li>
 </ul>
-<h2 id="batchnorm和layernorm的区别">BatchNorm和LayerNorm的区别</h2>
-<p>以<code>BatchNorm1d</code>为例:</p>
-<p><span class="math inline">\(y = \frac{x -
-\mathrm{E}[x]}{\sqrt{\mathrm{Var}[x] + \epsilon}} * \gamma +
-\beta\)</span></p>
+<h2 id="BatchNorm和LayerNorm的区别"><a href="#BatchNorm和LayerNorm的区别" class="headerlink" title="BatchNorm和LayerNorm的区别"></a>BatchNorm和LayerNorm的区别</h2><p>以<code>BatchNorm1d</code>为例:</p>
+<p>$y = \frac{x - \mathrm{E}[x]}{\sqrt{\mathrm{Var}[x] + \epsilon} } * \gamma + \beta$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">input</span> = torch.randn(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>) <span class="hljs-comment"># 1:batch, 2:feature, 3:sequence length</span><br>bn1 = nn.BatchNorm1D(<span class="hljs-number">2</span>) <span class="hljs-comment"># 选取特征为2</span><br><span class="hljs-built_in">print</span>(bn1(<span class="hljs-built_in">input</span>))<br><br><span class="hljs-comment">#tensor([[[ 0.9848, -1.3714,  0.3865],</span><br><span class="hljs-comment">#         [ 1.2078, -1.2410,  0.0332]]], grad_fn=&lt;NativeBatchNormBackward0&gt;)</span><br></code></pre></td></tr></table></figure>
 <p>这可以等同于以下操作:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">a1 = (<span class="hljs-built_in">input</span>[:,<span class="hljs-number">0</span>,:] - <span class="hljs-built_in">input</span>[:,<span class="hljs-number">0</span>,:].mean()) / torch.sqrt(<span class="hljs-built_in">input</span>[:,<span class="hljs-number">0</span>,:].var(unbiased=<span class="hljs-literal">False</span>) + <span class="hljs-number">1e-5</span>)<br>a2 = (<span class="hljs-built_in">input</span>[:,<span class="hljs-number">1</span>,:] - <span class="hljs-built_in">input</span>[:,<span class="hljs-number">1</span>,:].mean()) / torch.sqrt(<span class="hljs-built_in">input</span>[:,<span class="hljs-number">1</span>,:].var(unbiased=<span class="hljs-literal">False</span>) + <span class="hljs-number">1e-5</span>)<br><br>torch.cat((a1, a2), dim=<span class="hljs-number">0</span>).reshape(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>) - bn1(<span class="hljs-built_in">input</span>) &lt; <span class="hljs-number">1e-5</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">a1 = (input[:,0,:] - input[:,0,:].mean()) / torch.sqrt(input[:,0,:].var(unbiased=False) + 1e-5)</span><br><span class="hljs-string">a2 = (input[:,1,:] - input[:,1,:].mean()) / torch.sqrt(input[:,1,:].var(unbiased=False) + 1e-5)</span><br><span class="hljs-string"># 比较两种方法</span><br><span class="hljs-string">torch.cat((a1, a2), dim=0).reshape(1,2,3) - bn1(input) &lt; 1e-5</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure>

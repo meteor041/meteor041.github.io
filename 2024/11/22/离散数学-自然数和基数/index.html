@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="自然数和基数 后继集合:对于任意集合A,其后继集合\(A^+\)定义为:\(A^+&#x3D;A\cup\{A\}\) \(i)\emptyset^+&#x3D;\{\emptyset\}\) \(ii)\{\emptyset\}^+&#x3D;\{\emptyset,\{\emptyset\}\}\) \(iii)A\in A^+\) \(iv)A\subseteq A^+\) \(v)A^+\neq \empt">
+    <meta name="description" content="自然数和基数后继集合:对于任意集合A,其后继集合$A^+$定义为:$A^+&#x3D;A\cup\{A\}$ $i)\emptyset^+&#x3D;\{\emptyset\}$ $ii)\{\emptyset\}^+&#x3D;\{\emptyset,\{\emptyset\}\}$ $iii)A\in A^+$ $iv)A\subseteq A^+$ $v)A^+\neq \emptyset$ 自然数系统冯诺依曼方案 \b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="离散数学-自然数和基数">
 <meta property="og:url" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="自然数和基数 后继集合:对于任意集合A,其后继集合\(A^+\)定义为:\(A^+&#x3D;A\cup\{A\}\) \(i)\emptyset^+&#x3D;\{\emptyset\}\) \(ii)\{\emptyset\}^+&#x3D;\{\emptyset,\{\emptyset\}\}\) \(iii)A\in A^+\) \(iv)A\subseteq A^+\) \(v)A^+\neq \empt">
+<meta property="og:description" content="自然数和基数后继集合:对于任意集合A,其后继集合$A^+$定义为:$A^+&#x3D;A\cup\{A\}$ $i)\emptyset^+&#x3D;\{\emptyset\}$ $ii)\{\emptyset\}^+&#x3D;\{\emptyset,\{\emptyset\}\}$ $iii)A\in A^+$ $iv)A\subseteq A^+$ $v)A^+\neq \emptyset$ 自然数系统冯诺依曼方案 \b">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/image-20241122095313913.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/11/22/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E8%87%AA%E7%84%B6%E6%95%B0%E5%92%8C%E5%9F%BA%E6%95%B0/v2-45abdc94da8b0be1dcffc08eb0ba8c41_1440w.png">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.6k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          14 分钟
+          13 分钟
         
       </span>
     
@@ -298,173 +298,129 @@
             
               <div class="markdown-body">
                 
-                <h1 id="自然数和基数">自然数和基数</h1>
-<p><strong>后继集合</strong>:对于任意集合A,其后继集合<span class="math inline">\(A^+\)</span>定义为:<span class="math inline">\(A^+=A\cup\{A\}\)</span></p>
-<p><span class="math inline">\(i)\emptyset^+=\{\emptyset\}\)</span></p>
-<p><span class="math inline">\(ii)\{\emptyset\}^+=\{\emptyset,\{\emptyset\}\}\)</span></p>
-<p><span class="math inline">\(iii)A\in A^+\)</span></p>
-<p><span class="math inline">\(iv)A\subseteq A^+\)</span></p>
-<p><span class="math inline">\(v)A^+\neq \emptyset\)</span></p>
-<h2 id="自然数系统">自然数系统</h2>
-<h2 id="冯诺依曼方案">冯诺依曼方案</h2>
-<p><span class="math display">\[
+                <h1 id="自然数和基数"><a href="#自然数和基数" class="headerlink" title="自然数和基数"></a>自然数和基数</h1><p><strong>后继集合</strong>:对于任意集合A,其后继集合$A^+$定义为:$A^+=A\cup\{A\}$</p>
+<p>$i)\emptyset^+=\{\emptyset\}$</p>
+<p>$ii)\{\emptyset\}^+=\{\emptyset,\{\emptyset\}\}$</p>
+<p>$iii)A\in A^+$</p>
+<p>$iv)A\subseteq A^+$</p>
+<p>$v)A^+\neq \emptyset$</p>
+<h2 id="自然数系统"><a href="#自然数系统" class="headerlink" title="自然数系统"></a>自然数系统</h2><h2 id="冯诺依曼方案"><a href="#冯诺依曼方案" class="headerlink" title="冯诺依曼方案"></a>冯诺依曼方案</h2><script type="math/tex; mode=display">
 \begin{aligned}
-&amp;0=\emptyset\\
-&amp;1=0^+=\{\emptyset\}=\{0\}\\
-&amp;2=1^+=\{\emptyset,\{\emptyset\}\}=\{0,1\}\\
-&amp;...\\
-&amp;n+1=n^+=...=\{0,1,...,n\}
-\end{aligned}
-\]</span></p>
-<h3 id="自然数集合归纳定义法">自然数集合(归纳定义法)</h3>
-<p><span class="math display">\[
+&0=\emptyset\\
+&1=0^+=\{\emptyset\}=\{0\}\\
+&2=1^+=\{\emptyset,\{\emptyset\}\}=\{0,1\}\\
+&...\\
+&n+1=n^+=...=\{0,1,...,n\}
+\end{aligned}</script><h3 id="自然数集合-归纳定义法"><a href="#自然数集合-归纳定义法" class="headerlink" title="自然数集合(归纳定义法)"></a>自然数集合(归纳定义法)</h3><script type="math/tex; mode=display">
 \begin{aligned}
-&amp;i)0\in N,0=\emptyset\\
-&amp;ii)n\in N,n^+\in N\\
-&amp;iii)S\subseteq N满足\\
-&amp;\ 1)0\in S\\
-&amp;\ 2)如果n\in S,则n^+\in S\\
-&amp;\ 则S=N
-\end{aligned}
-\]</span></p>
-<h3 id="大小小于">大小/小于</h3>
-<p>对每个自然数<span class="math inline">\(n\in N\)</span>,皆有<span class="math inline">\(n\in n^+\)</span>及<span class="math inline">\(n\subseteq n^+\)</span></p>
-<p>若<span class="math inline">\(m,n\in N\)</span>使得<span class="math inline">\(m\in n\)</span>,则称m小于n,记为<span class="math inline">\(m&lt;n\)</span></p>
-<h3 id="定理">定理</h3>
-<p><span class="math inline">\(proof:\forall n\in N:\bigcup
-n^+=n\)</span> <span class="math display">\[
+&i)0\in N,0=\emptyset\\
+&ii)n\in N,n^+\in N\\
+&iii)S\subseteq N满足\\
+&\ 1)0\in S\\
+&\ 2)如果n\in S,则n^+\in S\\
+&\ 则S=N
+\end{aligned}</script><h3 id="大小-小于"><a href="#大小-小于" class="headerlink" title="大小/小于"></a>大小/小于</h3><p>对每个自然数$n\in N$,皆有$n\in n^+$及$n\subseteq n^+$</p>
+<p>若$m,n\in N$使得$m\in n$,则称m小于n,记为$m&lt;n$</p>
+<h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3><p>$proof:\forall n\in N:\bigcup n^+=n$</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;S=\{n|n\in N且\bigcup n^+=n\}\\
-&amp;1)0\in S:0\in N且\bigcup\{\emptyset\}=\emptyset=0\\
-&amp;2)若n\in S,则\bigcup n^+=n且n\in N\\
-&amp;\therefore n^+\in N,\bigcup((n^+)^+)=\bigcup(n^+\cup\{n^+\})\\
-&amp;=(\bigcup n^+)\cup(\bigcup\{n^+\})=n\cup n^+=n^+\\
-&amp;\therefore n^+\in S
-\end{aligned}
-\]</span></p>
-<h2 id="皮亚诺公理">皮亚诺公理</h2>
-<p><span class="math display">\[
+&S=\{n|n\in N且\bigcup n^+=n\}\\
+&1)0\in S:0\in N且\bigcup\{\emptyset\}=\emptyset=0\\
+&2)若n\in S,则\bigcup n^+=n且n\in N\\
+&\therefore n^+\in N,\bigcup((n^+)^+)=\bigcup(n^+\cup\{n^+\})\\
+&=(\bigcup n^+)\cup(\bigcup\{n^+\})=n\cup n^+=n^+\\
+&\therefore n^+\in S
+\end{aligned}</script><h2 id="皮亚诺公理"><a href="#皮亚诺公理" class="headerlink" title="皮亚诺公理"></a>皮亚诺公理</h2><script type="math/tex; mode=display">
 \begin{aligned}
-&amp;1)0\in N\\
-&amp;2)n\in N,则有唯一的后继n^+\in N\\
-&amp;3)n\in N,则n^+\neq 0\\
-&amp;4)n,m\in N且n^+=m^+,则n=m\\
-&amp;5)若S\subseteq N满足i)0\in S,ii)如果n\in S,则n^+\in S\\
-&amp;则S=n
-\end{aligned}
-\]</span></p>
-<h2 id="第一数学归纳法">第一数学归纳法</h2>
-<p>P(n)是自然数集合上的性质(或<strong>谓词</strong>),如果能证明</p>
-<p>1)<span class="math inline">\(P(0)\)</span>是真</p>
-<p>2)对任何<span class="math inline">\(n\in N\)</span>,<span class="math inline">\(P(n)\Rightarrow P(n^+)\)</span></p>
-<p>则对所有<span class="math inline">\(n\in N\)</span>,P(n)为真</p>
+&1)0\in N\\
+&2)n\in N,则有唯一的后继n^+\in N\\
+&3)n\in N,则n^+\neq 0\\
+&4)n,m\in N且n^+=m^+,则n=m\\
+&5)若S\subseteq N满足i)0\in S,ii)如果n\in S,则n^+\in S\\
+&则S=n
+\end{aligned}</script><h2 id="第一数学归纳法"><a href="#第一数学归纳法" class="headerlink" title="第一数学归纳法"></a>第一数学归纳法</h2><p>P(n)是自然数集合上的性质(或<strong>谓词</strong>),如果能证明</p>
+<p>1)$P(0)$是真</p>
+<p>2)对任何$n\in N$,$P(n)\Rightarrow P(n^+)$</p>
+<p>则对所有$n\in N$,P(n)为真</p>
 <p>即:</p>
-<p><span class="math inline">\(P(0)\wedge (\forall n)(P(n)\rightarrow
-P(n+1))\Rightarrow (\forall n)P(n)\)</span> <span class="math display">\[
+<p>$P(0)\wedge (\forall n)(P(n)\rightarrow P(n+1))\Rightarrow (\forall n)P(n)$</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;S=\{n|n\in N,P(n_0+n)为真\}\\
-&amp;0\in  S:0\in N且P(n_0+0)为真\\
-&amp;若n\in S,则n\in N且P(n+n_0)为真\\
-&amp;因为:n_0+n^+=(n_0+n)^+\\
-&amp;因此:P(n^++n_0)为真,n^+\in S
-\end{aligned}
-\]</span></p>
-<h2 id="第二数学归纳法强归纳定理">第二数学归纳法(强归纳定理)</h2>
-<p><span class="math inline">\(\forall n\in
-N,令\overline{N_n}=N-N_n=\{n,n+1,n+2,...\}\)</span></p>
-<p><span class="math inline">\((\forall n)((\forall k)(k&lt;n\rightarrow
-P(k))\rightarrow P(n))\Rightarrow (\forall x)P(x)\)</span> <span class="math display">\[
+&S=\{n|n\in N,P(n_0+n)为真\}\\
+&0\in  S:0\in N且P(n_0+0)为真\\
+&若n\in S,则n\in N且P(n+n_0)为真\\
+&因为:n_0+n^+=(n_0+n)^+\\
+&因此:P(n^++n_0)为真,n^+\in S
+\end{aligned}</script><h2 id="第二数学归纳法-强归纳定理"><a href="#第二数学归纳法-强归纳定理" class="headerlink" title="第二数学归纳法(强归纳定理)"></a>第二数学归纳法(强归纳定理)</h2><p>$\forall n\in N,令\overline{N_n}=N-N_n=\{n,n+1,n+2,…\}$</p>
+<p>$(\forall n)((\forall k)(k&lt;n\rightarrow P(k))\rightarrow P(n))\Rightarrow (\forall x)P(x)$</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;Q(n):若k\in N且n_0\leq k\leq n,则P(k)为真\\
-&amp;Q(n)满足第一归纳法\\
-&amp;显然Q(n_0)即为真,所以Q(n_0)为真\\
-&amp;假设对任意n\in\overline{ N_{n_0} },Q(n)为真\\
-&amp;若k\in N且n_0\leq k\leq n,则P(k)为真\\
-&amp;因此,当k\in N且n_0&lt; n^+时,P(k)也皆为真\\
-&amp;P(n^+)为真,表明Q(n^+)为真\\
-&amp;根据第一归纳法,对任意n\in \overline{ N_{n_0} },P(n)为真
-\end{aligned}
-\]</span> <img src="image-20241122095313913.png" srcset="/img/loading.gif" lazyload alt="强归纳定理"></p>
-<h2 id="二重归纳原理">二重归纳原理</h2>
-<p>设<span class="math inline">\(i_0,j_0\in
-N\)</span>,假定对任意自然数<span class="math inline">\(i\geq
-i_0\)</span>及<span class="math inline">\(j\geq
-j_0\)</span>皆有一个命题<span class="math inline">\(P(i,j)\)</span>满足:</p>
-<ol type="1">
-<li><span class="math inline">\(P(i_0,j_0)\)</span>真</li>
-<li>对任意自然数<span class="math inline">\(k\geq i_0,l\geq
-j_0\)</span>,若<span class="math inline">\(P(k,l)真,则P(k+1,l)和P(k,l+1)\)</span>皆真</li>
+&Q(n):若k\in N且n_0\leq k\leq n,则P(k)为真\\
+&Q(n)满足第一归纳法\\
+&显然Q(n_0)即为真,所以Q(n_0)为真\\
+&假设对任意n\in\overline{ N_{n_0} },Q(n)为真\\
+&若k\in N且n_0\leq k\leq n,则P(k)为真\\
+&因此,当k\in N且n_0< n^+时,P(k)也皆为真\\
+&P(n^+)为真,表明Q(n^+)为真\\
+&根据第一归纳法,对任意n\in \overline{ N_{n_0} },P(n)为真
+\end{aligned}</script><p><img src="image-20241122095313913.png" srcset="/img/loading.gif" lazyload alt="强归纳定理"></p>
+<h2 id="二重归纳原理"><a href="#二重归纳原理" class="headerlink" title="二重归纳原理"></a>二重归纳原理</h2><p>设$i_0,j_0\in N$,假定对任意自然数$i\geq i_0$及$j\geq j_0$皆有一个命题$P(i,j)$满足:</p>
+<ol>
+<li>$P(i_0,j_0)$真</li>
+<li>对任意自然数$k\geq i_0,l\geq j_0$,若$P(k,l)真,则P(k+1,l)和P(k,l+1)$皆真</li>
 </ol>
-<p>则对任意自然数<span class="math inline">\(i\geq i_0,j\geq
-j_0,P(i,j)\)</span>皆真</p>
-<h1 id="基数">基数</h1>
-<h2 id="等势">等势</h2>
-<p>从A到B的双射,则称A和B相等/等势,记为<span class="math inline">\(A\sim
-B\)</span></p>
+<p>则对任意自然数$i\geq i_0,j\geq j_0,P(i,j)$皆真</p>
+<h1 id="基数"><a href="#基数" class="headerlink" title="基数"></a>基数</h1><h2 id="等势"><a href="#等势" class="headerlink" title="等势"></a>等势</h2><p>从A到B的双射,则称A和B相等/等势,记为$A\sim B$</p>
 <p>无穷集合可以与它本身的真子集<strong>等势</strong></p>
-<h3 id="鸽笼原理">鸽笼原理</h3>
-<p>任何有限集都不能与它的真子集对等</p>
+<h3 id="鸽笼原理"><a href="#鸽笼原理" class="headerlink" title="鸽笼原理"></a>鸽笼原理</h3><p>任何有限集都不能与它的真子集对等</p>
 <p><strong>任何与自身真子集等势的集合均是无穷集合</strong></p>
-<h2 id="集合的基数">集合的基数</h2>
-<p><span class="math inline">\(设n\in N,A\sim
-n,则\sharp(A)=n\)</span></p>
-<p>无限集的基数:<span class="math inline">\(\sharp(N)=\aleph_0\)</span></p>
+<h2 id="集合的基数"><a href="#集合的基数" class="headerlink" title="集合的基数"></a>集合的基数</h2><p>$设n\in N,A\sim n,则\sharp(A)=n$</p>
+<p>无限集的基数:$\sharp(N)=\aleph_0$</p>
 <p><strong>任意两个基数都可以比较大小</strong></p>
-<h2 id="相等和大小顺序">相等和大小顺序</h2>
-<ol type="1">
-<li>如果<span class="math inline">\(A\sim
-B\)</span>,就称A和B的基数相等,记作<span class="math inline">\(\sharp(A)=\sharp(B)\)</span></li>
-<li>如果存在从A到B的单射,就称A的基数小于等于B的基数,记作<span class="math inline">\(\sharp(A)\leq\sharp(B)\)</span></li>
+<h2 id="相等和大小顺序"><a href="#相等和大小顺序" class="headerlink" title="相等和大小顺序"></a>相等和大小顺序</h2><ol>
+<li>如果$A\sim B$,就称A和B的基数相等,记作$\sharp(A)=\sharp(B)$</li>
+<li>如果存在从A到B的单射,就称A的基数小于等于B的基数,记作$\sharp(A)\leq\sharp(B)$</li>
 </ol>
-<h2 id="无穷集的等价条件">无穷集的等价条件</h2>
-<p>以下三个条件等价:</p>
-<ol type="1">
+<h2 id="无穷集的等价条件"><a href="#无穷集的等价条件" class="headerlink" title="无穷集的等价条件"></a>无穷集的等价条件</h2><p>以下三个条件等价:</p>
+<ol>
 <li>A为无穷集</li>
 <li>A有可数无穷子集</li>
 <li>A有与它对等的真子集</li>
 </ol>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;1)\rightarrow 2)\\
-&amp;设A为无限集,取a_0\in A,对每个n\in
-N,若\{a_0,a_1,\dots,a_n\}\subseteq A,\\
-&amp;则必有a_{n+1}\in A且a_{n+1}\notin
-\{a_1,a_2,\dots,a_n\},因此,B=\{a_i|i\in N\}即为A的可列子集\\
-&amp;2)\rightarrow 3)\\
-&amp;A无穷,\therefore A\neq \emptyset\\
-&amp;任取a_1\in A\\
-&amp;再取a_2\in A-\{a_1\}\\
-&amp;\dots\\
-&amp;C=\{a_1,a_2\dots,a_n,\dots\}\\
-&amp;A=C\cup (A-C)\\
-&amp;A^`=(C-\{a_1\})\cup(A-C)\\
-&amp;设f:A\rightarrow A^`\\
-&amp;f(x)=\begin{cases}x,x\in A-C\\a_{i+1},x=a_i\end{cases}
-\end{aligned}
-\]</span></p>
-<h2 id="定理-1">定理</h2>
-<ul>
+&1)\rightarrow 2)\\
+&设A为无限集,取a_0\in A,对每个n\in N,若\{a_0,a_1,\dots,a_n\}\subseteq A,\\
+&则必有a_{n+1}\in A且a_{n+1}\notin \{a_1,a_2,\dots,a_n\},因此,B=\{a_i|i\in N\}即为A的可列子集\\
+&2)\rightarrow 3)\\
+&A无穷,\therefore A\neq \emptyset\\
+&任取a_1\in A\\
+&再取a_2\in A-\{a_1\}\\
+&\dots\\
+&C=\{a_1,a_2\dots,a_n,\dots\}\\
+&A=C\cup (A-C)\\
+&A^`=(C-\{a_1\})\cup(A-C)\\
+&设f:A\rightarrow A^`\\
+&f(x)=\begin{cases}x,x\in A-C\\a_{i+1},x=a_i\end{cases}
+\end{aligned}</script><h2 id="定理-1"><a href="#定理-1" class="headerlink" title="定理"></a>定理</h2><ul>
 <li>任何无穷集合必含有<strong>可数无穷子集</strong></li>
 <li>实数集合R是<strong>不可数的</strong></li>
-<li>对每个集合A,皆有<span class="math inline">\(\sharp(A)&lt;\sharp(\rho(A))\)</span></li>
-<li><span class="math inline">\(\sharp(R\times R)=\aleph\)</span></li>
+<li>对每个集合A,皆有$\sharp(A)&lt;\sharp(\rho(A))$</li>
+<li>$\sharp(R\times R)=\aleph$</li>
 </ul>
-<h2 id="例">例</h2>
-<blockquote>
+<h2 id="例"><a href="#例" class="headerlink" title="例"></a>例</h2><blockquote>
 <p>取52个整数,必有两数之和或两数之差,被100整除</p>
 </blockquote>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;在51个抽屉:\{0\},\{1,99\},\{2,98\},\dots\{49,1\},\{50\}中选取52个整数\\
-&amp;必有两个整数r_a\mod 100,r_b\mod 100正好落在同一抽屉中\\
-&amp;a)r_a=r_b,则(r_a-r_b)|\ 100\\
-&amp;b)r_a\neq r_b,则(r_a+r_b)|\ 100
-\end{aligned}
-\]</span></p>
-<blockquote>
+&在51个抽屉:\{0\},\{1,99\},\{2,98\},\dots\{49,1\},\{50\}中选取52个整数\\
+&必有两个整数r_a\mod 100,r_b\mod 100正好落在同一抽屉中\\
+&a)r_a=r_b,则(r_a-r_b)|\ 100\\
+&b)r_a\neq r_b,则(r_a+r_b)|\ 100
+\end{aligned}</script><blockquote>
 <p>A=[0,1],B=(0,1),构造A到B的双射</p>
 </blockquote>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 C=\{a_0,a_1,a_2,\dots a_i,\dots\}\\
 (0,1)=C\cup\{(0,1)-C\}\\
 C^`=(C-\{a_0,a_1\})\cup\{(0,1)-C\}\\
@@ -474,74 +430,59 @@ a_0,x=0\\
 a_1,x=1\\
 a_{i+2},x=a_{i+1}\\
 x,其他\\
-\end{cases}\\
-\]</span></p>
-<blockquote>
-<p><span class="math inline">\(\sharp(R)=\aleph\)</span></p>
+\end{cases}\\</script><blockquote>
+<p>$\sharp(R)=\aleph$</p>
 </blockquote>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;f:\mathscr P(N)\rightarrow [0,1]\\
-&amp;f(A)=\sum^\infty_{i=0}\frac{\chi_A(i)}{2^{i+1} },A\subseteq N\\
-&amp;f是满射,所以\sharp([0,1])\leq \aleph\\
-&amp;g:\mathscr P(n)\rightarrow [0,1]\\
-&amp;g(A)=\sum^\infty_{i=0}\frac{\chi_A(i)}{3^{i+1} },A\subseteq N\\
-&amp;若A,B\subseteq N且A\neq B,A\oplus B\neq \emptyset,i_0是A\oplus
-B的最小元素\\
-&amp;则\left|g(A)-g(B)\right|\geq \frac{1}{3^{i_0+1}
-}-\sum^{\infty}_{j=2}\frac{1}{3^{i_o+j} }&gt;0\\
-&amp;\therefore g(A)\neq g(B)\\
-&amp;因此g是内射\\
-&amp;\aleph\leq \sharp([0,1])\\
-&amp;所以\sharp([0,1])=\aleph,但\sharp([0,1])=\sharp(R)\\
-&amp;\sharp(R)=\aleph
-\end{aligned}
-\]</span></p>
-<blockquote>
-<p>设集合<span class="math inline">\(S=\{x|x\in(0,1)\}\)</span></p>
+&f:\mathscr P(N)\rightarrow [0,1]\\
+&f(A)=\sum^\infty_{i=0}\frac{\chi_A(i)}{2^{i+1} },A\subseteq N\\
+&f是满射,所以\sharp([0,1])\leq \aleph\\
+&g:\mathscr P(n)\rightarrow [0,1]\\
+&g(A)=\sum^\infty_{i=0}\frac{\chi_A(i)}{3^{i+1} },A\subseteq N\\
+&若A,B\subseteq N且A\neq B,A\oplus B\neq \emptyset,i_0是A\oplus B的最小元素\\
+&则\left|g(A)-g(B)\right|\geq \frac{1}{3^{i_0+1} }-\sum^{\infty}_{j=2}\frac{1}{3^{i_o+j} }>0\\
+&\therefore g(A)\neq g(B)\\
+&因此g是内射\\
+&\aleph\leq \sharp([0,1])\\
+&所以\sharp([0,1])=\aleph,但\sharp([0,1])=\sharp(R)\\
+&\sharp(R)=\aleph
+\end{aligned}</script><blockquote>
+<p>设集合$S=\{x|x\in(0,1)\}$</p>
 </blockquote>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;假设S可数,把S的元素排列成无穷序列S_0,S_1,\dots,S_n,\dots\\
-&amp;已知S_i是0和1之间的实数,任何小于1的正数s可以表示为:\\
-&amp;s=0.y_1y_2y_3\dots\\
-&amp;这里y_i\in\{0,1,2,\dots,9\}\\
-&amp;S_0=0.a_{11}a_{12}a_{13}\cdots\\
-&amp;S_1=0.a_{21}a_{22}a_{23}\cdots\\
-&amp;构造一个实数r=0.b_1b_2b_3\cdots b_n\cdots\\
-&amp;若a_{jj}\neq 1,则取b_j=1;若a_{jj}=1,则取b_j=2\\
-&amp;r\notin S,导致矛盾,因此S是不可数的\\
-&amp;因为R和S是等势的,R也是不可数的\\
-\end{aligned}
-\]</span></p>
-<p>与集合R等势的集合的基数,用<span class="math inline">\(\aleph\)</span>来表示,并称为连续统的势,#<span class="math inline">\(\rho(N)\)</span>记为<span class="math inline">\(\aleph\)</span></p>
+&假设S可数,把S的元素排列成无穷序列S_0,S_1,\dots,S_n,\dots\\
+&已知S_i是0和1之间的实数,任何小于1的正数s可以表示为:\\
+&s=0.y_1y_2y_3\dots\\
+&这里y_i\in\{0,1,2,\dots,9\}\\
+&S_0=0.a_{11}a_{12}a_{13}\cdots\\
+&S_1=0.a_{21}a_{22}a_{23}\cdots\\
+&构造一个实数r=0.b_1b_2b_3\cdots b_n\cdots\\
+&若a_{jj}\neq 1,则取b_j=1;若a_{jj}=1,则取b_j=2\\
+&r\notin S,导致矛盾,因此S是不可数的\\
+&因为R和S是等势的,R也是不可数的\\
+\end{aligned}</script><p>与集合R等势的集合的基数,用$\aleph$来表示,并称为连续统的势,#$\rho(N)$记为$\aleph$</p>
 <blockquote>
-<p>#<span class="math inline">\((R\times R)=\aleph\)</span></p>
-</blockquote>
-<p><span class="math display">\[
+<h1 id="R-times-R-aleph"><a href="#R-times-R-aleph" class="headerlink" title="$(R\times R)=\aleph$"></a>$(R\times R)=\aleph$</h1></blockquote>
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;证明:即证\text{ \sharp}([0,1)\times[0,1))= \text{ \sharp}([0,1))\\
-&amp;不妨设x=0.x_1x_2\dots\\
-&amp;y=y_1y_2\dots\\
-&amp;f(x,y)=0.x_1y_1x_2y_2\dots\\
-&amp;若存在f(x&#39;,y&#39;)=0.x_1&#39;y_1&#39;x_2&#39;y_2&#39;\dots=f(x,y),\\
-&amp;则x_1=x_1&#39;,y_1=y_1&#39;,\dots,故f为单射\\
-&amp;对于任意z=z_1z_2z_3\dots\in[0,1)\\
-&amp;存在x=z_1z_3\dots z_{2i+1}\dots,y=z_2z_4\dots z_{2i}\dots,\\
-&amp;使得f(x,y)=z\\
-&amp;因此f是满射\\
-&amp;所以\sharp([0,1)\times[0,1))=\sharp([0,1))\\
-\end{aligned}
-\]</span></p>
-<blockquote>
-<p><span class="math inline">\(Q_+\sim N_+\)</span></p>
+&证明:即证\text{ \sharp}([0,1)\times[0,1))= \text{ \sharp}([0,1))\\
+&不妨设x=0.x_1x_2\dots\\
+&y=y_1y_2\dots\\
+&f(x,y)=0.x_1y_1x_2y_2\dots\\
+&若存在f(x',y')=0.x_1'y_1'x_2'y_2'\dots=f(x,y),\\
+&则x_1=x_1',y_1=y_1',\dots,故f为单射\\
+&对于任意z=z_1z_2z_3\dots\in[0,1)\\
+&存在x=z_1z_3\dots z_{2i+1}\dots,y=z_2z_4\dots z_{2i}\dots,\\
+&使得f(x,y)=z\\
+&因此f是满射\\
+&所以\sharp([0,1)\times[0,1))=\sharp([0,1))\\
+\end{aligned}</script><blockquote>
+<p>$Q_+\sim N_+$</p>
 </blockquote>
-<figure>
-<img src="v2-45abdc94da8b0be1dcffc08eb0ba8c41_1440w.png" srcset="/img/loading.gif" lazyload alt="正有理数到正整数">
-<figcaption aria-hidden="true">正有理数到正整数</figcaption>
-</figure>
-<h2 id="小于的定义">"小于"的定义</h2>
-<p>若#A=<span class="math inline">\(\alpha\)</span>,#B=<span class="math inline">\(\beta\)</span>,且A<span class="math inline">\(\prec\)</span>B,则称<span class="math inline">\(\alpha\)</span>小于<span class="math inline">\(\beta\)</span>,记为<span class="math inline">\(\alpha&lt;\beta\)</span></p>
+<p><img src="v2-45abdc94da8b0be1dcffc08eb0ba8c41_1440w.png" srcset="/img/loading.gif" lazyload alt="正有理数到正整数"></p>
+<h2 id="“小于”的定义"><a href="#“小于”的定义" class="headerlink" title="“小于”的定义"></a>“小于”的定义</h2><p>若#A=$\alpha$,#B=$\beta$,且A$\prec$B,则称$\alpha$小于$\beta$,记为$\alpha&lt;\beta$</p>
 
                 
               </div>

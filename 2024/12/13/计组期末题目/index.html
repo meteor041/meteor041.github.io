@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="4.某页式虚拟存储系统按字节编址，虚存容量为 4GB，主存容量为 64MB，页大小为 4KB， 每个页表项需有一位有效位和一位修改位。假设所有虚页都在使用中，问 （1）虚拟地址和物理地址分别是多少位，格式如何 （2）程序虚拟空间最多可有多少页 （3）每个页表项共有多少位 （4）每个页表最多占多少内存空间 \[ \begin{aligned} (1)&amp;虚拟地址位数&#x3D;\log_">
+    <meta name="description" content="4.某页式虚拟存储系统按字节编址，虚存容量为 4GB，主存容量为 64MB，页大小为 4KB， 每个页表项需有一位有效位和一位修改位。假设所有虚页都在使用中，问 （1）虚拟地址和物理地址分别是多少位，格式如何 （2）程序虚拟空间最多可有多少页 （3）每个页表项共有多少位 （4）每个页表最多占多少内存空间  \begin{aligned} (1)&amp;虚拟地址位数&#x3D;\log_2(4\times 2^{3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计组期末题目">
 <meta property="og:url" content="https://meteor041.git.io/2024/12/13/%E8%AE%A1%E7%BB%84%E6%9C%9F%E6%9C%AB%E9%A2%98%E7%9B%AE/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="4.某页式虚拟存储系统按字节编址，虚存容量为 4GB，主存容量为 64MB，页大小为 4KB， 每个页表项需有一位有效位和一位修改位。假设所有虚页都在使用中，问 （1）虚拟地址和物理地址分别是多少位，格式如何 （2）程序虚拟空间最多可有多少页 （3）每个页表项共有多少位 （4）每个页表最多占多少内存空间 \[ \begin{aligned} (1)&amp;虚拟地址位数&#x3D;\log_">
+<meta property="og:description" content="4.某页式虚拟存储系统按字节编址，虚存容量为 4GB，主存容量为 64MB，页大小为 4KB， 每个页表项需有一位有效位和一位修改位。假设所有虚页都在使用中，问 （1）虚拟地址和物理地址分别是多少位，格式如何 （2）程序虚拟空间最多可有多少页 （3）每个页表项共有多少位 （4）每个页表最多占多少内存空间  \begin{aligned} (1)&amp;虚拟地址位数&#x3D;\log_2(4\times 2^{3">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/13/%E8%AE%A1%E7%BB%84%E6%9C%9F%E6%9C%AB%E9%A2%98%E7%9B%AE/image-20241214160312632.png">
 <meta property="article:published_time" content="2024-12-13T07:23:46.000Z">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          790 字
+          760 字
         
       </span>
     
@@ -297,81 +297,71 @@
             
               <div class="markdown-body">
                 
-                <p>4.某页式虚拟存储系统按字节编址，虚存容量为 4GB，主存容量为
-64MB，页大小为 4KB，</p>
+                <p>4.某页式虚拟存储系统按字节编址，虚存容量为 4GB，主存容量为 64MB，页大小为 4KB，</p>
 <p>每个页表项需有一位有效位和一位修改位。假设所有虚页都在使用中，问</p>
 <p>（1）虚拟地址和物理地址分别是多少位，格式如何</p>
 <p>（2）程序虚拟空间最多可有多少页</p>
 <p>（3）每个页表项共有多少位</p>
-<p>（4）每个页表最多占多少内存空间 <span class="math display">\[
+<p>（4）每个页表最多占多少内存空间</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-(1)&amp;虚拟地址位数=\log_2(4\times 2^{30})=32\\
-&amp;物理地址位数=\log_2(64\times 2^{20})=26\\
-&amp;页内偏移位数=\log_2(4\times2^{10})=12\\
-&amp;虚拟地址格式:|页号(20)|页内偏移(12)|\\
-&amp;物理地址格式:|页号(14)|页内偏移(12)|\\
-(2)&amp;2^{20}页\\
-(3)&amp;页表项最多可以有1+1+14=16位\\
-(4)&amp;每个页表最多占2^{20}\times16/8=2MB\\
-\end{aligned}
-\]</span></p>
-<blockquote>
+(1)&虚拟地址位数=\log_2(4\times 2^{30})=32\\
+&物理地址位数=\log_2(64\times 2^{20})=26\\
+&页内偏移位数=\log_2(4\times2^{10})=12\\
+&虚拟地址格式:|页号(20)|页内偏移(12)|\\
+&物理地址格式:|页号(14)|页内偏移(12)|\\
+(2)&2^{20}页\\
+(3)&页表项最多可以有1+1+14=16位\\
+(4)&每个页表最多占2^{20}\times16/8=2MB\\
+\end{aligned}</script><blockquote>
 <p>页表所占内存空间为页表项数*页表项位数,页表项</p>
 </blockquote>
-<figure>
-<img src="image-20241214160312632.png" srcset="/img/loading.gif" lazyload alt="页式虚拟存储器">
-<figcaption aria-hidden="true">页式虚拟存储器</figcaption>
-</figure>
-<ol start="5" type="1">
+<p><img src="image-20241214160312632.png" srcset="/img/loading.gif" lazyload alt="页式虚拟存储器"></p>
+<ol>
 <li>假设用如下的寄存器分配方案：$s1存放变量f，$s2存放变量g，$s3存放数组A的基地址。请将下列MIPS代码翻译成一行C的代码。</li>
 </ol>
-<p>​ lw $s1, 12($s3)</p>
-<p>​ add $s1, $s1, $s2</p>
-<p>​ addi $s1, $s1, 9</p>
-<p>​ add $s1,$s1,$s1</p>
+<p>​    lw $s1, 12($s3)</p>
+<p>​    add $s1, $s1, $s2</p>
+<p>​    addi $s1, $s1, 9</p>
+<p>​    add $s1,$s1,$s1</p>
 <p>如果g=7, A = {3, 2, 6, 4, 7, 6, 4, 8, 9, 8}，则f的值是多少？</p>
 <p><code>f=2(A[3]+g+9)</code></p>
 <p><code>f=40</code></p>
-<ol start="6" type="1">
+<ol>
 <li>某计算机字长32位，主存地址31位且按字节编址,四级组相联映射。Cache的数据存储空间容量为32KB，Cache数据块大小为4个字，每个cache数据块对应有1位有效位和4位修改值。问</li>
 </ol>
 <p>（1）cache分多少组</p>
 <p>（2）给出主存地址格式（地址中各字段名称及其位数）</p>
 <p>（3）cache的标记(tag)是多少位</p>
 <p>（4）cache的实际总容量是多少</p>
-<p>（5）若cache的存取时间是5ns，cache访问缺失时的存取时间是100ns，计算cache命中率为0.8的情况下，该cache的平均存取时间。
-<span class="math display">\[
+<p>（5）若cache的存取时间是5ns，cache访问缺失时的存取时间是100ns，计算cache命中率为0.8的情况下，该cache的平均存取时间。</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-(1)&amp;Cache组数=\dfrac{32KB}{4\times 32/8\times 4B}=512组\\
-(2)&amp;主存块数=\dfrac{2^{31}}{4\times 32/8}=2^{27}块\\
-&amp;Cache标记位数=29-9=18\\
-&amp;主存地址格式:
+(1)&Cache组数=\dfrac{32KB}{4\times 32/8\times 4B}=512组\\
+(2)&主存块数=\dfrac{2^{31}}{4\times 32/8}=2^{27}块\\
+&Cache标记位数=29-9=18\\
+&主存地址格式:
 |Cache标记(18)|Cache行号(9)|块内地址(4)|\\
-(3)&amp;Cache标记为18位\\
-(4)&amp;Cache实际容量为((19+1+4)+4\times 32)\times 512\times
-4=311296bit=38KB\\
-(5)&amp;平均存取时间\overline t=0.8\times 5+0.2\times
-(100+5)=25\text{ns}
-\end{aligned}
-\]</span></p>
-<ol start="7" type="1">
+(3)&Cache标记为18位\\
+(4)&Cache实际容量为((19+1+4)+4\times 32)\times 512\times 4=311296bit=38KB\\
+(5)&平均存取时间\overline t=0.8\times 5+0.2\times (100+5)=25\text{ns}
+\end{aligned}</script><ol>
 <li>某8位计算机的主存地址为16位，主存按字节编址，其中地址最高的16KB主存空间为只读的系统程序区。现有若干片荣俩个16K<em>8的RAM芯片和容量8K</em>8的ROM芯片。问</li>
 </ol>
 <p>（1）计算机所允许的最大主存容量是多少</p>
 <p>（2）构建计算机允许的最大容量的主存，需用上述规格的RAM和ROM各多少</p>
-<p>（3）用十六进制表示这些存储器的起止地址 <span class="math display">\[
+<p>（3）用十六进制表示这些存储器的起止地址</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-(1)&amp;允许最大容量=2^{16}\times 8=2^{19}bit=64KB\\
-(2)&amp;ROM数量=\dfrac{16KB}{8K\times 8/8B}=2\\
-&amp;RAM数量=\dfrac{48KB}{16K\times 8/8B}=3\\
-(3)&amp;RAM1:0000H\sim 3FFFH\\
-&amp;RAM2:4000H\sim 7FFFH\\
-&amp;RAM3:8000H\sim BFFFH\\
-&amp;ROM1:C000H\sim DFFFH\\
-&amp;ROM2:E000H\sim FFFFH\\
-\end{aligned}
-\]</span></p>
-
+(1)&允许最大容量=2^{16}\times 8=2^{19}bit=64KB\\
+(2)&ROM数量=\dfrac{16KB}{8K\times 8/8B}=2\\
+&RAM数量=\dfrac{48KB}{16K\times 8/8B}=3\\
+(3)&RAM1:0000H\sim 3FFFH\\
+&RAM2:4000H\sim 7FFFH\\
+&RAM3:8000H\sim BFFFH\\
+&ROM1:C000H\sim DFFFH\\
+&ROM2:E000H\sim FFFFH\\
+\end{aligned}</script>
                 
               </div>
             

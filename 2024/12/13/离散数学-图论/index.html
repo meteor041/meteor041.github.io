@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="图论 图论的基本概念 图 \(设V和E是有限集合,且V\neq \emptyset\) (1)如果\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为无向图 (2)如果\(\Phi:E\rightarrow V\times V\),则称\(G&#x3D;&lt;V,E,\Phi&gt;">
+    <meta name="description" content="图论图论的基本概念图$设V和E是有限集合,且V\neq \emptyset$ (1)如果$\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}$,则称$G&#x3D;$为无向图 (2)如果$\Phi:E\rightarrow V\times V$,则称$G&#x3D;$为有向图 特殊图 结点都是孤立点的图:零图 一阶零图称为平凡图 所有结点的度均为自然数d的无向图称为d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="离散数学-图论">
 <meta property="og:url" content="https://meteor041.git.io/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="图论 图论的基本概念 图 \(设V和E是有限集合,且V\neq \emptyset\) (1)如果\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}\),则称\(G&#x3D;&lt;V,E,\Phi&gt;\)为无向图 (2)如果\(\Phi:E\rightarrow V\times V\),则称\(G&#x3D;&lt;V,E,\Phi&gt;">
+<meta property="og:description" content="图论图论的基本概念图$设V和E是有限集合,且V\neq \emptyset$ (1)如果$\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}$,则称$G&#x3D;$为无向图 (2)如果$\Phi:E\rightarrow V\times V$,则称$G&#x3D;$为有向图 特殊图 结点都是孤立点的图:零图 一阶零图称为平凡图 所有结点的度均为自然数d的无向图称为d">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/image-20241215163122114.png">
 <meta property="og:image" content="https://meteor041.git.io/2024/12/13/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E5%9B%BE%E8%AE%BA/image-20241224152139382.png">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          1.2k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          31 分钟
+          10 分钟
         
       </span>
     
@@ -298,320 +298,229 @@
             
               <div class="markdown-body">
                 
-                <h1 id="图论">图论</h1>
-<h1 id="图论的基本概念">图论的基本概念</h1>
-<h2 id="图">图</h2>
-<p><span class="math inline">\(设V和E是有限集合,且V\neq
-\emptyset\)</span></p>
-<p>(1)如果<span class="math inline">\(\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in
-V\}\)</span>,则称<span class="math inline">\(G=&lt;V,E,\Phi&gt;\)</span>为<font color="red">无向图</font></p>
-<p>(2)如果<span class="math inline">\(\Phi:E\rightarrow V\times
-V\)</span>,则称<span class="math inline">\(G=&lt;V,E,\Phi&gt;\)</span>为<font color="red">有向图</font></p>
-<h2 id="特殊图">特殊图</h2>
-<ol type="1">
+                <h1 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h1><h1 id="图论的基本概念"><a href="#图论的基本概念" class="headerlink" title="图论的基本概念"></a>图论的基本概念</h1><h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p>$设V和E是有限集合,且V\neq \emptyset$</p>
+<p>(1)如果$\Phi:E\rightarrow\{\{v_1,v_2\}|v_1\in V且v_2\in V\}$,则称$G=<V,E,\Phi>$为<font color="red">无向图</font></V,E,\Phi></p>
+<p>(2)如果$\Phi:E\rightarrow V\times V$,则称$G=<V,E,\Phi>$为<font color="red">有向图</font></V,E,\Phi></p>
+<h2 id="特殊图"><a href="#特殊图" class="headerlink" title="特殊图"></a>特殊图</h2><ol>
 <li>结点都是<font color="red">孤立点</font>的图:零图</li>
 <li>一阶零图称为<font color="red">平凡图</font></li>
 <li>所有结点的度均为自然数d的无向图称为<font color="red">d度正则图</font></li>
-<li><span class="math inline">\(n\in
-I_+\)</span>,如果n阶简单无向图是n-1度正则图,则称为<font color="red">完全无向图</font></li>
-<li><span class="math inline">\(n\in
-I_+\)</span>,若n阶简单有向图的每个结点的入度和出度均为n-1,则称为<font color="red">完全有向图</font></li>
+<li>$n\in I_+$,如果n阶简单无向图是n-1度正则图,则称为<font color="red">完全无向图</font></li>
+<li>$n\in I_+$,若n阶简单有向图的每个结点的入度和出度均为n-1,则称为<font color="red">完全有向图</font></li>
 </ol>
-<h2 id="同构">同构</h2>
-<p><span class="math inline">\(设G=&lt;V,E,\Psi&gt;,G&#39;=&lt;V&#39;,E&#39;,\Psi&#39;&gt;\)</span>,如果存在双射<span class="math inline">\(f:V\rightarrow V&#39;\)</span>,双射<span class="math inline">\(g:E\rightarrow E&#39;\)</span>,使得对于任意<span class="math inline">\(e\in E及v_1,v_2\in V\)</span></p>
-<p><span class="math inline">\(\Psi&#39;(g(e))=\begin{cases}&lt;f(v_1),f(v_2)&gt;,
-若\Psi(e)=&lt;v_1,v_2&gt;\\\{f(v_1),f(v_2)\},
-若\Psi(e)=\{v_1,v_2\}\end{cases}\)</span></p>
-<p>则称G与G'同构,记作<span class="math inline">\(G\cong
-G&#39;\)</span></p>
+<h2 id="同构"><a href="#同构" class="headerlink" title="同构"></a>同构</h2><p>$设G=<V,E,\Psi>,G’=&lt;V’,E’,\Psi’&gt;$,如果存在双射$f:V\rightarrow V’$,双射$g:E\rightarrow E’$,使得对于任意$e\in E及v_1,v_2\in V$</V,E,\Psi></p>
+<p>$\Psi’(g(e))=\begin{cases}<f(v_1),f(v_2)>, 若\Psi(e)=<v_1,v_2>\\\{f(v_1),f(v_2)\}, 若\Psi(e)=\{v_1,v_2\}\end{cases}$</v_1,v_2></f(v_1),f(v_2)></p>
+<p>则称G与G’同构,记作$G\cong G’$</p>
 <p>两个同构的图必有相同的<font color="red">结点个数和边数</font>,并且:</p>
-<ol type="1">
+<ol>
 <li>双射f保持结点之间的邻接关系</li>
 <li>双射g保持边之间的邻接关系</li>
 </ol>
-<h1 id="子图">子图</h1>
-<h2 id="由点集导出的子图">由点集导出的子图</h2>
-<p>设图<span class="math inline">\(G=&lt;V,E,\Psi&gt;,V&#39;\subseteq
-V且V&#39;\neq \emptyset\)</span>,以<span class="math inline">\(V&#39;\)</span>为结点集合以所有起点和终点均在<span class="math inline">\(V&#39;\)</span>中的边为边集合的G的子图称为由<span class="math inline">\(V&#39;\)</span>导出的G的子图,记作<span class="math inline">\(G[V&#39;]\)</span></p>
-<h2 id="相交可运算">相交,可运算</h2>
-<ol type="1">
-<li><span class="math inline">\(e\in E\cap
-E&#39;时均有\Psi(e)=\Psi&#39;(e)\)</span>,则称G与G'可运算</li>
-<li>如果<span class="math inline">\(V\cap V&#39;=E\cap
-E&#39;=\emptyset\)</span>,则称<span class="math inline">\(G,G&#39;\)</span>不相交</li>
+<h1 id="子图"><a href="#子图" class="headerlink" title="子图"></a>子图</h1><h2 id="由点集导出的子图"><a href="#由点集导出的子图" class="headerlink" title="由点集导出的子图"></a>由点集导出的子图</h2><p>设图$G=<V,E,\Psi>,V’\subseteq V且V’\neq \emptyset$,以$V’$为结点集合以所有起点和终点均在$V’$中的边为边集合的G的子图称为由$V’$导出的G的子图,记作$G[V’]$</V,E,\Psi></p>
+<h2 id="相交-可运算"><a href="#相交-可运算" class="headerlink" title="相交,可运算"></a>相交,可运算</h2><ol>
+<li>$e\in E\cap E’时均有\Psi(e)=\Psi’(e)$,则称G与G’可运算</li>
+<li>如果$V\cap V’=E\cap E’=\emptyset$,则称$G,G’$不相交</li>
 </ol>
-<h1 id="路径">路径</h1>
-<h2 id="定义"><strong>定义</strong></h2>
-<p>设 $nN，v_0, v_1…，v_n <span class="math inline">\(是图G的结点，\)</span>e_1, e_2, …,
-e_n$是图G的边，并且vi-1 和vi 分别是 $e_i <span class="math inline">\(的起点和终点 (\)</span> i=1, 2, …, n <span class="math inline">\()，则称序列\)</span>v_0 e_1 v_1 e_2 … v_{n-1} e_n
-v_n <span class="math inline">\(为图 G 中从\)</span> v_0 <span class="math inline">\(至\)</span>v_n<span class="math inline">\(的路径，\)</span>n$ 称为该路径的长度。</p>
-<p><span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span></p>
-<p><span class="math inline">\(\begin{cases} v_0,v_1,\dots,v_n\in V\\
-e_1,e_2,\dots,e_n\in E\\ \color{red}{e_i:关联v_{i-1}和v_i}
-\end{cases}\)</span></p>
+<h1 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a><strong>定义</strong></h2><p>设 $n\in N，v_0, v_1…，v_n $是图G的结点，$e_1, e_2, …, e_n$是图G的边，并且vi-1 和vi 分别是 $e_i $的起点和终点 ($ i=1,<br>2, …, n $)，则称序列$v_0 e_1 v_1 e_2 … v_{n-1} e_n v_n $为图 G 中从$ v_0 $至$v_n$的路径，$n$ 称为该路径的长度。</p>
+<p>$G=<V,E,\Psi>$</V,E,\Psi></p>
+<p>$\begin{cases} v_0,v_1,\dots,v_n\in V\\ e_1,e_2,\dots,e_n\in E\\ \color{red}{e_i:关联v_{i-1}和v_i} \end{cases}$</p>
 <p><strong>简单路径</strong>:边不重复的路径(迹)</p>
 <p><strong>简单回路</strong>:边不重复的回路</p>
 <p><strong>基本路径</strong>:点不重复的路径(路径)</p>
 <p><strong>基本回路</strong>:点不重复的回路</p>
-<h3 id="定理3.1">定理3.1</h3>
-<p>设图<span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span>, <span class="math inline">\(v,v&#39;\in V\)</span>.如果存在从<span class="math inline">\(v\)</span>至<span class="math inline">\(v&#39;\)</span> 的路径,则存在<span class="math inline">\(v\)</span>至<span class="math inline">\(v&#39;\)</span>的基本路径(路径上的结点各不相同)</p>
+<h3 id="定理3-1"><a href="#定理3-1" class="headerlink" title="定理3.1"></a>定理3.1</h3><p>设图$G=<V,E,\Psi>$, $v,v’\in V$.如果存在从$v$至$v’$ 的路径,则存在$v$至$v’$的基本路径(路径上的结点各不相同)</V,E,\Psi></p>
 <ul>
 <li>n阶图有n个结点</li>
 <li>基本路径上的结点各不相同</li>
 <li>n阶图中的基本路径最多含有n个结点</li>
 <li>n阶图中的基本路径最多含有n-1条边</li>
 </ul>
-<h3 id="定理3.2">定理3.2</h3>
-<p><span class="math inline">\(n\)</span>阶图的<font color="blue">基本路径</font>的长度小于<span class="math inline">\(n\)</span></p>
-<h2 id="可达">可达</h2>
-<p>设图<span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span>,<span class="math inline">\(v_1,v_2\in V\)</span></p>
-<ol type="1">
-<li>若存在从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>的路径,则称在<span class="math inline">\(G\)</span>中<span class="math inline">\(v_1\)</span>可达<span class="math inline">\(v_2\)</span>,或从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>可达</li>
-<li>否则称在<span class="math inline">\(G\)</span>中从<span class="math inline">\(v_1\)</span>不可达<span class="math inline">\(v_2\)</span>,或从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>不可达</li>
+<h3 id="定理3-2"><a href="#定理3-2" class="headerlink" title="定理3.2"></a>定理3.2</h3><p>$n$阶图的<font color="blue">基本路径</font>的长度小于$n$</p>
+<h2 id="可达"><a href="#可达" class="headerlink" title="可达"></a>可达</h2><p>设图$G=<V,E,\Psi>$,$v_1,v_2\in V$</V,E,\Psi></p>
+<ol>
+<li>若存在从$v_1$到$v_2$的路径,则称在$G$中$v_1$可达$v_2$,或从$v_1$到$v_2$可达</li>
+<li>否则称在$G$中从$v_1$不可达$v_2$,或从$v_1$到$v_2$不可达</li>
 </ol>
-<h3 id="定理3.3">定理3.3</h3>
-<p>从 <span class="math inline">\(v_1\)</span>可达 <span class="math inline">\(v_2\)</span>当且仅当存在从 <span class="math inline">\(v_1\)</span>至 <span class="math inline">\(v_2\)</span>的基本路径</p>
-<h2 id="距离">距离</h2>
-<p><span class="math inline">\(v_1\)</span>可达<span class="math inline">\(v_2\Rightarrow\)</span>路径中长度最短者为<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>的测地线,并称该测地线的长度为从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>的距离,记作<span class="math inline">\(d(v_1,v_2)\)</span></p>
-<p><span class="math inline">\(v_1\)</span>不可达<span class="math inline">\(v_2\Rightarrow d(v_1,v_2)=\infty\)</span></p>
-<h2 id="直径">直径</h2>
-<p>图<span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span>的直径定义为<span class="math inline">\(max_{v,v&#39;\in V}d(v,v&#39;)\)</span></p>
-<h2 id="加权图">加权图</h2>
-<p><span class="math inline">\(W:E\rightarrow
-R_+,则称&lt;G,W&gt;为加权图\)</span></p>
-<ol type="1">
-<li><span class="math inline">\(e\in E\)</span>,则称<span class="math inline">\(W(e)\)</span>为<span class="math inline">\(e\)</span>的加权长度</li>
+<h3 id="定理3-3"><a href="#定理3-3" class="headerlink" title="定理3.3"></a>定理3.3</h3><p>从 $v_1$可达 $v_2$当且仅当存在从 $v_1$至 $v_2$的基本路径</p>
+<h2 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h2><p>$v_1$可达$v_2\Rightarrow$路径中长度最短者为$v_1$到$v_2$的测地线,并称该测地线的长度为从$v_1$到$v_2$的距离,记作$d(v_1,v_2)$</p>
+<p>$v_1$不可达$v_2\Rightarrow d(v_1,v_2)=\infty$</p>
+<h2 id="直径"><a href="#直径" class="headerlink" title="直径"></a>直径</h2><p>图$G=<V,E,\Psi>$的直径定义为$max_{v,v’\in V}d(v,v’)$</V,E,\Psi></p>
+<h2 id="加权图"><a href="#加权图" class="headerlink" title="加权图"></a>加权图</h2><p>$W:E\rightarrow R_+,则称<G,W>为加权图$</G,W></p>
+<ol>
+<li>$e\in E$,则称$W(e)$为$e$的加权长度</li>
 <li>路径中所有边的加权长度之和称为该路径的甲醛长度</li>
-<li>从结点<span class="math inline">\(v\)</span>到结点<span class="math inline">\(v&#39;\)</span>的路径中,加权长度最小的称为从<span class="math inline">\(v\)</span>到<span class="math inline">\(v&#39;\)</span>的<font color="blue">最短路径</font></li>
-<li>若从<span class="math inline">\(v\)</span>可达<span class="math inline">\(v&#39;\)</span>,从结点<span class="math inline">\(v\)</span>到结点<span class="math inline">\(v&#39;\)</span>的最短路径的加权长度为从结点<span class="math inline">\(v\)</span>到结点<span class="math inline">\(v&#39;\)</span>的<font color="blue">加权距离</font></li>
+<li>从结点$v$到结点$v’$的路径中,加权长度最小的称为从$v$到$v’$的<font color="blue">最短路径</font></li>
+<li>若从$v$可达$v’$,从结点$v$到结点$v’$的最短路径的加权长度为从结点$v$到结点$v’$的<font color="blue">加权距离</font></li>
 </ol>
-<h2 id="连通性">连通性</h2>
-<h3 id="定义-1">定义</h3>
-<p>如果<font color="red">无向图</font><span class="math inline">\(G\)</span>的<font color="cornflowerblue">任意两个结点都互相可达</font>,则称<span class="math inline">\(G\)</span>是连通的,否则称<span class="math inline">\(G\)</span>是非连通的</p>
-<h3 id="连通分支与等价关系">连通分支与等价关系</h3>
-<p>设<span class="math inline">\(G&#39;\)</span>是图<span class="math inline">\(G\)</span>的具有某性质<span class="math inline">\(P\)</span>的子图,并且对于<span class="math inline">\(G\)</span>的具有该性质的任意子图<span class="math inline">\(G&#39;&#39;\)</span>,只要<span class="math inline">\(G&#39;\subseteq G&#39;&#39;\)</span>就有<span class="math inline">\(G&#39;=G&#39;&#39;\)</span>,则称<span class="math inline">\(G&#39;\)</span>相对于该性质是<span class="math inline">\(G\)</span>的<font color="red">极大子图</font></p>
-<p>无向图<span class="math inline">\(G\)</span>的<font color="red">极大连通子图</font>称为<span class="math inline">\(G\)</span>
-的连通分支，简称<font color="red">分支</font></p>
-<p><span class="math inline">\(R_V=\{&lt;u,v&gt;|u,v\in
-V且从u到v可达\}\)</span>,<span class="math inline">\(R_V\)</span>是<span class="math inline">\(V\)</span>上的<font color="red">等价关系</font></p>
-<p><font color="cornflowerblue">分支</font>:<span class="math inline">\(V\)</span>关于<span class="math inline">\(R_V\)</span>的等价类的导出子图</p>
-<p><span class="math inline">\(V/R=\{V_1,V_2,\dots,V_n\}\)</span></p>
-<p><span class="math inline">\(G[V_1],G[V_2],\dots,G[V_2]\)</span>为<span class="math inline">\(G\)</span>的分支</p>
-<h4 id="定理3.4">定理3.4</h4>
-<ol type="1">
-<li>连通无向图恰有一个分支</li>
-<li>非连通无向图的分支多于1个</li>
-</ol>
-<h2 id="基础图">基础图</h2>
-<p>设有向图<span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span>,如下定义:</p>
-<p><span class="math inline">\(\Psi&#39;:E\rightarrow
-\{\{v_1,v_2\}|v_1\in V\wedge v_2\in V\}\)</span></p>
-<p>使得对任意<span class="math inline">\(e\in E\)</span>和<span class="math inline">\(v_1,v_2\in V\)</span></p>
-<p>若<span class="math inline">\(\Psi(e)=&lt;v_1,v_2&gt;,则\Psi&#39;(e)=\{v_1,v_2\}\)</span></p>
-<p>则称无向图<span class="math inline">\(G=&lt;V,E,\Psi&#39;&gt;\)</span>为有向图<span class="math inline">\(G\)</span>的<font color="red">基础图</font></p>
-<figure>
-<img src="image-20241215163122114.png" srcset="/img/loading.gif" lazyload alt="有向边改为无向边,获得基础图">
-<figcaption aria-hidden="true">有向边改为无向边,获得基础图</figcaption>
-</figure>
-<h2 id="三种连通性">三种连通性</h2>
-<p>设<span class="math inline">\(G\)</span>为<font color="cornflowerblue">有向图</font></p>
-<ol type="1">
+<h2 id="连通性"><a href="#连通性" class="headerlink" title="连通性"></a>连通性</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>如果<font color="red">无向图</font>$G$的<font color="cornflowerblue">任意两个结点都互相可达</font>,则称$G$是连通的,否则称$G$是非连通的</p>
+<h3 id="连通分支与等价关系"><a href="#连通分支与等价关系" class="headerlink" title="连通分支与等价关系"></a>连通分支与等价关系</h3><p>设$G’$是图$G$的具有某性质$P$的子图,并且对于$G$的具有该性质的任意子图$G’’$,只要$G’\subseteq G’’$就有$G’=G’’$,则称$G’$相对于该性质是$G$的<font color="red">极大子图</font></p>
+<p>无向图$G$的<font color="red">极大连通子图</font>称为$G$ 的连通分支，简称<font color="red">分支</font></p>
+<p>$R_V=\{<u,v>|u,v\in V且从u到v可达\}$,$R_V$是$V$上的<font color="red">等价关系</font></u,v></p>
+<font color="cornflowerblue">分支</font>:$V$关于$R_V$的等价类的导出子图
+
+$V/R=\{V_1,V_2,\dots,V_n\}$
+
+$G[V_1],G[V_2],\dots,G[V_2]$为$G$的分支
+
+#### 定理3.4
+
+1. 连通无向图恰有一个分支
+2. 非连通无向图的分支多于1个
+
+## 基础图
+
+设有向图$G=<V,E,\Psi>$,如下定义:
+
+$\Psi':E\rightarrow \{\{v_1,v_2\}|v_1\in V\wedge v_2\in V\}$
+
+使得对任意$e\in E$和$v_1,v_2\in V$
+
+若$\Psi(e)=<v_1,v_2>,则\Psi'(e)=\{v_1,v_2\}$
+
+则称无向图$G=<V,E,\Psi'>$为有向图$G$的<font color="red">基础图</font>
+
+<p><img src="image-20241215163122114.png" srcset="/img/loading.gif" lazyload alt="有向边改为无向边,获得基础图"></p>
+<h2 id="三种连通性"><a href="#三种连通性" class="headerlink" title="三种连通性"></a>三种连通性</h2><p>设$G$为<font color="cornflowerblue">有向图</font></p>
+<ol>
 <li><font color="cornflowerblue">强相通</font>:任意两个结点都互相可达</li>
 <li><font color="cornflowerblue">单项连通</font>:任意两结点,必有一个结点可达另一结点</li>
 <li><font color="cornflowerblue">弱相通</font>:基础图是连通的(把有向图看成是无向图是连通的)</li>
 </ol>
-<p>设<span class="math inline">\(G\)</span>为有向图</p>
-<ol type="1">
-<li><span class="math inline">\(G\)</span>的极大强连通子图称为G的<font color="red">强连通分支</font></li>
-<li><span class="math inline">\(G\)</span>的极大单向连通子图称为<span class="math inline">\(G\)</span>的<font color="red">单向分支</font></li>
-<li><span class="math inline">\(G\)</span>的极大弱连通子图称为<span class="math inline">\(G\)</span>的<font color="red">弱分支</font></li>
+<p>设$G$为有向图</p>
+<ol>
+<li>$G$的极大强连通子图称为G的<font color="red">强连通分支</font></li>
+<li>$G$的极大单向连通子图称为$G$的<font color="red">单向分支</font></li>
+<li>$G$的极大弱连通子图称为$G$的<font color="red">弱分支</font></li>
 </ol>
 <p>非连通无向图有一个以上分支;连通无向图恰有一个分支.</p>
 <blockquote>
 <p>有向图的结点一定恰好处于一个强分支中,但边不一定;有向图结点与边都不一定恰好在一个单向分支中</p>
 </blockquote>
-<h2 id="回路">回路</h2>
-<h3 id="半路径定义">半路径定义</h3>
-<p><span class="math inline">\(G&#39;\)</span>为有向图<span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span>的基础图,<span class="math inline">\(G&#39;\)</span>中的路径称为G中的<font color="red">半路径</font></p>
-<p>设<span class="math inline">\(v_0e_1v_1\dots
-v_{m-1}e_mv_m\)</span>是<span class="math inline">\(G\)</span>中的半路径,对每个<span class="math inline">\(i(1\leq i\leq m)\)</span>,</p>
+<h2 id="回路"><a href="#回路" class="headerlink" title="回路"></a>回路</h2><h3 id="半路径定义"><a href="#半路径定义" class="headerlink" title="半路径定义"></a>半路径定义</h3><p>$G’$为有向图$G=<V,E,\Psi>$的基础图,$G’$中的路径称为G中的<font color="red">半路径</font></V,E,\Psi></p>
+<p>设$v_0e_1v_1\dots v_{m-1}e_mv_m$是$G$中的半路径,对每个$i(1\leq i\leq m)$,</p>
 <ul>
-<li>若<span class="math inline">\(\Psi(e_i)=&lt;v_{i-1},v_i&gt;\)</span>,则称<span class="math inline">\(e_i\)</span>是该半路径中的正向边</li>
-<li>若<span class="math inline">\(\Psi(e_i)=&lt;v_i,v_{i-1}&gt;\)</span>,则称<span class="math inline">\(e_i\)</span>是该路径中的反向边</li>
+<li>若$\Psi(e_i)=<v_{i-1},v_i>$,则称$e_i$是该半路径中的正向边</v_{i-1},v_i></li>
+<li>若$\Psi(e_i)=<v_i,v_{i-1}>$,则称$e_i$是该路径中的反向边</v_i,v_{i-1}></li>
 </ul>
-<h3 id="回路定义">回路定义</h3>
-<ol type="1">
+<h3 id="回路定义"><a href="#回路定义" class="headerlink" title="回路定义"></a>回路定义</h3><ol>
 <li>连通2度正则图(所有结点的度均为自然数2的<font color="cornflowerblue">无向图</font>)称为<font color="red">回路</font></li>
 <li>基础图是回路的有向图称为<font color="red">半回路</font></li>
 <li>每个结点的出度和入度均为1的弱连通有向图称为<font color="red">有向回路</font></li>
 </ol>
-<h3 id="回路证明定理">回路证明定理</h3>
-<p>设<span class="math inline">\(v\)</span>是图<span class="math inline">\(G\)</span>的任意结点,<span class="math inline">\(G\)</span>是回路,当且仅当:</p>
-<ol type="1">
-<li><span class="math inline">\(G\)</span>的阶与边数相等</li>
-<li>在<span class="math inline">\(G\)</span>中存在一条从<span class="math inline">\(v\)</span>到<span class="math inline">\(v\)</span>的闭路径,使得除了<span class="math inline">\(v\)</span>在该闭路径中出现两次外,其余结点和每条边都在该闭路中恰出现一次</li>
+<h3 id="回路证明定理"><a href="#回路证明定理" class="headerlink" title="回路证明定理"></a>回路证明定理</h3><p>设$v$是图$G$的任意结点,$G$是回路,当且仅当:</p>
+<ol>
+<li>$G$的阶与边数相等</li>
+<li>在$G$中存在一条从$v$到$v$的闭路径,使得除了$v$在该闭路径中出现两次外,其余结点和每条边都在该闭路中恰出现一次</li>
 </ol>
-<h2 id="有向路非循环图">有向路,非循环图</h2>
-<ol type="1">
+<h2 id="有向路-非循环图"><a href="#有向路-非循环图" class="headerlink" title="有向路,非循环图"></a>有向路,非循环图</h2><ol>
 <li>如果回路C是图G的子图,则称G有回路C</li>
 <li>没有回路的无向图和没有半回路的有向图称为<font color="cornflowerblue">非循环图</font></li>
 </ol>
-<h3 id="有向回路的充分条件">有向回路的充分条件</h3>
-<p>如果有向图G有子图G',使得对于G'的任意结点v,皆有<span class="math inline">\(d_{G&#39;}^-&gt;0\)</span>,则G有有向回路</p>
-<p>如果有向图G有子图G',使得对于G'的任意结点v,皆有<span class="math inline">\(d_{G&#39;}^+&gt;0\)</span>,则G有有向回路</p>
-<h3 id="非循环图的充分必要条件">非循环图的充分必要条件</h3>
-<p>图G不是非循环图当且仅当G有子图G',使得对于G'的任意结点v,皆有<span class="math inline">\(d_{G&#39;}(v)&gt;1\)</span></p>
-<h2 id="dijkstra算法">Dijkstra算法</h2>
-<p>求从结点s至t的加权距离</p>
-<ol type="1">
-<li><span class="math inline">\(\lambda(s)\leftarrow 0,\forall v\in
-V-\{s\},\lambda(v)\leftarrow \infty,\{p\leftarrow \sharp\}\)</span></li>
-<li><span class="math inline">\(T\leftarrow V\)</span></li>
-<li><span class="math inline">\(任取u\in\{u&#39;|若v&#39;\in T,
-则\lambda(u&#39;)\leq \lambda(v&#39;)\}\)</span></li>
-<li><span class="math inline">\(如果u=t,则\{p\leftarrow
-pt\sharp\}算法结束\)</span></li>
-<li><span class="math inline">\(对于以u为起点的每条边e,如果e的终点v\in
-T并且\lambda(v)&gt;\lambda(u)+W(e),则\lambda(v)\leftarrow
-\lambda(u)+W(e)\)</span></li>
-<li><span class="math inline">\(T\leftarrow T-\{u\},\{p\leftarrow
-pu\Rightarrow\}且转向3.\)</span></li>
+<h3 id="有向回路的充分条件"><a href="#有向回路的充分条件" class="headerlink" title="有向回路的充分条件"></a>有向回路的充分条件</h3><p>如果有向图G有子图G’,使得对于G’的任意结点v,皆有$d_{G’}^-&gt;0$,则G有有向回路</p>
+<p>如果有向图G有子图G’,使得对于G’的任意结点v,皆有$d_{G’}^+&gt;0$,则G有有向回路</p>
+<h3 id="非循环图的充分必要条件"><a href="#非循环图的充分必要条件" class="headerlink" title="非循环图的充分必要条件"></a>非循环图的充分必要条件</h3><p>图G不是非循环图当且仅当G有子图G’,使得对于G’的任意结点v,皆有$d_{G’}(v)&gt;1$</p>
+<h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><p>求从结点s至t的加权距离</p>
+<ol>
+<li>$\lambda(s)\leftarrow 0,\forall v\in V-\{s\},\lambda(v)\leftarrow \infty,\{p\leftarrow \sharp\}$</li>
+<li>$T\leftarrow V$</li>
+<li>$任取u\in\{u’|若v’\in T, 则\lambda(u’)\leq \lambda(v’)\}$</li>
+<li>$如果u=t,则\{p\leftarrow pt\sharp\}算法结束$</li>
+<li>$对于以u为起点的每条边e,如果e的终点v\in T并且\lambda(v)&gt;\lambda(u)+W(e),则\lambda(v)\leftarrow \lambda(u)+W(e)$</li>
+<li>$T\leftarrow T-\{u\},\{p\leftarrow pu\Rightarrow\}且转向3.$</li>
 </ol>
-<p>当算法结束时,<font color="red"><span class="math inline">\(\lambda(t)即为s至t的加权距离,p即为从s至t的最短距离\)</span></font></p>
+<p>当算法结束时,<font color="red">$\lambda(t)即为s至t的加权距离,p即为从s至t的最短距离$</font></p>
 <blockquote>
 <p>证明:非连通无向图的补图必连通</p>
 </blockquote>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{align}
-&amp;G=&lt;V,E,\Psi&gt;\\
-&amp;任取v,v&#39;\in V\\
-&amp;1)若v,v&#39;在同一连通分支G_1中,\\
-&amp;则存在v&#39;&#39;不在这一分支G_1中,&lt;v,v&#39;&#39;&gt;\in \bar
-G,&lt;v&#39;,v&#39;&#39;&gt;\in \bar G\\
-&amp;2) 若v,v&#39;不在同一连通分支中\\
-&amp;则&lt;v,v&#39;&gt;\in \bar G\\
-&amp;则v,v&#39;在\bar G中连通\\
-\end{align}
-\]</span></p>
-<blockquote>
-<p>证明:设<span class="math inline">\(G\)</span>为<span class="math inline">\(n\)</span>阶简单无向图,若<span class="math inline">\(G\)</span>的任意结点<span class="math inline">\(v\)</span>皆有<span class="math inline">\(d_G(v)\geq (n-1)/2\)</span>,则<span class="math inline">\(G\)</span>是连通的</p>
+&G=<V,E,\Psi>\\
+&任取v,v'\in V\\
+&1)若v,v'在同一连通分支G_1中,\\
+&则存在v''不在这一分支G_1中,<v,v''>\in \bar G,<v',v''>\in \bar G\\
+&2) 若v,v'不在同一连通分支中\\
+&则<v,v'>\in \bar G\\
+&则v,v'在\bar G中连通\\
+\end{align}</script><blockquote>
+<p>证明:设$G$为$n$阶简单无向图,若$G$的任意结点$v$皆有$d_G(v)\geq (n-1)/2$,则$G$是连通的</p>
 </blockquote>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;G=&lt;V,E,\Psi&gt;\\
-&amp;任取v,v&#39;\in V\\
-&amp;1)若&lt;v,v&#39;&gt;\in V,则v,v&#39;连通\\
-&amp;2)若&lt;v,v&#39;&gt;\notin V,v,v&#39;无直接边\\
-&amp;假设v,v&#39;不连通,设v在分支G_1,v&#39;在分支G_2\\
-&amp;G_1结点个数为p,G_2结点个数为q\\
-&amp;p+q\geq 1+(n-1)/2+1+(n-1)/2=n+1\\
-&amp;与p+q\leq n矛盾\\
-&amp;因此,v,v&#39;连通\\
-\end{aligned}
-\]</span></p>
-<blockquote>
-<p>11.证明有<span class="math inline">\(k\)</span>个弱分支的<span class="math inline">\(n\)</span>阶简单有向图至多有<span class="math inline">\((n-k)(n-k+1)\)</span>条边</p>
+&G=<V,E,\Psi>\\
+&任取v,v'\in V\\
+&1)若<v,v'>\in V,则v,v'连通\\
+&2)若<v,v'>\notin V,v,v'无直接边\\
+&假设v,v'不连通,设v在分支G_1,v'在分支G_2\\
+&G_1结点个数为p,G_2结点个数为q\\
+&p+q\geq 1+(n-1)/2+1+(n-1)/2=n+1\\
+&与p+q\leq n矛盾\\
+&因此,v,v'连通\\
+\end{aligned}</script><blockquote>
+<p>11.证明有$k$个弱分支的$n$阶简单有向图至多有$(n-k)(n-k+1)$条边</p>
 </blockquote>
-<p><span class="math display">\[
+<script type="math/tex; mode=display">
 \begin{align}
-&amp;设G的k个分支为G_1,G_2,\cdots,G_k\\
-&amp;其结点数分别为n_1,n_2,\cdots,n_k\\
-&amp;其边最大个数分别为n_1(n_1-1),n_2(n_2-1),\cdots,n_k(n_k-1)\\
-&amp;\sum^k_{i=1}n_i=n\\
-&amp;设m_i=n_i-1\\
-&amp;\sum^k_{i=1}(m_i+1)m_i=\sum^k_{i=1}m_i^2+\sum^k_{i=1}m_i\\
-&amp;\leq (\sum^k_{i=1}m_i)^2+\sum^k_{i=1}m_i=(n-k)(n-k+1)
-\end{align}
-\]</span></p>
-<h1 id="欧拉图和哈密顿图">欧拉图和哈密顿图</h1>
-<h2 id="欧拉图定义">欧拉图定义</h2>
-<p>图中包含所有边的简单开路径称为图的<font color="red">欧拉路径</font></p>
+&设G的k个分支为G_1,G_2,\cdots,G_k\\
+&其结点数分别为n_1,n_2,\cdots,n_k\\
+&其边最大个数分别为n_1(n_1-1),n_2(n_2-1),\cdots,n_k(n_k-1)\\
+&\sum^k_{i=1}n_i=n\\
+&设m_i=n_i-1\\
+&\sum^k_{i=1}(m_i+1)m_i=\sum^k_{i=1}m_i^2+\sum^k_{i=1}m_i\\
+&\leq (\sum^k_{i=1}m_i)^2+\sum^k_{i=1}m_i=(n-k)(n-k+1)
+\end{align}</script><h1 id="欧拉图和哈密顿图"><a href="#欧拉图和哈密顿图" class="headerlink" title="欧拉图和哈密顿图"></a>欧拉图和哈密顿图</h1><h2 id="欧拉图定义"><a href="#欧拉图定义" class="headerlink" title="欧拉图定义"></a>欧拉图定义</h2><p>图中包含所有边的简单开路径称为图的<font color="red">欧拉路径</font></p>
 <p>图中包含其所有边的简单闭路径称为图的<font color="red">欧拉闭路</font></p>
 <p>每个结点都是<font color="red">偶结点</font>(度为偶数的结点)的无向图称为<font color="red">欧拉图</font></p>
 <p>每个结点的出度和入度都相等的有向图称为<font color="red">欧拉有向图</font></p>
-<h2 id="欧拉定理">欧拉定理</h2>
-<p>图G中包含其所有边的简单开路径称为<span class="math inline">\(G\)</span>的<font color="red">欧拉路径</font>,图<span class="math inline">\(G\)</span>中包含其所有边的简单闭路径称为<span class="math inline">\(G\)</span>的<font color="red">欧拉闭路</font></p>
-<h3 id="定理1">定理1</h3>
-<p>设G为连通无向图,G是欧拉图 iff G有欧拉闭路</p>
-<h3 id="定理2">定理2</h3>
-<p><span class="math inline">\(设G=&lt;V,E,\Psi&gt;\)</span>为连通无向图,<span class="math inline">\(v_1,v_2\in V且v_1\neq v_2\)</span>,则<span class="math inline">\(G\)</span>有一条从<span class="math inline">\(v_1到v_2\)</span>的欧拉路径 iff
-G恰有两个奇结点<span class="math inline">\(v_1,v_2\)</span></p>
-<h3 id="定理3">定理3</h3>
-<p>设G为弱连通的有向图,G是欧拉有向图 iff G有欧拉闭路</p>
-<h3 id="定理4">定理4</h3>
-<p>设G为弱连通的有向图,<span class="math inline">\(v_1,v_2\)</span>为G的两个不同结点</p>
-<p>G有一条从<span class="math inline">\(v_1\)</span>到<span class="math inline">\(v_2\)</span>的欧拉路径 iff <span class="math inline">\(d_{G^+}(v_1)=d_{G^-}(v_1)+1,d_{G^+}(v_2)=d_{G^-}(v_2)-1\)</span></p>
-<h3 id="定理5">定理5</h3>
-<p>如果<span class="math inline">\(G_1,G_2\)</span>为<font color="red">可运算</font>(<span class="math inline">\(如果e\in E_1\wedge
-E_2,则\Psi_1(e)=\Psi_2(e)\)</span>)的欧拉图,则<span class="math inline">\(G_1\oplus G_2\)</span>是欧拉图</p>
-<h2 id="hamilton回路">Hamilton回路</h2>
-<p>回路C是图G的生成子图,则称C为G的<font color="red">Hamilton回路</font></p>
-<h1 id="图的矩阵表示">图的矩阵表示</h1>
-<p><span class="math inline">\(设m\in I_+\)</span>,n阶图<span class="math inline">\(G\)</span>的全部结点为<span class="math inline">\(v_1,v_2,\cdots ,v_n\)</span>,若<span class="math inline">\(X\)</span>是<span class="math inline">\(G\)</span>的邻接矩阵且<span class="math inline">\(1\leq i,j\leq n\)</span>,则<span class="math inline">\(x_{ij}^{(m)}\)</span>等于<span class="math inline">\(G\)</span>中从<span class="math inline">\(v_i\)</span>到<span class="math inline">\(v_j\)</span>的长度为<span class="math inline">\(m\)</span>的路径数</p>
-<h2 id="n阶图g与xg的联系">n阶图<span class="math inline">\(G\)</span>与<span class="math inline">\(X(G)\)</span>的联系</h2>
-<ul>
-<li>无向图<span class="math inline">\(G\)</span>的邻接矩阵<span class="math inline">\(X(G)\)</span>是对称的</li>
-<li>图<span class="math inline">\(G\)</span>没有平行边$$<span class="math inline">\(X(G)\)</span>的元素都是0和1</li>
-<li>图<span class="math inline">\(G\)</span>有自圈<span class="math inline">\(\Leftrightarrow\)</span><span class="math inline">\(X(G)\)</span>的对角线有非0元素</li>
+<h2 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h2><p>图G中包含其所有边的简单开路径称为$G$的<font color="red">欧拉路径</font>,图$G$中包含其所有边的简单闭路径称为$G$的<font color="red">欧拉闭路</font></p>
+<h3 id="定理1"><a href="#定理1" class="headerlink" title="定理1"></a>定理1</h3><p>设G为连通无向图,G是欧拉图 iff G有欧拉闭路</p>
+<h3 id="定理2"><a href="#定理2" class="headerlink" title="定理2"></a>定理2</h3><p>$设G=<V,E,\Psi>$为连通无向图,$v_1,v_2\in V且v_1\neq v_2$,则$G$有一条从$v_1到v_2$的欧拉路径 iff G恰有两个奇结点$v_1,v_2$</V,E,\Psi></p>
+<h3 id="定理3"><a href="#定理3" class="headerlink" title="定理3"></a>定理3</h3><p>设G为弱连通的有向图,G是欧拉有向图 iff G有欧拉闭路</p>
+<h3 id="定理4"><a href="#定理4" class="headerlink" title="定理4"></a>定理4</h3><p>设G为弱连通的有向图,$v_1,v_2$为G的两个不同结点</p>
+<p>G有一条从$v_1$到$v_2$的欧拉路径 iff $d_{G^+}(v_1)=d_{G^-}(v_1)+1,d_{G^+}(v_2)=d_{G^-}(v_2)-1$</p>
+<h3 id="定理5"><a href="#定理5" class="headerlink" title="定理5"></a>定理5</h3><p>如果$G_1,G_2$为<font color="red">可运算</font>($如果e\in E_1\wedge E_2,则\Psi_1(e)=\Psi_2(e)$)的欧拉图,则$G_1\oplus G_2$是欧拉图</p>
+<h2 id="Hamilton回路"><a href="#Hamilton回路" class="headerlink" title="Hamilton回路"></a>Hamilton回路</h2><p>回路C是图G的生成子图,则称C为G的<font color="red">Hamilton回路</font></p>
+<h1 id="图的矩阵表示"><a href="#图的矩阵表示" class="headerlink" title="图的矩阵表示"></a>图的矩阵表示</h1><p>$设m\in I_+$,n阶图$G$的全部结点为$v_1,v_2,\cdots ,v_n$,若$X$是$G$的邻接矩阵且$1\leq i,j\leq n$,则$x_{ij}^{(m)}$等于$G$中从$v_i$到$v_j$的长度为$m$的路径数</p>
+<h2 id="n阶图-G-与-X-G-的联系"><a href="#n阶图-G-与-X-G-的联系" class="headerlink" title="n阶图$G$与$X(G)$的联系"></a>n阶图$G$与$X(G)$的联系</h2><ul>
+<li>无向图$G$的邻接矩阵$X(G)$是对称的</li>
+<li>图$G$没有平行边$\Leftrightarrow $$X(G)$的元素都是0和1</li>
+<li>图$G$有自圈$\Leftrightarrow$$X(G)$的对角线有非0元素</li>
 </ul>
-<h2 id="定理7.5.1">定理7.5.1</h2>
-<p><span class="math inline">\(x_{ij}^m\)</span>等于<span class="math inline">\(G\)</span>中从<span class="math inline">\(v_i\)</span>到<span class="math inline">\(v_j\)</span>的长度为m的路径数</p>
-<h2 id="可达性矩阵">可达性矩阵</h2>
-<p><span class="math inline">\(p(i)=\begin{cases}1,由v_i可达v_j\\0,从v_i不可达v_j\end{cases}\)</span></p>
-<h2 id="距离矩阵">距离矩阵</h2>
-<p><span class="math inline">\(d_{ij}=\begin{cases}\infty,(\forall
-m)(m\in N\wedge m&lt;n\rightarrow x_{ij}^m=0)\\\min\{k|0\leq
-k&lt;n\wedge x_{ij}^k&gt;0\},else\end{cases}\)</span></p>
-<h2 id="路径矩阵">路径矩阵</h2>
-<p><span class="math inline">\(P=\sum^{n-1}_{k=0}X^{(k)}\)</span></p>
-<h2 id="关联矩阵">关联矩阵</h2>
-<p>无向图无自圈,其结点集合和边集合分别为<span class="math inline">\(\{v_1,v_2,\cdots,v_n\}\)</span>和<span class="math inline">\(\{e_1,e_2,\cdots,e_m\}\)</span>,定义<span class="math inline">\(G\)</span>的关联矩阵<span class="math inline">\(A(G)\)</span>为<span class="math inline">\(n\times
-m\)</span>矩阵<span class="math inline">\((a_{ij})\)</span>,其中</p>
-<p><span class="math inline">\(a_{ij}=\begin{cases}1,e_j与v_i关联\\0,e_j与v_i不关联\end{cases}\)</span></p>
-<p><span class="math inline">\(a_{ij}=\begin{cases}1,v_i是e_j的起点\\-1,v_i是e_j的终点\\0,e_i与v_i不关联\end{cases}\)</span></p>
-<p>无向图<span class="math inline">\(G\)</span>的关联矩阵<span class="math inline">\(A(G)\)</span>的每列元素之和为2</p>
-<p>有向图<span class="math inline">\(G\)</span>的关联矩阵<span class="math inline">\(A(G)\)</span>的每列元素之和为0</p>
-<p><strong>顺序排列</strong><span class="math inline">\(G\)</span>的结点和边的顺序,可使<span class="math inline">\(A(G)=\begin{bmatrix}A(G_1)\\&amp;A(G_2)\\&amp;&amp;\cdots\\&amp;&amp;&amp;A(G_k)\end{bmatrix}\)</span></p>
-<h1 id="二部图">二部图</h1>
-<p>设无向图<span class="math inline">\(G=&lt;V,E,\Psi
-&gt;\)</span>,如果存在<span class="math inline">\(V\)</span>的划分<span class="math inline">\(\{V_1,V_2\}\)</span>,使得<span class="math inline">\(V_i\)</span>中的任何两个结点都不邻接(i=1,2),则称<span class="math inline">\(G\)</span>为二部图,<span class="math inline">\(V_1,V_2\)</span>称为<span class="math inline">\(G\)</span>的互补结点子集</p>
-<h2 id="定理">定理</h2>
-<p>设<span class="math inline">\(G\)</span>是阶大于1的无向图,<span class="math inline">\(G\)</span>是二部图当且仅当<span class="math inline">\(G\)</span>的所有回路的长度均为偶数</p>
-<h2 id="匹配">匹配</h2>
-<p>无向图<span class="math inline">\(G=&lt;V,E,\Psi&gt;,E&#39;\subseteq
-E\)</span></p>
-<ol type="1">
-<li>如果<span class="math inline">\(E&#39;\)</span>不包含自圈,并且<span class="math inline">\(E&#39;\)</span>中的任何两条边都不邻接,则称<span class="math inline">\(E&#39;\)</span>为<span class="math inline">\(G\)</span>中的<font color="red">匹配</font></li>
-<li>如果<span class="math inline">\(E\)</span>是<span class="math inline">\(G\)</span>中的匹配,并且对于<span class="math inline">\(G\)</span>中的一切匹配<span class="math inline">\(E&#39;&#39;\)</span>,当<span class="math inline">\(E&#39;\subseteq E&#39;&#39;\)</span>时皆有<span class="math inline">\(E&#39;=E&#39;&#39;\)</span>,则称<span class="math inline">\(E&#39;\)</span>为<span class="math inline">\(G\)</span>中的<font color="red">极大匹配</font></li>
-<li><span class="math inline">\(G\)</span>中边数最多的匹配称为<span class="math inline">\(G\)</span>的<font color="red">最大匹配</font></li>
-<li><span class="math inline">\(G\)</span>中的最大匹配所包含的边的数目称为<span class="math inline">\(G\)</span>的<font color="red">匹配数</font></li>
+<h2 id="定理7-5-1"><a href="#定理7-5-1" class="headerlink" title="定理7.5.1"></a>定理7.5.1</h2><p>$x_{ij}^m$等于$G$中从$v_i$到$v_j$的长度为m的路径数</p>
+<h2 id="可达性矩阵"><a href="#可达性矩阵" class="headerlink" title="可达性矩阵"></a>可达性矩阵</h2><p>$p(i)=\begin{cases}1,由v_i可达v_j\\0,从v_i不可达v_j\end{cases}$</p>
+<h2 id="距离矩阵"><a href="#距离矩阵" class="headerlink" title="距离矩阵"></a>距离矩阵</h2><p>$d_{ij}=\begin{cases}\infty,(\forall m)(m\in N\wedge m<n\rightarrow x_{ij}^m="0)\\\min\{k|0\leq" k<n\wedge x_{ij}^k>0\},else\end{cases}$</n\rightarrow></p>
+<h2 id="路径矩阵"><a href="#路径矩阵" class="headerlink" title="路径矩阵"></a>路径矩阵</h2><p>$P=\sum^{n-1}_{k=0}X^{(k)}$</p>
+<h2 id="关联矩阵"><a href="#关联矩阵" class="headerlink" title="关联矩阵"></a>关联矩阵</h2><p>无向图无自圈,其结点集合和边集合分别为$\{v_1,v_2,\cdots,v_n\}$和$\{e_1,e_2,\cdots,e_m\}$,定义$G$的关联矩阵$A(G)$为$n\times m$矩阵$(a_{ij})$,其中</p>
+<p>$a_{ij}=\begin{cases}1,e_j与v_i关联\\0,e_j与v_i不关联\end{cases}$</p>
+<p>$a_{ij}=\begin{cases}1,v_i是e_j的起点\-1,v_i是e_j的终点\\0,e_i与v_i不关联\end{cases}$</p>
+<p>无向图$G$的关联矩阵$A(G)$的每列元素之和为2</p>
+<p>有向图$G$的关联矩阵$A(G)$的每列元素之和为0</p>
+<p><strong>顺序排列</strong>$G$的结点和边的顺序,可使$A(G)=\begin{bmatrix}A(G_1)\\&amp;A(G_2)\\&amp;&amp;\cdots\\&amp;&amp;&amp;A(G_k)\end{bmatrix}$</p>
+<h1 id="二部图"><a href="#二部图" class="headerlink" title="二部图"></a>二部图</h1><p>设无向图$G=<V,E,\Psi>$,如果存在$V$的划分$\{V_1,V_2\}$,使得$V_i$中的任何两个结点都不邻接(i=1,2),则称$G$为二部图,$V_1,V_2$称为$G$的互补结点子集</V,E,\Psi></p>
+<h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p>设$G$是阶大于1的无向图,$G$是二部图当且仅当$G$的所有回路的长度均为偶数</p>
+<h2 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h2><p>无向图$G=<V,E,\Psi>,E’\subseteq E$</V,E,\Psi></p>
+<ol>
+<li>如果$E’$不包含自圈,并且$E’$中的任何两条边都不邻接,则称$E’$为$G$中的<font color="red">匹配</font></li>
+<li>如果$E$是$G$中的匹配,并且对于$G$中的一切匹配$E’’$,当$E’\subseteq E’’$时皆有$E’=E’’$,则称$E’$为$G$中的<font color="red">极大匹配</font></li>
+<li>$G$中边数最多的匹配称为$G$的<font color="red">最大匹配</font></li>
+<li>$G$中的最大匹配所包含的边的数目称为$G$的<font color="red">匹配数</font></li>
 </ol>
-<figure>
-<img src="image-20241224152139382.png" srcset="/img/loading.gif" lazyload alt="无向图中的匹配">
-<figcaption aria-hidden="true">无向图中的匹配</figcaption>
-</figure>
+<p><img src="image-20241224152139382.png" srcset="/img/loading.gif" lazyload alt="无向图中的匹配"></p>
 <p>极大匹配:{a,e},{b,e},{c,p},{f,p},{g,d},{h,d},{a,c,g},{b,f,h}</p>
 <p>最大匹配:{a,c,g},{b,f,h}</p>
 <p>匹配数:3</p>
-<h2 id="完美匹配">完美匹配</h2>
-<p>设<span class="math inline">\(V_1,V_2\)</span>时二部图<span class="math inline">\(G\)</span>的互补结点子集,如果<span class="math inline">\(G\)</span>的匹配数等于<span class="math inline">\(n(V_1)\)</span>,则称<span class="math inline">\(G\)</span>中的最大匹配数为<span class="math inline">\(V_1\)</span>到<span class="math inline">\(V_2\)</span>的完美匹配</p>
-<h1 id="树">树</h1>
-<h2 id="定义-2">定义</h2>
-<p>非循环的连通无向图</p>
-<h2 id="定理-1">定理</h2>
-<p><span class="math inline">\(G=&lt;V,E,\Psi&gt;\)</span>为n阶无向图,则下列条件等价:</p>
-<ol type="1">
-<li><span class="math inline">\(G\)</span>是连通的和非循环的</li>
-<li><span class="math inline">\(G\)</span>无自圈,且当<span class="math inline">\(v,v&#39;\in V\)</span>时,皆有唯一的一条从<span class="math inline">\(v\)</span>到<span class="math inline">\(v&#39;\)</span>的基本路径</li>
-<li><span class="math inline">\(G\)</span>是连通的,且当<span class="math inline">\(v,v&#39;\in V,e\notin
-E,\Psi&#39;=\{&lt;e,\{v,v&#39;\}\}\)</span>时,<span class="math inline">\(G+\{e\}_{\Psi&#39;}\)</span>皆有唯一的一个回路</li>
-<li><span class="math inline">\(G\)</span>是连通的,且当<span class="math inline">\(e\in E\)</span>时,<span class="math inline">\(G-e\)</span>都是非连通的</li>
-<li><span class="math inline">\(G\)</span>是连通的且<span class="math inline">\(n(E)=n-1\)</span></li>
-<li><span class="math inline">\(G\)</span>是非循环的且<span class="math inline">\(n(E)=n-1\)</span></li>
+<h2 id="完美匹配"><a href="#完美匹配" class="headerlink" title="完美匹配"></a>完美匹配</h2><p>设$V_1,V_2$时二部图$G$的互补结点子集,如果$G$的匹配数等于$n(V_1)$,则称$G$中的最大匹配数为$V_1$到$V_2$的完美匹配</p>
+<h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h2><p>非循环的连通无向图</p>
+<h2 id="定理-1"><a href="#定理-1" class="headerlink" title="定理"></a>定理</h2><p>$G=<V,E,\Psi>$为n阶无向图,则下列条件等价:</V,E,\Psi></p>
+<ol>
+<li>$G$是连通的和非循环的</li>
+<li>$G$无自圈,且当$v,v’\in V$时,皆有唯一的一条从$v$到$v’$的基本路径</li>
+<li>$G$是连通的,且当$v,v’\in V,e\notin E,\Psi’=\{&lt;e,\{v,v’\}\}$时,$G+\{e\}_{\Psi’}$皆有唯一的一个回路</li>
+<li>$G$是连通的,且当$e\in E$时,$G-e$都是非连通的</li>
+<li>$G$是连通的且$n(E)=n-1$</li>
+<li>$G$是非循环的且$n(E)=n-1$</li>
 </ol>
-<h2 id="生成树生成森林">生成树/生成森林</h2>
-<p>如果树<span class="math inline">\(T\)</span>是无向图<span class="math inline">\(G\)</span>的生成子图,则称<span class="math inline">\(T\)</span>是<span class="math inline">\(G\)</span>的生成树,如果森林<span class="math inline">\(F\)</span>是无向图<span class="math inline">\(G\)</span>的生成子图,则称<span class="math inline">\(F\)</span>为<span class="math inline">\(G\)</span>的生成森林</p>
-
+<h2 id="生成树-生成森林"><a href="#生成树-生成森林" class="headerlink" title="生成树/生成森林"></a>生成树/生成森林</h2><p>如果树$T$是无向图$G$的生成子图,则称$T$是$G$的生成树,如果森林$F$是无向图$G$的生成子图,则称$F$为$G$的生成森林</p>
+</V,E,\Psi'></v_1,v_2></V,E,\Psi>
                 
               </div>
             

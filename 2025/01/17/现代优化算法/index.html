@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="meteor041">
+  <meta name="keywords" content="Computer Organization">
+  
+    <meta name="description" content="模拟退火算法假设材料在状态i之下的能量为$E(i)$,那么材料在温度$T$时从状态$i$进入状态$j$就遵循如下规律:  如果$E(j)\leq E(i)$,则接受该状态被转换  如果$E(j)&gt;E(i)$,则状态一如下概率被接受:  e^{\dfrac{E(i)-E(j)}{KT}}  材料达到热平衡时,材料处于状态$i$的概率满足玻尔兹曼分布  P_T(X&#x3D;i)&#x3D;\dfrac{e^{-\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="现代优化算法">
+<meta property="og:url" content="https://meteor041.git.io/2025/01/17/%E7%8E%B0%E4%BB%A3%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="meteor041">
+<meta property="og:description" content="模拟退火算法假设材料在状态i之下的能量为$E(i)$,那么材料在温度$T$时从状态$i$进入状态$j$就遵循如下规律:  如果$E(j)\leq E(i)$,则接受该状态被转换  如果$E(j)&gt;E(i)$,则状态一如下概率被接受:  e^{\dfrac{E(i)-E(j)}{KT}}  材料达到热平衡时,材料处于状态$i$的概率满足玻尔兹曼分布  P_T(X&#x3D;i)&#x3D;\dfrac{e^{-\">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meteor041.git.io/2025/01/17/%E7%8E%B0%E4%BB%A3%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/image-20250119164222441.png">
+<meta property="og:image" content="https://meteor041.git.io/2025/01/17/%E7%8E%B0%E4%BB%A3%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/image-20250119164255970.png">
+<meta property="article:published_time" content="2025-01-17T03:34:55.000Z">
+<meta property="article:modified_time" content="2025-01-21T11:15:38.466Z">
+<meta property="article:author" content="meteor041">
+<meta property="article:tag" content="数学建模">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/2025/01/17/%E7%8E%B0%E4%BB%A3%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/image-20250119164222441.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>现代优化算法 - meteor041</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"meteor041.git.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="现代优化算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-17 11:34" pubdate>
+          2025年1月17日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          407 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          4 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">现代优化算法</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年1月21日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="模拟退火算法"><a href="#模拟退火算法" class="headerlink" title="模拟退火算法"></a>模拟退火算法</h1><p>假设材料在状态i之下的能量为$E(i)$,那么材料在温度$T$时从状态$i$进入状态$j$就遵循如下规律:</p>
+<ol>
+<li><p>如果$E(j)\leq E(i)$,则接受该状态被转换</p>
+</li>
+<li><p>如果$E(j)&gt;E(i)$,则状态一如下概率被接受:</p>
+<script type="math/tex; mode=display">
+e^{\dfrac{E(i)-E(j)}{KT}}</script></li>
+</ol>
+<p>材料达到热平衡时,材料处于状态$i$的概率满足玻尔兹曼分布</p>
+<script type="math/tex; mode=display">
+P_T(X=i)=\dfrac{e^{-\dfrac{E(i)}{KT}}}{\sum_{j\in S}e^{-\dfrac{E(j)}{KT}}}</script><p>X为材料当前状态的随机变量,S为状态空间集合</p>
+<p>显然:</p>
+<script type="math/tex; mode=display">
+\lim_{T\rightarrow \infty}\dfrac{e^{_\dfrac{E(i)}{KT}}}{\sum_{j\in S}e^{-\dfrac{E(j)}{KT}}}=\dfrac{1}{|S|}</script><p>|S|为集合S中状态的数量</p>
+<p>这表明所有状态在高温下具有相同的概率.而当温度下降时,有</p>
+<script type="math/tex; mode=display">
+\lim_{T\rightarrow 0}\dfrac{e^{\dfrac{K(i)-E_{\min}}{KT}}}{\sum_{j\in S}e^{-\dfrac{E(j)-E_{\min}}{KT}}}=\begin{cases}
+\dfrac{1}{|S_{\min}|},i\in S_{\min}\\
+0,else
+\end{cases}</script><p>$E_{\min}=\min_{j\in S}E(j)且S_{\min}=\{i|E(i)=E_\min\}$</p>
+<p><strong>假定要解决的问题是寻找最小值的优化问题.</strong></p>
+<p>考虑一个组合优化问题,优化函数$f:x\rightarrow R^+$,其中$x\in S$,表示优化问题的一个可行解,$R^+=\{y|y\in R,y\geq 0\}$,S表示函数的定义域,$N(x)\subseteq S$表示x的一个邻域集合</p>
+<p>给定一个初始温度$T_0$和该优化问题的一个初始解$x(0)$,并由$x(0)$生成下一个解$x’\in N[x(0)]$,是否接受$x’$作为一个新界$x(1)$依赖于如下概率:</p>
+<script type="math/tex; mode=display">
+P(x(0)\rightarrow x')=\begin{cases}
+1,&f(x')<f(x(0))\\
+e^{-\dfrac{f(x')-f(x(0))}{T_0}}&else\\
+\end{cases}</script><p><strong>在温度$T_i$下,经过很多次的转移之后,降低温度$T_i$,得到$T_{i+1}&lt;T_i$,在$T_{i+1}$下重复上述过程,因此整个优化过程就是不断寻找新解和缓慢降温的交替过程.</strong></p>
+<p>在温度$T_i$下的平衡态$x_i$的分布由下式给出:</p>
+<script type="math/tex; mode=display">
+P_i(T_i)=\dfrac{e^{-\dfrac{f(x_i)}{T_i}}}{\mathop\sum\limits_{j\in S}e^{-\dfrac{f(x_j)}{T_i}}}</script><p><strong>伪代码</strong>如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">double</span> T = <span class="hljs-number">2000</span>;<br><span class="hljs-type">double</span> dT = <span class="hljs-number">0.99</span>;<br><span class="hljs-type">double</span> eps = <span class="hljs-number">1e-14</span>;<br><span class="hljs-keyword">while</span> (T &lt; eps) &#123;<br>    <span class="hljs-comment">// 退火操作</span><br>    T = T * dT;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h1><ol>
+<li>根据具体问题确定可行解域,确定一种编码方式,能用数值串或者字符串表示可行解域的每一解</li>
+<li>对每一解应用一个度量好坏的依据,它用一函数表示,叫做适应度函数,一般由目标函数构成</li>
+<li>确定进化参数群体规模M,交叉概$p_e$,变异概率$p_m$,进化终止条件</li>
+</ol>
+<p>求解的遗传算法的参数设定如下:</p>
+<p>种群大小M=50,最大代数G=1000;</p>
+<p>交叉率$p_e$=1,交叉概率为1保证种群的充分进化</p>
+<p>变异率$p_m$=0.1,一般而言,变异发生的可能性较小.</p>
+<ol>
+<li><p>编码策略</p>
+<p>采用十进制编码,用随机数列$\omega_1,\omega_2,\cdots,\omega_{102}$作为染色体,其中$0\leq \omega_i\leq 1(i=2,3,\cdots ,101),\omega_1=0,\omega_{102}=1$,每一个随机序列都和种群中的一个个体相对应.</p>
+</li>
+<li><p>初始种群</p>
+<p>改良圈算法</p>
+</li>
+<li><p>目标函数</p>
+<script type="math/tex; mode=display">
+\min f(\pi_1,\pi_2,\cdots,\pi_{102})=\sum^{102}_{i=1}d_{\pi_i\pi_{i+1}}</script></li>
+<li><p>交叉操作</p>
+<p>采用<strong>单点交叉</strong>,对于选定的两个父代个体$f_1=\omega_1\omega_2\cdots\omega_{102},f_2=\omega_1’\omega_2’\cdots \omega_{102}’$,随机选取第$t$个基因处作为交叉点,则经过交叉运算后得到的子代个体为$s_1$和$s_2$,$s_1.$基因由$f_1$的前$t$个基因和$f_2$的后$102-t$个基因构成,$s_2$的基因由$f_2$的前$t$个基因和$f_1$的后$102-t$个基因构成</p>
+</li>
+<li><p>变异操作</p>
+<p>随机地选取三个整数$u,v,w$,满足$1&lt;u&lt;v&lt;w&lt;102$,把$u,v$之间地基因段插到$w$后面</p>
+</li>
+<li><p>选择</p>
+<p>采用确定性的选择策略,即在父代种群和自带种群中选择目标函数值最小的M个个体进化到下一代,这样可以保证父代的优良特性被保存下来</p>
+</li>
+</ol>
+<p><img src="image-20250119164222441.png" srcset="/img/loading.gif" lazyload alt="MATLAB ga参数"></p>
+<p><img src="image-20250119164255970.png" srcset="/img/loading.gif" lazyload alt="MATLAB ga输出"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="print-no-link">#数学建模</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>现代优化算法</div>
+      <div>https://meteor041.git.io/2025/01/17/现代优化算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>meteor041</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年1月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%9C%E4%B8%9A%E5%8F%8A%E8%AF%84%E6%B5%8B%E6%9C%BA%E6%80%9D%E8%B7%AF/" title="面向对象设计第一次作业及评测机思路">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">面向对象设计第一次作业及评测机思路</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/01/15/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90/" title="数学建模-主成分分析(PCA)">
+                        <span class="hidden-mobile">数学建模-主成分分析(PCA)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appKey":"pUUnAo42ScpxvJ9HPTKdpwLM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":true,"serverURLs":"https://dehrbdkk.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true,"appid":"DEhrBdkKMTKuglAFuCaRa4x8-gzGzoHsz","appkey":"pUUnAo42ScpxvJ9HPTKdpwLM"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
