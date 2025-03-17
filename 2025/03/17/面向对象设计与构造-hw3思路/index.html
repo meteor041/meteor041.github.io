@@ -19,24 +19,29 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="面向对象设计与构造迭代开发hw2目标本次作业加入了三角函数和递推函数,递推函数的展开可以用简单的字符串替换实现,我们为三角函数构造一类新的节点,并将由三角函数节点组成的列表与BigInteger xp(x的次方)共同构成Pair类 目标1:递推函数展开根据题目中说明,递推函数定义式可能有以下四种情况: 123f&#123;n&#125;(x) &#x3D; 递推表达式f&#123;0&#125;(x) &#x3D;">
+    <meta name="description" content="hw3综述 hw3在hw2的基础上增加了非递推函数与函数求导的功能. 针对求导因子,我们新增DerivativeFactor类,对每种因子类新增了求导方法,并对大部分节点类补充了深度克隆方法 针对非递推函数,我们在Spreader类中新增了spreadSelf等一系列方法,考虑到递推函数可能包含非递推函数,要求字符串input在接受spreadSelf方法展开所有非递推函数后,再调用spreadR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面向对象设计与构造-hw2思路">
-<meta property="og:url" content="https://meteor041.git.io/2025/03/07/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw2%E6%80%9D%E8%B7%AF/index.html">
+<meta property="og:title" content="面向对象设计与构造-hw3思路">
+<meta property="og:url" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="面向对象设计与构造迭代开发hw2目标本次作业加入了三角函数和递推函数,递推函数的展开可以用简单的字符串替换实现,我们为三角函数构造一类新的节点,并将由三角函数节点组成的列表与BigInteger xp(x的次方)共同构成Pair类 目标1:递推函数展开根据题目中说明,递推函数定义式可能有以下四种情况: 123f&#123;n&#125;(x) &#x3D; 递推表达式f&#123;0&#125;(x) &#x3D;">
+<meta property="og:description" content="hw3综述 hw3在hw2的基础上增加了非递推函数与函数求导的功能. 针对求导因子,我们新增DerivativeFactor类,对每种因子类新增了求导方法,并对大部分节点类补充了深度克隆方法 针对非递推函数,我们在Spreader类中新增了spreadSelf等一系列方法,考虑到递推函数可能包含非递推函数,要求字符串input在接受spreadSelf方法展开所有非递推函数后,再调用spreadR">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-07T02:32:52.000Z">
-<meta property="article:modified_time" content="2025-03-10T09:30:09.156Z">
+<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/MAINCLASS.png">
+<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/image-1.png">
+<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/image.png">
+<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/image-2.png">
+<meta property="article:published_time" content="2025-03-17T10:23:08.000Z">
+<meta property="article:modified_time" content="2025-03-17T16:07:13.382Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="OO">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/MAINCLASS.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>面向对象设计与构造-hw2思路 - meteor041</title>
+  <title>面向对象设计与构造-hw3思路 - meteor041</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="面向对象设计与构造-hw2思路"></span>
+            <span id="subtitle" data-typed-text="面向对象设计与构造-hw3思路"></span>
           
         </div>
 
@@ -213,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-07 10:32" pubdate>
-          2025年3月7日 上午
+        <time datetime="2025-03-17 18:23" pubdate>
+          2025年3月17日 晚上
         </time>
       </span>
     
@@ -225,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2k 字
         
       </span>
     
@@ -236,7 +241,7 @@
         
         
         
-          14 分钟
+          17 分钟
         
       </span>
     
@@ -282,12 +287,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">面向对象设计与构造-hw2思路</h1>
+            <h1 id="seo-header">面向对象设计与构造-hw3思路</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年3月10日 下午
+                    本文最后更新于 2025年3月18日 凌晨
                   
                 
               </p>
@@ -295,41 +300,174 @@
             
               <div class="markdown-body">
                 
-                <h1 id="面向对象设计与构造迭代开发hw2"><a href="#面向对象设计与构造迭代开发hw2" class="headerlink" title="面向对象设计与构造迭代开发hw2"></a>面向对象设计与构造迭代开发hw2</h1><h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>本次作业加入了三角函数和递推函数,递推函数的展开可以用简单的字符串替换实现,我们为三角函数构造一类新的节点,并将由三角函数节点组成的列表与<code>BigInteger xp</code>(x的次方)共同构成<code>Pair</code>类</p>
-<h2 id="目标1-递推函数展开"><a href="#目标1-递推函数展开" class="headerlink" title="目标1:递推函数展开"></a>目标1:递推函数展开</h2><p>根据题目中说明,递推函数定义式可能有以下四种情况:</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf">f&#123;n&#125;(x) <span class="hljs-operator">=</span> 递推表达式<br>f&#123;<span class="hljs-number">0</span>&#125;(x) <span class="hljs-operator">=</span> 函数表达式<br>f&#123;<span class="hljs-number">1</span>&#125;(x) <span class="hljs-operator">=</span> 函数表达式<br></code></pre></td></tr></table></figure>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf">f&#123;n&#125;(y) <span class="hljs-operator">=</span> 递推表达式<br>f&#123;<span class="hljs-number">0</span>&#125;(y) <span class="hljs-operator">=</span> 函数表达式<br>f&#123;<span class="hljs-number">1</span>&#125;(y) <span class="hljs-operator">=</span> 函数表达式<br></code></pre></td></tr></table></figure>
-<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gml">f&#123;n&#125;(<span class="hljs-variable language_">x</span>, <span class="hljs-variable language_">y</span>) = 递推表达式<br>f&#123;<span class="hljs-number">0</span>&#125;(<span class="hljs-variable language_">x</span>, <span class="hljs-variable language_">y</span>) = 函数表达式<br>f&#123;<span class="hljs-number">1</span>&#125;(<span class="hljs-variable language_">x</span>, <span class="hljs-variable language_">y</span>) = 函数表达式<br></code></pre></td></tr></table></figure>
-<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gml">f&#123;n&#125;(<span class="hljs-variable language_">y</span>, <span class="hljs-variable language_">x</span>) = 递推表达式<br>f&#123;<span class="hljs-number">0</span>&#125;(<span class="hljs-variable language_">y</span>, <span class="hljs-variable language_">x</span>) = 函数表达式<br>f&#123;<span class="hljs-number">1</span>&#125;(<span class="hljs-variable language_">y</span>, <span class="hljs-variable language_">x</span>) = 函数表达式<br></code></pre></td></tr></table></figure>
-<p>当然此处的可能性并未囊括递推函数定义式的随机顺序.</p>
-<p>我们新建一个<code>Spreader</code>,负责对输入字符串的展开,它具有两个属性:<code>String[] definitionsList, int flag</code>,<code>definitionsList</code>按照0,1,n的顺序存储三个定义式,<code>flag(1~4)</code>指示函数因子的类型(1-&gt;f{n}(x),2-&gt;f{n}(y)…)</p>
-<p>在输入定义式后,我们将这三个定义式存入<code>definitionsList</code>,并通过正则表达式获得<code>flag</code></p>
-<p>进一步,我们对<code>input</code>字符串调用<code>spread</code>方法,我们利用正则表达式持续寻找<code>f&#123;n|1|2&#125;</code>格式的字符串,并根据<code>definitionsList</code>将其替换为展开的表达式,直到<code>input</code>字符串中不再存在<code>f&#123;n|1|2&#125;</code>,这意味着我们已经实现了将所有递推函数展开,接下来的计算思路就和<code>hw1</code>一致了</p>
-<h2 id="目标2-三角函数"><a href="#目标2-三角函数" class="headerlink" title="目标2:三角函数"></a>目标2:三角函数</h2><p><code>trigNode</code>类属性如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">TrigNode</span> &#123;<br>    String type; <span class="hljs-comment">// &quot;cos&quot; | &quot;sin&quot;</span><br>    ExpressionNode children; <span class="hljs-comment">// 子表达式节点形式</span><br>    String childrenString; <span class="hljs-comment">// 子表达式字符串</span><br>    BigInteger exp; <span class="hljs-comment">// 指数</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>当我们构建<code>TrigNode</code>时,传入<code>type, chlidren, exp</code>,构造方法内调用<code>Printer</code>类的打印方法将<code>children</code>转化为字符串形式<code>childrenString</code>,便于后面判断两个三角函数类型是否相同</p>
-<blockquote>
-<p>表达式即使字符串形式一致,节点形式也不一定一致</p>
-</blockquote>
-<p><code>trigNode</code>表示三角函数,结构组成为<code>type(childrenString)^exp</code></p>
-<h2 id="目标3-新增Pair类"><a href="#目标3-新增Pair类" class="headerlink" title="目标3:新增Pair类"></a>目标3:新增<code>Pair</code>类</h2><p><code>Pair</code>类属性如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Pair</span> &#123;<br>    BigInteger xp;<br>    ArrayList&lt;TrigNode&gt; trigList;<br>&#125;<br></code></pre></td></tr></table></figure><br>它表示不含前导系数的项,与系数组成<code>HashMap&lt;Pair, BigInteger&gt;</code>,表示表达式的整体.</p>
-<h2 id="目标4-三角函数的化简"><a href="#目标4-三角函数的化简" class="headerlink" title="目标4:三角函数的化简"></a>目标4:三角函数的化简</h2><h3 id="1-项内合并"><a href="#1-项内合并" class="headerlink" title="1. 项内合并"></a>1. 项内合并</h3><p>我们修改<code>Pair</code>的<code>add()</code>方法,<code>Pair</code>相加即两项算术相乘,<code>xp</code>相加,而<code>trigList</code>使用<code>addAll()</code>方法,将两个<code>ArrayList</code>的内容合并并返回.这里我们要注意<code>ArrayList</code>可能会出现同类三角函数元素,即类型相等且子表达式相等.我们找到所有满足这类合并条件的式子,将他们的<code>exp</code>相加得到一个新的元素.举个例子:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dotnetcli">cos(x)*cos(x)-&gt;cos(x)^2<br></code></pre></td></tr></table></figure><br>原先的两个<code>Pair</code>个各有一个<code>size=1</code>的<code>trigList</code>,合并时,我们通过遍历时发现两个<code>trigList</code>的元素<code>trig1</code>与<code>trig2</code>可以合并,得到一个<code>type=cos,childrenString=x,children=trig1.getChildren(),exp=trig1.getExp()+trig2.getExp()</code>的三角函数节点</p>
-<blockquote>
-<p>这里我们为什么要保留<code>TrigNode</code>的<code>Chlidren</code>这种节点形式的子字符串呢?输出时直接打印字符串不就好了?这里保留<code>Chilldren</code>主要是为了可以实现和差化积(后面会提及),这种简化会得到新的子字符串,但已经转成字符串的<code>childrenString</code>就无法实现计算和简化功能了.</p>
-</blockquote>
-<h3 id="2-特殊值"><a href="#2-特殊值" class="headerlink" title="2.特殊值"></a>2.特殊值</h3><p>三角函数存在特殊值.如<code>cos(0)=1,sin(0)=0</code>.我这里采取的方法是在<code>Parser</code>类识别三角函数类时加入特判:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span> (trigNode.getType().equals(<span class="hljs-string">&quot;sin&quot;</span>) &amp;&amp; trigNode.getChildrenString().equals(<span class="hljs-string">&quot;0&quot;</span>)) &#123;<br>    <span class="hljs-comment">// sin(0) -&gt; 0</span><br>    numberNode.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Pair</span>(BigInteger.ZERO, trigList), BigInteger.ZERO);<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (trigNode.getType().equals(<span class="hljs-string">&quot;cos&quot;</span>) &amp;&amp;<br>        trigNode.getChildrenString().equals(<span class="hljs-string">&quot;0&quot;</span>)) &#123;<br>    <span class="hljs-comment">// cos(0) -&gt; 1</span><br>    numberNode.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Pair</span>(BigInteger.ZERO, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;()), BigInteger.ONE);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    numberNode.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Pair</span>(BigInteger.ZERO, trigList), BigInteger.ONE);<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="3-和差化积"><a href="#3-和差化积" class="headerlink" title="3. 和差化积"></a>3. 和差化积</h3><p>我们这里需要实现的是:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dotnetcli">cos^2(h(x,y))+sin^2(h(x,y))=1<br>cos^2(h(x,y))-sin^2(h(x,y))=cos(2f(x,y))<br></code></pre></td></tr></table></figure>
-<p>其中<code>h(x,y)</code>是指含x,y的表达式</p>
-<p>这里借鉴<a target="_blank" rel="noopener" href="http://oo.buaa.edu.cn/assignment/608/discussion/1657">OO课程网站提供思路</a></p>
-<h4 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h4><p>表达式满足结构$expr = term_1\pm\cdots\pm term_{n}$</p>
-<p>我们遍历表达式的每个项,对于每个项$term_i$,我们遍历$term_{i+1}$到$term_{end}$,依次两两判断能否合并.</p>
-<p>对于两个项,首先要求它们的x次幂相等,系数的绝对值相等.然后是先将它们的公因式提取出来:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span> (Factor factor1: Term1.getFactors()) &#123;<br>    <span class="hljs-keyword">for</span> (Factor factor2: diffTerm2.getFactors()) &#123;<br>        若factor1与factor2相等，则:<br>        &lt;factor1,min&#123;pow1,pow2&#125;&gt; 塞入sharedTerm<br>        &lt;factor1,pow1-min&#123;pow1,pow2&#125;&gt; 塞入diffTerm1,若pow1 == min&#123;pow1,pow2&#125;则不管<br>        将diffTerm2中 factor2次数修改为 pow2-min&#123;pow1,pow2&#125;,为<span class="hljs-number">0</span>则remove<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>得到两项各自的独因式,若两项的独因式有至少一个的三角函数因子数大于1,则判定两项不能实现合并.否则继续根据三角函数因子的类型和子表达式判断能否合并.两个三角函数因子合并的条件如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// cos^2 + sin^2</span><br>coeff1.equals(coeff2) &amp;&amp; <br>(trigList1.size() == <span class="hljs-number">1</span> &amp;&amp; trigList2.size() == <span class="hljs-number">1</span>) &amp;&amp;<br>((trig1.type.equals(<span class="hljs-string">&quot;cos&quot;</span>) &amp;&amp; trig2.type.equals(<span class="hljs-string">&quot;sin&quot;</span>) ) ||<br> (trig1.type.equals(<span class="hljs-string">&quot;sin&quot;</span>) &amp;&amp; trig2.type.equals(<span class="hljs-string">&quot;cos&quot;</span>) )  )<br>&amp;&amp; trig1.childrenString.equals(trig2.childrenString) <span class="hljs-comment">// childrenString是三角函数内子表达式的字符串形式</span><br><span class="hljs-comment">// cos^2 - sin^2</span><br>coeff1.equals(coeff2.negate()) &amp;&amp;  <br>(trigList1.size() == <span class="hljs-number">1</span> &amp;&amp; trigList2.size() == <span class="hljs-number">1</span>) &amp;&amp;<br>((trig1.type.equals(<span class="hljs-string">&quot;cos&quot;</span>) &amp;&amp; trig2.type.equals(<span class="hljs-string">&quot;sin&quot;</span>) ) ||<br>    (trig1.type.equals(<span class="hljs-string">&quot;sin&quot;</span>) &amp;&amp; trig2.type.equals(<span class="hljs-string">&quot;cos&quot;</span>) ) )<br>&amp;&amp; trig1.childrenString.equals(trig2.childrenString)<br><span class="hljs-comment">// cos^2 - 1 | sin^2 - 1</span><br>coeff1.equals(coeff2.negate()) &amp;&amp;  <br>((trigList1.empty() &amp;&amp; trigList2.size() == <span class="hljs-number">1</span>) ||<br> (trigList2.empty() &amp;&amp; trigList1.size() == <span class="hljs-number">1</span>) )&amp;&amp;<br>trig1.childrenString.equals(trig2.childrenString)  <br></code></pre></td></tr></table></figure>
-<p>例如:$2<em>x</em>\cos(x)^2+2<em>x</em>\sin(x)^2$,我们先判断系数绝对值和x的幂次相等,接着提取出三角函数公因式<code>None</code>,两项各自的独因式分别为$\cos(x)^2$和$\sin(x)^2$,合并后得到1,因此两项合并结果为$2<em>x</em>1=2*x$</p>
+                <h2 id="hw3综述"><a href="#hw3综述" class="headerlink" title="hw3综述"></a>hw3综述</h2><ul>
+<li>hw3在hw2的基础上增加了非递推函数与函数求导的功能.</li>
+<li>针对求导因子,我们新增<code>DerivativeFactor</code>类,对每种因子类新增了求导方法,并对大部分节点类补充了深度克隆方法</li>
+<li>针对非递推函数,我们在<code>Spreader</code>类中新增了<code>spreadSelf</code>等一系列方法,考虑到递推函数可能包含非递推函数,要求字符串<code>input</code>在接受<code>spreadSelf</code>方法展开所有非递推函数后,再调用<code>spreadRecursive</code>方法展开递推函数.</li>
+<li>对于评测机,由于求导因子和函数的<code>parse()</code>方法难以调包实现,自己用<code>Python</code>写一份复杂的代码无异于对拍.本次作业基于<code>JavaScript</code>和<code>Node.js</code>实现的对拍器网站,根据<code>Python</code>自动程序生成的数据,通过与同学们的jar包进行运行结果比较,快速查找bug.</li>
+</ul>
+<h2 id="架构分析"><a href="#架构分析" class="headerlink" title="架构分析"></a>架构分析</h2><p>通过<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=6XrL5jXmTwM&amp;ab_channel=LucidSoftware">UML class diagrams</a>视频学习了UML图的基本绘制方法.</p>
+<p><img src="MAINCLASS.png" srcset="/img/loading.gif" lazyload alt="hw3UML类图"></p>
+<ul>
+<li>建立两个软件包,分别为<code>utils</code>和<code>node</code>.<code>utils</code>软件包中包含各种工具类,供<code>MainClass</code>主类调用,<code>node</code>软件包内包含抽象语法树(AST)的各类树节点.</li>
+<li><code>utils</code>类包含的<code>Lexer</code>作为词法分析器;<code>Parser</code>作为语法分析器,将<code>Lexer</code>类作为参数;<code>Spreader</code>类提供展开函数的方法;<code>Printer</code>类提供将<code>HashMap&lt;Pair, BigInteger&gt;</code>类型的表达式转换成字符串形式以供打印;<code>Simplifier</code>类内含和差化积等化简方法,主要负责三角函数的化简.</li>
+<li><code>node</code>类以<code>ExpressionNode</code>类作为基类,子类分为<code>NumberNode</code>和<code>OperatorNode</code>两种.<code>OperatorNode</code>类作为各种运算符节点(如<code>AddNode</code>等)的基类.<code>NumberNode</code>类含有<code>Pair</code>和<code>coeff</code>,其中<code>Pair</code>指的是x的次幂和三角函数列表组成的自定义类,<code>coeff</code>是<code>BigInteger</code>类型的整数系数.</li>
+</ul>
+<p>优点分析:</p>
+<ol>
+<li><strong>层次化设计</strong>:<ul>
+<li>将系统划分为<code>utils</code>和<code>node</code>两个包,职责清晰,便于维护和扩展.</li>
+<li>建立数据抽象层次,<code>Pair</code>作为x的次幂和三角函数乘积的组合,将x和三角函数有效组合起来,便于管理.</li>
+</ul>
+</li>
+<li><strong>可扩展性</strong>:<ul>
+<li><code>ExpressionNode</code>作为基类,支持扩展新的节点类型(如<code>DerivativeNode</code>).</li>
+<li><code>Pair</code>的设计支持灵活的组合,便于添加新的三角函数或变量类型.</li>
+</ul>
+</li>
+<li><strong>类型安全</strong>:<ul>
+<li>使用<code>BigInteger</code>处理大整数计算,有效避免数据溢出.</li>
+<li><code>HashMap&lt;Pair, BigInteger&gt;</code>提供高效的表达式存储和检索.</li>
+</ul>
+</li>
+<li><strong>可测试性</strong>:<ul>
+<li>每个模块可以独立测试,便于定位问题</li>
+</ul>
+</li>
+</ol>
+<p>缺点分析:</p>
+<ol>
+<li><strong>复杂度较高</strong>:<ul>
+<li><code>Pair</code>的设计一定程度上增加了系统的复杂度,我在写代码的时候必须依靠足够的注释才能不至于搞混.</li>
+<li><code>OperatorNode</code>类的多层继承关系可能会让代码的维护成本增高.</li>
+</ul>
+</li>
+<li><strong>性能问题</strong>:<ul>
+<li><code>HashMap&lt;Pair, BigInteger&gt;</code>的存储方式会在大规模数据下性能下降</li>
+<li><code>Simplifier</code>的和差化积方法在面对大数据时性能爆炸,所幸课程网站的测试没有那么严苛</li>
+</ul>
+</li>
+</ol>
+<h2 id="OO度量分析"><a href="#OO度量分析" class="headerlink" title="OO度量分析"></a>OO度量分析</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>度量指标</th>
+<th>全称</th>
+<th>中文</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CogC</td>
+<td>Cognitive Complexity</td>
+<td>认知复杂度</td>
+<td>用于衡量代码在人类理解上的难度,考虑代码的结构对理解的影响</td>
+</tr>
+<tr>
+<td>ev(G)</td>
+<td>Essential Complexity</td>
+<td>本质复杂度</td>
+<td>衡量代码中不可简化的逻辑复杂度,反映了代码中必须存在的复杂度</td>
+</tr>
+<tr>
+<td>iv(G)</td>
+<td>Design Complexity</td>
+<td>设计复杂度</td>
+<td>衡量代码中由于设计决策引入的复杂度,反映了代码结构的复杂度</td>
+</tr>
+<tr>
+<td>v(G)</td>
+<td>Cyclomatic Complexity</td>
+<td>圈复杂度</td>
+<td>衡量代码中独立路径的数量,反映了代码的测试难度和维护成本</td>
+</tr>
+<tr>
+<td>OCavg</td>
+<td>Average Cyclomatic Complexity per Method</td>
+<td>方法的平均圈复杂度</td>
+<td>衡量一个类中所有方法的平均圈复杂度</td>
+</tr>
+<tr>
+<td>OCmax</td>
+<td>Maximum Cyclomatic Complexity per Method</td>
+<td>方法的最大圈复杂度</td>
+<td>衡量一个类中所有方法的最大圈复杂度</td>
+</tr>
+<tr>
+<td>WMC</td>
+<td>Weighted Methods per Class</td>
+<td>类中所有方法的圈复杂度之和</td>
+<td>衡量一个类中所有方法的复杂度之和</td>
+</tr>
+<tr>
+<td>LCOM</td>
+<td>Lack of Cohesion in Methods - Class</td>
+<td>方法的内聚缺乏度</td>
+<td>值越大,说明类内聚合度越小</td>
+</tr>
+<tr>
+<td>FANIN</td>
+<td>Fan-in</td>
+<td>类的扇入</td>
+<td>表示调用该模块的上级模块的个数,扇入越大,表示该模块的复用性越好</td>
+</tr>
+<tr>
+<td>FANOUT</td>
+<td>Fan-out - Class</td>
+<td>类的扇出</td>
+<td>表示该模块直接调用地下级模块的个数,扇出过大表明模块复杂度高,但扇出过小也不好</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>部分方法的复杂度较高,尤其是<code>utils.Printer.transform</code>和<code>utils.Simplifier.processEntry</code>方法,表明这些方法的逻辑较为复杂.</li>
+<li>部分方法的<code>ev(G)</code>和<code>iv(G)</code>较高,表明这些方法的逻辑和设计复杂度较高,可能难以维护和扩展.</li>
+<li>大多数类的方法平均圈复杂度较低,部分类如<code>utils.Printer</code>,<code>utils.Parser</code>的复杂度较高.</li>
+</ul>
+<h2 id="bug分享"><a href="#bug分享" class="headerlink" title="bug分享"></a>bug分享</h2><h2 id="评测机及对拍器构建思路"><a href="#评测机及对拍器构建思路" class="headerlink" title="评测机及对拍器构建思路"></a>评测机及对拍器构建思路</h2><h3 id="GitHub链接"><a href="#GitHub链接" class="headerlink" title="GitHub链接"></a>GitHub链接</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/meteor041/OO_2025_judge">本地运行程序源码</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/meteor041/OO_beatmatch_web">评测网站源码</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/meteor041/OO_beatmatch_web">评测网站链接</a></li>
+</ul>
+<h3 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h3><p>首先看一下hw1,hw2测试程序的终端运行效果:<br><img src="image-1.png" srcset="/img/loading.gif" lazyload alt="hw2测试程序终端运行效果图"></p>
+<p>这是hw3对拍器网站的页面效果:<br><img src="image.png" srcset="/img/loading.gif" lazyload alt="hw3对拍网站效果"></p>
+<h3 id="测试数据生成"><a href="#测试数据生成" class="headerlink" title="测试数据生成"></a>测试数据生成</h3><p>针对hw1和hw2,我们构建一个测试程序,测试程序重点应当放在数据生成上,这里我们以<code>generate3.py</code>为例(因为数据生成数据随着作业进度迭代开发,hw3的这一版相对更加完善).</p>
+<p>我们构建了一个<code>Generator</code>类,其<code>__init__</code>方法如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Generator</span>:<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, max_depth, max_length</span>):<br>        <span class="hljs-variable language_">self</span>.max_depth = max_depth<br>        <span class="hljs-variable language_">self</span>.max_length = max_length<br>        <span class="hljs-variable language_">self</span>.function_type = [random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>)]<br>        <span class="hljs-variable language_">self</span>.arguments = [<span class="hljs-string">&#x27;x&#x27;</span>]<br>        <span class="hljs-variable language_">self</span>.forbid_function = [<span class="hljs-literal">False</span>] * <span class="hljs-number">3</span><br>        <span class="hljs-variable language_">self</span>.derive_enable = <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+<p>在这里,我们规定了最大递归深度,生成函数类型,以及变量列表等元素的初始化.根据题目所给出的BNF描述,构建主方法<code>generate_expression</code>,其含以下子方法:</p>
+<ul>
+<li>generate_whitespace(): 生成指定数量的空白字符。</li>
+<li>generate_signed_integer(): 生成带符号的整数。</li>
+<li>generate_integer(): 生成允许前导零的整数。</li>
+<li>generate_exponent(): 生成指数。</li>
+<li>generate_power_function(): 生成幂函数。</li>
+<li>generate_constant_factor(): 生成常数因子。</li>
+<li>generate_expression_factor(depth): 生成表达式因子。</li>
+<li>generate_trigonometric_functions(depth): 生成三角函数。</li>
+<li>generate_derivative_factor(depth): 生成导数因子。</li>
+<li>generate_variable_factor(depth): 生成变量因子。</li>
+<li>generate_term(depth): 生成项。</li>
+<li>generate_expression_recursive(depth): 递归生成表达式。</li>
+<li>generate_function_call_f(depth): 生成函数调用 f{n}(x) 或 f{n}(x,y)。</li>
+<li>generate_function_call_g(depth): 生成函数调用 g(x) 或 g(x,y)。</li>
+<li>generate_function_call_h(depth): 生成函数调用 h(x) 或 h(x,y)。</li>
+<li>generate_function_definition(self): 生成函数定义。</li>
+<li>generate_self_definition(type: str, mode: int): 生成自定义函数定义</li>
+</ul>
+<p>通过递归调用函数,我们可以做到随机生成足够复杂和困难的表达式,通过控制函数中的概率设置,我们可以调控生成式子的复杂程度,例如在<code>generate_term(depth)</code>中:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_term</span>(<span class="hljs-params">depth</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;生成项&quot;&quot;&quot;</span><br>    expression = <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> random.random() &lt; <span class="hljs-number">0.2</span>:<br>        expression += random.choice([<span class="hljs-string">&quot;+&quot;</span>, <span class="hljs-string">&quot;-&quot;</span>]) + generate_whitespace()<br><br>    expression += generate_factor(depth)<br><br>    prob = <span class="hljs-number">0.3</span><br>    <span class="hljs-keyword">while</span> random.random() &lt; prob:<br>        expression += generate_whitespace() + <span class="hljs-string">&quot;*&quot;</span> + generate_whitespace() + generate_factor(depth)<br>        prob *= <span class="hljs-number">0.3</span><br>    <span class="hljs-keyword">return</span> expression<br></code></pre></td></tr></table></figure><br><code>prob</code>的大小会大幅度影响表达式生成结果.</p>
+<h3 id="测试结果正误"><a href="#测试结果正误" class="headerlink" title="测试结果正误"></a>测试结果正误</h3><p>这里我们用到了<code>Sympy</code>软件包,它可以快速方便地计算或者展开含x的表达式.以输入调用<code>Sympy.expand()</code>后的结果作为标准输出,将其用户程序的输出进行比较.比较方式包括两种:</p>
+<ol>
+<li>随机选择x值代入表达式进行计算,比较常数结果是否相等</li>
+<li>使用<code>Sympy</code>包自带的判断表达式相等功能</li>
+</ol>
+<h3 id="整体逻辑框架"><a href="#整体逻辑框架" class="headerlink" title="整体逻辑框架"></a>整体逻辑框架</h3><p>综上,我们可以绘制出该测试程序的逻辑框架</p>
+<p><img src="image-2.png" srcset="/img/loading.gif" lazyload alt="测试程序逻辑"></p>
+<h2 id="对拍器网站搭建"><a href="#对拍器网站搭建" class="headerlink" title="对拍器网站搭建"></a>对拍器网站搭建</h2><p>本着互利互惠的精神,我做了一个hw3的对拍器网站.用户可自行上传jar包,输入测试样例个数,按下运行键与网站上所有存放的jar包一起对拍,其对拍的输入数据均来自于自动生成程序.此外,用户还可以下载每次运行的结果(包括输入和输出)</p>
+<p>本网站基于阿里云服务器,采用了<code>Node.js</code>框架,通过<code>DeepSeek</code>和<code>Gemini 2.0 Flash</code>完成了大部分<code>JavaScript</code>代码工作.</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://mmmusel.github.io/2022/03/24/OO-Unit1-summary/#/%E6%95%B4%E4%BD%93%E5%88%86%E6%9E%90">BUAA-OO-Unit1</a></p>
 
                 
               </div>
@@ -375,8 +513,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>面向对象设计与构造-hw2思路</div>
-      <div>https://meteor041.git.io/2025/03/07/面向对象设计与构造-hw2思路/</div>
+      <div>面向对象设计与构造-hw3思路</div>
+      <div>https://meteor041.git.io/2025/03/17/面向对象设计与构造-hw3思路/</div>
     </div>
     <div class="license-meta">
       
@@ -388,7 +526,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年3月7日</div>
+          <div>2025年3月17日</div>
         </div>
       
       
@@ -420,18 +558,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/" title="面向对象设计与构造-hw3思路">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">面向对象设计与构造-hw3思路</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/03/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6-%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/" title="离散数学-排列组合">
-                        <span class="hidden-mobile">离散数学-排列组合</span>
+                      <a href="/2025/03/07/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw2%E6%80%9D%E8%B7%AF/" title="面向对象设计与构造-hw2思路">
+                        <span class="hidden-mobile">面向对象设计与构造-hw2思路</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
