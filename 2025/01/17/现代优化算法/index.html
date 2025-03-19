@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="模拟退火算法假设材料在状态i之下的能量为$E(i)$,那么材料在温度$T$时从状态$i$进入状态$j$就遵循如下规律:  如果$E(j)\leq E(i)$,则接受该状态被转换  如果$E(j)&gt;E(i)$,则状态一如下概率被接受:  e^{\dfrac{E(i)-E(j)}{KT}}  材料达到热平衡时,材料处于状态$i$的概率满足玻尔兹曼分布  P_T(X&#x3D;i)&#x3D;\dfrac{e^{-\">
+    <meta name="description" content="模拟退火算法 假设材料在状态i之下的能量为\(E(i)\),那么材料在温度\(T\)时从状态\(i\)进入状态\(j\)就遵循如下规律:  如果\(E(j)\leq E(i)\),则接受该状态被转换 如果\(E(j)&gt;E(i)\),则状态一如下概率被接受: \[ e^{\dfrac{E(i)-E(j)}{KT}} \]  材料达到热平衡时,材料处于状态\(i\)的概率满足">
 <meta property="og:type" content="article">
 <meta property="og:title" content="现代优化算法">
 <meta property="og:url" content="https://meteor041.git.io/2025/01/17/%E7%8E%B0%E4%BB%A3%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="模拟退火算法假设材料在状态i之下的能量为$E(i)$,那么材料在温度$T$时从状态$i$进入状态$j$就遵循如下规律:  如果$E(j)\leq E(i)$,则接受该状态被转换  如果$E(j)&gt;E(i)$,则状态一如下概率被接受:  e^{\dfrac{E(i)-E(j)}{KT}}  材料达到热平衡时,材料处于状态$i$的概率满足玻尔兹曼分布  P_T(X&#x3D;i)&#x3D;\dfrac{e^{-\">
+<meta property="og:description" content="模拟退火算法 假设材料在状态i之下的能量为\(E(i)\),那么材料在温度\(T\)时从状态\(i\)进入状态\(j\)就遵循如下规律:  如果\(E(j)\leq E(i)\),则接受该状态被转换 如果\(E(j)&gt;E(i)\),则状态一如下概率被接受: \[ e^{\dfrac{E(i)-E(j)}{KT}} \]  材料达到热平衡时,材料处于状态\(i\)的概率满足">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://meteor041.git.io/2025/01/17/%E7%8E%B0%E4%BB%A3%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/image-20250119164222441.png">
 <meta property="og:image" content="https://meteor041.git.io/2025/01/17/%E7%8E%B0%E4%BB%A3%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/image-20250119164255970.png">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          407 字
+          1k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          4 分钟
+          9 分钟
         
       </span>
     
@@ -298,69 +298,82 @@
             
               <div class="markdown-body">
                 
-                <h1 id="模拟退火算法"><a href="#模拟退火算法" class="headerlink" title="模拟退火算法"></a>模拟退火算法</h1><p>假设材料在状态i之下的能量为$E(i)$,那么材料在温度$T$时从状态$i$进入状态$j$就遵循如下规律:</p>
-<ol>
-<li><p>如果$E(j)\leq E(i)$,则接受该状态被转换</p>
-</li>
-<li><p>如果$E(j)&gt;E(i)$,则状态一如下概率被接受:</p>
-<script type="math/tex; mode=display">
-e^{\dfrac{E(i)-E(j)}{KT}}</script></li>
+                <h1 id="模拟退火算法">模拟退火算法</h1>
+<p>假设材料在状态i之下的能量为<span class="math inline">\(E(i)\)</span>,那么材料在温度<span class="math inline">\(T\)</span>时从状态<span class="math inline">\(i\)</span>进入状态<span class="math inline">\(j\)</span>就遵循如下规律:</p>
+<ol type="1">
+<li><p>如果<span class="math inline">\(E(j)\leq
+E(i)\)</span>,则接受该状态被转换</p></li>
+<li><p>如果<span class="math inline">\(E(j)&gt;E(i)\)</span>,则状态一如下概率被接受:
+<span class="math display">\[
+e^{\dfrac{E(i)-E(j)}{KT}}
+\]</span></p></li>
 </ol>
-<p>材料达到热平衡时,材料处于状态$i$的概率满足玻尔兹曼分布</p>
-<script type="math/tex; mode=display">
-P_T(X=i)=\dfrac{e^{-\dfrac{E(i)}{KT}}}{\sum_{j\in S}e^{-\dfrac{E(j)}{KT}}}</script><p>X为材料当前状态的随机变量,S为状态空间集合</p>
-<p>显然:</p>
-<script type="math/tex; mode=display">
-\lim_{T\rightarrow \infty}\dfrac{e^{_\dfrac{E(i)}{KT}}}{\sum_{j\in S}e^{-\dfrac{E(j)}{KT}}}=\dfrac{1}{|S|}</script><p>|S|为集合S中状态的数量</p>
-<p>这表明所有状态在高温下具有相同的概率.而当温度下降时,有</p>
-<script type="math/tex; mode=display">
-\lim_{T\rightarrow 0}\dfrac{e^{\dfrac{K(i)-E_{\min}}{KT}}}{\sum_{j\in S}e^{-\dfrac{E(j)-E_{\min}}{KT}}}=\begin{cases}
+<p>材料达到热平衡时,材料处于状态<span class="math inline">\(i\)</span>的概率满足玻尔兹曼分布 <span class="math display">\[
+P_T(X=i)=\dfrac{e^{-\dfrac{E(i)}{KT}}}{\sum_{j\in
+S}e^{-\dfrac{E(j)}{KT}}}
+\]</span> X为材料当前状态的随机变量,S为状态空间集合</p>
+<p>显然: <span class="math display">\[
+\lim_{T\rightarrow \infty}\dfrac{e^{_\dfrac{E(i)}{KT}}}{\sum_{j\in
+S}e^{-\dfrac{E(j)}{KT}}}=\dfrac{1}{|S|}
+\]</span> |S|为集合S中状态的数量</p>
+<p>这表明所有状态在高温下具有相同的概率.而当温度下降时,有 <span class="math display">\[
+\lim_{T\rightarrow 0}\dfrac{e^{\dfrac{K(i)-E_{\min}}{KT}}}{\sum_{j\in
+S}e^{-\dfrac{E(j)-E_{\min}}{KT}}}=\begin{cases}
 \dfrac{1}{|S_{\min}|},i\in S_{\min}\\
 0,else
-\end{cases}</script><p>$E_{\min}=\min_{j\in S}E(j)且S_{\min}=\{i|E(i)=E_\min\}$</p>
+\end{cases}
+\]</span> <span class="math inline">\(E_{\min}=\min_{j\in
+S}E(j)且S_{\min}=\{i|E(i)=E_\min\}\)</span></p>
 <p><strong>假定要解决的问题是寻找最小值的优化问题.</strong></p>
-<p>考虑一个组合优化问题,优化函数$f:x\rightarrow R^+$,其中$x\in S$,表示优化问题的一个可行解,$R^+=\{y|y\in R,y\geq 0\}$,S表示函数的定义域,$N(x)\subseteq S$表示x的一个邻域集合</p>
-<p>给定一个初始温度$T_0$和该优化问题的一个初始解$x(0)$,并由$x(0)$生成下一个解$x’\in N[x(0)]$,是否接受$x’$作为一个新界$x(1)$依赖于如下概率:</p>
-<script type="math/tex; mode=display">
-P(x(0)\rightarrow x')=\begin{cases}
-1,&f(x')<f(x(0))\\
-e^{-\dfrac{f(x')-f(x(0))}{T_0}}&else\\
-\end{cases}</script><p><strong>在温度$T_i$下,经过很多次的转移之后,降低温度$T_i$,得到$T_{i+1}&lt;T_i$,在$T_{i+1}$下重复上述过程,因此整个优化过程就是不断寻找新解和缓慢降温的交替过程.</strong></p>
-<p>在温度$T_i$下的平衡态$x_i$的分布由下式给出:</p>
-<script type="math/tex; mode=display">
-P_i(T_i)=\dfrac{e^{-\dfrac{f(x_i)}{T_i}}}{\mathop\sum\limits_{j\in S}e^{-\dfrac{f(x_j)}{T_i}}}</script><p><strong>伪代码</strong>如下:</p>
+<p>考虑一个组合优化问题,优化函数<span class="math inline">\(f:x\rightarrow R^+\)</span>,其中<span class="math inline">\(x\in S\)</span>,表示优化问题的一个可行解,<span class="math inline">\(R^+=\{y|y\in R,y\geq
+0\}\)</span>,S表示函数的定义域,<span class="math inline">\(N(x)\subseteq
+S\)</span>表示x的一个邻域集合</p>
+<p>给定一个初始温度<span class="math inline">\(T_0\)</span>和该优化问题的一个初始解<span class="math inline">\(x(0)\)</span>,并由<span class="math inline">\(x(0)\)</span>生成下一个解<span class="math inline">\(x&#39;\in N[x(0)]\)</span>,是否接受<span class="math inline">\(x&#39;\)</span>作为一个新界<span class="math inline">\(x(1)\)</span>依赖于如下概率: <span class="math display">\[
+P(x(0)\rightarrow x&#39;)=\begin{cases}
+1,&amp;f(x&#39;)&lt;f(x(0))\\
+e^{-\dfrac{f(x&#39;)-f(x(0))}{T_0}}&amp;else\\
+\end{cases}
+\]</span> <strong>在温度<span class="math inline">\(T_i\)</span>下,经过很多次的转移之后,降低温度<span class="math inline">\(T_i\)</span>,得到<span class="math inline">\(T_{i+1}&lt;T_i\)</span>,在<span class="math inline">\(T_{i+1}\)</span>下重复上述过程,因此整个优化过程就是不断寻找新解和缓慢降温的交替过程.</strong></p>
+<p>在温度<span class="math inline">\(T_i\)</span>下的平衡态<span class="math inline">\(x_i\)</span>的分布由下式给出: <span class="math display">\[
+P_i(T_i)=\dfrac{e^{-\dfrac{f(x_i)}{T_i}}}{\mathop\sum\limits_{j\in
+S}e^{-\dfrac{f(x_j)}{T_i}}}
+\]</span> <strong>伪代码</strong>如下:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">double</span> T = <span class="hljs-number">2000</span>;<br><span class="hljs-type">double</span> dT = <span class="hljs-number">0.99</span>;<br><span class="hljs-type">double</span> eps = <span class="hljs-number">1e-14</span>;<br><span class="hljs-keyword">while</span> (T &lt; eps) &#123;<br>    <span class="hljs-comment">// 退火操作</span><br>    T = T * dT;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h1 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h1><ol>
+<h1 id="遗传算法">遗传算法</h1>
+<ol type="1">
 <li>根据具体问题确定可行解域,确定一种编码方式,能用数值串或者字符串表示可行解域的每一解</li>
 <li>对每一解应用一个度量好坏的依据,它用一函数表示,叫做适应度函数,一般由目标函数构成</li>
-<li>确定进化参数群体规模M,交叉概$p_e$,变异概率$p_m$,进化终止条件</li>
+<li>确定进化参数群体规模M,交叉概<span class="math inline">\(p_e\)</span>,变异概率<span class="math inline">\(p_m\)</span>,进化终止条件</li>
 </ol>
 <p>求解的遗传算法的参数设定如下:</p>
 <p>种群大小M=50,最大代数G=1000;</p>
-<p>交叉率$p_e$=1,交叉概率为1保证种群的充分进化</p>
-<p>变异率$p_m$=0.1,一般而言,变异发生的可能性较小.</p>
-<ol>
+<p>交叉率<span class="math inline">\(p_e\)</span>=1,交叉概率为1保证种群的充分进化</p>
+<p>变异率<span class="math inline">\(p_m\)</span>=0.1,一般而言,变异发生的可能性较小.</p>
+<ol type="1">
 <li><p>编码策略</p>
-<p>采用十进制编码,用随机数列$\omega_1,\omega_2,\cdots,\omega_{102}$作为染色体,其中$0\leq \omega_i\leq 1(i=2,3,\cdots ,101),\omega_1=0,\omega_{102}=1$,每一个随机序列都和种群中的一个个体相对应.</p>
-</li>
+<p>采用十进制编码,用随机数列<span class="math inline">\(\omega_1,\omega_2,\cdots,\omega_{102}\)</span>作为染色体,其中<span class="math inline">\(0\leq \omega_i\leq 1(i=2,3,\cdots
+,101),\omega_1=0,\omega_{102}=1\)</span>,每一个随机序列都和种群中的一个个体相对应.</p></li>
 <li><p>初始种群</p>
-<p>改良圈算法</p>
-</li>
-<li><p>目标函数</p>
-<script type="math/tex; mode=display">
-\min f(\pi_1,\pi_2,\cdots,\pi_{102})=\sum^{102}_{i=1}d_{\pi_i\pi_{i+1}}</script></li>
+<p>改良圈算法</p></li>
+<li><p>目标函数 <span class="math display">\[
+\min f(\pi_1,\pi_2,\cdots,\pi_{102})=\sum^{102}_{i=1}d_{\pi_i\pi_{i+1}}
+\]</span></p></li>
 <li><p>交叉操作</p>
-<p>采用<strong>单点交叉</strong>,对于选定的两个父代个体$f_1=\omega_1\omega_2\cdots\omega_{102},f_2=\omega_1’\omega_2’\cdots \omega_{102}’$,随机选取第$t$个基因处作为交叉点,则经过交叉运算后得到的子代个体为$s_1$和$s_2$,$s_1.$基因由$f_1$的前$t$个基因和$f_2$的后$102-t$个基因构成,$s_2$的基因由$f_2$的前$t$个基因和$f_1$的后$102-t$个基因构成</p>
-</li>
+<p>采用<strong>单点交叉</strong>,对于选定的两个父代个体<span class="math inline">\(f_1=\omega_1\omega_2\cdots\omega_{102},f_2=\omega_1&#39;\omega_2&#39;\cdots
+\omega_{102}&#39;\)</span>,随机选取第<span class="math inline">\(t\)</span>个基因处作为交叉点,则经过交叉运算后得到的子代个体为<span class="math inline">\(s_1\)</span>和<span class="math inline">\(s_2\)</span>,<span class="math inline">\(s_1.\)</span>基因由<span class="math inline">\(f_1\)</span>的前<span class="math inline">\(t\)</span>个基因和<span class="math inline">\(f_2\)</span>的后<span class="math inline">\(102-t\)</span>个基因构成,<span class="math inline">\(s_2\)</span>的基因由<span class="math inline">\(f_2\)</span>的前<span class="math inline">\(t\)</span>个基因和<span class="math inline">\(f_1\)</span>的后<span class="math inline">\(102-t\)</span>个基因构成</p></li>
 <li><p>变异操作</p>
-<p>随机地选取三个整数$u,v,w$,满足$1&lt;u&lt;v&lt;w&lt;102$,把$u,v$之间地基因段插到$w$后面</p>
-</li>
+<p>随机地选取三个整数<span class="math inline">\(u,v,w\)</span>,满足<span class="math inline">\(1&lt;u&lt;v&lt;w&lt;102\)</span>,把<span class="math inline">\(u,v\)</span>之间地基因段插到<span class="math inline">\(w\)</span>后面</p></li>
 <li><p>选择</p>
-<p>采用确定性的选择策略,即在父代种群和自带种群中选择目标函数值最小的M个个体进化到下一代,这样可以保证父代的优良特性被保存下来</p>
-</li>
+<p>采用确定性的选择策略,即在父代种群和自带种群中选择目标函数值最小的M个个体进化到下一代,这样可以保证父代的优良特性被保存下来</p></li>
 </ol>
-<p><img src="image-20250119164222441.png" srcset="/img/loading.gif" lazyload alt="MATLAB ga参数"></p>
-<p><img src="image-20250119164255970.png" srcset="/img/loading.gif" lazyload alt="MATLAB ga输出"></p>
+<figure>
+<img src="image-20250119164222441.png" srcset="/img/loading.gif" lazyload alt="MATLAB ga参数">
+<figcaption aria-hidden="true">MATLAB ga参数</figcaption>
+</figure>
+<figure>
+<img src="image-20250119164255970.png" srcset="/img/loading.gif" lazyload alt="MATLAB ga输出">
+<figcaption aria-hidden="true">MATLAB ga输出</figcaption>
+</figure>
 
                 
               </div>

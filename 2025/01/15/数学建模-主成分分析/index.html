@@ -19,12 +19,12 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="PCA是什么? 找新的坐标轴  去中心化 找坐标系  关键概念协方差: $cov(x,y)&#x3D;\dfrac{\sum^n_{i&#x3D;1}(x_i-\bar x)(y_i-\bar y)}{n-1}$ 协方差矩阵: $\begin{aligned}C&amp;&#x3D;\begin{vmatrix}cov(x,x)&amp;cov(x,y)\\cov(x,y)&amp;cov(y,y)\end{vmatrix}\">
+    <meta name="description" content="PCA是什么? 找新的坐标轴  去中心化 找坐标系  关键概念 协方差: \(cov(x,y)&#x3D;\dfrac{\sum^n_{i&#x3D;1}(x_i-\bar x)(y_i-\bar y)}{n-1}\) 协方差矩阵: \(\begin{aligned}C&amp;&#x3D;\begin{vmatrix}cov(x,x)&amp;cov(x,y)\\cov(x,y)&amp;cov(y,y">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数学建模-主成分分析(PCA)">
 <meta property="og:url" content="https://meteor041.git.io/2025/01/15/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1-%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="PCA是什么? 找新的坐标轴  去中心化 找坐标系  关键概念协方差: $cov(x,y)&#x3D;\dfrac{\sum^n_{i&#x3D;1}(x_i-\bar x)(y_i-\bar y)}{n-1}$ 协方差矩阵: $\begin{aligned}C&amp;&#x3D;\begin{vmatrix}cov(x,x)&amp;cov(x,y)\\cov(x,y)&amp;cov(y,y)\end{vmatrix}\">
+<meta property="og:description" content="PCA是什么? 找新的坐标轴  去中心化 找坐标系  关键概念 协方差: \(cov(x,y)&#x3D;\dfrac{\sum^n_{i&#x3D;1}(x_i-\bar x)(y_i-\bar y)}{n-1}\) 协方差矩阵: \(\begin{aligned}C&amp;&#x3D;\begin{vmatrix}cov(x,x)&amp;cov(x,y)\\cov(x,y)&amp;cov(y,y">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-15T04:15:42.000Z">
 <meta property="article:modified_time" content="2025-01-17T03:33:43.660Z">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          529 字
+          540 字
         
       </span>
     
@@ -297,30 +297,36 @@
                 
                 <p>PCA是什么?</p>
 <p><strong>找新的坐标轴</strong></p>
-<ol>
+<ol type="1">
 <li>去中心化</li>
 <li>找坐标系</li>
 </ol>
-<h2 id="关键概念"><a href="#关键概念" class="headerlink" title="关键概念"></a>关键概念</h2><p><strong>协方差</strong>:</p>
-<p>$cov(x,y)=\dfrac{\sum^n_{i=1}(x_i-\bar x)(y_i-\bar y)}{n-1}$</p>
+<h2 id="关键概念">关键概念</h2>
+<p><strong>协方差</strong>:</p>
+<p><span class="math inline">\(cov(x,y)=\dfrac{\sum^n_{i=1}(x_i-\bar
+x)(y_i-\bar y)}{n-1}\)</span></p>
 <p><strong>协方差矩阵</strong>:</p>
-<p>$\begin{aligned}C&amp;=\begin{vmatrix}cov(x,x)&amp;cov(x,y)\\cov(x,y)&amp;cov(y,y)\end{vmatrix}\\&amp;=\dfrac{1}{n-1}\begin{bmatrix}x_1&amp;x_2&amp;x_3&amp;x_4\\y_1&amp;y_2&amp;y_3&amp;y_4\end{bmatrix}\begin{bmatrix}x_1&amp;y_1\\x_2&amp;y_2\\x_3&amp;y_3\\x_4&amp;y_4\\\end{bmatrix}\\&amp;=\dfrac{1}{n-1}DD^T\end{aligned}$</p>
-<script type="math/tex; mode=display">
+<p><span class="math inline">\(\begin{aligned}C&amp;=\begin{vmatrix}cov(x,x)&amp;cov(x,y)\\cov(x,y)&amp;cov(y,y)\end{vmatrix}\\&amp;=\dfrac{1}{n-1}\begin{bmatrix}x_1&amp;x_2&amp;x_3&amp;x_4\\y_1&amp;y_2&amp;y_3&amp;y_4\end{bmatrix}\begin{bmatrix}x_1&amp;y_1\\x_2&amp;y_2\\x_3&amp;y_3\\x_4&amp;y_4\\\end{bmatrix}\\&amp;=\dfrac{1}{n-1}DD^T\end{aligned}\)</span>
+<span class="math display">\[
 \begin{aligned}
-C'&=\dfrac{1}{n-1}D'D'^T\\
-&=\dfrac{1}{n-1}RSD(RSD)^T\\
-&=RS\dfrac{1}{n-1}S^TR^T\\
-&=RSS^TR^T\\
-&=RLR^{-1}\\
-L&=SS^T=\begin{bmatrix}a^2&0\\0&b^2\end{bmatrix}
-\end{aligned}</script><h2 id="基本过程"><a href="#基本过程" class="headerlink" title="基本过程"></a>基本过程</h2><p>从二维数据入手:</p>
-<ol>
+C&#39;&amp;=\dfrac{1}{n-1}D&#39;D&#39;^T\\
+&amp;=\dfrac{1}{n-1}RSD(RSD)^T\\
+&amp;=RS\dfrac{1}{n-1}S^TR^T\\
+&amp;=RSS^TR^T\\
+&amp;=RLR^{-1}\\
+L&amp;=SS^T=\begin{bmatrix}a^2&amp;0\\0&amp;b^2\end{bmatrix}
+\end{aligned}
+\]</span></p>
+<h2 id="基本过程">基本过程</h2>
+<p>从二维数据入手:</p>
+<ol type="1">
 <li>求出点的中心,将中心移动至坐标原点</li>
 <li>找到一条有着最大投影点到原点距离平方和的线</li>
 <li>PC的特征值为最佳拟合线距离的平方和</li>
 <li>PC奇异值为PC的特征值的平方根</li>
 </ol>
-<h2 id="MATLAB代码"><a href="#MATLAB代码" class="headerlink" title="MATLAB代码"></a>MATLAB代码</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[V,S,E]</span>=<span class="hljs-title">princa</span><span class="hljs-params">(X)</span></span><br>[m,n]=<span class="hljs-built_in">size</span>(X); <span class="hljs-comment">%计算矩阵的行m和列n</span><br> <br><span class="hljs-comment">%-------------第一步：标准化矩阵-----------------%</span><br>mv=<span class="hljs-built_in">mean</span>(X); <span class="hljs-comment">%计算各变量的均值</span><br>st=std(X); <span class="hljs-comment">%计算各变量的标准差</span><br>X=(X-<span class="hljs-built_in">repmat</span>(mv,m,<span class="hljs-number">1</span>))./<span class="hljs-built_in">repmat</span>(st,m,<span class="hljs-number">1</span>); <span class="hljs-comment">%标准化矩阵X</span><br> <br><span class="hljs-comment">%-------------第二步：计算相关系数矩阵-----------------%</span><br><span class="hljs-comment">% R1=X&#x27;*X/(m-1); %方法一：协方差矩阵计算公式</span><br><span class="hljs-comment">% R2=cov(X);     %方法二：协方差矩阵计算函数</span><br>R=corrcoef(X); <span class="hljs-comment">%方法三：相关系数矩阵函数</span><br> <br><span class="hljs-comment">%-------------第三步：计算特征向量和特征值-----------------%</span><br>[V,D]=eig(R);       <span class="hljs-comment">%计算矩阵R的特征向量矩阵V和特征值矩阵D,特征值由小到大</span><br>V=(<span class="hljs-built_in">rot90</span>(V))&#x27;;      <span class="hljs-comment">%将特征向量矩阵V从大到小排序</span><br>D=<span class="hljs-built_in">rot90</span>(<span class="hljs-built_in">rot90</span>(D));  <span class="hljs-comment">%将特征值矩阵由大到小排序</span><br>E=<span class="hljs-built_in">diag</span>(D);          <span class="hljs-comment">%将特征值矩阵转换为特征值向量</span><br> <br><span class="hljs-comment">%-------------第四步：计算贡献率和累计贡献率-----------------%</span><br>ratio=<span class="hljs-number">0</span>; <span class="hljs-comment">%累计贡献率</span><br><span class="hljs-keyword">for</span> k=<span class="hljs-number">1</span>:n<br>    r=E(k)/sum(E);   <span class="hljs-comment">%第k主成份贡献率</span><br>    ratio=ratio+r;  <span class="hljs-comment">%累计贡献率</span><br>    <span class="hljs-keyword">if</span>(ratio&gt;=<span class="hljs-number">0.9</span>)  <span class="hljs-comment">%取累计贡献率大于等于90%的主成分</span><br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br> <br><span class="hljs-comment">%-------------第五步：计算得分-----------------%</span><br>S=X*V;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h2 id="matlab代码">MATLAB代码</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">[V,S,E]</span>=<span class="hljs-title">princa</span><span class="hljs-params">(X)</span></span><br>[m,n]=<span class="hljs-built_in">size</span>(X); <span class="hljs-comment">%计算矩阵的行m和列n</span><br> <br><span class="hljs-comment">%-------------第一步：标准化矩阵-----------------%</span><br>mv=<span class="hljs-built_in">mean</span>(X); <span class="hljs-comment">%计算各变量的均值</span><br>st=std(X); <span class="hljs-comment">%计算各变量的标准差</span><br>X=(X-<span class="hljs-built_in">repmat</span>(mv,m,<span class="hljs-number">1</span>))./<span class="hljs-built_in">repmat</span>(st,m,<span class="hljs-number">1</span>); <span class="hljs-comment">%标准化矩阵X</span><br> <br><span class="hljs-comment">%-------------第二步：计算相关系数矩阵-----------------%</span><br><span class="hljs-comment">% R1=X&#x27;*X/(m-1); %方法一：协方差矩阵计算公式</span><br><span class="hljs-comment">% R2=cov(X);     %方法二：协方差矩阵计算函数</span><br>R=corrcoef(X); <span class="hljs-comment">%方法三：相关系数矩阵函数</span><br> <br><span class="hljs-comment">%-------------第三步：计算特征向量和特征值-----------------%</span><br>[V,D]=eig(R);       <span class="hljs-comment">%计算矩阵R的特征向量矩阵V和特征值矩阵D,特征值由小到大</span><br>V=(<span class="hljs-built_in">rot90</span>(V))&#x27;;      <span class="hljs-comment">%将特征向量矩阵V从大到小排序</span><br>D=<span class="hljs-built_in">rot90</span>(<span class="hljs-built_in">rot90</span>(D));  <span class="hljs-comment">%将特征值矩阵由大到小排序</span><br>E=<span class="hljs-built_in">diag</span>(D);          <span class="hljs-comment">%将特征值矩阵转换为特征值向量</span><br> <br><span class="hljs-comment">%-------------第四步：计算贡献率和累计贡献率-----------------%</span><br>ratio=<span class="hljs-number">0</span>; <span class="hljs-comment">%累计贡献率</span><br><span class="hljs-keyword">for</span> k=<span class="hljs-number">1</span>:n<br>    r=E(k)/sum(E);   <span class="hljs-comment">%第k主成份贡献率</span><br>    ratio=ratio+r;  <span class="hljs-comment">%累计贡献率</span><br>    <span class="hljs-keyword">if</span>(ratio&gt;=<span class="hljs-number">0.9</span>)  <span class="hljs-comment">%取累计贡献率大于等于90%的主成分</span><br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">end</span><br> <br><span class="hljs-comment">%-------------第五步：计算得分-----------------%</span><br>S=X*V;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
                 
               </div>

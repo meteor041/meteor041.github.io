@@ -19,23 +19,26 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="hw3综述 hw3在hw2的基础上增加了非递推函数与函数求导的功能. 针对求导因子,我们新增DerivativeFactor类,对每种因子类新增了求导方法,并对大部分节点类补充了深度克隆方法 针对非递推函数,我们在Spreader类中新增了spreadSelf等一系列方法,考虑到递推函数可能包含非递推函数,要求字符串input在接受spreadSelf方法展开所有非递推函数后,再调用spreadR">
+    <meta name="description" content="hw3综述  hw3在hw2的基础上增加了非递推函数与函数求导的功能. 针对求导因子,我们新增DerivativeFactor类,对每种因子类新增了求导方法,并对大部分节点类补充了深度克隆方法 针对非递推函数,我们在Spreader类中新增了spreadSelf等一系列方法,考虑到递推函数可能包含非递推函数,要求字符串input在接受spreadSelf方法展开所有非递推函数后,再调用sp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象设计与构造-hw3思路">
 <meta property="og:url" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="hw3综述 hw3在hw2的基础上增加了非递推函数与函数求导的功能. 针对求导因子,我们新增DerivativeFactor类,对每种因子类新增了求导方法,并对大部分节点类补充了深度克隆方法 针对非递推函数,我们在Spreader类中新增了spreadSelf等一系列方法,考虑到递推函数可能包含非递推函数,要求字符串input在接受spreadSelf方法展开所有非递推函数后,再调用spreadR">
+<meta property="og:description" content="hw3综述  hw3在hw2的基础上增加了非递推函数与函数求导的功能. 针对求导因子,我们新增DerivativeFactor类,对每种因子类新增了求导方法,并对大部分节点类补充了深度克隆方法 针对非递推函数,我们在Spreader类中新增了spreadSelf等一系列方法,考虑到递推函数可能包含非递推函数,要求字符串input在接受spreadSelf方法展开所有非递推函数后,再调用sp">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/MAINCLASS.png">
+<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/image-3.png">
+<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/hw3_codelines.jpg">
+<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/hw3%E5%87%BD%E6%95%B0%E5%BA%A6%E9%87%8F%E5%88%86%E6%9E%90.jpg">
+<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/hw3%E7%B1%BB%E5%BA%A6%E9%87%8F%E5%88%86%E6%9E%90.jpg">
 <meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/image-1.png">
-<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/image.png">
 <meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/image-2.png">
+<meta property="og:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/image.png">
 <meta property="article:published_time" content="2025-03-17T10:23:08.000Z">
-<meta property="article:modified_time" content="2025-03-17T16:07:13.382Z">
+<meta property="article:modified_time" content="2025-03-18T13:31:27.897Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="OO">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/MAINCLASS.png">
+<meta name="twitter:image" content="https://meteor041.git.io/2025/03/17/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%8E%E6%9E%84%E9%80%A0-hw3%E6%80%9D%E8%B7%AF/image-3.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -230,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.4k 字
         
       </span>
     
@@ -241,7 +244,7 @@
         
         
         
-          17 分钟
+          20 分钟
         
       </span>
     
@@ -292,7 +295,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年3月18日 凌晨
+                    本文最后更新于 2025年3月18日 晚上
                   
                 
               </p>
@@ -300,56 +303,71 @@
             
               <div class="markdown-body">
                 
-                <h2 id="hw3综述"><a href="#hw3综述" class="headerlink" title="hw3综述"></a>hw3综述</h2><ul>
+                <h2 id="hw3综述">hw3综述</h2>
+<ul>
 <li>hw3在hw2的基础上增加了非递推函数与函数求导的功能.</li>
 <li>针对求导因子,我们新增<code>DerivativeFactor</code>类,对每种因子类新增了求导方法,并对大部分节点类补充了深度克隆方法</li>
 <li>针对非递推函数,我们在<code>Spreader</code>类中新增了<code>spreadSelf</code>等一系列方法,考虑到递推函数可能包含非递推函数,要求字符串<code>input</code>在接受<code>spreadSelf</code>方法展开所有非递推函数后,再调用<code>spreadRecursive</code>方法展开递推函数.</li>
 <li>对于评测机,由于求导因子和函数的<code>parse()</code>方法难以调包实现,自己用<code>Python</code>写一份复杂的代码无异于对拍.本次作业基于<code>JavaScript</code>和<code>Node.js</code>实现的对拍器网站,根据<code>Python</code>自动程序生成的数据,通过与同学们的jar包进行运行结果比较,快速查找bug.</li>
 </ul>
-<h2 id="架构分析"><a href="#架构分析" class="headerlink" title="架构分析"></a>架构分析</h2><p>通过<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=6XrL5jXmTwM&amp;ab_channel=LucidSoftware">UML class diagrams</a>视频学习了UML图的基本绘制方法.</p>
-<p><img src="MAINCLASS.png" srcset="/img/loading.gif" lazyload alt="hw3UML类图"></p>
+<h2 id="架构分析">架构分析</h2>
+<p>通过<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=6XrL5jXmTwM&amp;ab_channel=LucidSoftware">UML
+class diagrams</a>视频学习了UML图的基本绘制方法.</p>
+<figure>
+<img src="image-3.png" srcset="/img/loading.gif" lazyload alt="hw3 UML图">
+<figcaption aria-hidden="true">hw3 UML图</figcaption>
+</figure>
 <ul>
 <li>建立两个软件包,分别为<code>utils</code>和<code>node</code>.<code>utils</code>软件包中包含各种工具类,供<code>MainClass</code>主类调用,<code>node</code>软件包内包含抽象语法树(AST)的各类树节点.</li>
 <li><code>utils</code>类包含的<code>Lexer</code>作为词法分析器;<code>Parser</code>作为语法分析器,将<code>Lexer</code>类作为参数;<code>Spreader</code>类提供展开函数的方法;<code>Printer</code>类提供将<code>HashMap&lt;Pair, BigInteger&gt;</code>类型的表达式转换成字符串形式以供打印;<code>Simplifier</code>类内含和差化积等化简方法,主要负责三角函数的化简.</li>
 <li><code>node</code>类以<code>ExpressionNode</code>类作为基类,子类分为<code>NumberNode</code>和<code>OperatorNode</code>两种.<code>OperatorNode</code>类作为各种运算符节点(如<code>AddNode</code>等)的基类.<code>NumberNode</code>类含有<code>Pair</code>和<code>coeff</code>,其中<code>Pair</code>指的是x的次幂和三角函数列表组成的自定义类,<code>coeff</code>是<code>BigInteger</code>类型的整数系数.</li>
 </ul>
 <p>优点分析:</p>
-<ol>
-<li><strong>层次化设计</strong>:<ul>
+<ol type="1">
+<li><strong>层次化设计</strong>:
+<ul>
 <li>将系统划分为<code>utils</code>和<code>node</code>两个包,职责清晰,便于维护和扩展.</li>
 <li>建立数据抽象层次,<code>Pair</code>作为x的次幂和三角函数乘积的组合,将x和三角函数有效组合起来,便于管理.</li>
-</ul>
-</li>
-<li><strong>可扩展性</strong>:<ul>
+</ul></li>
+<li><strong>可扩展性</strong>:
+<ul>
 <li><code>ExpressionNode</code>作为基类,支持扩展新的节点类型(如<code>DerivativeNode</code>).</li>
 <li><code>Pair</code>的设计支持灵活的组合,便于添加新的三角函数或变量类型.</li>
-</ul>
-</li>
-<li><strong>类型安全</strong>:<ul>
+</ul></li>
+<li><strong>类型安全</strong>:
+<ul>
 <li>使用<code>BigInteger</code>处理大整数计算,有效避免数据溢出.</li>
 <li><code>HashMap&lt;Pair, BigInteger&gt;</code>提供高效的表达式存储和检索.</li>
-</ul>
-</li>
-<li><strong>可测试性</strong>:<ul>
+</ul></li>
+<li><strong>可测试性</strong>:
+<ul>
 <li>每个模块可以独立测试,便于定位问题</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 <p>缺点分析:</p>
-<ol>
-<li><strong>复杂度较高</strong>:<ul>
+<ol type="1">
+<li><strong>复杂度较高</strong>:
+<ul>
 <li><code>Pair</code>的设计一定程度上增加了系统的复杂度,我在写代码的时候必须依靠足够的注释才能不至于搞混.</li>
 <li><code>OperatorNode</code>类的多层继承关系可能会让代码的维护成本增高.</li>
-</ul>
-</li>
-<li><strong>性能问题</strong>:<ul>
+</ul></li>
+<li><strong>性能问题</strong>:
+<ul>
 <li><code>HashMap&lt;Pair, BigInteger&gt;</code>的存储方式会在大规模数据下性能下降</li>
 <li><code>Simplifier</code>的和差化积方法在面对大数据时性能爆炸,所幸课程网站的测试没有那么严苛</li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<h2 id="OO度量分析"><a href="#OO度量分析" class="headerlink" title="OO度量分析"></a>OO度量分析</h2><div class="table-container">
+<h2 id="oo度量分析">OO度量分析</h2>
+<h3 id="数目分析">数目分析</h3>
+<p>使用<code>Satistic</code>插件计算了hw3各类的代码规模,使用<code>MATLAB</code>绘制如下图:</p>
+<figure>
+<img src="hw3_codelines.jpg" srcset="/img/loading.gif" lazyload alt="hw3 类代码规模">
+<figcaption aria-hidden="true">hw3 类代码规模</figcaption>
+</figure>
+<p>其中<code>Printer</code>,<code>Simplifier</code>,<code>Parser</code>等工具类代码占比大.</p>
+<h3 id="经典度量分析">经典度量分析</h3>
 <table>
+
 <thead>
 <tr>
 <th>度量指标</th>
@@ -421,20 +439,34 @@
 </tr>
 </tbody>
 </table>
-</div>
+<p>程序函数度量分析如下: <img src="hw3函数度量分析.jpg" srcset="/img/loading.gif" lazyload alt="hw3 函数度量分析"></p>
+<p>程序类度量分析如下: <img src="hw3类度量分析.jpg" srcset="/img/loading.gif" lazyload alt="hw3 类度量分析"></p>
 <ul>
 <li>部分方法的复杂度较高,尤其是<code>utils.Printer.transform</code>和<code>utils.Simplifier.processEntry</code>方法,表明这些方法的逻辑较为复杂.</li>
 <li>部分方法的<code>ev(G)</code>和<code>iv(G)</code>较高,表明这些方法的逻辑和设计复杂度较高,可能难以维护和扩展.</li>
 <li>大多数类的方法平均圈复杂度较低,部分类如<code>utils.Printer</code>,<code>utils.Parser</code>的复杂度较高.</li>
 </ul>
-<h2 id="bug分享"><a href="#bug分享" class="headerlink" title="bug分享"></a>bug分享</h2><h2 id="评测机及对拍器构建思路"><a href="#评测机及对拍器构建思路" class="headerlink" title="评测机及对拍器构建思路"></a>评测机及对拍器构建思路</h2><h3 id="GitHub链接"><a href="#GitHub链接" class="headerlink" title="GitHub链接"></a>GitHub链接</h3><ul>
+<h2 id="hack及bug分享">hack及bug分享</h2>
+<p>本次顺利通过强测,但是由于性能分太低被分到了B屋."塞翁失马,焉知非福."这次在B屋的互测中我通过自动生成+对拍机的轰炸查到了同学们的许多bug.</p>
+<p>第三次作业独有的bug主要是求导带来的深层拷贝问题:对于多个因子相乘得到的项,其求导的公式为:
+<span class="math display">\[
+dx(term_1*term_2*\cdots *term_n)=\sum^n_{ i=1 }dx(term_i)\prod_{j\neq
+i}^n term_j
+\]</span>
+结果会出现很多重复的项,这里最好保证每个项都经过一次深层拷贝,保证对象不一致.否则当一个对象被修改的时候,它远在天边的"孪生兄弟"也随之改变了.这种bug不好查,我们尽量避免浅层拷贝.</p>
+<p>当然,我们也可以在构建类的时候把所有类的属性都设置为<code>private</code>,当修改类的值时,我们采用返回一个新建的类的方法来实现.</p>
+<h2 id="评测机及对拍器构建思路">评测机及对拍器构建思路</h2>
+<h3 id="github链接">GitHub链接</h3>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/meteor041/OO_2025_judge">本地运行程序源码</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/meteor041/OO_beatmatch_web">评测网站源码</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/meteor041/OO_beatmatch_web">评测网站链接</a></li>
 </ul>
-<h3 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h3><p>首先看一下hw1,hw2测试程序的终端运行效果:<br><img src="image-1.png" srcset="/img/loading.gif" lazyload alt="hw2测试程序终端运行效果图"></p>
-<p>这是hw3对拍器网站的页面效果:<br><img src="image.png" srcset="/img/loading.gif" lazyload alt="hw3对拍网站效果"></p>
-<h3 id="测试数据生成"><a href="#测试数据生成" class="headerlink" title="测试数据生成"></a>测试数据生成</h3><p>针对hw1和hw2,我们构建一个测试程序,测试程序重点应当放在数据生成上,这里我们以<code>generate3.py</code>为例(因为数据生成数据随着作业进度迭代开发,hw3的这一版相对更加完善).</p>
+<h3 id="运行效果">运行效果</h3>
+<p>首先看一下hw1,hw2测试程序的终端运行效果: <img src="image-1.png" srcset="/img/loading.gif" lazyload alt="hw2测试程序终端运行效果图"></p>
+<p>这是hw3对拍器网站的页面效果: <img src="image-2.png" srcset="/img/loading.gif" lazyload alt="hw3对拍网站效果"></p>
+<h3 id="测试数据生成">测试数据生成</h3>
+<p>针对hw1和hw2,我们构建一个测试程序,测试程序重点应当放在数据生成上,这里我们以<code>generate3.py</code>为例(因为数据生成数据随着作业进度迭代开发,hw3的这一版相对更加完善).</p>
 <p>我们构建了一个<code>Generator</code>类,其<code>__init__</code>方法如下:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Generator</span>:<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, max_depth, max_length</span>):<br>        <span class="hljs-variable language_">self</span>.max_depth = max_depth<br>        <span class="hljs-variable language_">self</span>.max_length = max_length<br>        <span class="hljs-variable language_">self</span>.function_type = [random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>)]<br>        <span class="hljs-variable language_">self</span>.arguments = [<span class="hljs-string">&#x27;x&#x27;</span>]<br>        <span class="hljs-variable language_">self</span>.forbid_function = [<span class="hljs-literal">False</span>] * <span class="hljs-number">3</span><br>        <span class="hljs-variable language_">self</span>.derive_enable = <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
 <p>在这里,我们规定了最大递归深度,生成函数类型,以及变量列表等元素的初始化.根据题目所给出的BNF描述,构建主方法<code>generate_expression</code>,其含以下子方法:</p>
@@ -451,23 +483,33 @@
 <li>generate_variable_factor(depth): 生成变量因子。</li>
 <li>generate_term(depth): 生成项。</li>
 <li>generate_expression_recursive(depth): 递归生成表达式。</li>
-<li>generate_function_call_f(depth): 生成函数调用 f{n}(x) 或 f{n}(x,y)。</li>
+<li>generate_function_call_f(depth): 生成函数调用 f{n}(x) 或
+f{n}(x,y)。</li>
 <li>generate_function_call_g(depth): 生成函数调用 g(x) 或 g(x,y)。</li>
 <li>generate_function_call_h(depth): 生成函数调用 h(x) 或 h(x,y)。</li>
 <li>generate_function_definition(self): 生成函数定义。</li>
-<li>generate_self_definition(type: str, mode: int): 生成自定义函数定义</li>
+<li>generate_self_definition(type: str, mode: int):
+生成自定义函数定义</li>
 </ul>
-<p>通过递归调用函数,我们可以做到随机生成足够复杂和困难的表达式,通过控制函数中的概率设置,我们可以调控生成式子的复杂程度,例如在<code>generate_term(depth)</code>中:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_term</span>(<span class="hljs-params">depth</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;生成项&quot;&quot;&quot;</span><br>    expression = <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> random.random() &lt; <span class="hljs-number">0.2</span>:<br>        expression += random.choice([<span class="hljs-string">&quot;+&quot;</span>, <span class="hljs-string">&quot;-&quot;</span>]) + generate_whitespace()<br><br>    expression += generate_factor(depth)<br><br>    prob = <span class="hljs-number">0.3</span><br>    <span class="hljs-keyword">while</span> random.random() &lt; prob:<br>        expression += generate_whitespace() + <span class="hljs-string">&quot;*&quot;</span> + generate_whitespace() + generate_factor(depth)<br>        prob *= <span class="hljs-number">0.3</span><br>    <span class="hljs-keyword">return</span> expression<br></code></pre></td></tr></table></figure><br><code>prob</code>的大小会大幅度影响表达式生成结果.</p>
-<h3 id="测试结果正误"><a href="#测试结果正误" class="headerlink" title="测试结果正误"></a>测试结果正误</h3><p>这里我们用到了<code>Sympy</code>软件包,它可以快速方便地计算或者展开含x的表达式.以输入调用<code>Sympy.expand()</code>后的结果作为标准输出,将其用户程序的输出进行比较.比较方式包括两种:</p>
-<ol>
+<p>通过递归调用函数,我们可以做到随机生成足够复杂和困难的表达式,通过控制函数中的概率设置,我们可以调控生成式子的复杂程度,例如在<code>generate_term(depth)</code>中:
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_term</span>(<span class="hljs-params">depth</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;生成项&quot;&quot;&quot;</span><br>    expression = <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> random.random() &lt; <span class="hljs-number">0.2</span>:<br>        expression += random.choice([<span class="hljs-string">&quot;+&quot;</span>, <span class="hljs-string">&quot;-&quot;</span>]) + generate_whitespace()<br><br>    expression += generate_factor(depth)<br><br>    prob = <span class="hljs-number">0.3</span><br>    <span class="hljs-keyword">while</span> random.random() &lt; prob:<br>        expression += generate_whitespace() + <span class="hljs-string">&quot;*&quot;</span> + generate_whitespace() + generate_factor(depth)<br>        prob *= <span class="hljs-number">0.3</span><br>    <span class="hljs-keyword">return</span> expression<br></code></pre></td></tr></table></figure> <code>prob</code>的大小会大幅度影响表达式生成结果.</p>
+<h3 id="测试结果正误">测试结果正误</h3>
+<p>这里我们用到了<code>Sympy</code>软件包,它可以快速方便地计算或者展开含x的表达式.以输入调用<code>Sympy.expand()</code>后的结果作为标准输出,将其用户程序的输出进行比较.比较方式包括两种:</p>
+<ol type="1">
 <li>随机选择x值代入表达式进行计算,比较常数结果是否相等</li>
 <li>使用<code>Sympy</code>包自带的判断表达式相等功能</li>
 </ol>
-<h3 id="整体逻辑框架"><a href="#整体逻辑框架" class="headerlink" title="整体逻辑框架"></a>整体逻辑框架</h3><p>综上,我们可以绘制出该测试程序的逻辑框架</p>
-<p><img src="image-2.png" srcset="/img/loading.gif" lazyload alt="测试程序逻辑"></p>
-<h2 id="对拍器网站搭建"><a href="#对拍器网站搭建" class="headerlink" title="对拍器网站搭建"></a>对拍器网站搭建</h2><p>本着互利互惠的精神,我做了一个hw3的对拍器网站.用户可自行上传jar包,输入测试样例个数,按下运行键与网站上所有存放的jar包一起对拍,其对拍的输入数据均来自于自动生成程序.此外,用户还可以下载每次运行的结果(包括输入和输出)</p>
+<h3 id="测试逻辑框架">测试逻辑框架</h3>
+<p>综上,我们可以绘制出该测试程序的逻辑框架</p>
+<figure>
+<img src="image.png" srcset="/img/loading.gif" lazyload alt="alt text">
+<figcaption aria-hidden="true">alt text</figcaption>
+</figure>
+<h2 id="对拍器网站搭建">对拍器网站搭建</h2>
+<p>本着互利互惠的精神,我做了一个hw3的对拍器网站.用户可自行上传jar包,输入测试样例个数,按下运行键与网站上所有存放的jar包一起对拍,其对拍的输入数据均来自于自动生成程序.此外,用户还可以下载每次运行的结果(包括输入和输出)</p>
 <p>本网站基于阿里云服务器,采用了<code>Node.js</code>框架,通过<code>DeepSeek</code>和<code>Gemini 2.0 Flash</code>完成了大部分<code>JavaScript</code>代码工作.</p>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://mmmusel.github.io/2022/03/24/OO-Unit1-summary/#/%E6%95%B4%E4%BD%93%E5%88%86%E6%9E%90">BUAA-OO-Unit1</a></p>
+<h2 id="参考文章">参考文章</h2>
+<p><a target="_blank" rel="noopener" href="https://mmmusel.github.io/2022/03/24/OO-Unit1-summary/#/%E6%95%B4%E4%BD%93%E5%88%86%E6%9E%90">BUAA-OO-Unit1</a></p>
 
                 
               </div>

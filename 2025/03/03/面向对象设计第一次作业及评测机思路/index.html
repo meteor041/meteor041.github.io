@@ -19,18 +19,20 @@
   <meta name="author" content="meteor041">
   <meta name="keywords" content="Computer Organization">
   
-    <meta name="description" content="结构分析 表达式 &#x3D; 项 +|- 项 +|- … 项 &#x3D; 因子  因子  … 因子有三种: 常数因子: +|- 常数 表达式因子: +|- (…) [“^” 常数] 变量因子: +|- x [“^” 常数]    功能实现本次代码基于训练题给出的代码框架进行增添完善,主要增加实现的功能为:  增加对变量因子和表达式因子的识别,加强对部分符号如”x”,”(“,”)”,”^”等的处理. 修改Parse">
+    <meta name="description" content="结构分析  表达式 &#x3D; 项 +|- 项 +|- ... 项 &#x3D; 因子 * 因子 * ... 因子有三种:  常数因子: +|- 常数 表达式因子: +|- (...) [&quot;^&quot; 常数] 变量因子: +|- x [&quot;^&quot; 常数]   功能实现 本次代码基于训练题给出的代码框架进行增添完善,主要增加实现的功能为:  增加对变量因子和表达式因子的识别,加强对部分符号如&quot;x&quot;,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面向对象设计第一次作业及评测机思路">
 <meta property="og:url" content="https://meteor041.git.io/2025/03/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%9C%E4%B8%9A%E5%8F%8A%E8%AF%84%E6%B5%8B%E6%9C%BA%E6%80%9D%E8%B7%AF/index.html">
 <meta property="og:site_name" content="meteor041">
-<meta property="og:description" content="结构分析 表达式 &#x3D; 项 +|- 项 +|- … 项 &#x3D; 因子  因子  … 因子有三种: 常数因子: +|- 常数 表达式因子: +|- (…) [“^” 常数] 变量因子: +|- x [“^” 常数]    功能实现本次代码基于训练题给出的代码框架进行增添完善,主要增加实现的功能为:  增加对变量因子和表达式因子的识别,加强对部分符号如”x”,”(“,”)”,”^”等的处理. 修改Parse">
+<meta property="og:description" content="结构分析  表达式 &#x3D; 项 +|- 项 +|- ... 项 &#x3D; 因子 * 因子 * ... 因子有三种:  常数因子: +|- 常数 表达式因子: +|- (...) [&quot;^&quot; 常数] 变量因子: +|- x [&quot;^&quot; 常数]   功能实现 本次代码基于训练题给出的代码框架进行增添完善,主要增加实现的功能为:  增加对变量因子和表达式因子的识别,加强对部分符号如&quot;x&quot;,">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meteor041.git.io/2025/03/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%9C%E4%B8%9A%E5%8F%8A%E8%AF%84%E6%B5%8B%E6%9C%BA%E6%80%9D%E8%B7%AF/image.png">
 <meta property="article:published_time" content="2025-03-03T06:05:40.000Z">
-<meta property="article:modified_time" content="2025-03-03T09:15:33.618Z">
+<meta property="article:modified_time" content="2025-03-18T12:57:34.479Z">
 <meta property="article:author" content="meteor041">
 <meta property="article:tag" content="OO">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://meteor041.git.io/2025/03/03/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%9C%E4%B8%9A%E5%8F%8A%E8%AF%84%E6%B5%8B%E6%9C%BA%E6%80%9D%E8%B7%AF/image.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -287,7 +289,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年3月3日 下午
+                    本文最后更新于 2025年3月18日 晚上
                   
                 
               </p>
@@ -295,36 +297,46 @@
             
               <div class="markdown-body">
                 
-                <h1 id="结构分析"><a href="#结构分析" class="headerlink" title="结构分析"></a>结构分析</h1><ul>
-<li>表达式 = 项 +|- 项 +|- …</li>
-<li>项 = 因子 <em> 因子 </em> …</li>
-<li>因子有三种:<ul>
+                <h1 id="结构分析">结构分析</h1>
+<ul>
+<li>表达式 = 项 +|- 项 +|- ...</li>
+<li>项 = 因子 * 因子 * ...</li>
+<li>因子有三种:
+<ul>
 <li>常数因子: +|- 常数</li>
-<li>表达式因子: +|- (…) [“^” 常数]</li>
-<li>变量因子: +|- x [“^” 常数]</li>
+<li>表达式因子: +|- (...) ["^" 常数]</li>
+<li>变量因子: +|- x ["^" 常数]</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h1 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h1><p>本次代码基于训练题给出的代码框架进行增添完善,主要增加实现的功能为:</p>
-<ol>
-<li>增加对变量因子和表达式因子的识别,加强对部分符号如”x”,”(“,”)”,”^”等的处理.</li>
+<h1 id="功能实现">功能实现</h1>
+<p>本次代码基于训练题给出的代码框架进行增添完善,主要增加实现的功能为:</p>
+<ol type="1">
+<li>增加对变量因子和表达式因子的识别,加强对部分符号如"x","(",")","^"等的处理.</li>
 <li>修改<code>Parser</code>的<code>parseExpr</code>等方法,处理好正负号的潜在问题.</li>
 <li>构造<code>ExpressionNode</code>类,构建结点树来表达字符串,并提供<code>evaluate()</code>接口对表达式进行计算.</li>
 <li>构造<code>Printer</code>类,提供<code>printExpr</code>方法,对结点树的计算结果(以<code>HashMap</code>为呈现形式)转换为字符串,并打印.</li>
 </ol>
-<h1 id="代码思路"><a href="#代码思路" class="headerlink" title="代码思路"></a>代码思路</h1><h2 id="词法分析器Lexer"><a href="#词法分析器Lexer" class="headerlink" title="词法分析器Lexer"></a>词法分析器Lexer</h2><p>词法分析器的主要函数包含<code>getNumber/Var()</code>,<code>next()</code>,<code>peek()</code>.</p>
+<h1 id="代码思路">代码思路</h1>
+<p><img src="image.png" srcset="/img/loading.gif" lazyload alt="hw1 UML图"> ## 词法分析器Lexer</p>
+<p>词法分析器的主要函数包含<code>getNumber/Var()</code>,<code>next()</code>,<code>peek()</code>.</p>
 <p>其中的重要参数为<code>curToken</code>和<code>pos</code>,<code>curToken</code>表示即将进入处理序列的字符,可以通过<code>peek()</code>方法获取,<code>pos</code>表示当前待处理的因子的起始位置,<code>getNumber/Var()</code>被调用时会从pos位置开始接受数字/变量</p>
-<h2 id="解析器Parser"><a href="#解析器Parser" class="headerlink" title="解析器Parser"></a>解析器Parser</h2><p>解析器用于将输入的数据转化为所需要的数据结构(这里我们用的是<code>HashMap</code>作为数据结构).其方法包括<code>parseExpr()</code>,<code>parseTerm()</code>,<code>parseFactor()</code></p>
-<h3 id="对于正负号的处理"><a href="#对于正负号的处理" class="headerlink" title="对于正负号的处理"></a>对于正负号的处理</h3><p>根据题目要求,我们可以构造一些极端的样例,例如<code>++-3</code>,<code>--(+-9)</code>.这类正负号叠加使用的情况要求程序能够细化对符号的处理.</p>
+<h2 id="解析器parser">解析器Parser</h2>
+<p>解析器用于将输入的数据转化为所需要的数据结构(这里我们用的是<code>HashMap</code>作为数据结构).其方法包括<code>parseExpr()</code>,<code>parseTerm()</code>,<code>parseFactor()</code></p>
+<h3 id="对于正负号的处理">对于正负号的处理</h3>
+<p>根据题目要求,我们可以构造一些极端的样例,例如<code>++-3</code>,<code>--(+-9)</code>.这类正负号叠加使用的情况要求程序能够细化对符号的处理.</p>
 <p>根据规则,每个正负号都有各自的归属,例如:<code>++-3</code>,第一个<code>+</code>置于表达式中,赋给第一个项;第二个<code>+</code>置于项中,赋给第一个因子;第三个<code>-</code>置于因子中,表示<code>-3</code>.因此,我们可以在<code>parseExpr</code>和<code>parseTerm</code>新增代码.<code>parseExpr()</code>中,我们在调用<code>parseTerm()</code>之前先判断是否存在负号.如果存在,则设置一个存储-1的常数节点,再调用<code>parseTerm()</code>得到存储项的节点,由这两个节点相乘得到一个乘法节点,然后返回这个乘法节点.<code>parseTerm()</code>同理.</p>
 <p>另外,我们在<code>parseNumber()</code>中加入对正负号和前导零的处理逻辑,这比较简单,不做赘述.</p>
-<h1 id="评测机搭建思路"><a href="#评测机搭建思路" class="headerlink" title="评测机搭建思路"></a>评测机搭建思路</h1><h2 id="评测机功能"><a href="#评测机功能" class="headerlink" title="评测机功能"></a>评测机功能</h2><ol>
-<li>利用<code>Random</code>随机生成符合题目要求的表达式. </li>
+<h1 id="评测机搭建思路">评测机搭建思路</h1>
+<h2 id="评测机功能">评测机功能</h2>
+<ol type="1">
+<li>利用<code>Random</code>随机生成符合题目要求的表达式.</li>
 <li>利用<code>Python</code>中的<code>sympy</code>包对表达式进行消去括号和化简的操作,获得标准结果.</li>
 <li>利用<code>sympy</code>判断用户程序输出结果与标准结果进行比较,判断输出是否通过测试.</li>
 <li>依据长度大小,给用户输出结果进行性能分的评估</li>
 </ol>
-<h1 id="改进思路"><a href="#改进思路" class="headerlink" title="改进思路"></a>改进思路</h1><h2 id="正则表达式实现"><a href="#正则表达式实现" class="headerlink" title="正则表达式实现"></a>正则表达式实现</h2><ol>
+<h1 id="改进思路">改进思路</h1>
+<h2 id="正则表达式实现">正则表达式实现</h2>
+<ol type="1">
 <li><code>parseNumber()</code>改为正则表达式</li>
 </ol>
 
